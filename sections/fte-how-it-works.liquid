@@ -1,0 +1,271 @@
+{%- comment -%}
+  Full-Time Enrolment · How full-time works (Wireframe A · S3)
+
+  Sept 2026: the "2 to 4 courses at a time" model was retired. Every course a
+  student selects now opens at the start of the term and they work through them
+  in any order across the 12 months. The dark panel carries the dedicated
+  counsellor message so the flexibility does not read as being left on your own.
+
+  Copy is hardcoded rather than driven by section settings and blocks. The
+  previous version stored its copy in the template JSON, which meant pushing
+  this file changed nothing on the live page. Everything below renders from the
+  file itself. Edit here, push, done.
+{%- endcomment -%}
+
+<section class="fte-how" aria-labelledby="fte-how-heading-{{ section.id }}">
+  <div class="fte-how__inner">
+
+    <div class="fte-how__head">
+      <p class="fte-how__eyebrow">How full-time works</p>
+      <h2 class="fte-how__heading" id="fte-how-heading-{{ section.id }}">Enrol once. Your counsellor takes it from there.</h2>
+    </div>
+
+    <div class="fte-how__steps" role="list" aria-label="How full-time enrolment works" style="--fte-cols: 5">
+
+      <div class="fte-how__step" role="listitem">
+        <div class="fte-how__step-num" aria-hidden="true">1</div>
+        <div class="fte-how__step-title">Enrol</div>
+        <div class="fte-how__step-body">Choose your grade and enrol online, any day of the year.</div>
+      </div>
+
+      <div class="fte-how__step" role="listitem">
+        <div class="fte-how__step-num" aria-hidden="true">2</div>
+        <div class="fte-how__step-title">Complete the enrolment form</div>
+        <div class="fte-how__step-body">A few minutes, right after checkout.</div>
+      </div>
+
+      <div class="fte-how__step" role="listitem">
+        <div class="fte-how__step-num" aria-hidden="true">3</div>
+        <div class="fte-how__step-title">Your counsellor reaches out</div>
+        <div class="fte-how__step-body">A guidance counsellor dedicated to full-time students contacts you to book your session.</div>
+      </div>
+
+      <div class="fte-how__step" role="listitem">
+        <div class="fte-how__step-num" aria-hidden="true">4</div>
+        <div class="fte-how__step-title">Your guidance session</div>
+        <div class="fte-how__step-body">Prerequisites confirmed, transfer credits evaluated, courses selected, pathway plan built.</div>
+      </div>
+
+      <div class="fte-how__step" role="listitem">
+        <div class="fte-how__step-num" aria-hidden="true">5</div>
+        <div class="fte-how__step-title">Every course opens</div>
+        <div class="fte-how__step-body">All of your courses open in Google Classroom and your 12-month term begins.</div>
+      </div>
+
+    </div>
+
+    <div class="fte-how__pacing">
+      <div class="fte-how__pacing-lead">
+        <span class="fte-how__pacing-rule" aria-hidden="true"></span>
+        <h3 class="fte-how__pacing-heading">Self-paced does not mean on your own.</h3>
+      </div>
+      <div class="fte-how__pacing-text">
+        <p class="fte-how__pacing-body">Every course opens at the start of your term, so you decide what to start and when. What you do not do is work it out alone. A guidance counsellor is assigned to every full-time student, reaches out after you enrol, and stays with you until you graduate.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.fte-how {
+  background: var(--light, #f0f1f5);
+  padding: clamp(48px, 7vw, 10px) 0;
+}
+
+.fte-how__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.fte-how__head {
+  max-width: 920px;
+  margin-bottom: 40px;
+}
+
+.fte-how__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.fte-how__heading {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  text-wrap: balance;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #24367a;
+}
+
+/* Steps */
+.fte-how__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--fte-cols, 5), minmax(0, 1fr));
+  gap: 24px 22px;
+  padding-top: 14px;
+  margin-bottom: 10px;
+}
+
+.fte-how__steps::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 12px;
+  right: 12px;
+  height: 1px;
+  background: linear-gradient(to right, rgba(151, 163, 206, 0) 0%, rgba(151, 163, 206, 0.32) 10%, rgba(151, 163, 206, 0.32) 90%, rgba(151, 163, 206, 0) 100%);
+  z-index: 0;
+}
+
+.fte-how__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fte-how__step-num {
+  position: relative;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 54, 122, 0.24);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #24367a;
+  margin-bottom: 12px;
+  box-shadow: 0 8px 18px rgba(17, 33, 89, 0.15);
+}
+
+.fte-how__step-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #24367a;
+  margin-bottom: 6px;
+  max-width: 200px;
+}
+
+.fte-how__step-body {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #6f789f;
+  max-width: 200px;
+}
+
+/* Pull-quote panel */
+.fte-how__pacing {
+  background: var(--color-dark, #1e2460);
+  border-radius: 20px;
+  padding: clamp(28px, 4vw, 44px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px 48px;
+}
+
+.fte-how__pacing-lead {
+  flex: 0 1 340px;
+}
+
+.fte-how__pacing-rule {
+  display: block;
+  width: 40px;
+  height: 3px;
+  border-radius: 999px;
+  background: #F0C417;
+  margin-bottom: 18px;
+}
+
+.fte-how__pacing-heading {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  color: #ffffff;
+}
+
+.fte-how__pacing-text {
+  flex: 1 1 340px;
+}
+
+.fte-how__pacing-body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  text-wrap: pretty;
+}
+
+@media (max-width: 900px) {
+  .fte-how__steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 20px;
+  }
+  .fte-how__steps::before {
+    display: none;
+  }
+   .fte-how__step {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 14px;
+    row-gap: 5px;
+    align-items: start;
+    text-align: left;
+  }
+  .fte-how__step-num {
+    grid-row: 1 / span 2;
+    margin: 2px 0 0;
+    box-shadow: none;
+  }
+  .fte-how__step-title,
+  .fte-how__step-body {
+    grid-column: 2;
+    max-width: none;
+  }
+  .fte-how__step-title {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .fte-how__inner {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .fte-how__steps {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FTE How It Works",
+  "tag": "section",
+  "class": "fte-section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "FTE How It Works"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,627 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero_banner_carousel_byHT7w": {
+      "type": "hero-banner-carousel",
+      "blocks": {
+        "banner_gETMBH": {
+          "type": "banner",
+          "settings": {
+            "image": "shopify://shop_images/oeo-hero-26.jpg",
+            "mobile_image": "shopify://shop_images/oeo-hero-25-mobile_v9.jpg",
+            "content_max_width": 560,
+            "mobile_text_position": "place-self-end-center text-center",
+            "desktop_text_position": "sm:place-self-center-start sm:text-start",
+            "subheading": "GET AHEAD THIS SCHOOL YEAR",
+            "title": "Earn Ontario High School Credits Online",
+            "heading_tag": "h1",
+            "content": "<p>Fully accredited OSSD courses with Ontario certified teacher support. Complete your full Ontario Secondary School Diploma with us, or take individual courses and we’ll send your final report card and transcript directly to your home school.</p>",
+            "liquid": "",
+            "button_text": "Browse Courses",
+            "button_link": "shopify://collections",
+            "button_style": "fill",
+            "button_size": "lg",
+            "logo": "shopify://shop_images/BBSID2.png",
+            "logo_alt": "Ontario Inspected Highschool",
+            "logo_width": 160,
+            "logo_mobile_width": 100,
+            "text_color": "#ffffff",
+            "button_background": "#f0c417",
+            "button_text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 10,
+            "background": "",
+            "background_gradient": ""
+          }
+        },
+        "style_b_VkNTnM": {
+          "type": "style_b",
+          "name": "Photo banner",
+          "settings": {
+            "image": "shopify://shop_images/OEO-Hero34_a9b938ce-41f0-4632-acf4-e3d49424f663.jpg",
+            "mobile_image": "shopify://shop_images/mobile1.png",
+            "image_alt": "Student completing OSSD coursework online at home",
+            "grade_strength": 26,
+            "content_width": 53,
+            "mobile_position": "flex-end",
+            "eyebrow": "Full-Time Enrolment",
+            "heading_line_1": "September Isn't Your",
+            "heading_line_2": "Only Start Date.",
+            "body_desktop": "Earn your Ontario Secondary School Diploma fully online, at your own pace. Open to Grades 9 to 12 and adult learners.",
+            "body_mobile": "Earn your OSSD fully online, at your own pace. Grades 9 to 12 and adult learners.",
+            "primary_label": "See How Full-Time Works",
+            "primary_link": "shopify://pages/full-time-enrolment",
+            "secondary_label": "Book a Guidance Session",
+            "secondary_link": "shopify://pages/book-guidance-session",
+            "trust_desktop": "Ministry-inspected private school · BSID #882902",
+            "trust_mobile": "Ministry-inspected · BSID #882902"
+          }
+        }
+      },
+      "block_order": [
+        "banner_gETMBH",
+        "style_b_VkNTnM"
+      ],
+      "name": "Hero banner carousel",
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "image_size": "lg",
+        "mobile_min_height": 900,
+        "autoplay": true,
+        "cycle_speed": 9,
+        "transition_type": "fade_with_text",
+        "controls_type": "outline_arrows",
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "382f29b4-37ab-4802-9bfc-301dc9e20896": {
+      "type": "multi-column",
+      "blocks": {
+        "template--21716147831068__382f29b4-37ab-4802-9bfc-301dc9e20896-item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/teacher-icon.png",
+            "column_size": "4",
+            "title": "Ontario Certified Teachers",
+            "heading_tag": "h4",
+            "content": "<p>All of our courses are developed and taught by Ontario Certified Teachers. We provide credits toward the Ontario Secondary School Diploma (OSSD) that meet Ministry standards.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "template--21716147831068__382f29b4-37ab-4802-9bfc-301dc9e20896-item-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/attendance-icon_1.png",
+            "column_size": "4",
+            "title": "Attendance Won't Affect Your Grade",
+            "heading_tag": "h4",
+            "content": "<p>Starting this school year, attendance counts toward final grades in Ontario's in-person classrooms. Not at OEO. Log in when it works for you, and your grade is based on the work you submit. Final exams are written online, from anywhere in the world.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "7ad4d3a6-74b8-4b0e-865e-8d5c2e2522d1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/calendar.png",
+            "column_size": "4",
+            "title": "Finish in as little as 4 weeks",
+            "heading_tag": "h4",
+            "content": "<p>Need a credit quickly? OEO offers flexible pacing so you can complete a course in as little as 4 weeks, or take up to 12 months, whatever works best for you.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "ai_study_tools_XkQm2p": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/gemini-notebook-icon_1.png",
+            "column_size": "4",
+            "title": "AI Study Tools in Every Course",
+            "heading_tag": "h4",
+            "content": "<p>Every OEO course includes Google's Gemini Notebook, built from your teacher's selected materials. Turn readings into audio overviews, video summaries, mind maps, flashcards, and quizzes. Most online schools don't offer this. We build it into every unit.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "template--21716147831068__382f29b4-37ab-4802-9bfc-301dc9e20896-item-1",
+        "template--21716147831068__382f29b4-37ab-4802-9bfc-301dc9e20896-item-2",
+        "7ad4d3a6-74b8-4b0e-865e-8d5c2e2522d1",
+        "ai_study_tools_XkQm2p"
+      ],
+      "custom_css": [
+        "img {height: 70px; width: auto; max-width: none !important; border-radius: 0 !important; object-fit: contain;}",
+        ".multi-column__item .h4 {line-height: 1.15;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "custom_vertical_padding": false,
+        "padding_top": 48,
+        "padding_bottom": 48,
+        "subheading": "",
+        "title": "Our Approach is Different",
+        "content": "",
+        "background": "#313b81",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "comparison_table_LzEEgK": {
+      "type": "Comparison-Table",
+      "blocks": {
+        "row_EKMALD": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Pacing",
+            "tooltip_text": "",
+            "oeo_value": "100% Self-Paced",
+            "trad_value": "Fixed Schedule",
+            "other_value": "Fixed/Semi-Fixed"
+          }
+        },
+        "row_zDx8KX": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Final Exams",
+            "tooltip_text": "As of September 2026, Ontario requires a final exam in most courses at every school. OEO students write theirs online, from anywhere.",
+            "oeo_value": "Written Online, From Anywhere",
+            "trad_value": "In-Person, Scheduled",
+            "other_value": "Varies by School"
+          }
+        },
+        "row_ND6xkE": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Start Date",
+            "tooltip_text": "",
+            "oeo_value": "Any Day of the Year",
+            "trad_value": "Sept/Feb Only",
+            "other_value": "Periodic Intakes"
+          }
+        },
+        "row_GMzhxP": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Teacher Support",
+            "tooltip_text": "Teachers respond to questions within 24 hours (Mon–Fri) and return graded assessments within 48–72 hours.",
+            "oeo_value": "Quick Teacher Feedback",
+            "trad_value": "Varies by Class/Size",
+            "other_value": "Limited/Automated"
+          }
+        },
+        "row_Aebn64": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Accreditation",
+            "tooltip_text": "This is our official Ministry of Education number, ensuring credits are 100% valid for university applications.",
+            "oeo_value": "Ministry Inspected (BSID #882902)",
+            "trad_value": "Ministry Inspected",
+            "other_value": "Varies"
+          }
+        },
+        "row_L34K9M": {
+          "type": "row",
+          "settings": {
+            "feature_title": "Learning Access",
+            "tooltip_text": "",
+            "oeo_value": "Learn Anywhere- Phone, Tablet, or Computer",
+            "trad_value": "Must Attend In-Person Class",
+            "other_value": "Typically Laptop/Desktop Only"
+          }
+        }
+      },
+      "block_order": [
+        "row_EKMALD",
+        "row_zDx8KX",
+        "row_ND6xkE",
+        "row_GMzhxP",
+        "row_Aebn64",
+        "row_L34K9M"
+      ],
+      "name": "Comparison Matrix Pro",
+      "settings": {
+        "heading": "How We Compare",
+        "subtext": "The modern alternative to traditional high school. Faster feedback, total flexibility, and official OSSD credits, all in one place.",
+        "callout_label": "OEO Advantage",
+        "callout_value": "Attendance Never Affects Your Grade",
+        "col_1_label": "Feature",
+        "col_2_label": "Ontario Education Online",
+        "col_3_label": "Traditional School",
+        "col_4_label": "Other Online Schools"
+      }
+    },
+    "university_portfolio_a3n7zF": {
+      "type": "university-portfolio",
+      "blocks": {
+        "logo_iQtwxn": {
+          "type": "logo",
+          "name": "UofT",
+          "settings": {
+            "logo": "shopify://shop_images/UofT.png",
+            "alt_text": "University of Toronto"
+          }
+        },
+        "logo_7Bahyi": {
+          "type": "logo",
+          "name": "McGill",
+          "settings": {
+            "logo": "shopify://shop_images/McGill_d1127158-0441-49fb-be14-5515c30324e0.png",
+            "alt_text": "McGill University"
+          }
+        },
+        "logo_Q8w6UD": {
+          "type": "logo",
+          "name": "UBC",
+          "settings": {
+            "logo": "shopify://shop_images/UBC.png",
+            "alt_text": "University of British Columbia"
+          }
+        },
+        "logo_erMazA": {
+          "type": "logo",
+          "name": "MAC",
+          "settings": {
+            "logo": "shopify://shop_images/MAC.png",
+            "alt_text": "McMaster University"
+          }
+        },
+        "logo_XYpYLq": {
+          "type": "logo",
+          "name": "Waterloo",
+          "settings": {
+            "logo": "shopify://shop_images/Waterloo.png",
+            "alt_text": "University of Waterloo"
+          }
+        },
+        "logo_9KYB89": {
+          "type": "logo",
+          "name": "Ottawa",
+          "settings": {
+            "logo": "shopify://shop_images/ottawa.png",
+            "alt_text": "University of Ottawa"
+          }
+        },
+        "logo_rLB494": {
+          "type": "logo",
+          "name": "Western",
+          "settings": {
+            "logo": "shopify://shop_images/wastern.png",
+            "alt_text": "Western University"
+          }
+        },
+        "logo_qb8y93": {
+          "type": "logo",
+          "name": "Queens",
+          "settings": {
+            "logo": "shopify://shop_images/Queens.png",
+            "alt_text": "Queens University"
+          }
+        },
+        "logo_9x7azU": {
+          "type": "logo",
+          "name": "Dal",
+          "settings": {
+            "logo": "shopify://shop_images/Dal.png",
+            "alt_text": "Dalhousie University"
+          }
+        },
+        "logo_6GbUQD": {
+          "type": "logo",
+          "name": "Guelph",
+          "settings": {
+            "logo": "shopify://shop_images/Guelph.png",
+            "alt_text": "University of Guelph"
+          }
+        },
+        "logo_XyQLyd": {
+          "type": "logo",
+          "name": "York",
+          "settings": {
+            "logo": "shopify://shop_images/YorkU.png",
+            "alt_text": "York University"
+          }
+        },
+        "logo_MkkwVT": {
+          "type": "logo",
+          "name": "Carleton",
+          "settings": {
+            "logo": "shopify://shop_images/Carlton.png",
+            "alt_text": "Carleton University"
+          }
+        },
+        "logo_3wWiNK": {
+          "type": "logo",
+          "name": "TMU",
+          "settings": {
+            "logo": "shopify://shop_images/tmu.png",
+            "alt_text": "Toronto Metropolitan University"
+          }
+        },
+        "logo_iUzQDF": {
+          "type": "logo",
+          "name": "Laurier",
+          "settings": {
+            "logo": "shopify://shop_images/laurieri.png",
+            "alt_text": "Wilfrid Laurier University"
+          }
+        },
+        "logo_eyynA7": {
+          "type": "logo",
+          "name": "ALberta",
+          "settings": {
+            "logo": "shopify://shop_images/alberta.png",
+            "alt_text": "University of Alberta"
+          }
+        }
+      },
+      "block_order": [
+        "logo_iQtwxn",
+        "logo_7Bahyi",
+        "logo_Q8w6UD",
+        "logo_erMazA",
+        "logo_XYpYLq",
+        "logo_9KYB89",
+        "logo_rLB494",
+        "logo_qb8y93",
+        "logo_9x7azU",
+        "logo_6GbUQD",
+        "logo_XyQLyd",
+        "logo_MkkwVT",
+        "logo_3wWiNK",
+        "logo_iUzQDF",
+        "logo_eyynA7"
+      ],
+      "name": "University Portfolio",
+      "settings": {
+        "heading": "Our Graduates Go On to Canada’s Top Universities",
+        "subtext": "Ontario Education Online is a fully accredited Ontario private school. Our OSSD credits are recognized by universities across Canada and internationally.",
+        "button_label": "Browse Courses",
+        "button_link": "shopify://collections/all-courses",
+        "disclaimer": ""
+      }
+    },
+    "testimonial_carousel_LQny66": {
+      "type": "testimonial-carousel",
+      "name": "Testimonial Carousel",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 9000,
+        "background_color": "#f8f9fc"
+      }
+    },
+    "240a8302-2387-4154-b7bb-acc93cb366bd": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "popular-courses",
+        "products": [
+          "english-grade-10-academic",
+          "grade-11-university-physics-sph3u",
+          "advanced-functions-grade-12-university",
+          "co-operative-education-open-experiential-learning",
+          "canadian-history-grade-10-applied"
+        ],
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 6,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Our Most Popular Courses",
+        "content": "",
+        "link_url": "shopify://collections/all-courses",
+        "link_text": "View All Courses",
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "video_LnpLVw": {
+      "type": "video",
+      "blocks": {
+        "play_xeRxKe": {
+          "type": "play",
+          "settings": {}
+        },
+        "heading_BibbGq": {
+          "type": "heading",
+          "settings": {
+            "text": "We're OEO!",
+            "heading_tag": "h1"
+          }
+        },
+        "richtext_9QWmbq": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>An innovative group of teachers dedicated to delivering a cutting-edge online learning experience while preparing students for the future.</p>"
+          }
+        },
+        "button_bBJjac": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "base",
+            "text": "Learn More About Us",
+            "url": "shopify://pages/about-us",
+            "background": "",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "play_xeRxKe",
+        "heading_BibbGq",
+        "richtext_9QWmbq",
+        "button_bBJjac"
+      ],
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "md",
+        "external_video_url": "https://www.youtube.com/watch?v=kBFnaVQ54co",
+        "poster": "shopify://shop_images/OEO-Poster-Video-nobutton.png",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "1757623434e8bc0cfc": {
+      "type": "apps",
+      "blocks": {
+        "instafeed_app_block_qmNFgT": {
+          "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "title": "",
+            "title_color": "",
+            "title_size_v2": 0,
+            "alignment": "center",
+            "instafeed_margin_top": 0,
+            "instafeed_margin_bottom": 0,
+            "instafeed_margin_sides": 0,
+            "show_instagram_link": false,
+            "link_alignment": "left",
+            "link_color": "#000000",
+            "background_color": "",
+            "feed_id": "",
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "instafeed_app_block_qmNFgT"
+      ],
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "partner_logos_ehPRRr": {
+      "type": "partner-logos",
+      "blocks": {
+        "partner_CHF4Gt": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/OYAP.jpg",
+            "name": "Ontario Youth Apprenticeship Program",
+            "link": "https://www.oyappajo.com/",
+            "logo_width": 140
+          }
+        },
+        "partner_FANWpU": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/Screenshot_2025-04-21_at_10.42.54_AM.png",
+            "name": "Score Hockey School",
+            "link": "https://scorehockeyschool.com/",
+            "logo_width": 140
+          }
+        },
+        "partner_Xr7fw7": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/main-logo.webp",
+            "name": "BestPrep",
+            "link": "https://bestprep.org/",
+            "logo_width": 140
+          }
+        },
+        "partner_6NbaFd": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/1562012024-grid.png",
+            "name": "Ontario Blue Jays",
+            "link": "https://www.objbaseball.com/",
+            "logo_width": 140
+          }
+        },
+        "partner_m8c39r": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/061a859215c1872034b4b53420e38d19.png",
+            "name": "Mississauga Beast",
+            "link": "https://www.mississaugabeast.ca/",
+            "logo_width": 140
+          }
+        },
+        "partner_3ckB3K": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/budding_brains.png",
+            "name": "Budding Brains Tutor",
+            "link": "https://app.buddingbrainstutor.com/auth",
+            "logo_width": 140
+          }
+        },
+        "partner_DCA84k": {
+          "type": "partner",
+          "settings": {
+            "image": "shopify://shop_images/Frame_58.png",
+            "name": "Burlington Gymnastics Club",
+            "link": "https://bgcgym.com/",
+            "logo_width": 140
+          }
+        }
+      },
+      "block_order": [
+        "partner_CHF4Gt",
+        "partner_FANWpU",
+        "partner_Xr7fw7",
+        "partner_6NbaFd",
+        "partner_m8c39r",
+        "partner_3ckB3K",
+        "partner_DCA84k"
+      ],
+      "name": "Partner Logos",
+      "settings": {
+        "heading": "Proud to Partner With",
+        "subtext": "We’re proud to collaborate with organizations that support student success, athletics, and academic achievement.",
+        "background_style": "grey"
+      }
+    },
+    "17754783873b41df80": {
+      "type": "_blocks",
+      "settings": {}
+    }
+  },
+  "order": [
+    "hero_banner_carousel_byHT7w",
+    "382f29b4-37ab-4802-9bfc-301dc9e20896",
+    "comparison_table_LzEEgK",
+    "university_portfolio_a3n7zF",
+    "testimonial_carousel_LQny66",
+    "240a8302-2387-4154-b7bb-acc93cb366bd",
+    "video_LnpLVw",
+    "1757623434e8bc0cfc",
+    "partner_logos_ehPRRr",
+    "17754783873b41df80"
+  ]
+}

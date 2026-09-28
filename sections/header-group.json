@@ -1,0 +1,116 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "message_V8yjre": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "text": "LOOKING TO REALLY GET AHEAD THIS SUMMER? TAKE 2 OR MORE COURSES WITH OEO AND TAKE 15% OFF YOUR ENTIRE ORDER WITH CODE \"DOUBLEUP\" AT CHECKOUT",
+            "url": ""
+          }
+        },
+        "message": {
+          "type": "message",
+          "settings": {
+            "text": "🎓 Enrol in 2+ Courses and Save $75 Per Course Automatically at Checkout",
+            "url": ""
+          }
+        },
+        "message_WCQj8f": {
+          "type": "message",
+          "disabled": true,
+          "settings": {
+            "text": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "message_V8yjre",
+        "message",
+        "message_WCQj8f"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "text_size": "text-xs",
+        "navigation_mode": "scrolling",
+        "scrolling_speed": 12,
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_V7a9em": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "Courses",
+            "layout": "horizontal",
+            "submenu_style": "bold_text",
+            "image_1": "shopify://shop_images/Guidance-CTA.png",
+            "image_heading_1": "",
+            "image_link_1": "shopify://pages/book-guidance-session",
+            "image_text_color_1": "#ffffff",
+            "image_heading_2": "",
+            "image_link_2": "",
+            "image_text_color_2": "#ffffff",
+            "image_heading_3": "",
+            "image_link_3": "",
+            "image_text_color_3": "#ffffff",
+            "product": "",
+            "product_card_background": "",
+            "product_card_text_color": "",
+            "promo_content_layout": "grid",
+            "stretch_promo": false,
+            "drawer_link_image": "hide"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_V7a9em"
+      ],
+      "settings": {
+        "enable_sticky": true,
+        "hide_on_scroll": true,
+        "logo": "{{shop.brand.logo}}",
+        "logo_max_width": 100,
+        "logo_mobile_max_width": 100,
+        "menu": "main-menu",
+        "sidebar_menu": "",
+        "secondary_menu": "top",
+        "menu_open_trigger": "click",
+        "opening_from": "bottom",
+        "layout": "logo_left_navigation_inline",
+        "show_social_media": true,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": false,
+        "transparent_header_text_color": "#ffffff",
+        "transparent_logo": "shopify://shop_images/OEO_LOGO_TEXT22.png",
+        "reduce_padding": true,
+        "background_opacity": 90,
+        "background_blur_radius": 20
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}

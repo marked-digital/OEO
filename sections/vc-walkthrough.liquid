@@ -1,0 +1,1292 @@
+{%- comment -%}
+  Virtual Classroom · 8-step walkthrough (core of the page)
+  Styled to the enhanced PDP design language: PDP numbered-circle grammar
+  (white circle, indigo border · pdp-how-it-works__step-num), PDP eyebrow and
+  heading recipe, 1200px container, pdp-tcard card treatment.
+  Block types:
+    step          · standard 2-col row; even-numbered steps flip the image right.
+                    Optional teacher identity card (PDP pattern) for step 2.
+    step_flagship · full-width dark band with gold accents (step 7, NotebookLM).
+                    Format chips are entered one per line as "Title | Subtitle".
+    step_centered · centered text above a large centered screenshot (step 8).
+  Top padding compensates for the hero video poster overlapping down from vc-hero.
+  Progress rail (>=960px) tracks scroll via IntersectionObserver on #vc-step-N anchors.
+{%- endcomment -%}
+
+{%- assign step_total = 0 -%}
+{%- for block in section.blocks -%}
+  {%- assign step_total = step_total | plus: 1 -%}
+{%- endfor -%}
+
+<section class="vc-walkthrough{% if section.settings.compensate_hero_overlap %} vc-walkthrough--overlap{% endif %}{% if section.settings.show_step_dividers %} vc-walkthrough--dividers{% endif %}" id="vc-walkthrough-{{ section.id }}" aria-labelledby="vc-walkthrough-heading-{{ section.id }}">
+  <div class="vc-walkthrough__inner">
+
+    <div class="vc-walkthrough__header">
+      <p class="vc-walkthrough__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      <h2 class="vc-walkthrough__heading" id="vc-walkthrough-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      <p class="vc-walkthrough__intro">{{ section.settings.intro | escape }}</p>
+    </div>
+
+    {%- if section.settings.show_rail and step_total > 1 -%}
+      <div class="vc-walkthrough__rail" data-vc-rail>
+        <nav class="vc-walkthrough__rail-bar" aria-label="Walkthrough steps">
+          {%- for i in (1..step_total) -%}
+            <a href="#vc-step-{{ i }}" class="vc-walkthrough__rail-pill{% if i == 1 %} is-active{% endif %}" data-vc-rail-pill="{{ i }}" aria-label="Go to step {{ i }}">{{ i }}</a>
+          {%- endfor -%}
+        </nav>
+      </div>
+    {%- endif -%}
+
+    {%- assign step_n = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- assign step_n = step_n | plus: 1 -%}
+
+      {%- comment -%}
+        Optional mobile-specific screenshot: served via <picture>. A mobile
+        crop displays full width at natural ratio (vc-media--natural) instead
+        of the pannable strip. The lightbox always opens the desktop image.
+      {%- endcomment -%}
+      {%- assign media_mod = '' -%}
+      {%- if block.settings.image_mobile != blank -%}
+        {%- assign media_mod = ' vc-media--natural' -%}
+      {%- endif -%}
+      {%- capture step_img_tag -%}
+        <picture>
+          {%- if block.settings.image_mobile != blank -%}
+            <source media="(max-width: 767px)" srcset="{{ block.settings.image_mobile | image_url: width: 1200 }}">
+          {%- endif -%}
+          {%- if block.settings.image != blank -%}
+            <img
+              src="{{ block.settings.image | image_url: width: 1600 }}"
+              data-vc-full="{{ block.settings.image | image_url: width: 2400 }}"
+              alt="{{ block.settings.image_alt | escape }}"
+              width="{{ block.settings.image.width }}"
+              height="{{ block.settings.image.height }}"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- else -%}
+            <img
+              src="{{ block.settings.image_asset | asset_url }}"
+              data-vc-full="{{ block.settings.image_asset | asset_url }}"
+              alt="{{ block.settings.image_alt | escape }}"
+              width="1330"
+              height="562"
+              loading="lazy"
+              decoding="async"
+            >
+          {%- endif -%}
+        </picture>
+      {%- endcapture -%}
+      {%- capture step_image -%}
+        {%- if section.settings.enable_lightbox -%}
+          <button
+            type="button"
+            class="vc-lightbox-trigger"
+            data-vc-lightbox
+            data-vc-caption="Step {{ step_n }} · {{ block.settings.label | escape }}"
+            aria-label="Expand screenshot: {{ block.settings.image_alt | escape }}"
+          >
+            {{ step_img_tag }}
+            <span class="vc-lightbox-trigger__hint" aria-hidden="true">
+              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="16" height="16">
+                <circle cx="8.5" cy="8.5" r="5.5"/>
+                <path d="M12.8 12.8L17 17M8.5 6.2v4.6M6.2 8.5h4.6"/>
+              </svg>
+            </span>
+          </button>
+        {%- else -%}
+          {{ step_img_tag }}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      {%- case block.type -%}
+
+        {%- when 'step' -%}
+          {%- assign flip = step_n | modulo: 2 -%}
+          <div class="vc-step{% if flip == 0 %} vc-step--flip{% endif %}" id="vc-step-{{ step_n }}" {{ block.shopify_attributes }}>
+            <div class="vc-step__media{{ media_mod }}">{{ step_image }}</div>
+            <div class="vc-step__text">
+              <div class="vc-step__meta">
+                <div class="vc-step__num" aria-hidden="true">{{ step_n }}</div>
+                <p class="vc-step__eyebrow">Step {{ step_n }} · {{ block.settings.label | escape }}</p>
+              </div>
+              <h3 class="vc-step__heading">{{ block.settings.heading | escape }}</h3>
+<p class="vc-step__body">{{ block.settings.body | escape | newline_to_br }}</p>
+              {%- if block.settings.show_teacher_card -%}
+                <div class="vc-step__teacher">
+                  {%- if block.settings.teacher_photo != blank -%}
+                    <img
+                      class="vc-step__teacher-avatar-img"
+                      src="{{ block.settings.teacher_photo | image_url: width: 120 }}"
+                      alt="{{ block.settings.teacher_name | escape }}"
+                      width="52"
+                      height="52"
+                      loading="lazy"
+                      decoding="async"
+                    >
+                  {%- else -%}
+                    <div class="vc-step__teacher-avatar" aria-hidden="true">{{ block.settings.teacher_initial | escape }}</div>
+                  {%- endif -%}
+                  <div>
+                    <div class="vc-step__teacher-name">{{ block.settings.teacher_name | escape }}</div>
+                    <div class="vc-step__teacher-course">{{ block.settings.teacher_course | escape }}</div>
+                    <span class="vc-step__teacher-badge"><span class="vc-step__teacher-check" aria-hidden="true">✓</span>{{ block.settings.teacher_badge | escape }}</span>
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+
+        {%- when 'step_flagship' -%}
+          <div class="vc-flagship" id="vc-step-{{ step_n }}" {{ block.shopify_attributes }}>
+            <div class="vc-flagship__intro">
+              <div class="vc-step__meta">
+                <div class="vc-flagship__num" aria-hidden="true">{{ step_n }}</div>
+                <p class="vc-flagship__eyebrow">Step {{ step_n }} · {{ block.settings.label | escape }}</p>
+              </div>
+              <h3 class="vc-flagship__heading">{{ block.settings.heading | escape }}</h3>
+              <p class="vc-flagship__body">{{ block.settings.body | escape }}</p>
+            </div>
+
+            {%- if block.settings.chips != blank -%}
+              {%- assign chip_lines = block.settings.chips | newline_to_br | split: '<br />' -%}
+              <div class="vc-flagship__chips">
+                {%- for line in chip_lines -%}
+                  {%- assign parts = line | strip | split: '|' -%}
+                  {%- if parts[0] != blank -%}
+                    <div class="vc-flagship__chip">
+                      <div class="vc-flagship__chip-title">{{ parts[0] | strip | escape }}</div>
+                      {%- if parts[1] != blank -%}
+                        <div class="vc-flagship__chip-sub">{{ parts[1] | strip | escape }}</div>
+                      {%- endif -%}
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+
+            <div class="vc-flagship__media{{ media_mod }}">{{ step_image }}</div>
+          </div>
+
+        {%- when 'step_centered' -%}
+          <div class="vc-centered" id="vc-step-{{ step_n }}" {{ block.shopify_attributes }}>
+            <div class="vc-centered__text">
+              <div class="vc-step__meta vc-centered__meta">
+                <div class="vc-step__num" aria-hidden="true">{{ step_n }}</div>
+                <p class="vc-step__eyebrow">Step {{ step_n }} · {{ block.settings.label | escape }}</p>
+              </div>
+              <h3 class="vc-step__heading">{{ block.settings.heading | escape }}</h3>
+              <p class="vc-step__body vc-centered__body">{{ block.settings.body | escape }}</p>
+            </div>
+            <div class="vc-centered__media{{ media_mod }}">{{ step_image }}</div>
+          </div>
+
+      {%- endcase -%}
+    {%- endfor -%}
+
+  </div>
+
+  {%- if section.settings.enable_lightbox -%}
+    <div class="vc-lightbox" id="vc-lightbox-{{ section.id }}" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+      <div class="vc-lightbox__backdrop" data-vc-lb-close aria-hidden="true"></div>
+      <figure class="vc-lightbox__figure">
+        <img class="vc-lightbox__img" src="" alt="">
+        <figcaption class="vc-lightbox__caption"></figcaption>
+      </figure>
+      <button type="button" class="vc-lightbox__btn vc-lightbox__close" data-vc-lb-close aria-label="Close screenshot viewer">×</button>
+      <button type="button" class="vc-lightbox__btn vc-lightbox__nav vc-lightbox__nav--prev" data-vc-lb-prev aria-label="Previous screenshot">‹</button>
+      <button type="button" class="vc-lightbox__btn vc-lightbox__nav vc-lightbox__nav--next" data-vc-lb-next aria-label="Next screenshot">›</button>
+    </div>
+  {%- endif -%}
+</section>
+
+<style>
+.vc-walkthrough {
+  background: #ffffff;
+  padding: clamp(56px, 6vw, 80px) 0 8px;
+}
+
+/* Room for the hero poster hanging down from vc-hero.
+   Poster-to-header gap = hero bottom padding + the extra clamp here. */
+.vc-walkthrough--overlap {
+  padding-top: calc(clamp(64px, 9vw, 150px) + clamp(24px, 3vw, 40px));
+}
+
+.vc-walkthrough__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.vc-walkthrough__header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+
+/* PDP eyebrow recipe (pdp-how-it-works__eyebrow) */
+.vc-walkthrough__eyebrow,
+.vc-step__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.vc-walkthrough__eyebrow {
+  margin-bottom: 10px;
+}
+
+/* PDP heading recipe (pdp-how-it-works__heading) */
+.vc-walkthrough__heading {
+  margin: 0 0 14px;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #24367a;
+}
+
+/* PDP body recipe (pdp-guidance__body) */
+.vc-walkthrough__intro {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: #6b7280;
+}
+
+/* Progress rail */
+.vc-walkthrough__rail {
+  position: sticky;
+  top: 14px;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 56px;
+}
+
+.vc-walkthrough__rail-bar {
+  display: flex;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 42, 94, 0.15);
+  border-radius: 999px;
+  padding: 7px 9px;
+  box-shadow: 0 10px 28px -14px rgba(17, 33, 89, 0.4);
+}
+
+.vc-walkthrough__rail-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  background: #ffffff;
+  color: #2a3884;
+  border: 1px solid rgba(30, 42, 94, 0.15);
+  transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.vc-walkthrough__rail-pill:hover {
+  background: #1e2a5e;
+  color: #ffffff;
+  border-color: #1e2a5e;
+}
+
+.vc-walkthrough__rail-pill.is-active {
+  background: var(--color-dark, #1e2460);
+  color: #F0C417;
+  border-color: var(--color-dark, #1e2460);
+}
+
+@media (max-width: 959px) {
+  .vc-walkthrough__rail {
+    display: none;
+  }
+}
+
+/* Standard step rows */
+.vc-step {
+  display: grid;
+  gap: 36px;
+  align-items: center;
+  margin: 0 0 84px;
+}
+
+/* Step divider: the PDP how-it-works hairline (fades out at both ends),
+   centred in the gap below each standard step. Toggle in section settings. */
+.vc-walkthrough--dividers .vc-step {
+  position: relative;
+}
+
+.vc-walkthrough--dividers .vc-step::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -42px;
+  transform: translateX(-50%);
+  width: min(480px, 70%);
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    rgba(151, 163, 206, 0),
+    rgba(151, 163, 206, 0.35) 18%,
+    rgba(151, 163, 206, 0.35) 82%,
+    rgba(151, 163, 206, 0)
+  );
+}
+
+@media (max-width: 767px) {
+  .vc-walkthrough--dividers .vc-step::after {
+    bottom: -28px;
+    width: min(280px, 78%);
+  }
+}
+
+@media (min-width: 960px) {
+  .vc-step {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .vc-step--flip .vc-step__media {
+    order: 2;
+  }
+}
+
+.vc-step__media picture,
+.vc-centered__media picture,
+.vc-flagship__media picture {
+  display: block;
+}
+
+.vc-step__media img,
+.vc-centered__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(30, 42, 94, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 22px 46px -24px rgba(17, 33, 89, 0.4);
+}
+
+.vc-step__meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+/* PDP numbered-circle grammar (pdp-how-it-works__step-num) */
+.vc-step__num {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 54, 122, 0.24);
+  background: #ffffff;
+  color: #24367a;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-shadow: 0 8px 18px rgba(17, 33, 89, 0.15);
+}
+
+/* PDP sub-heading recipe (pdp-guidance__title / pdp-faqs__title) */
+.vc-step__heading {
+  margin: 0 0 14px;
+  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #1e2a5e;
+}
+
+/* PDP body recipe (pdp-no-exam__body / pdp-faqs__answer color) */
+.vc-step__body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4b5563;
+  max-width: 52ch;
+}
+
+/* Teacher identity card (pdp-tcard treatment) */
+.vc-step__teacher {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid rgba(30, 42, 94, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(30, 42, 94, 0.06);
+  padding: 16px 18px;
+  max-width: 420px;
+  margin-top: 20px;
+}
+
+.vc-step__teacher-avatar,
+.vc-step__teacher-avatar-img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.vc-step__teacher-avatar {
+  background: #8E24AA;
+  color: #ffffff;
+  font-size: 19px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vc-step__teacher-avatar-img {
+  object-fit: cover;
+}
+
+.vc-step__teacher-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e2a5e;
+}
+
+.vc-step__teacher-course {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 2px 0 6px;
+}
+
+.vc-step__teacher-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f5f5f7;
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #1e2a5e;
+}
+
+.vc-step__teacher-check {
+  color: #1E7A46;
+  font-weight: 700;
+}
+
+/* Flagship band (step 7 · NotebookLM) · PDP dark treatment (pdp-no-exam) */
+.vc-flagship {
+  background: linear-gradient(150deg, var(--color-dark, #1e2460), #262f76);
+  border: 1px solid rgba(240, 196, 23, 0.35);
+  border-radius: 24px;
+  padding: clamp(30px, 5vw, 64px);
+  margin: 0 0 84px;
+  color: #ffffff;
+}
+
+.vc-flagship__intro {
+  max-width: 820px;
+}
+
+.vc-flagship__num {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: #F0C417;
+  color: #1e2460;
+  font-size: 19px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.vc-flagship__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f0c417;
+}
+
+/* PDP H2 recipe (pdp-how-it-works__heading), white on dark */
+.vc-flagship__heading {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+/* PDP body recipe (pdp-no-exam__body) */
+.vc-flagship__body {
+  margin: 0 0 28px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 62ch;
+}
+
+.vc-flagship__chips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.vc-flagship__chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(240, 196, 23, 0.3);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+/* Mobile: the band goes full-bleed blue (no floating card), and the format
+   chips become a swipeable row, inset from the screen edges by the band's
+   own padding. */
+@media (max-width: 767px) {
+  .vc-flagship {
+    margin-left: -32px;
+    margin-right: -32px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 40px 32px 44px;
+  }
+
+  .vc-flagship__chips {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 32px;
+    gap: 10px;
+    margin-left: -32px;
+    margin-right: -32px;
+    padding: 2px 32px 6px;
+    scrollbar-width: none;
+  }
+
+  .vc-flagship__chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vc-flagship__chip {
+    flex: 0 0 44%;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 580px) {
+  .vc-flagship {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 36px 20px 40px;
+  }
+
+  .vc-flagship__chips {
+    scroll-padding-left: 20px;
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 2px 20px 6px;
+  }
+}
+
+/* PDP step-title / step-sub sizes (pdp-how-it-works) */
+.vc-flagship__chip-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.vc-flagship__chip-sub {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 3px;
+}
+
+.vc-flagship__media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(240, 196, 23, 0.4);
+  box-shadow: 0 30px 60px -25px rgba(0, 0, 0, 0.6);
+}
+
+/* Centered step (step 8 · Real Feedback) */
+.vc-centered {
+  margin: 0 0 8px;
+}
+
+.vc-centered__text {
+  text-align: center;
+  max-width: 660px;
+  margin: 0 auto 32px;
+}
+
+.vc-centered__meta {
+  justify-content: center;
+}
+
+.vc-centered__body {
+  max-width: none;
+}
+
+.vc-centered__media img {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+/* Mobile: screenshots are wide browser crops that render too short and
+   illegible at phone width. Show them full-bleed at a fixed legible height,
+   at natural scale, pannable sideways. The lightbox still has the full view.
+   Vertical rhythm tightens: 84px between steps reads as a hole above each
+   full-bleed image, so steps sit closer and bind tighter to their text. */
+@media (max-width: 767px) {
+  .vc-step {
+    gap: 20px;
+    margin-bottom: 56px;
+  }
+
+  .vc-flagship {
+    margin-bottom: 56px;
+  }
+
+  .vc-centered__text {
+    margin-bottom: 20px;
+  }
+
+  .vc-step__media,
+  .vc-centered__media,
+  .vc-flagship__media {
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .vc-step__media::-webkit-scrollbar,
+  .vc-centered__media::-webkit-scrollbar,
+  .vc-flagship__media::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vc-step__media,
+  .vc-centered__media {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+
+  .vc-flagship__media {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+
+  .vc-step__media img,
+  .vc-centered__media img,
+  .vc-flagship__media img {
+    height: clamp(200px, 56vw, 250px);
+    width: auto;
+    max-width: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .vc-centered__media img {
+    margin: 0;
+  }
+
+  /* Two classes so this beats the base width:100% rule declared later;
+     the button must size to the panned image or its right part is untappable */
+  .vc-step__media .vc-lightbox-trigger,
+  .vc-centered__media .vc-lightbox-trigger,
+  .vc-flagship__media .vc-lightbox-trigger {
+    width: max-content;
+    min-width: 100%;
+  }
+
+  /* Hint sits at the visible start edge of the pan strip */
+  .vc-lightbox-trigger__hint {
+    left: 12px;
+    right: auto;
+  }
+
+  /* Blocks with a dedicated mobile screenshot: full width at natural ratio,
+     no pan strip. Declared after the pan rules so these win the cascade. */
+  .vc-media--natural {
+    overflow-x: visible;
+  }
+
+  .vc-media--natural img {
+    height: auto;
+    width: 100%;
+  }
+
+  .vc-media--natural .vc-lightbox-trigger {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .vc-media--natural .vc-lightbox-trigger__hint {
+    left: auto;
+    right: 12px;
+  }
+}
+
+@media (max-width: 580px) {
+  .vc-walkthrough__inner {
+    padding: 0 20px;
+  }
+  .vc-step__media,
+  .vc-centered__media,
+  .vc-flagship__media {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+
+/* Lightbox trigger: unstyled button around the screenshot */
+.vc-lightbox-trigger {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: zoom-in;
+}
+
+.vc-lightbox-trigger__hint {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(30, 42, 94, 0.15);
+  color: #1e2a5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 180ms ease, transform 180ms ease;
+  pointer-events: none;
+}
+
+.vc-lightbox-trigger:hover .vc-lightbox-trigger__hint,
+.vc-lightbox-trigger:focus-visible .vc-lightbox-trigger__hint {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Touch devices have no hover: keep the expand affordance visible */
+@media (hover: none) {
+  .vc-lightbox-trigger__hint {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Lightbox overlay */
+.vc-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.vc-lightbox[hidden] {
+  display: none;
+}
+
+.vc-lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 20, 48, 0.88);
+  cursor: zoom-out;
+}
+
+.vc-lightbox__figure {
+  position: relative;
+  margin: 0;
+  max-width: min(1400px, 94vw);
+  text-align: center;
+  animation: vc-lb-in 220ms ease;
+}
+
+@keyframes vc-lb-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+.vc-lightbox__img {
+  display: block;
+  max-width: 100%;
+  max-height: 82vh;
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  background: #ffffff;
+}
+
+.vc-lightbox__caption {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Controls: pdp-tprev / pdp-tnext grammar */
+.vc-lightbox__btn {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 42, 94, 0.15);
+  background: #ffffff;
+  color: #1e2a5e;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.vc-lightbox__btn:hover {
+  background: #1e2a5e;
+  color: #ffffff;
+  border-color: #1e2a5e;
+}
+
+.vc-lightbox__close {
+  top: 18px;
+  right: 18px;
+  font-size: 26px;
+}
+
+.vc-lightbox__nav--prev {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.vc-lightbox__nav--next {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Mobile lightbox: "expand" must actually enlarge. The image renders at
+   twice the viewport width and pans sideways; the caption stays put. */
+@media (max-width: 767px) {
+  .vc-lightbox {
+    padding: 0;
+  }
+
+  .vc-lightbox__figure {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    animation: none;
+  }
+
+  .vc-lightbox__img {
+    width: 200vw;
+    max-width: none;
+    max-height: none;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .vc-lightbox__caption {
+    position: sticky;
+    left: 0;
+    width: 100vw;
+    padding: 0 56px;
+    box-sizing: border-box;
+  }
+
+  .vc-lightbox__nav--prev {
+    left: 8px;
+  }
+  .vc-lightbox__nav--next {
+    right: 8px;
+  }
+  .vc-lightbox__close {
+    top: 10px;
+    right: 10px;
+  }
+}
+</style>
+
+{%- if section.settings.enable_lightbox -%}
+<script>
+  (function () {
+    var section = document.getElementById('vc-walkthrough-{{ section.id }}');
+    var box = document.getElementById('vc-lightbox-{{ section.id }}');
+    if (!section || !box) return;
+
+    var triggers = Array.prototype.slice.call(section.querySelectorAll('[data-vc-lightbox]'));
+    if (!triggers.length) return;
+
+    var img = box.querySelector('.vc-lightbox__img');
+    var caption = box.querySelector('.vc-lightbox__caption');
+    var closeBtn = box.querySelector('.vc-lightbox__close');
+    var current = 0;
+    var lastFocus = null;
+
+    function show(index) {
+      current = (index + triggers.length) % triggers.length;
+      var source = triggers[current].querySelector('img');
+      img.src = source.getAttribute('data-vc-full') || source.src;
+      img.alt = source.alt;
+      caption.textContent = triggers[current].getAttribute('data-vc-caption') || '';
+    }
+
+    function open(index) {
+      lastFocus = document.activeElement;
+      show(index);
+      box.removeAttribute('hidden');
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', onKey);
+      closeBtn.focus();
+    }
+
+    function close() {
+      box.setAttribute('hidden', '');
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKey);
+      if (lastFocus) lastFocus.focus();
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    }
+
+    triggers.forEach(function (trigger, i) {
+      trigger.addEventListener('click', function () { open(i); });
+    });
+    box.querySelectorAll('[data-vc-lb-close]').forEach(function (el) {
+      el.addEventListener('click', close);
+    });
+    box.querySelector('[data-vc-lb-prev]').addEventListener('click', function () { show(current - 1); });
+    box.querySelector('[data-vc-lb-next]').addEventListener('click', function () { show(current + 1); });
+  })();
+</script>
+{%- endif -%}
+
+{%- if section.settings.show_rail -%}
+<script>
+  (function () {
+    var section = document.getElementById('vc-walkthrough-{{ section.id }}');
+    if (!section || !('IntersectionObserver' in window)) return;
+    var pills = section.querySelectorAll('[data-vc-rail-pill]');
+    if (!pills.length) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var n = entry.target.id.replace('vc-step-', '');
+        pills.forEach(function (pill) {
+          pill.classList.toggle('is-active', pill.getAttribute('data-vc-rail-pill') === n);
+        });
+      });
+    }, { rootMargin: '-35% 0px -55% 0px' });
+    section.querySelectorAll('[id^="vc-step-"]').forEach(function (el) { io.observe(el); });
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "VC Walkthrough",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Eight steps through a real course"
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every screen below is the real student experience, captured in Grade 12 English (ENG4U). Nothing here is a stock photo."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rail",
+      "label": "Show progress rail (desktop only)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_lightbox",
+      "label": "Expand screenshots on click (lightbox)",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_step_dividers",
+      "label": "Show hairline dividers between steps",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "compensate_hero_overlap",
+      "label": "Add top padding for the hero video overlap",
+      "info": "Keep on when this section sits directly below the VC Hero.",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Step label",
+          "info": "Rendered as 'Step N · Label'. Numbering is automatic.",
+          "default": "Your Dashboard"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Every course, one login"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Google Classroom is home base. It is the same platform most Ontario students already use at their day school, so day one feels familiar, not foreign. Every course you enrol in sits on one dashboard, behind one login."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Screenshot (desktop)",
+          "info": "Falls back to the theme asset below if empty."
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Screenshot (mobile)",
+          "info": "Optional. Shown full width at natural ratio on screens under 768px instead of the pannable strip."
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "default": "vc-step-1-dashboard.png"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Screenshot alt text",
+          "default": "Google Classroom dashboard showing six Grade 12 course cards"
+        },
+        {
+          "type": "header",
+          "content": "Teacher identity card (optional)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_teacher_card",
+          "label": "Show teacher card",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "teacher_photo",
+          "label": "Teacher photo",
+          "info": "Shows the initial circle until a real photo is available."
+        },
+        {
+          "type": "text",
+          "id": "teacher_initial",
+          "label": "Avatar initial",
+          "default": "J"
+        },
+        {
+          "type": "text",
+          "id": "teacher_name",
+          "label": "Teacher name",
+          "default": "Ms. Jennifer Della Mea"
+        },
+        {
+          "type": "text",
+          "id": "teacher_course",
+          "label": "Course",
+          "default": "Grade 12 English (ENG4U)"
+        },
+        {
+          "type": "text",
+          "id": "teacher_badge",
+          "label": "Badge label",
+          "default": "OCT Certified"
+        }
+      ]
+    },
+    {
+      "type": "step_flagship",
+      "name": "Step · flagship band",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Step label",
+          "default": "Gemini Notebook, built into every unit"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Your course notes as audio, video, mind maps, and quizzes"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Your teacher curates the sources for every unit, and Gemini Notebook turns them into the study format you choose. Everything is generated from your real course materials, not from generic content."
+        },
+        {
+          "type": "textarea",
+          "id": "chips",
+          "label": "Format chips",
+          "info": "One per line: Title | Subtitle",
+          "default": "Audio Overview | Listen on the go\nVideo Overview | Watch and review\nMind Map | See connections\nFlashcards | Test yourself\nStudy Guide | Read and review\nQuiz | Check understanding"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Screenshot (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Screenshot (mobile)",
+          "info": "Optional. Shown full width at natural ratio on screens under 768px instead of the pannable strip."
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "default": "vc-step-7-notebooklm.png"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Screenshot alt text",
+          "default": "A Gemini Notebook for Unit 6, Hamlet, with Audio Overview, Video Overview, Mind Map, Flashcards, Study Guide, and Quiz"
+        }
+      ]
+    },
+    {
+      "type": "step_centered",
+      "name": "Step · centered",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Step label",
+          "default": "Real Feedback"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Private comments: a direct line to your teacher"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Body",
+          "default": "Ask a question right on the lesson and your teacher replies with specific guidance, not a canned answer. This thread is real: a student asks how to turn a topic into a theme statement, the teacher shows the way, and the student gets unblocked."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Screenshot (desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_mobile",
+          "label": "Screenshot (mobile)",
+          "info": "Optional. Shown full width at natural ratio on screens under 768px instead of the pannable strip."
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "default": "vc-step-8-feedback.png"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Screenshot alt text",
+          "default": "A private comment thread: a student question, the teacher's detailed reply, and the student's thanks"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "VC Walkthrough",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step_flagship" },
+        { "type": "step_centered" }
+      ]
+    }
+  ]
+}
+{% endschema %}

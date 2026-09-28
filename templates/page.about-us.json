@@ -1,0 +1,397 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_NHU94r": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rGGqen": {
+          "type": "heading",
+          "settings": {
+            "text": "Welcome to Ontario Education Online",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_3MNxKf": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>At Ontario Education Online, we're more than just another education website; we're your dedicated partners in learning. Founded by two passionate and certified Ontario teachers with over 25 years of combined teaching experience, we understand the unique challenges and needs of today's students better than anyone else.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rGGqen",
+        "richtext_3MNxKf"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "rich_text_JmN4hi": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_Jf7GxM": {
+          "type": "heading",
+          "settings": {
+            "text": "About Ontario Education Online",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_Jf7GxM"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_HTBjaV": {
+      "type": "rich-text",
+      "blocks": {
+        "image_RanzE8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/rammer.png",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        },
+        "heading_FtKCz4": {
+          "type": "heading",
+          "settings": {
+            "text": "Andrew Ramos",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "heading_tbeqAX": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "Principal",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_faKRYd": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Andrew brings over a decade of teaching experience across the public and private sectors, including international experience in Australia. He is deeply committed to helping students succeed and is known for his strong understanding of the Ontario curriculum and personalized approach to learning. Andrew has taught English, Social Science, and Co-operative Education. Outside of the classroom, he enjoys traveling and spending time with his wife and children.</p>"
+          }
+        },
+        "divider_ztbRxX": {
+          "type": "divider",
+          "settings": {}
+        },
+        "image_JXnVic": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/adam1.png",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        },
+        "heading_3jxBg7": {
+          "type": "heading",
+          "settings": {
+            "text": "Adam Moroney",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "heading_3ckTi7": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "Vice-Principal",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_ztCkt8": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>With 16 years of teaching experience, Adam has a strong track record of helping students reach their full potential. Known for his engaging approach and ability to support different learning styles, he has taught a wide range of courses including General Science, Biology, Physical Education, and Math. Outside the classroom, Adam is also a two-time OFSSAA champion hockey coach and can often be found coaching on the field, the rink, or the diamond.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "image_RanzE8",
+        "heading_FtKCz4",
+        "heading_tbeqAX",
+        "richtext_faKRYd",
+        "divider_ztbRxX",
+        "image_JXnVic",
+        "heading_3jxBg7",
+        "heading_3ckTi7",
+        "richtext_ztCkt8"
+      ],
+      "custom_css": [
+        ".rich-text .prose,.split-rich-text .prose {display: block !important;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "start",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_yKmRej": {
+      "type": "multi-column",
+      "blocks": {
+        "item_wtH8DQ": {
+          "type": "item",
+          "repeater": "{{ page.metafields.custom.teachers.value }}",
+          "settings": {
+            "image": "{{ block.repeater.teacher_image.value }}",
+            "column_size": "3",
+            "title": "{{ block.repeater.teacher_name.value }}",
+            "heading_tag": "h5",
+            "content": "<p>{{ block.repeater.teacher_position.value }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_wtH8DQ"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "small",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Our Teachers",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_KhfGpF": {
+      "type": "multi-column",
+      "blocks": {
+        "item_jV3X3q": {
+          "type": "item",
+          "settings": {
+            "column_size": "4",
+            "title": "Hand-Picked Ontario Educators",
+            "heading_tag": "h5",
+            "content": "<p>We hire experienced Ontario-certified teachers and build each course with real marking, real feedback, and real support — not automated grading or generic content.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_pnRMVk": {
+          "type": "item",
+          "settings": {
+            "column_size": "4",
+            "title": "Attendance Never Affects Your Grade",
+            "heading_tag": "h5",
+            "content": "<p>No scheduled classes and no attendance marks. Students learn when they are ready and show what they know through coursework and one final exam, written online from anywhere. No exam halls, no travel, no stress.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_JnRQEX": {
+          "type": "item",
+          "settings": {
+            "column_size": "4",
+            "title": "School In Your Pocket",
+            "heading_tag": "h5",
+            "content": "<p>Complete lessons, submit work, and stay on track right from your phone — perfect for athletes, travel schedules, and busy families. OEO uses Google Classroom as its LMS which is compatible with smart phones.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_hCqxj7": {
+          "type": "item",
+          "settings": {
+            "column_size": "4",
+            "title": "Start Anytime + Work At Your Pace",
+            "heading_tag": "h5",
+            "content": "<p>No semesters. No waitlists. Enroll today and begin immediately, then move fast (or slow) depending on your schedule — it’s built for real life.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_jV3X3q",
+        "item_pnRMVk",
+        "item_JnRQEX",
+        "item_hCqxj7"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "What sets us apart",
+        "content": "",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "rich_text_Fnth4V": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_ynHy3b": {
+          "type": "heading",
+          "settings": {
+            "text": "Why Ontario Education Online?",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_r8hdMr": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>As educators and coaches, we've had the privilege of working with diverse students over the years. We've coached athletes, supported extracurricular activities, and have seen firsthand the challenges that students face when trying to juggle their education with busy schedules.</p><p>We founded Ontario Education Online with one simple yet powerful idea in mind – to provide Ontario students with the flexibility they need to succeed. We believe that education should adapt to the students, not the other way around. Whether you're a student seeking to earn extra credits, thrive in an online learning environment, or are engaged in demanding extracurricular activities, we've got you covered.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_ynHy3b",
+        "richtext_r8hdMr"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "content_width": "medium",
+        "text_position": "center",
+        "background": "#f2f1f6",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_RxjCdz": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_MLREw3": {
+          "type": "heading",
+          "settings": {
+            "text": "Our Vision",
+            "heading_tag": "h0",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_hrqDxC": {
+          "type": "richtext",
+          "settings": {
+            "content": "<h5>At Ontario Education Online, we are dedicated to empowering students to take control of their education. We offer a wide range of courses that can be accessed anytime, anywhere, allowing you to learn at your own pace and on your terms. Our curriculum aligns seamlessly with the Ontario educational standards, ensuring that you receive a high-quality education that meets your specific needs.</h5>"
+          }
+        },
+        "divider_CrTbhd": {
+          "type": "divider",
+          "settings": {}
+        },
+        "image_EK3tiW": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Enrolment.png",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400
+          }
+        }
+      },
+      "block_order": [
+        "heading_MLREw3",
+        "richtext_hrqDxC",
+        "divider_CrTbhd",
+        "image_EK3tiW"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "video_zgHh4G": {
+      "type": "video",
+      "blocks": {
+        "play_xpTWUF": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_xpTWUF"
+      ],
+      "custom_css": [],
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "external_video_url": "https://youtu.be/kBFnaVQ54co?si=-TL6H06CJ1gu4BJA",
+        "poster": "shopify://shop_images/Screenshot_2024-02-06_at_7.04.17_AM.png",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    }
+  },
+  "order": [
+    "rich_text_NHU94r",
+    "rich_text_JmN4hi",
+    "rich_text_HTBjaV",
+    "multi_column_yKmRej",
+    "multi_column_KhfGpF",
+    "rich_text_Fnth4V",
+    "rich_text_RxjCdz",
+    "video_zgHh4G",
+    "main"
+  ]
+}

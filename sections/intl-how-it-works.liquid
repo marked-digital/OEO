@@ -1,0 +1,47 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-how" id="how-it-works">
+  <div class="lp-inner">
+    <div class="lp-how__head">
+      {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow lp-eyebrow--center">{{ section.settings.eyebrow }}</div>{% endif %}
+      <h2 class="lp-how__h">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="lp-how__grid">
+      {% for block in section.blocks %}
+        <div class="lp-card lp-card--flat lp-how__card" {{ block.shopify_attributes }}>
+          <span class="lp-how__n">{{ forloop.index }}.</span>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.body }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • How it works",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "How it works" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "From enrolment to transcript, in four steps." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Choose your course." },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Browse Grade 9 to 12 courses by subject or grade." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Intl • How it works",
+    "blocks": [
+      { "type": "step", "settings": { "title": "Choose your course.",        "body": "Browse Grade 9 to 12 courses by subject or grade." } },
+      { "type": "step", "settings": { "title": "Enrol online.",              "body": "Sign up any day of the year and start right away." } },
+      { "type": "step", "settings": { "title": "Learn with teacher support.", "body": "Work through interactive lessons at your pace, with an OCT teacher a message away." } },
+      { "type": "step", "settings": { "title": "Get your official transcript.", "body": "Finish your course and we send your official OSSD transcript where you need it." } }
+    ]
+  }]
+}
+{% endschema %}

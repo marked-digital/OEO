@@ -1,0 +1,50 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-faq" id="faq">
+  <div class="lp-inner">
+    {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow lp-eyebrow--center">{{ section.settings.eyebrow }}</div>{% endif %}
+    <h2 class="lp-faq__h">{{ section.settings.heading }}</h2>
+    <div class="lp-faq__list">
+      {% for block in section.blocks %}
+        <details class="lp-card lp-card--flat lp-faq__item" {% if forloop.first %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary class="lp-faq__sum">
+            <span class="lp-faq__q">{{ block.settings.q }}</span>
+            <span class="lp-faq__chev">{% render 'intl-icon', icon: 'chevron', size: 20 %}</span>
+          </summary>
+          <p class="lp-faq__a">{{ block.settings.a }}</p>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "International FAQ" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Questions from overseas families." }
+  ],
+  "blocks": [
+    {
+      "type": "qa",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Question", "default": "Question" },
+        { "type": "textarea", "id": "a", "label": "Answer", "default": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Intl • FAQ",
+    "blocks": [
+      { "type": "qa", "settings": { "q": "Will Canadian universities accept OSSD credits earned online?", "a": "Yes. OEO is a Ministry-Inspected Ontario private school (BSID #882902). The credits you earn are official OSSD credits, recognized by universities across Canada." } },
+      { "type": "qa", "settings": { "q": "Do I need a visa or to travel to Canada?", "a": "No. Courses are 100% online. You study from your home country." } },
+      { "type": "qa", "settings": { "q": "Can I study in my own timezone?", "a": "Yes. Courses are self-paced and asynchronous. Teacher support runs Monday to Friday (Eastern Time), with replies within one business day." } },
+      { "type": "qa", "settings": { "q": "How do I get my transcript for university applications?", "a": "We issue an official OSSD transcript and send it where you need it." } },
+      { "type": "qa", "settings": { "q": "Can I transfer credits I have already earned?", "a": "Credit recognition for prior study is assessed individually. Contact an advisor and we will confirm what applies to your situation before you enrol." } },
+      { "type": "qa", "settings": { "q": "What currency are courses in, and how do I pay?", "a": "Courses are priced in Canadian dollars (CAD). We accept major international cards and digital wallets." } },
+      { "type": "qa", "settings": { "q": "How fast can I finish a course?", "a": "As little as 4 weeks, or up to 12 months. You choose the pace." } }
+    ]
+  }]
+}
+{% endschema %}

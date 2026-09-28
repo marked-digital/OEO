@@ -1,0 +1,355 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "vc-hero",
+      "blocks": {
+        "chip_1": {
+          "type": "chip",
+          "settings": {
+            "label": "Ministry Inspected"
+          }
+        },
+        "chip_2": {
+          "type": "chip",
+          "settings": {
+            "label": "OCT-Certified Teacher"
+          }
+        },
+        "chip_3": {
+          "type": "chip",
+          "settings": {
+            "label": "Official OSSD Credit"
+          }
+        }
+      },
+      "block_order": [
+        "chip_1",
+        "chip_2",
+        "chip_3"
+      ],
+      "settings": {
+        "eyebrow": "Inside the Virtual Classroom",
+        "heading": "See exactly what your course looks like.",
+        "subhead": "Ontario Education Online is a Ministry-inspected online high school. Every course is built around Google Classroom, providing students with a familiar, easy-to-use learning experience that's accessible from any device.",
+        "btn1_label": "Browse Courses",
+        "btn1_url": "shopify://collections",
+        "btn2_label": "Book a Guidance Session",
+        "btn2_url": "shopify://pages/book-guidance-session",
+        "ministry_text": "BSID #882902",
+        "ministry_link_label": "Verify on the Ministry site",
+        "ministry_url": "https://www.ontario.ca/page/private-schools",
+        "video": "shopify://files/videos/Inside the Virtual Classroom.mp4",
+        "video_mobile": "shopify://files/videos/Inside the Virtual Classroom (Square).mp4",
+        "poster_image_mobile": "shopify://shop_images/Video_Mobile_a582ac64-834f-46d1-b7a1-2962e3b501fa.png",
+        "overlay_desktop": 15,
+        "overlay_mobile": 55,
+        "poster_asset": "vc-step-1-dashboard.png",
+        "poster_alt": "Poster frame: the Google Classroom dashboard with six Grade 12 course cards",
+        "watch_label": "Watch the walkthrough · 75 seconds",
+        "watch_sublabel": "The full student experience, dashboard to feedback",
+        "video_aria_label": "Play the walkthrough video, 75 seconds",
+        "video_name": "Inside the Virtual Classroom",
+        "video_description": "A 75 second walkthrough of the real OEO student experience, from the Google Classroom dashboard to teacher feedback.",
+        "video_upload_date": ""
+      }
+    },
+    "walkthrough": {
+      "type": "vc-walkthrough",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "label": "Your Dashboard",
+            "heading": "Every course, one login",
+            "body": "Google Classroom is the hub for your OEO courses. Access lessons, assignments, teacher feedback, and course resources from one organized dashboard—using a single login from any device.",
+            "image": "shopify://shop_images/step-1-desktop.png",
+            "image_mobile": "shopify://shop_images/step-1-mobile.png",
+            "image_asset": "vc-step-1-dashboard.png",
+            "image_alt": "Google Classroom dashboard showing six Grade 12 course cards",
+            "show_teacher_card": false,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "label": "Meet Your Teacher",
+            "heading": "A real Ontario Certified Teacher welcomes you in",
+            "body": "Your teacher is named, visible, and present from the first screen. She posts a welcome message in your course and commits to answering questions within 24 hours, Monday to Friday.",
+            "image": "shopify://shop_images/step-2-desktop.png",
+            "image_mobile": "shopify://shop_images/step-2-mobile.png",
+            "image_asset": "vc-step-2-teacher.png",
+            "image_alt": "Ms. Della Mea's welcome post in the ENG4U classroom",
+            "show_teacher_card": true,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "label": "Classwork",
+            "heading": "Pick up exactly where you left off",
+            "body": "Every OEO course includes 50 structured lessons organized in a clear sequence. It's easy to see what's completed, what comes next, and continue learning at your own pace.",
+            "image": "shopify://shop_images/step-3-desktop.png",
+            "image_mobile": "shopify://shop_images/step-3-mobile.png",
+            "image_asset": "vc-step-3-classwork.png",
+            "image_alt": "Classwork tab showing Unit 5 lessons listed in sequence",
+            "show_teacher_card": false,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "label": "Inside a Lesson",
+            "heading": "Clear Steps. Interactive Learning.",
+            "body": "Every lesson is organized into clear, numbered steps with everything you need in one place—including the lesson reading, interactive video, and any supporting resources. Complete each step, submit your work, and move on to the next lesson.",
+            "image": "shopify://shop_images/step-4-desktop.png",
+            "image_mobile": "shopify://shop_images/step-4-mobile_66f9c07a-437f-4746-980f-2906a78cd3ed.png",
+            "image_asset": "vc-step-4-lesson.png",
+            "image_alt": "Lesson 21 with five numbered steps and attached materials",
+            "show_teacher_card": false,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_5": {
+          "type": "step",
+          "settings": {
+            "label": "Course Materials",
+            "heading": "Course materials, right where you need them.",
+            "body": "Readings and learning resources open directly from each lesson, keeping everything organized and easy to access. Some lessons also include optional worksheets or additional practice to reinforce your learning.\n\nNo textbook to purchase. Just open the lesson and start learning.",
+            "image": "shopify://shop_images/step-5-desktop_6d39a340-abe2-4644-910a-9ba2870d301b.png",
+            "image_mobile": "shopify://shop_images/step-5-mobile_bafe9652-61a1-43d9-9d29-ffa6a342b569.png",
+            "image_asset": "vc-step-5-materials.png",
+            "image_alt": "A Google Doc reading open inside the lesson",
+            "show_teacher_card": false,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_6": {
+          "type": "step",
+          "settings": {
+            "label": "Interactive Video",
+            "heading": "Every lesson includes an interactive video.",
+            "body": "Every interactive video includes built-in check-in questions that keep you engaged and help reinforce your understanding before moving on to the next concept.",
+            "image": "shopify://shop_images/step-6-desktop.png",
+            "image_mobile": "shopify://shop_images/step-6-mobile.png",
+            "image_asset": "vc-step-6-video.png",
+            "image_alt": "A lesson video paused on a check-in question, answered correctly",
+            "show_teacher_card": false,
+            "teacher_initial": "J",
+            "teacher_name": "Ms. Jennifer Della Mea",
+            "teacher_course": "Grade 12 English (ENG4U)",
+            "teacher_badge": "OCT Certified"
+          }
+        },
+        "step_7": {
+          "type": "step_flagship",
+          "settings": {
+            "label": "Gemini Notebook, built into every unit",
+            "heading": "Study the way you learn best.",
+            "body": "Every unit includes Gemini Notebook (formerly NotebookLM), powered by the exact course materials your teacher has selected. Instantly turn your readings into audio overviews, video summaries, mind maps, flashcards, study guides, and quizzes, all based on your real course content.",
+            "chips": "Audio Overview | Listen on the go\nVideo Overview | Watch and review\nMind Map | See connections\nFlashcards | Test yourself\nStudy Guide | Read and review\nQuiz | Check understanding",
+            "image": "shopify://shop_images/step-7-desktop.png",
+            "image_mobile": "shopify://shop_images/step-7-mobile.png",
+            "image_asset": "vc-step-7-notebooklm.png",
+            "image_alt": "A Gemini Notebook for Unit 6, Hamlet, with Audio Overview, Video Overview, Mind Map, Flashcards, Study Guide, and Quiz"
+          }
+        },
+        "step_8": {
+          "type": "step_centered",
+          "settings": {
+            "label": "Real Feedback",
+            "heading": "Get help directly from your teacher.",
+            "body": "Have a question? Reach out through your course or by email and receive personalized guidance from your Ontario Certified Teacher. Every response is tailored to your question—helping you move forward with confidence.",
+            "image": "shopify://shop_images/step-8-desktop.png",
+            "image_mobile": "shopify://shop_images/step-8-mobile.png",
+            "image_asset": "vc-step-8-feedback.png",
+            "image_alt": "A private comment thread: a student question, the teacher's detailed reply, and the student's thanks"
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5",
+        "step_6",
+        "step_7",
+        "step_8"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Take a tour of a real OEO course.",
+        "intro": "Every screen you'll see below comes from a real OEO course. No stock photos. No mockups. Just the real student experience.",
+        "show_rail": true,
+        "enable_lightbox": true,
+        "show_step_dividers": true,
+        "compensate_hero_overlap": true
+      }
+    },
+    "no_exam": {
+      "type": "pdp-no-exam",
+      "settings": {
+        "quote_line1": "\"No scheduled classes. No attendance marks.",
+        "quote_line2": "No compromises.\"",
+        "body_text": "Your grade comes from coursework assessed by an Ontario Certified Teacher, plus one final exam written online. Finish an assignment, get feedback, move forward.",
+        "photo": "shopify://shop_images/548187342_1626137672001146_4286759087311537051_n.jpg",
+        "photo_alt": "Student working from home"
+      }
+    },
+    "parents": {
+      "type": "vc-parents",
+      "blocks": {
+        "card_1": {
+          "type": "card",
+          "settings": {
+            "title": "Ontario Certified Teachers",
+            "body": "Every course is taught by an Ontario Certified Teacher who provides personalized feedback, marks assignments, and supports students from start to finish."
+          }
+        },
+        "card_2": {
+          "type": "card",
+          "settings": {
+            "title": "Progress you can follow",
+            "body": "As assignments are completed and returned, parents can see their child's progress throughout the course instead of waiting until report card time."
+          }
+        },
+        "card_3": {
+          "type": "card",
+          "settings": {
+            "title": "Open communication",
+            "body": "Questions don't disappear into a help centre. Parents and students can reach out to our team and teachers whenever they need support."
+          }
+        }
+      },
+      "block_order": [
+        "card_1",
+        "card_2",
+        "card_3"
+      ],
+      "settings": {
+        "eyebrow": "For Parents",
+        "heading": "Stay informed throughout the course",
+        "intro": "Even though students learn at their own pace, parents can stay involved through ongoing teacher feedback, returned assignments, and regular communication throughout the course."
+      }
+    },
+    "testimonial": {
+      "type": "vc-parent-testimonial",
+      "blocks": {
+        "testimonial_XchGjA": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "As parents of a student who has completed a course with Ontario Education Online we would like to take this opportunity to thank Mr. Ramos for his continuous care, support and professionalism. Every step of the way our son was able to receive feedback and ongoing support. The ability to access course materials through platforms like Google Classroom made learning both convenient and efficient, helping develop strong organizational skills and time-management skills. This improved the overall learning experience. Our sons experience with OEO has been invaluable, and we would highly recommend it to others seeking a flexible and engaging learning environment.",
+            "attribution": "Lital Crombie · Parent",
+            "badge_label": "Verified Parent"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_XchGjA"
+      ],
+      "settings": {
+        "eyebrow": "From a Parent",
+        "heading": "In their own words"
+      }
+    },
+    "faqs": {
+      "type": "pdp-faqs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need to buy any software or textbooks?",
+            "answer": "<p>No. A free Google account is all you need. Every material lives inside the lesson.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are there live classes?",
+            "answer": "<p>No. Everything is asynchronous and self-paced. You work when it suits you and start any day.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What are the tech requirements?",
+            "answer": "<p>Any phone, tablet, or computer with an internet connection.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I contact my teacher?",
+            "answer": "<p>Directly through Google Classroom private comments. Questions are answered within 24 hours, Monday to Friday, and graded work is returned within 48 to 72 hours.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4"
+      ],
+      "settings": {
+        "section_label": "FAQ · The Virtual Classroom",
+        "section_heading": "Classroom questions, answered",
+        "fallback_course_code": "this course"
+      }
+    },
+    "guidance": {
+      "type": "pdp-guidance-cta",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure if this is right for your situation?",
+        "body_text": "Book a free 15 minute guidance session. Parents and guardians are welcome.",
+        "button_label": "Book a Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_aria_label": "Book a free 15 minute guidance session with an OEO advisor",
+        "proof_text": ""
+      }
+    },
+    "scroll_reveal": {
+      "type": "vc-scroll-reveal",
+      "settings": {
+        "duration": 650
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "walkthrough",
+    "no_exam",
+    "parents",
+    "testimonial",
+    "faqs",
+    "guidance",
+    "scroll_reveal"
+  ]
+}

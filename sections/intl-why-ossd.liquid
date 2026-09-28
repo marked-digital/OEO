@@ -1,0 +1,20 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-why">
+  <div class="lp-inner">
+    {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow lp-eyebrow--center">{{ section.settings.eyebrow }}</div>{% endif %}
+    <h2 class="lp-why__h">{{ section.settings.heading }}</h2>
+    <div class="lp-why__p">{{ section.settings.body }}</div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Why OSSD",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why the OSSD" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "A Canadian diploma that opens doors worldwide." },
+    { "type": "richtext", "id": "body", "label": "Body", "default": "<p>The Ontario Secondary School Diploma is one of the most widely recognized high school credentials in the world, and the most direct route into Canadian universities. With OEO you earn official Ontario credits online, the same credits issued by schools across Ontario, and we send your official transcript wherever you need it for your university applications.</p>" }
+  ],
+  "presets": [{ "name": "Intl • Why OSSD" }]
+}
+{% endschema %}

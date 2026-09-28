@@ -1,0 +1,502 @@
+{%- comment -%}
+  Full-Time Enrolment · Everything included
+  Two display styles from one section:
+    full:    the value stack (Wireframe A · S4). Intro plus an itemised value
+             card with per-item values, full-time-only badges, and a total row.
+    compact: the PDP echo (Wireframe B). A slim pill band that names the
+              services and links back to the landing page for full detail.
+  Per-item values are blocks. The total is a schema setting and defaults to a
+  bracketed placeholder: the "over $450" math is flagged in the claims audit
+  and must be reconciled by OEO before publish.
+{%- endcomment -%}
+
+{%- assign style = section.settings.display_style | default: 'full' -%}
+
+{%- if style == 'compact' -%}
+
+  <section class="fte-inc-compact" aria-labelledby="fte-inc-compact-heading-{{ section.id }}">
+    <div class="fte-inc-compact__inner">
+      <div class="fte-inc-compact__text">
+        <div class="fte-inc-compact__heading" id="fte-inc-compact-heading-{{ section.id }}">{{ section.settings.compact_heading | escape }}</div>
+        {%- if section.settings.compact_intro != blank -%}
+          <div class="fte-inc-compact__intro">{{ section.settings.compact_intro | escape }}</div>
+        {%- endif -%}
+      </div>
+      <div class="fte-inc-compact__pills">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'item' and block.settings.name != blank -%}
+            <span class="fte-inc-compact__pill" {{ block.shopify_attributes }}>{{ block.settings.name | escape }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.details_label != blank -%}
+        <a class="fte-inc-compact__link" href="{{ section.settings.details_url | default: '/pages/full-time-enrolment#included' }}">{{ section.settings.details_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </section>
+
+{%- else -%}
+
+  <section class="fte-inc" aria-labelledby="fte-inc-heading-{{ section.id }}">
+    <div class="fte-inc__inner" id="included">
+
+      <div class="fte-inc__intro">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="fte-inc__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        <h2 class="fte-inc__heading" id="fte-inc-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+        {%- if section.settings.body != blank -%}
+          <p class="fte-inc__body">{{ section.settings.body | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.exclusive_text != blank -%}
+          <div class="fte-inc__exclusive">
+            <span class="fte-inc__exclusive-star" aria-hidden="true">★</span>
+            <div class="fte-inc__exclusive-text">{{ section.settings.exclusive_text }}</div>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="fte-inc__card">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'item' and block.settings.name != blank -%}
+            <div class="fte-inc__row" {{ block.shopify_attributes }}>
+              <div class="fte-inc__row-main">
+                <span class="fte-inc__row-name">{{ block.settings.name | escape }}</span>
+                {%- if block.settings.only_badge -%}
+                  <span class="fte-inc__row-badge">Full-time students only</span>
+                {%- endif -%}
+                {%- if block.settings.note != blank -%}
+                  <span class="fte-inc__row-note">{{ block.settings.note | escape }}</span>
+                {%- endif -%}
+              </div>
+              {%- if block.settings.value_text != blank -%}
+                <span class="fte-inc__row-value">{{ block.settings.value_text | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        {%- if section.settings.total_value != blank -%}
+          <div class="fte-inc__total">
+            <span class="fte-inc__total-label">{{ section.settings.total_label | escape }}</span>
+            <span class="fte-inc__total-right">
+              <span class="fte-inc__token">{{ section.settings.total_value | escape }}</span>
+              {%- if section.settings.total_note != blank -%}
+                <span class="fte-inc__total-note">{{ section.settings.total_note | escape }}</span>
+              {%- endif -%}
+            </span>
+          </div>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </section>
+
+{%- endif -%}
+
+<style>
+/* ---- Full value stack ---- */
+.fte-inc {
+  background: #ffffff;
+  padding: clamp(48px, 7vw, 80px) 0;
+}
+
+.fte-inc__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px 64px;
+}
+
+.fte-inc__intro {
+  flex: 1 1 320px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fte-inc__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.fte-inc__heading {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #24367a;
+}
+
+.fte-inc__body {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #6f789f;
+  text-wrap: pretty;
+}
+
+.fte-inc__exclusive {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+  background: var(--light, #f0f1f5);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24367a;
+}
+
+.fte-inc__exclusive-text {
+  min-width: 0;
+}
+
+.fte-inc__exclusive-text p {
+  margin: 0;
+}
+
+.fte-inc__exclusive strong {
+  font-weight: 700;
+}
+
+.fte-inc__exclusive-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #F0C417;
+  color: #1e2a5e;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.fte-inc__card {
+  flex: 1 1 440px;
+  background: #ffffff;
+  border: 1px solid rgba(36, 54, 122, 0.1);
+  border-radius: 20px;
+  box-shadow: 0 4px 14px rgba(16, 33, 88, 0.06), 0 12px 30px rgba(16, 33, 88, 0.08);
+  overflow: hidden;
+}
+
+.fte-inc__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(36, 54, 122, 0.08);
+}
+
+.fte-inc__row-main {
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.fte-inc__row-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: #24367a;
+}
+
+.fte-inc__row-badge {
+  align-self: flex-start;
+  background: #24367a;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.fte-inc__row-note {
+  font-size: 13px;
+  color: #8a91b4;
+}
+
+.fte-inc__row-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2B3886;
+  white-space: nowrap;
+}
+
+.fte-inc__total {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 16px;
+  padding: 18px 24px;
+  background: var(--light, #f0f1f5);
+}
+
+.fte-inc__total-label {
+  font-size: 15px;
+  font-weight: 800;
+  color: #24367a;
+}
+
+.fte-inc__total-right {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.fte-inc__total-note {
+  font-size: 11px;
+  color: #8a91b4;
+  text-align: right;
+}
+
+/* Bracketed placeholder token (pending / unverified copy) */
+.fte-inc__token {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1.5px dashed #c9a511;
+  background: #fbf3d2;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #8a7106;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* ---- Compact PDP echo ---- */
+.fte-inc-compact {
+  background: #ffffff;
+  padding: clamp(32px, 5vw, 56px) 0;
+}
+
+.fte-inc-compact__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(22px, 3vw, 34px);
+  margin-inline: 32px;
+  border: 1px solid rgba(36, 54, 122, 0.12);
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 32px;
+}
+
+.fte-inc-compact__text {
+  flex: 1 1 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fte-inc-compact__heading {
+  font-size: 17px;
+  font-weight: 800;
+  color: #24367a;
+}
+
+.fte-inc-compact__intro {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #8a91b4;
+}
+
+.fte-inc-compact__pills {
+  flex: 2 1 380px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fte-inc-compact__pill {
+  display: inline-flex;
+  background: var(--light, #f0f1f5);
+  border-radius: 999px;
+  padding: 7px 13px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #24367a;
+}
+
+.fte-inc-compact__link {
+  flex: 0 0 auto;
+  font-size: 14px;
+  font-weight: 700;
+  color: #24367a;
+  text-decoration: none;
+}
+
+.fte-inc-compact__link:hover {
+  color: #1c2b64;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .fte-inc__inner {
+    padding: 0 16px;
+  }
+  .fte-inc-compact__inner {
+    margin-inline: 16px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FTE Everything Included",
+  "tag": "section",
+  "class": "fte-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "display_style",
+      "label": "Display style",
+      "options": [
+        { "value": "full", "label": "Full value stack (landing page)" },
+        { "value": "compact", "label": "Compact echo (product page)" }
+      ],
+      "default": "full",
+      "info": "Full shows the itemised value card. Compact shows a slim pill band that links back to the landing page."
+    },
+    {
+      "type": "header",
+      "content": "Full value stack"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Everything included"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Services other students pay for. You don't."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "These services are billed separately for à-la-carte students. As a full-time student, you pay nothing for any of them."
+    },
+    {
+      "type": "richtext",
+      "id": "exclusive_text",
+      "label": "Exclusive callout",
+      "default": "<p><strong>Credit transfer and PLAR</strong> are available to full-time students only.</p>"
+    },
+    {
+      "type": "text",
+      "id": "total_label",
+      "label": "Total row label",
+      "default": "Total value"
+    },
+    {
+      "type": "text",
+      "id": "total_value",
+      "label": "Total value",
+      "info": "Claims audit: the 'over $450' math must be reconciled by OEO before publish. Keep the bracketed placeholder until then.",
+      "default": "[ over $450 · total pending reconciliation ]"
+    },
+    {
+      "type": "text",
+      "id": "total_note",
+      "label": "Total note",
+      "default": "Per claims audit: do not publish until OEO reconciles the math."
+    },
+    {
+      "type": "header",
+      "content": "Compact echo (product page)"
+    },
+    {
+      "type": "text",
+      "id": "compact_heading",
+      "label": "Compact heading",
+      "default": "Every full-time service, included at no charge"
+    },
+    {
+      "type": "textarea",
+      "id": "compact_intro",
+      "label": "Compact intro",
+      "default": "Billed separately for à-la-carte students. Included with every full-time enrolment."
+    },
+    {
+      "type": "text",
+      "id": "details_label",
+      "label": "Details link label",
+      "default": "Full details"
+    },
+    {
+      "type": "url",
+      "id": "details_url",
+      "label": "Details link URL",
+      "info": "Defaults to /pages/full-time-enrolment#included."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Included service",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Service name",
+          "default": "Prerequisite assessment"
+        },
+        {
+          "type": "text",
+          "id": "value_text",
+          "label": "Value (full stack only)",
+          "default": "$150 value"
+        },
+        {
+          "type": "checkbox",
+          "id": "only_badge",
+          "label": "Show \"Full-time students only\" badge",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "note",
+          "label": "Note (e.g. eligibility)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "FTE Everything Included",
+      "blocks": [
+        { "type": "item", "settings": { "name": "PLAR competency & placement assessment", "value_text": "$150 value", "only_badge": true } },
+        { "type": "item", "settings": { "name": "Prerequisite assessment", "value_text": "$150 value" } },
+        { "type": "item", "settings": { "name": "OEN & OSR administration", "value_text": "$150 value" } },
+        { "type": "item", "settings": { "name": "International student registration", "value_text": "$150 value", "note": "International students only" } },
+        { "type": "item", "settings": { "name": "Personal guidance session & OSSD pathway plan", "value_text": "Included" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

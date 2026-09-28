@@ -1,0 +1,241 @@
+<section class="guidance-expectation-section">
+  <div class="guidance-expectation-wrapper">
+
+    <div class="guidance-expectation-layout">
+
+      <div class="guidance-expectation-content">
+
+        {% if section.settings.title != blank %}
+          <h2 class="guidance-expectation-title">
+            {{ section.settings.title }}
+          </h2>
+        {% endif %}
+
+        {% if section.blocks.size > 0 %}
+          <ul class="guidance-expectation-list">
+            {% for block in section.blocks %}
+              <li class="guidance-expectation-item" {{ block.shopify_attributes }}>
+                <span class="guidance-check">✓</span>
+                <span>{{ block.settings.text }}</span>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% if section.settings.note != blank %}
+          <p class="guidance-expectation-note">
+            {{ section.settings.note }}
+          </p>
+        {% endif %}
+
+      </div>
+
+      {% if section.settings.badge_image != blank %}
+        <div class="guidance-expectation-badge">
+          <img
+            src="{{ section.settings.badge_image | image_url: width: 400 }}"
+            alt="Ontario Ministry Inspected High School"
+            loading="lazy"
+          >
+        </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+
+.guidance-expectation-section{
+padding:10px 20px 0 20px;
+}
+
+.guidance-expectation-wrapper{
+max-width:1100px;
+margin:0 auto;
+background:#313b81;
+padding:30px 60px;
+border-radius:24px;
+}
+
+/* NEW GRID LAYOUT */
+
+.guidance-expectation-layout{
+display:grid;
+grid-template-columns:1fr auto;
+gap:40px;
+align-items:start;
+}
+
+/* LEFT CONTENT */
+
+.guidance-expectation-title{
+font-size:48px;
+font-weight:700;
+line-height: 1.2;
+color:#FFFFFF;
+margin-bottom:10px;
+}
+
+.guidance-expectation-list{
+list-style:none;
+padding:0;
+margin:0 0 20px 0;
+}
+
+.guidance-expectation-item{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:5px;
+font-size:17px;
+font-weight:700;
+color:#FFFFFF;
+}
+
+.guidance-check{
+color:#f0c417;
+font-weight:700;
+font-size:17px;
+line-height:1.2;
+}
+
+.guidance-expectation-note{
+margin-top:10px;
+font-size:17px;
+color:#FFFFFF;
+}
+
+/* RIGHT BADGE */
+
+.guidance-expectation-badge img{
+max-width:150px;
+height:auto;
+}
+
+/* FORM */
+
+.guidance-form-wrapper{
+  width:100%;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  margin-top:0;
+  padding-top:0;
+}
+
+.guidance-form-wrapper iframe{
+  display:block;
+  width:100%;
+  border:0;
+  background:transparent;
+  margin-top:0;
+  padding-top:0;
+}
+
+/* MOBILE */
+
+@media screen and (max-width:768px){
+
+.guidance-expectation-wrapper{
+padding:30px;
+border-radius:18px;
+}
+
+.guidance-expectation-layout{
+grid-template-columns:1fr;
+gap: 10px;
+}
+
+
+
+.guidance-expectation-title{
+font-size:28px;
+}
+
+.guidance-expectation-list {
+    margin: 15px 0;
+}
+
+.guidance-expectation-item{
+font-size:16px;
+}
+
+.guidance-expectation-note {
+    line-height: 1.3;
+}
+
+.guidance-expectation-badge{
+margin-top:10px;
+}
+
+.guidance-expectation-badge img{
+max-width:120px;
+}
+
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Guidance expectation card",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What to Expect"
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Bottom note",
+      "default": "Booking takes less than a minute."
+    },
+    {
+      "type": "image_picker",
+      "id": "badge_image",
+      "label": "Inspection badge"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Expectation",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "15–20 minute session"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Guidance expectation card",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": { "text": "15–20 minute session" }
+        },
+        {
+          "type": "item",
+          "settings": { "text": "Phone or video appointment" }
+        },
+        {
+          "type": "item",
+          "settings": { "text": "Speak with an Ontario-certified guidance counselor" }
+        },
+        {
+          "type": "item",
+          "settings": { "text": "Free with no obligation" }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

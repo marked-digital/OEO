@@ -1,0 +1,432 @@
+{%- comment -%}
+  Virtual Classroom · Parent testimonial carousel
+  Styled to the enhanced PDP testimonial card (pdp-tcard): white card, grey
+  oversized quote mark, italic quote, author row with verified badge.
+
+  Each testimonial is a block, so more can be added/reordered in the theme
+  editor. Navigation: flanking chevrons, bottom dots, and native swipe on
+  touch devices (CSS scroll-snap). The first block defaults to the verbatim
+  Lital Crombie quote from the brief. Do not correct its grammar
+  ("Our sons experience...").
+{%- endcomment -%}
+
+<section class="vc-testimonial" id="vc-testimonial-{{ section.id }}" aria-labelledby="vc-testimonial-heading-{{ section.id }}">
+  <div class="vc-testimonial__inner">
+
+    <p class="vc-testimonial__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h2 class="vc-testimonial__heading" id="vc-testimonial-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="vc-testimonial__carousel" aria-roledescription="carousel" aria-label="Parent testimonials">
+
+        {%- if section.blocks.size > 1 -%}
+          <button type="button" class="vc-testimonial__nav vc-testimonial__nav--prev" data-vc-prev aria-label="Previous testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+        {%- endif -%}
+
+        <div class="vc-testimonial__viewport" data-vc-viewport tabindex="0" role="group" aria-label="Testimonials, scrollable">
+          <div class="vc-testimonial__track">
+            {%- for block in section.blocks -%}
+              <div class="vc-testimonial__slide" data-vc-slide {{ block.shopify_attributes }}>
+                <div class="vc-testimonial__card">
+                  <div class="vc-testimonial__mark" aria-hidden="true">"</div>
+                  <blockquote class="vc-testimonial__quote">{{ block.settings.quote | escape }}</blockquote>
+                  <div class="vc-testimonial__author">
+                    <div class="vc-testimonial__avatar" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22">
+                        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                      </svg>
+                    </div>
+                    <div class="vc-testimonial__author-info">
+                      <span class="vc-testimonial__name">{{ block.settings.attribution | escape }}</span>
+                      {%- if block.settings.badge_label != blank -%}
+                        <span class="vc-testimonial__badge">✔ {{ block.settings.badge_label | escape }}</span>
+                      {%- endif -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        {%- if section.blocks.size > 1 -%}
+          <button type="button" class="vc-testimonial__nav vc-testimonial__nav--next" data-vc-next aria-label="Next testimonial">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        {%- endif -%}
+
+      </div>
+
+      {%- if section.blocks.size > 1 -%}
+        <div class="vc-testimonial__dots" data-vc-dots role="group" aria-label="Select a testimonial">
+          {%- for block in section.blocks -%}
+            <button type="button" class="vc-testimonial__dot" data-vc-dot data-index="{{ forloop.index0 }}" aria-label="Go to testimonial {{ forloop.index }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+.vc-testimonial {
+  background: #ffffff;
+  padding: 64px 0;
+}
+
+.vc-testimonial__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* PDP eyebrow recipe (pdp-t-eyebrow) */
+.vc-testimonial__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9199bb;
+}
+
+/* PDP heading recipe (pdp-t-heading) */
+.vc-testimonial__heading {
+  margin: 0 0 40px;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1a2560;
+}
+
+/* Carousel row: chevron | viewport | chevron */
+.vc-testimonial__carousel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Chevron buttons (white circle, indigo icon, gold on hover) */
+.vc-testimonial__nav {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 42, 94, 0.12);
+  background: #ffffff;
+  color: #1e2a5e;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(30, 42, 94, 0.08);
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease, opacity 160ms ease;
+}
+
+.vc-testimonial__nav:hover {
+  background: #F0C417;
+  color: #1e2a5e;
+  border-color: #F0C417;
+  transform: translateY(-1px);
+}
+
+.vc-testimonial__nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+
+.vc-testimonial__nav svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+/* Viewport: horizontal scroll-snap gives native swipe on touch devices */
+.vc-testimonial__viewport {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+.vc-testimonial__viewport::-webkit-scrollbar {
+  display: none; /* Chrome / Safari */
+}
+
+.vc-testimonial__viewport:focus-visible {
+  outline: 2px solid #2B3886;
+  outline-offset: 4px;
+  border-radius: 16px;
+}
+
+.vc-testimonial__track {
+  display: flex;
+}
+
+/* One card per view; padding gives the card shadow room inside the overflow */
+.vc-testimonial__slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  scroll-snap-align: center;
+  box-sizing: border-box;
+  padding: 18px 16px 24px;
+  display: flex;
+}
+
+/* pdp-tcard · stretched so every slide is the same height */
+.vc-testimonial__card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  border: 1px solid rgba(30, 42, 94, 0.1);
+  box-shadow: 0 2px 16px rgba(30, 42, 94, 0.06);
+}
+
+.vc-testimonial__mark {
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(30, 42, 94, 0.15);
+  font-weight: 700;
+  margin-top: -6px;
+  margin-bottom: 14px;
+}
+
+.vc-testimonial__quote {
+  margin: 0 0 24px;
+  font-size: 17px;
+  line-height: 1.65;
+  color: #2d3561;
+  font-style: italic;
+  max-width: 72ch;
+}
+
+/* Pushed to the bottom so uneven quote lengths still align the author row */
+.vc-testimonial__author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.vc-testimonial__avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(30, 42, 94, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a91b4;
+  flex-shrink: 0;
+}
+
+.vc-testimonial__author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.vc-testimonial__name {
+  font-weight: 700;
+  font-size: 15px;
+  color: #1e2a5e;
+}
+
+.vc-testimonial__badge {
+  font-size: 13px;
+  color: #8a91b4;
+}
+
+/* Dots */
+.vc-testimonial__dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.vc-testimonial__dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(30, 42, 94, 0.2);
+  cursor: pointer;
+  transition: background 180ms ease, width 180ms ease;
+}
+
+.vc-testimonial__dot:hover {
+  background: rgba(30, 42, 94, 0.4);
+}
+
+.vc-testimonial__dot.is-active {
+  width: 22px;
+  background: #F0C417;
+}
+
+@media (max-width: 640px) {
+  .vc-testimonial {
+    padding: 40px 0 56px;
+  }
+  .vc-testimonial__inner {
+    padding: 0 20px;
+  }
+  .vc-testimonial__carousel {
+    gap: 6px;
+  }
+  .vc-testimonial__nav {
+    width: 34px;
+    height: 34px;
+  }
+  .vc-testimonial__nav svg {
+    width: 17px;
+    height: 17px;
+  }
+  .vc-testimonial__slide {
+    padding: 14px 8px 20px;
+  }
+  .vc-testimonial__card {
+    padding: 28px 24px;
+  }
+  .vc-testimonial__quote {
+    font-size: 15px;
+  }
+}
+</style>
+
+<script>
+  (function () {
+    var root = document.getElementById('vc-testimonial-{{ section.id }}');
+    if (!root) return;
+    var viewport = root.querySelector('[data-vc-viewport]');
+    if (!viewport) return;
+    var slides = root.querySelectorAll('[data-vc-slide]');
+    if (slides.length <= 1) return;
+
+    var dots = root.querySelectorAll('[data-vc-dot]');
+    var prev = root.querySelector('[data-vc-prev]');
+    var next = root.querySelector('[data-vc-next]');
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function slideWidth() {
+      return slides[0].getBoundingClientRect().width || viewport.clientWidth;
+    }
+    function currentIndex() {
+      return Math.round(viewport.scrollLeft / slideWidth());
+    }
+    function goTo(i) {
+      var max = slides.length - 1;
+      if (i < 0) i = 0;
+      if (i > max) i = max;
+      viewport.scrollTo({ left: i * slideWidth(), behavior: reduce ? 'auto' : 'smooth' });
+    }
+    function update() {
+      var idx = currentIndex();
+      for (var d = 0; d < dots.length; d++) {
+        var on = d === idx;
+        dots[d].classList.toggle('is-active', on);
+        if (on) { dots[d].setAttribute('aria-current', 'true'); }
+        else { dots[d].removeAttribute('aria-current'); }
+      }
+      if (prev) prev.disabled = idx <= 0;
+      if (next) next.disabled = idx >= slides.length - 1;
+    }
+
+    if (prev) prev.addEventListener('click', function () { goTo(currentIndex() - 1); });
+    if (next) next.addEventListener('click', function () { goTo(currentIndex() + 1); });
+
+    for (var d = 0; d < dots.length; d++) {
+      (function (i) {
+        dots[i].addEventListener('click', function () { goTo(i); });
+      })(d);
+    }
+
+    var raf;
+    function scheduleUpdate() {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(update);
+    }
+
+    viewport.addEventListener('scroll', scheduleUpdate, { passive: true });
+    window.addEventListener('resize', scheduleUpdate);
+
+    viewport.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); goTo(currentIndex() - 1); }
+      else if (e.key === 'ArrowRight') { e.preventDefault(); goTo(currentIndex() + 1); }
+    });
+
+    update();
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VC Parent Testimonial",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "From a Parent"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "In their own words"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "info": "Use the reviewer's exact wording. Do not correct grammar.",
+          "default": "As parents of a student who has completed a course with Ontario Education Online we would like to take this opportunity to thank Mr. Ramos for his continuous care, support and professionalism. Every step of the way our son was able to receive feedback and ongoing support. The ability to access course materials through platforms like Google Classroom made learning both convenient and efficient, helping develop strong organizational skills and time-management skills. This improved the overall learning experience. Our sons experience with OEO has been invaluable, and we would highly recommend it to others seeking a flexible and engaging learning environment."
+        },
+        {
+          "type": "text",
+          "id": "attribution",
+          "label": "Attribution",
+          "default": "Lital Crombie · Parent"
+        },
+        {
+          "type": "text",
+          "id": "badge_label",
+          "label": "Badge label",
+          "default": "Verified Parent"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "VC Parent Testimonial",
+      "blocks": [
+        { "type": "testimonial" }
+      ]
+    }
+  ]
+}
+{% endschema %}

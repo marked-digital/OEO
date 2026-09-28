@@ -1,0 +1,374 @@
+{%- if section.blocks.size > 0 -%}
+  {%- render 'section-spacing-collapsing' -%}
+
+ <style>
+  #shopify-section-{{ section.id }} {
+    --testimonial-list-items-per-row: 1;
+    --testimonial-list-carousel-item-width: 80vw; 
+    --testimonial-list-grid: {% if section.settings.stack_testimonials %}auto / repeat(var(--testimonial-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--testimonial-list-carousel-item-width){% endif %};
+  }
+
+  /* MATCHING ARROW STYLING */
+  #shopify-section-{{ section.id }} .scrollable-with-controls {
+    position: relative;
+    overscroll-behavior-x: contain;
+  }
+
+  /* Desktop Arrows */
+  #shopify-section-{{ section.id }} .scrollbar__buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-100%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+    padding: 0 10px;
+  }
+
+  #shopify-section-{{ section.id }} .scrollbar__buttons .circle-button {
+  pointer-events: auto;
+  position: absolute;
+  top: 110px; 
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  cursor: pointer;
+  color: #2f3a78; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: opacity 0.3s, transform 0.2s;
+  }
+
+  #shopify-section-{{ section.id }} .scrollbar__buttons .circle-button[disabled] {
+    opacity: 0 !important;
+  }
+
+  /* THE DOTS (PAGINATION) STYLING */
+  #shopify-section-{{ section.id }} .scrollbar {
+    margin-top: 30px;
+    justify-content: center;
+    display: flex !important;
+    gap: 0; /* Remove gap so buttons don't push the dots */
+  }
+
+  #shopify-section-{{ section.id }} .scrollbar__line {
+    width: 80px !important; 
+    height: 6px !important;
+    background: rgba(37, 99, 235, 0.1) !important;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  #shopify-section-{{ section.id }} .scrollbar__thumb {
+    background: #2563eb !important;
+    border-radius: 10px;
+  }
+
+  /* MOBILE ADJUSTMENTS */
+  @media screen and (max-width: 700px) {
+    #shopify-section-{{ section.id }} .testimonial-list {
+      display: flex !important;
+      overflow-x: auto !important;
+      scroll-snap-type: x mandatory !important;
+      scroll-behavior: smooth !important;
+      -webkit-overflow-scrolling: touch !important;
+      scroll-padding: 0 10vw !important;
+      padding-left: 10vw !important;
+      padding-right: 10vw !important;
+      gap: 20px !important;
+    }
+
+    #shopify-section-{{ section.id }} .testimonial {
+      scroll-snap-align: center !important;
+      scroll-snap-stop: always !important;
+      flex: 0 0 80vw !important; 
+      width: 80vw !important;
+    }
+
+    /* 1. Completely remove the buttons from the flow on mobile */
+    #shopify-section-{{ section.id }} .scrollbar__buttons {
+      display: none !important;
+    }
+
+    /* 2. Target buttons if they are inside the bottom scrollbar container */
+    #shopify-section-{{ section.id }} .scrollbar .circle-button {
+      display: none !important;
+    }
+  }
+
+  #shopify-section-{{ section.id }} .prose, 
+  #shopify-section-{{ section.id }} .testimonial {
+    color: inherit;
+  }
+
+  @media screen and (min-width: 1150px) {
+    #shopify-section-{{ section.id }} .scrollbar__buttons {
+      left: -20px;
+      width: calc(100% + 40px);
+    }
+    #shopify-section-{{ section.id }} .scrollbar__line {
+      display: none !important;
+    }
+  }
+</style>
+
+  <div {% render 'section-properties' %}>
+    <div class="section-stack {% if section.settings.text_alignment == 'center' %}sm:justify-items-center{% endif %}">
+      <div class="prose {% if section.settings.text_alignment == 'center' %}text-center{% endif %}">
+        {%- render 'section-header', 
+          subheading: section.settings.subheading, 
+          heading: section.settings.title, 
+          heading_color: section.settings.heading_color, 
+          heading_gradient: section.settings.heading_gradient, 
+          content: section.settings.content, 
+          link_text: section.settings.link_text, 
+          link_url: section.settings.link_url 
+        -%}
+      </div>
+
+      <div class="scrollable-with-controls">
+        {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
+
+        <scroll-carousel id="{{ scroll_area_id }}" class="testimonial-list scroll-area bleed {% if section.blocks.size > 3 %}is-scrollable{% endif %}">
+          {%- for block in section.blocks -%}
+            <div {% render 'surface', class: 'testimonial rounded-sm', background: section.settings.testimonial_card_background, text_color: section.settings.testimonial_card_text_color, background_fallback: 'bg-secondary' %} {{ block.shopify_attributes }}>
+              
+              <div class="v-stack gap-4 sm:gap-6">
+                {%- if block.settings.show_rating -%}
+                  <div class="rating">
+                    <div class="rating__stars" role="img">
+                      {%- for i in (1..5) -%}
+                        {%- if i <= block.settings.rating -%}
+                          {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--full' -%}
+                        {%- else -%}
+                          {%- render 'icon' with 'rating-star', class: 'rating__star rating__star--empty' -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+
+                <div class="v-stack gap-2 sm:gap-2.5">
+                  {%- if block.settings.title != blank -%}
+                    <p class="bold">{{ block.settings.title | escape }}</p>
+                  {%- endif -%}
+                  <div class="testimonial__content" style="color: inherit;">
+                    {{ block.settings.content }}
+                  </div>
+                </div>
+
+                <div class="h-stack align-center gap-3 sm:gap-4 mt-auto">
+                  {%- if block.settings.image != blank -%}
+                    {%- capture image_class -%}testimonial__image {% if block.settings.round_avatar %}rounded-full{% endif %}{%- endcapture -%}
+                    {{- block.settings.image | image_url: width: 80 | image_tag: loading: 'lazy', sizes: '40px', widths: '40,80', class: image_class -}}
+                  {%- endif -%}
+
+                  {%- if block.settings.author != blank -%}
+                    <p class="text-subdued bold" style="color: inherit;">{{ block.settings.author | escape }}</p>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </scroll-carousel>
+
+        {%- unless section.settings.stack_testimonials -%}
+          {%- render 'scrollbar', observes: scroll_area_id, show_buttons: true -%}
+        {%- endunless -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "class": "shopify-section--testimonials",
+  "disabled_on": {
+    "groups": ["header", "custom.overlay"]
+  },
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Avatar",
+          "info": "250 x 250px .jpg recommended"
+        },
+        {
+          "type": "checkbox",
+          "id": "round_avatar",
+          "label": "Round avatar",
+          "default": true
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Show rating",
+          "default": true
+        },
+        {
+          "type": "range",
+          "min": 0,
+          "max": 5,
+          "id": "rating",
+          "label": "Rating",
+          "default": 4
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Testimonial"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content",
+          "default": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "stack_testimonials",
+      "label": "Stack testimonials",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "start", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "header",
+      "content": "Colors",
+      "info": "Gradient replaces solid colors when set."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading color"
+    },
+    {
+      "type": "color_background",
+      "id": "heading_gradient",
+      "label": "Heading gradient"
+    },
+    {
+      "type": "color",
+      "id": "testimonial_card_background",
+      "label": "Testimonial card background"
+    },
+    {
+      "type": "color",
+      "id": "testimonial_card_text_color",
+      "label": "Testimonial card text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "author": "John S.",
+            "title": "Testimonial 1",
+            "content": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "author": "Mary U.",
+            "title": "Testimonial 2",
+            "content": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 4,
+            "author": "Joshua A.",
+            "title": "Testimonial 3",
+            "content": "<p>Share what your customers are saying about your products, customer service or shipping rates.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

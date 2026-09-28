@@ -1,0 +1,251 @@
+<section class="university-portfolio">
+  <div class="page-width portfolio-wrapper">
+
+    <div class="portfolio-left">
+      <h2>{{ section.settings.heading }}</h2>
+      <div class="underline"></div>
+
+      <p class="portfolio-subtext">
+        {{ section.settings.subtext }}
+      </p>
+      
+      <div class="portfolio-badges">
+        <div class="badge-item"><span>✔</span> Ministry-Inspected BSID: 882902</div>
+        <div class="badge-item"><span>✔</span> OSSD Credits Issued</div>
+        <div class="badge-item"><span>✔</span> OCT-Certified Teachers</div>
+        <div class="badge-item"><span>✔</span> Recognized by Leading Universities</div>
+      </div>
+
+      {% if section.settings.button_label != blank %}
+        <div class="portfolio-btn-cta">
+          <a href="{{ section.settings.button_link }}" class="button button--xl">
+            {{ section.settings.button_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="portfolio-right">
+      <div class="logo-grid-card">
+        <div class="logo-grid">
+          {% for block in section.blocks %}
+            {% if block.settings.logo != blank %}
+              <div class="logo-item">
+                {{
+                  block.settings.logo
+                  | image_url: width: 300
+                  | image_tag:
+                    alt: block.settings.alt_text,
+                    loading: 'lazy',
+                    widths: '150, 200, 300',
+                    class: 'university-logo-img'
+                }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if section.settings.disclaimer != blank %}
+        <p class="trust-disclaimer">
+          {{ section.settings.disclaimer }}
+        </p>
+      {% endif %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* 1. CONTAINER & WIDTH SYNC */
+.university-portfolio {
+  padding: 50px 0; 
+  background: #eef1ff;
+}
+
+/* This ensures the section matches the width of the testimonial card below */
+.university-portfolio .portfolio-wrapper.page-width {
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 0 40px; 
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.portfolio-left {
+  text-align: left;
+}
+
+.portfolio-left h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.1;
+  margin: 0;
+  color: #313b81;
+}
+
+.underline {
+  width: 60px;
+  height: 4px;
+  background: #313b81;
+  margin: 25px 0;
+}
+
+.portfolio-subtext {
+  font-size: 17px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.portfolio-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 40px;
+}
+
+.badge-item {
+  display: flex;
+  align-items: center; /* Keeps checkmarks aligned with center of text line */
+  gap: 12px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #313b81;
+}
+
+.logo-grid-card {
+  /* GLASSMORPHISM SYNC */
+  background: rgba(255, 255, 255, 0.55); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 24px; 
+  box-shadow: 0 20px 30px rgba(0,0,0,0.12); 
+  border: 1px solid rgba(255, 255, 255, 0.4); 
+  
+  /* SPACING */
+  padding: 50px;
+  overflow: hidden; 
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  align-items: center;
+}
+
+.university-logo-img {
+  width: 100%;
+  max-width: 140px;
+  height: auto;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.5;
+  transition: all 0.4s ease;
+}
+
+.logo-item:hover .university-logo-img {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* 4. MOBILE REFINEMENTS */
+@media screen and (max-width: 990px) {
+  .university-portfolio .portfolio-wrapper.page-width {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 0 20px 20px;
+  }
+
+.portfolio-left h2 {
+  font-size: 32px;
+}
+
+.university-portfolio {
+  padding: 20px 0 30px 0;
+}
+
+  .portfolio-left {
+    text-align: center;
+  }
+
+  .underline {
+    margin: 25px auto;
+  }
+  .portfolio-badges {
+    display: inline-flex;
+    text-align: left;
+    margin: 0 auto 40px;
+  }
+
+  .logo-grid {
+    grid-template-columns: repeat(3, 1fr); /* 2 columns for better visibility */
+    gap: 10px 20px;
+  }
+
+  .logo-grid-card {
+    padding: 30px 20px;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "University Portfolio",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Recognized by Canada’s Leading Universities"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "Ontario Education Online is a fully accredited Ontario private school. Our OSSD credits are recognized by universities across Canada and internationally."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+        {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "disclaimer",
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "University Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "University Portfolio"
+    }
+  ]
+}
+{% endschema %}

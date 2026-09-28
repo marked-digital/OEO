@@ -1,0 +1,298 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "media_with_text_fUbwWn": {
+      "type": "media-with-text",
+      "blocks": {
+        "video_xwpKEg": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/XhNCNTQz-0c?si=smd2GIk72ptZ6K2N",
+            "poster_image": "shopify://shop_images/square.png",
+            "autoplay": false,
+            "media_width": 50,
+            "media_position": "end",
+            "text_position": "place-self-center text-center",
+            "icon": "none",
+            "icon_width": 40,
+            "subheading": "",
+            "title": "Pathways Co-op",
+            "content": "<p>At Pathways Co-op powered by OEO, we’re here to help private schools provide a complete, high-quality education for their students. Whether you're looking to expand your course offerings or provide Cooperative Education opportunities, partnering with us makes it simple and seamless.<br/><br/>We allow schools to offer co-op <strong>without hiring a co-op teacher, managing placements, or navigating Ministry compliance</strong>.</p>",
+            "link_text": "",
+            "link_url": "",
+            "background": "#2a3884",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "",
+            "button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_xwpKEg"
+      ],
+      "settings": {
+        "full_width": false,
+        "spacing": "small"
+      }
+    },
+    "multi_column_ct34dj": {
+      "type": "multi-column",
+      "blocks": {
+        "item_y66Utt": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/fccf18fd-6fbd-452b-b984-fb91895d3c74.png",
+            "column_size": "2",
+            "title": "Purchase Seats for our Cooperative Education Course",
+            "heading_tag": "h4",
+            "content": "<p>Give your students the opportunity to explore career paths through Cooperative Education!</p><p>Co-op is a valuable experience for high school students, but it can be challenging for private schools to manage due to logistical and administrative hurdles. That’s where we come in. OEO takes care of <strong>everything</strong>, including:</p><ul><li>On-site visits</li><li>Ministry reporting (e.g., ONSIS data collection, report cards)</li><li>Personalized support for your students</li></ul><p>Partnering with us is cost-effective and efficient. Purchase a block of <strong>10+ Co-op seats</strong> for your school and let us do the heavy lifting.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_zTFYWc": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ChatGPT_Image_Mar_28_2025_11_09_20_AM.png",
+            "column_size": "2",
+            "title": "Fill Gaps in Your Curriculum",
+            "heading_tag": "h4",
+            "content": "<p>Not every private school can offer every course every year—that’s where OEO can help. Whether it’s due to low enrollment or a lack of specialized instructors, we provide <strong>individual courses</strong> for students who need them.</p><p>We handle:</p><ul><li>Teaching</li><li>Grading</li><li>Ministry reporting (e.g., ONSIS compliance)</li></ul><p>Our flexible online platform ensures your students can access the courses they need to succeed.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_y66Utt",
+        "item_zTFYWc"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "How We Help Your School",
+        "content": "<p>We offer two flexible partnership options tailored to your school’s needs:</p>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_qbX4nM": {
+      "type": "multi-column",
+      "blocks": {
+        "item_UcYGU7": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Time.png",
+            "column_size": "4",
+            "title": "Save Time",
+            "heading_tag": "h3",
+            "content": "<p>We handle the administration, teaching, and reporting.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_g4XbmC": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Cost.png",
+            "column_size": "4",
+            "title": "Cost Effective",
+            "heading_tag": "h3",
+            "content": "<p>Flexible options for both small and large-scale needs.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_UWxXRb": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Ministry.png",
+            "column_size": "4",
+            "title": "Ministry Compliant",
+            "heading_tag": "h3",
+            "content": "<p>All reporting, grading, and data collection meet Ontario Ministry of Education requirements.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_pKbazA": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Success.png",
+            "column_size": "4",
+            "title": "Student Success",
+            "heading_tag": "h3",
+            "content": "<p>High-quality instruction and a seamless learning experience.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_UcYGU7",
+        "item_g4XbmC",
+        "item_UWxXRb",
+        "item_pKbazA"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Why Partner with Us",
+        "content": "",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "media_with_text_thrgt8": {
+      "type": "media-with-text",
+      "blocks": {
+        "video_3AaKWC": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://youtu.be/4TjTKEBQ6ZQ",
+            "poster_image": "shopify://shop_images/Screenshot_2024-02-06_at_7.04.17_AM.png",
+            "autoplay": false,
+            "media_width": 50,
+            "media_position": "start",
+            "text_position": "place-self-center text-center",
+            "icon": "none",
+            "icon_width": 48,
+            "subheading": "",
+            "title": "Let’s Work Together",
+            "content": "<p>Interested in partnering with Pathways Co-op? We’d love to help your school thrive.</p>",
+            "link_text": "Contact Us",
+            "link_url": "mailto:info@ontarioeducationonline.ca",
+            "background": "#2a3884",
+            "background_gradient": "",
+            "text_color": "#ffffff",
+            "text_gradient": "",
+            "button_background": "#f0c417",
+            "button_text_color": "#2a3884"
+          }
+        }
+      },
+      "block_order": [
+        "video_3AaKWC"
+      ],
+      "settings": {
+        "full_width": false,
+        "spacing": "small"
+      }
+    },
+    "multi_column_V766cA": {
+      "type": "multi-column",
+      "blocks": {
+        "item_n36RNt": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/download-2.png",
+            "column_size": "3",
+            "title": "Download a sample course",
+            "heading_tag": "h4",
+            "content": "<p>Download a sample course to get an idea of the format of our courses</p>",
+            "link_url": "shopify://pages/download-sample-course",
+            "link_text": "Download now",
+            "link_style": "button"
+          }
+        },
+        "item_PJBckX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/guidance-session-2.png",
+            "column_size": "3",
+            "title": "Book a guidance session",
+            "heading_tag": "h4",
+            "content": "<p>Get started with a 30 minute guidance session with one of our teachers</p>",
+            "link_url": "shopify://pages/book-guidance-session",
+            "link_text": "Book session",
+            "link_style": "button"
+          }
+        },
+        "item_bJ79yB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/browse-courses-2.png",
+            "column_size": "3",
+            "title": "Enrol in courses",
+            "heading_tag": "h4",
+            "content": "<p>Browse our range of fully certified Ontario courses and begin learning today</p>",
+            "link_url": "shopify://collections",
+            "link_text": "Browse courses",
+            "link_style": "button"
+          }
+        }
+      },
+      "block_order": [
+        "item_n36RNt",
+        "item_PJBckX",
+        "item_bJ79yB"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "small",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Next steps:",
+        "content": "",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "custom_liquid_NKiRKn": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n.multi-column img {\nmax-width: 40% !important;\ntext-align: center !important;\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "media_with_text_fUbwWn",
+    "multi_column_ct34dj",
+    "multi_column_qbX4nM",
+    "media_with_text_thrgt8",
+    "multi_column_V766cA",
+    "main",
+    "custom_liquid_NKiRKn"
+  ]
+}

@@ -1,0 +1,366 @@
+{%- comment -%}
+  Full-Time Enrolment · OSSD Pathway Strip (Wireframe B, new section)
+  A horizontal diploma-progress band with the purchased year highlighted, so a
+  parent sees where this product fits in the full OSSD.
+
+  Requirement figures are per-product schema settings, never hardcoded:
+    total credits (default 30), compulsory credits (no default), community
+    involvement hours (default 40), literacy requirement label (default OSSLT),
+    online learning credits (default 2), plus an optional Grade 10 financial
+    literacy note. A figure left blank renders as an obvious bracketed
+    placeholder. All figures are confirmed against current Ministry
+    requirements before publish (claims audit).
+{%- endcomment -%}
+
+<section class="fte-path" aria-labelledby="fte-path-heading-{{ section.id }}">
+  <div class="fte-path__inner">
+
+    <div class="fte-path__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="fte-path__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h2 class="fte-path__heading" id="fte-path-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+    </div>
+
+    {%- assign stage_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'stage' -%}{%- assign stage_count = stage_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if stage_count > 0 -%}
+      <div class="fte-path__band">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'stage' -%}
+            <div class="fte-path__cell{% if block.settings.is_current %} is-current{% endif %}" {{ block.shopify_attributes }}>
+              <span class="fte-path__cell-label">{{ block.settings.grade_label | escape }}</span>
+              {%- if block.settings.status_text != blank -%}
+                <span class="fte-path__cell-status">{{ block.settings.status_text | escape }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="fte-path__reqs">
+      {%- if section.settings.reqs_label != blank -%}
+        <span class="fte-path__reqs-label">{{ section.settings.reqs_label | escape }}</span>
+      {%- endif -%}
+
+      {%- if section.settings.total_credits != blank -%}
+        <span class="fte-path__stat">{{ section.settings.total_credits | escape }} credits total</span>
+      {%- else -%}
+        <span class="fte-path__token">[ __ credits total ]</span>
+      {%- endif -%}
+
+      {%- if section.settings.compulsory_credits != blank -%}
+        <span class="fte-path__stat">{{ section.settings.compulsory_credits | escape }} compulsory credits</span>
+      {%- else -%}
+        <span class="fte-path__token">[ __ compulsory credits ]</span>
+      {%- endif -%}
+
+      {%- if section.settings.literacy_label != blank -%}
+        <span class="fte-path__stat">{{ section.settings.literacy_label | escape }} literacy requirement</span>
+      {%- else -%}
+        <span class="fte-path__token">[ literacy requirement ]</span>
+      {%- endif -%}
+
+      {%- if section.settings.community_hours != blank -%}
+        <span class="fte-path__stat">{{ section.settings.community_hours | escape }} community involvement hours</span>
+      {%- else -%}
+        <span class="fte-path__token">[ __ community involvement hours ]</span>
+      {%- endif -%}
+
+      {%- if section.settings.online_credits != blank -%}
+        <span class="fte-path__stat">{{ section.settings.online_credits | escape }} online learning credits</span>
+      {%- else -%}
+        <span class="fte-path__token">[ __ online learning credits ]</span>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.financial_literacy_note != blank -%}
+      <p class="fte-path__extra-note">{{ section.settings.financial_literacy_note | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="fte-path__footnote">{{ section.settings.footnote | escape }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+.fte-path {
+  background: var(--light, #f0f1f5);
+  padding: clamp(48px, 7vw, 80px) 0;
+}
+
+.fte-path__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.fte-path__head {
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fte-path__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.fte-path__heading {
+  margin: 0;
+  font-size: clamp(1.75rem, 2.8vw, 2.25rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #24367a;
+}
+
+.fte-path__band {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.fte-path__cell {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  opacity: 0.75;
+}
+
+.fte-path__cell-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.fte-path__cell-status {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #6f789f;
+}
+
+.fte-path__cell.is-current {
+  background: var(--color-dark, #1e2460);
+  outline: 3px solid #F0C417;
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+.fte-path__cell.is-current .fte-path__cell-label {
+  color: #F0C417;
+}
+
+.fte-path__cell.is-current .fte-path__cell-status {
+  color: #ffffff;
+}
+
+.fte-path__reqs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.fte-path__reqs-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #24367a;
+  margin-right: 4px;
+}
+
+.fte-path__stat {
+  display: inline-block;
+  padding: 6px 13px;
+  border-radius: 9px;
+  background: #ffffff;
+  border: 1px solid rgba(36, 54, 122, 0.12);
+  font-size: 13px;
+  font-weight: 600;
+  color: #24367a;
+}
+
+.fte-path__token {
+  display: inline-block;
+  padding: 6px 13px;
+  border: 1.5px dashed #c9a511;
+  background: #fbf3d2;
+  border-radius: 9px;
+  font-weight: 700;
+  color: #8a7106;
+  font-size: 13px;
+}
+
+.fte-path__extra-note {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #24367a;
+  max-width: 640px;
+}
+
+.fte-path__footnote {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #8a91b4;
+  max-width: 640px;
+}
+
+@media (max-width: 767px) {
+  .fte-path__inner {
+    padding: 0 16px;
+  }
+
+  /* Requirement badges stack in a centred column instead of wrapping ragged */
+  .fte-path__reqs {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .fte-path__reqs-label {
+    margin-right: 0;
+    margin-bottom: 2px;
+    text-align: center;
+  }
+
+  .fte-path__stat,
+  .fte-path__token {
+    text-align: center;
+    max-width: 100%;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FTE OSSD Pathway",
+  "tag": "section",
+  "class": "fte-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The OSSD pathway"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Where this year fits in the diploma"
+    },
+    {
+      "type": "header",
+      "content": "Requirement figures",
+      "info": "Confirm against current Ministry requirements before publish. Leave a field blank to show a bracketed placeholder."
+    },
+    {
+      "type": "text",
+      "id": "reqs_label",
+      "label": "Row label",
+      "default": "To graduate:"
+    },
+    {
+      "type": "text",
+      "id": "total_credits",
+      "label": "Total credits",
+      "default": "30"
+    },
+    {
+      "type": "text",
+      "id": "compulsory_credits",
+      "label": "Compulsory credits",
+      "info": "No default. Grade 11 and 12 products use 18; Grade 9 and 10 use 17. Confirm with OEO."
+    },
+    {
+      "type": "text",
+      "id": "community_hours",
+      "label": "Community involvement hours",
+      "default": "40"
+    },
+    {
+      "type": "text",
+      "id": "literacy_label",
+      "label": "Literacy requirement label",
+      "default": "OSSLT"
+    },
+    {
+      "type": "text",
+      "id": "online_credits",
+      "label": "Online learning credits",
+      "default": "2"
+    },
+    {
+      "type": "textarea",
+      "id": "financial_literacy_note",
+      "label": "Financial literacy note (Grade 10)",
+      "info": "Optional. Leave empty unless this product needs the Grade 10 financial literacy requirement noted."
+    },
+    {
+      "type": "textarea",
+      "id": "footnote",
+      "label": "Footnote",
+      "default": "Requirement figures verified against current Ministry requirements before publish. Your counsellor confirms exactly what you still need at your guidance session."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stage",
+      "name": "Grade stage",
+      "settings": [
+        {
+          "type": "text",
+          "id": "grade_label",
+          "label": "Grade label",
+          "default": "Grade 9"
+        },
+        {
+          "type": "text",
+          "id": "status_text",
+          "label": "Status",
+          "default": "Earned or transferred"
+        },
+        {
+          "type": "checkbox",
+          "id": "is_current",
+          "label": "This enrolment (highlight)",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "FTE OSSD Pathway",
+      "blocks": [
+        { "type": "stage", "settings": { "grade_label": "Grade 9", "status_text": "Earned or transferred" } },
+        { "type": "stage", "settings": { "grade_label": "Grade 10", "status_text": "Earned or transferred" } },
+        { "type": "stage", "settings": { "grade_label": "Grade 11", "status_text": "Earned or transferred" } },
+        { "type": "stage", "settings": { "grade_label": "Grade 12 · this enrolment", "status_text": "6 to 8 credits with OEO", "is_current": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

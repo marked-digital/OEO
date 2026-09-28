@@ -1,0 +1,706 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "fte-buy-box",
+      "blocks": {
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false
+          }
+        },
+        "bullet_1": {
+          "type": "bullet",
+          "settings": {
+            "text": "12-month term begins the day your courses open, not at checkout",
+            "icon": "check"
+          }
+        },
+        "bullet_2": {
+          "type": "bullet",
+          "settings": {
+            "text": "Named guidance counsellor and OSSD pathway plan",
+            "icon": "check"
+          }
+        },
+        "bullet_3": {
+          "type": "bullet",
+          "settings": {
+            "text": "Placement, prerequisite, and records services included",
+            "icon": "check"
+          }
+        },
+        "bullet_4": {
+          "type": "bullet",
+          "settings": {
+            "text": "Every course opens at once, in whatever order suits you",
+            "icon": "check"
+          }
+        },
+        "bullet_MgNPV4": {
+          "type": "bullet",
+          "settings": {
+            "text": "Co-op credits are available to full-time students for an additional $400 per credit. Add 1 to 4 credits after enrolment, during course selection.",
+            "icon": "plus-grey"
+          }
+        }
+      },
+      "block_order": [
+        "buy_buttons",
+        "bullet_1",
+        "bullet_2",
+        "bullet_3",
+        "bullet_4",
+        "bullet_MgNPV4"
+      ],
+      "settings": {
+        "callout_1": "Start any day",
+        "callout_2": "100% online",
+        "callout_3": "12-month term",
+        "rating_value": "",
+        "rating_count": "",
+        "prereq_help_text": "(Not sure where you stand? Ask us →)",
+        "prereq_help_url": "shopify://pages/book-guidance-session",
+        "price_subcopy": "Standalone full-time tuition. Does not combine with the multi-course checkout discount.",
+        "sale_badge_label": "Bundle savings",
+        "payment_plan_text": "",
+        "urgency_text": "",
+        "enrol_label": "Enrol Now",
+        "enrol_disclaimer": "Your 12-month term begins the day your courses open, not at checkout.",
+        "variant_label": "Student location",
+        "single_option_picker_style": "pills",
+        "watch_label": "How full-time works at OEO",
+        "watch_link": "/pages/full-time-enrolment#how-it-works",
+        "watch_link_new_tab": false,
+        "guidance_text": "Book a Guidance Session →",
+        "guidance_url": "shopify://pages/book-guidance-session",
+        "guidance_new_tab": true,
+        "mob_bar_label": "Get Started",
+        "quick_enrol_subtext": "Full-Time Enrolment",
+        "mob_bar_primary": "guidance",
+        "mob_bar_guidance_label": "Talk to Guidance",
+        "mob_bar_guidance_url": "shopify://pages/book-guidance-session"
+      }
+    },
+    "universities": {
+      "type": "pdp-universities",
+      "blocks": {
+        "u1": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/UofT.png",
+            "name": "University of Toronto",
+            "alt": "University of Toronto"
+          }
+        },
+        "u2": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/MAC.png",
+            "name": "McMaster University",
+            "alt": "McMaster University"
+          }
+        },
+        "u3": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/wastern.png",
+            "name": "Western University",
+            "alt": "Western University"
+          }
+        },
+        "u4": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Queens.png",
+            "name": "Queen's University",
+            "alt": "Queen's University"
+          }
+        },
+        "u5": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/YorkU.png",
+            "name": "York University",
+            "alt": "York University"
+          }
+        },
+        "u6": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/ottawa.png",
+            "name": "University of Ottawa",
+            "alt": "University of Ottawa"
+          }
+        },
+        "u7": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Waterloo.png",
+            "name": "University of Waterloo",
+            "alt": "University of Waterloo"
+          }
+        },
+        "u8": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/laurieri.png",
+            "name": "Wilfrid Laurier University",
+            "alt": "Wilfrid Laurier University"
+          }
+        }
+      },
+      "block_order": [
+        "u1",
+        "u2",
+        "u3",
+        "u4",
+        "u5",
+        "u6",
+        "u7",
+        "u8"
+      ],
+      "settings": {
+        "eyebrow": "Credits accepted at every Ontario university, including"
+      }
+    },
+    "how_it_works": {
+      "type": "fte-how-it-works",
+      "settings": {}
+    },
+    "your_year": {
+      "type": "fte-your-year",
+      "blocks": {
+        "slot_1": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "english-grade-9",
+            "title": "[ Course TBC · pending verification ]",
+            "sublabel": "",
+            "pack_min": "6"
+          }
+        },
+        "slot_2": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "science-grade-9-destreamed",
+            "title": "[ Course TBC · pending verification ]",
+            "sublabel": "",
+            "pack_min": "6"
+          }
+        },
+        "slot_3": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "math-grade-9-destreamed",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "6"
+          }
+        },
+        "slot_4": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "issues-in-canadian-geography-grade-9-de-streamed",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "6"
+          }
+        },
+        "slot_5": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "health-physical-education-grade-9-open",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "6"
+          }
+        },
+        "slot_6": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "technology-and-the-skilled-trades-grade-9",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "6"
+          }
+        },
+        "slot_7": {
+          "type": "slot",
+          "settings": {
+            "kind": "elective",
+            "product": "visual-arts-grade-9-open",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "7"
+          }
+        },
+        "slot_8": {
+          "type": "slot",
+          "settings": {
+            "kind": "compulsory",
+            "product": "",
+            "title": "Open slot",
+            "sublabel": "Chosen with your counsellor",
+            "pack_min": "8"
+          }
+        }
+      },
+      "block_order": [
+        "slot_1",
+        "slot_2",
+        "slot_3",
+        "slot_4",
+        "slot_5",
+        "slot_6",
+        "slot_7",
+        "slot_8"
+      ],
+      "settings": {
+        "eyebrow": "Your Year at OEO",
+        "heading": "Your Grade 9 year, credit by credit",
+        "body": "Compulsory slots are set by Ministry requirements. Elective slots are yours. Your counsellor confirms your selections after enrolment, and you adjust them together as your plans change.",
+        "product_image_style": "cover",
+        "product_cta_label": "View course",
+        "show_pack_toggle": true,
+        "pack_toggle_label": "Credit pack",
+        "default_pack": "8",
+        "footnote": "This is a sample year to show how your program is structured. Your actual course plan is built with your guidance counsellor after enrolment and can be adjusted as your plans change."
+      }
+    },
+    "grade_courses": {
+      "type": "fte-grade-courses",
+      "settings": {
+        "collection": "grade-9",
+        "eyebrow": "Course catalogue",
+        "heading": "All Courses Offered for Grade {grade}",
+        "grade": "9",
+        "body": "Every course available at this grade level. Your counsellor confirms which of them fill your credits at your guidance session.",
+        "per_view": 4,
+        "max_products": 50,
+        "show_description": true,
+        "show_price": false,
+        "card_cta_label": "View course",
+        "show_view_all": true,
+        "view_all_label": "Browse the full course list",
+        "footnote": "Course availability is confirmed at your guidance session. Courses open in a new tab."
+      }
+    },
+    "included_echo": {
+      "type": "fte-included",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "name": "PLAR & placement assessment",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "name": "Prerequisite assessment",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "name": "OEN & OSR administration",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "name": "International registration",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": "International Students Only"
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "name": "Guidance session & pathway plan",
+            "value_text": "$99 value",
+            "only_badge": false,
+            "note": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5"
+      ],
+      "settings": {
+        "display_style": "full",
+        "eyebrow": "Everything included",
+        "heading": "Services other students pay for. You don't.",
+        "body": "These services are billed separately for à-la-carte students. As a full-time student, you pay nothing for any of them.",
+        "exclusive_text": "<p><strong>Credit transfer and PLAR</strong> are available to full-time students only.</p>",
+        "total_label": "Total value",
+        "total_value": "$699+ Value ⭐",
+        "total_note": "",
+        "compact_heading": "Every full-time service, included at no charge",
+        "compact_intro": "Billed separately for à-la-carte students. Included with every full-time enrolment.",
+        "details_label": "Full details",
+        "details_url": "/pages/full-time-enrolment#included"
+      }
+    },
+    "program_glance": {
+      "type": "pdp-course-details",
+      "blocks": {
+        "row_program": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Program",
+            "value": "Grade 9 Full-Time Enrolment"
+          }
+        },
+        "row_credits": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Credits included",
+            "value": "6 to 8, depending on your credit pack"
+          }
+        },
+        "row_term": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Term",
+            "value": "12 months from courses opening"
+          }
+        },
+        "row_delivery": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Delivery",
+            "value": "100% online, self-paced, no scheduled classes"
+          }
+        },
+        "row_assessment": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Assessment",
+            "value": "Assignments, teacher evaluations, and a final exam written online, from anywhere in the world."
+          }
+        },
+        "row_guidance": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Guidance",
+            "value": "Named counsellor, OSSD pathway plan included"
+          }
+        },
+        "row_feedback": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Feedback",
+            "value": "Questions answered within 24 hours Mon to Fri. Marking within 48 to 72 hours."
+          }
+        },
+        "row_start": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Start",
+            "value": "Any day. Courses open after your guidance consult."
+          }
+        },
+        "row_transcript": {
+          "type": "extra_row",
+          "settings": {
+            "label": "Transcript",
+            "value": "Official OSSD transcript, issued by OEO. Credits recorded as they are earned."
+          }
+        }
+      },
+      "block_order": [
+        "row_program",
+        "row_credits",
+        "row_term",
+        "row_delivery",
+        "row_assessment",
+        "row_guidance",
+        "row_feedback",
+        "row_start",
+        "row_transcript"
+      ],
+      "settings": {
+        "eyebrow": "Program information",
+        "heading": "Program at a glance",
+        "delivery_method": "",
+        "assessment": "",
+        "feedback_turnaround": "",
+        "typical_completion": "",
+        "start_date": "",
+        "official_transcript": "",
+        "prereq_help_text": "",
+        "prereq_help_url": "",
+        "show_document_buttons": false,
+        "outline_button_label": "Download Course Outline (PDF)",
+        "curriculum_button_label": "View Course Curriculum"
+      }
+    },
+    "ossd_pathway": {
+      "type": "fte-ossd-pathway",
+      "blocks": {
+        "stage_9": {
+          "type": "stage",
+          "settings": {
+            "grade_label": "Grade 9 · this enrolment",
+            "status_text": "6 to 8 credits with OEO",
+            "is_current": true
+          }
+        },
+        "stage_10": {
+          "type": "stage",
+          "settings": {
+            "grade_label": "Grade 10",
+            "status_text": "Still ahead of you",
+            "is_current": false
+          }
+        },
+        "stage_11": {
+          "type": "stage",
+          "settings": {
+            "grade_label": "Grade 11",
+            "status_text": "Still ahead of you",
+            "is_current": false
+          }
+        },
+        "stage_12": {
+          "type": "stage",
+          "settings": {
+            "grade_label": "Grade 12",
+            "status_text": "Still ahead of you",
+            "is_current": false
+          }
+        }
+      },
+      "block_order": [
+        "stage_9",
+        "stage_10",
+        "stage_11",
+        "stage_12"
+      ],
+      "settings": {
+        "eyebrow": "The OSSD pathway",
+        "heading": "Where this year fits in the diploma",
+        "reqs_label": "To graduate:",
+        "total_credits": "30",
+        "compulsory_credits": "18",
+        "community_hours": "40",
+        "literacy_label": "OSSLT",
+        "online_credits": "2",
+        "financial_literacy_note": "",
+        "footnote": "Requirement figures verified against current Ministry requirements before publish. Your counsellor confirms exactly what you still need at your guidance session."
+      }
+    },
+    "comparison": {
+      "type": "fte-comparison",
+      "blocks": {
+        "row_1": {
+          "type": "row",
+          "settings": {
+            "label": "Start date",
+            "oeo_value": "Start any day of the year",
+            "traditional_value": "September intake"
+          }
+        },
+        "row_2": {
+          "type": "row",
+          "settings": {
+            "label": "Pacing",
+            "oeo_value": "Take courses in any order, any time",
+            "traditional_value": "Fixed timetable"
+          }
+        },
+        "row_3": {
+          "type": "row",
+          "settings": {
+            "label": "Final exams",
+            "oeo_value": "Written online, when you're ready",
+            "traditional_value": "Scheduled exam weeks"
+          }
+        },
+        "row_4": {
+          "type": "row",
+          "settings": {
+            "label": "Guidance",
+            "oeo_value": "Named counsellor owns your pathway",
+            "traditional_value": "Shared caseload"
+          }
+        },
+        "row_5": {
+          "type": "row",
+          "settings": {
+            "label": "Where you learn",
+            "oeo_value": "Anywhere, on any device",
+            "traditional_value": "Commute to class"
+          }
+        }
+      },
+      "block_order": [
+        "row_1",
+        "row_2",
+        "row_3",
+        "row_4",
+        "row_5"
+      ],
+      "settings": {
+        "eyebrow": "How we compare",
+        "heading": "Full-time at OEO vs a traditional day school",
+        "col_oeo": "Full-Time at OEO",
+        "col_traditional": "Traditional day school"
+      }
+    },
+    "no_exam": {
+      "type": "pdp-no-exam",
+      "settings": {
+        "quote_line1": "\"No scheduled classes. No attendance marks.",
+        "quote_line2": "No compromises.\"",
+        "body_text": "OEO courses are fully asynchronous, with no scheduled classes and no attendance marks. Your grade comes from coursework assessed by your Ontario-certified teacher and a final exam you write online, from anywhere in the world. You work at your pace, and your grade reflects your actual understanding of the material.",
+        "photo": "shopify://shop_images/548187342_1626137672001146_4286759087311537051_n.jpg",
+        "photo_alt": "Student working from home"
+      }
+    },
+    "vc_teaser": {
+      "type": "vc-pdp-teaser",
+      "settings": {
+        "eyebrow": "Inside the Virtual Classroom",
+        "heading": "See exactly what you're getting.",
+        "body": "A guided walkthrough of a real OEO course: the dashboard, lessons, interactive video, and teacher feedback. No stock photos, no mockups.",
+        "button_label": "Take the Tour",
+        "button_url": "shopify://pages/virtual-classroom",
+        "meta_line": "",
+        "image_asset": "vc-step-1-dashboard.png",
+        "badge_label": "Watch the walkthrough",
+        "card_style": "light",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "testimonials": {
+      "type": "pdp-testimonials",
+      "settings": {
+        "eyebrow": "Student stories",
+        "heading": "What our students say",
+        "autoplay": true,
+        "autoplay_speed": 5000
+      }
+    },
+    "faqs": {
+      "type": "pdp-faqs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I know how many credits I still need?",
+            "answer": "<p>Your guidance counsellor maps every remaining credit at your free session, confirms prerequisites, and builds your OSSD pathway plan before your courses open.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do these credits count toward my OSSD?",
+            "answer": "<p>Yes. Every credit you earn with OEO is recorded on your official OSSD transcript, issued by OEO.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How many courses will I have open at once?",
+            "answer": "<p>Two to four courses are open at a time. Finish one and the next opens, so you set the pace across your 12-month term.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the difference between the 6, 7, and 8 credit packs?",
+            "answer": "<p>The pack sets how many credits open during your 12-month term. Your counsellor confirms the right count for your pathway at your guidance session.</p>"
+          }
+        },
+        "faq_item_7UKFmH": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I change my mind about the courses I selected?",
+            "answer": "<p>If you have not started a course, you can switch it. Message your guidance counsellor and they will replace it with another course at your grade level. If you have already begun coursework, speak with your counsellor first, since Ontario reporting rules apply to courses in progress.<br/><br/></p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do credits from my current school transfer?",
+            "answer": "<p>Yes. Your transfer credits are evaluated at your guidance session, before your courses open. Credit transfer and PLAR are available to full-time students only.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_item_7UKFmH",
+        "faq_5"
+      ],
+      "settings": {
+        "section_label": "Grade 9 questions",
+        "section_heading": "Frequently asked questions",
+        "fallback_course_code": "full-time enrolment"
+      }
+    },
+    "guidance": {
+      "type": "pdp-guidance-cta",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure if full-time is right for your situation?",
+        "body_text": "Book a free 15-minute guidance session with one of our advisors. We review your transcript, count your remaining credits, and build your plan. No obligation, no pressure.",
+        "button_label": "Book a Free Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_aria_label": "Book a free 15-minute guidance session with an OEO advisor",
+        "proof_text": "Parents and guardians are welcome."
+      }
+    }
+  },
+  "order": [
+    "main",
+    "universities",
+    "how_it_works",
+    "your_year",
+    "grade_courses",
+    "included_echo",
+    "program_glance",
+    "ossd_pathway",
+    "comparison",
+    "no_exam",
+    "vc_teaser",
+    "testimonials",
+    "faqs",
+    "guidance"
+  ]
+}

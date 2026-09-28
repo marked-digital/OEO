@@ -1,0 +1,258 @@
+<section class="cm-cln-wrapper" id="cm-cln-{{ section.id }}">
+  <div class="cm-cln-container page-width">
+    
+    <div class="cm-cln-header text-center">
+      <h2 class="cm-cln-title">{{ section.settings.heading }}</h2>
+      {% if section.settings.subtext != blank %}
+        <p class="cm-cln-subtext">{{ section.settings.subtext }}</p>
+      {% endif %}
+
+      {% if section.settings.callout_label != blank %}
+        <div class="cm-cln-callout-wrapper">
+          <div class="cm-cln-callout">
+            <span class="callout-label">{{ section.settings.callout_label }}</span>
+            <span class="callout-value">{{ section.settings.callout_value }}</span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="cm-cln-card">
+      <div class="cm-cln-scroller">
+        <div class="cm-cln-table">
+          
+          <div class="cm-cln-row cm-cln-row--header">
+            <div class="cm-cln-cell cm-cln-cell--label">{{ section.settings.col_1_label }}</div>
+            <div class="cm-cln-cell cm-cln-cell--highlight">{{ section.settings.col_2_label }}</div>
+            <div class="cm-cln-cell">{{ section.settings.col_3_label }}</div>
+            <div class="cm-cln-cell">{{ section.settings.col_4_label }}</div>
+          </div>
+
+          {% for block in section.blocks %}
+            <div class="cm-cln-row" {{ block.shopify_attributes }}>
+              <div class="cm-cln-cell cm-cln-cell--label">
+                <strong>{{ block.settings.feature_title }}</strong>
+                {% if block.settings.tooltip_text != blank %}
+                  <div class="cm-cln-tooltip-wrap">
+                    <span class="cm-cln-info-icon">i</span>
+                    <div class="cm-cln-tooltip">{{ block.settings.tooltip_text }}</div>
+                  </div>
+                {% endif %}
+              </div>
+              
+              <div class="cm-cln-cell cm-cln-cell--highlight">
+                <div class="cm-cln-oeo-grid">
+                  <span class="cm-cln-check">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                  <span class="cm-cln-text--oeo">{{ block.settings.oeo_value }}</span>
+                </div>
+              </div>
+              
+              <div class="cm-cln-cell"><span>{{ block.settings.trad_value }}</span></div>
+              <div class="cm-cln-cell"><span>{{ block.settings.other_value }}</span></div>
+            </div>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+  /* 1. BACKGROUND & LAYOUT */
+  #cm-cln-{{ section.id }} { 
+    position: relative;
+    padding: 10px 0 100px 0; 
+    background: linear-gradient(180deg, #FFFFFF 0%, #eef1ff 100%) !important; 
+    overflow: hidden;
+  }
+
+  #cm-cln-{{ section.id }}::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(47, 58, 120, 0.08) 0%, rgba(47, 58, 120, 0.04) 40%, rgba(47, 58, 120, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  #cm-cln-{{ section.id }} .cm-cln-container { 
+    position: relative;
+    z-index: 1;
+    max-width: 1400px; 
+    margin: 0 auto; 
+    padding: 0 40px; 
+  }
+  
+  /* 2. TYPOGRAPHY */
+  #cm-cln-{{ section.id }} .cm-cln-title { color: #313b81 !important; font-size: 48px !important; font-weight: 700 !important; line-height: 1.3; margin: 0 0 15px 0 !important; text-transform: none !important; }
+  #cm-cln-{{ section.id }} .cm-cln-subtext { font-size: 17px !important; color: #313b81 !important; max-width: 750px; margin: 0 auto 25px auto !important; line-height: 1.5; }
+
+  /* 3. CALLOUT RIBBON */
+  .cm-cln-callout-wrapper { margin-bottom: 45px; text-align: center; }
+  .cm-cln-callout {
+    display: inline-flex;
+    align-items: center;
+    background: #313b81;
+    color: #fff;
+    padding: 6px 6px 6px 16px;
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(49, 59, 129, 0.2);
+    transition: all 0.3s ease;
+  }
+  .cm-cln-callout:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(49, 59, 129, 0.3);
+    background: #3a4799;
+  }
+  .callout-value {
+    background: #fff;
+    color: #313b81;
+    padding: 4px 14px;
+    border-radius: 50px;
+    margin-left: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 800;
+  }
+
+  /* 4. TABLE STYLES */
+  .cm-cln-card { 
+    background: rgba(255, 255, 255, 0.55); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 24px; 
+    box-shadow: 0 30px 40px rgba(0,0,0,0.12); 
+    overflow: hidden; 
+    border: 1px solid rgba(255, 255, 255, 0.4); 
+    position: relative;
+    z-index: 1;
+  }
+  .cm-cln-table { display: flex; flex-direction: column; width: 100%; }
+
+  .cm-cln-row { 
+    display: grid; 
+    grid-template-columns: 1fr 1.3fr 1fr 1fr; 
+    border-bottom: 1px solid rgba(47, 58, 120, 0.05); 
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1); 
+    position: relative;
+    z-index: 1;
+  }
+  .cm-cln-row:not(.cm-cln-row--header):hover { 
+    background-color: rgba(255, 255, 255, 0.8); 
+    transform: scale(1.008);
+    box-shadow: 0 15px 35px rgba(49, 59, 129, 0.1); 
+    z-index: 10;
+  }
+  .cm-cln-row:hover .cm-cln-cell--highlight { background: rgba(49, 59, 129, 0.06); }
+
+  .cm-cln-cell { padding: 25px 20px; text-align: center; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #4a5568; line-height: 1.4; }
+  .cm-cln-cell--label { background: rgba(253, 253, 254, 0.3); font-weight: 700; color: #313b81; justify-content: flex-start; padding-left: 45px; gap: 10px; }
+  .cm-cln-cell--highlight { background: rgba(49, 59, 129, 0.04); border-left: 1px solid rgba(49, 59, 129, 0.1); border-right: 1px solid rgba(49, 59, 129, 0.1); }
+
+  /* 5. NEW ALIGNMENT LOGIC */
+  .cm-cln-oeo-grid {
+    display: grid;
+    grid-template-columns: 24px 1fr; 
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 250px;
+    text-align: left;
+  }
+  .cm-cln-check { color: #22c55e; display: flex; align-items: center; justify-content: center; }
+  .cm-cln-text--oeo { color: #313b81; font-weight: 700; line-height: 1.2; }
+
+  /* 6. TOOLTIPS */
+  .cm-cln-tooltip-wrap { position: relative; display: flex; cursor: help; align-items: center; }
+  .cm-cln-info-icon { background: #e2e8f0; color: #718096; width: 16px; height: 16px; border-radius: 50%; font-size: 10px; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+  .cm-cln-tooltip { 
+    position: absolute; bottom: 100%; left: 0; transform: translateY(-10px); background: #313b81; color: #fff; padding: 14px 18px; border-radius: 8px; font-size: 13px; width: 250px; z-index: 20; visibility: hidden; opacity: 0; 
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+  }
+  .cm-cln-tooltip-wrap:hover .cm-cln-tooltip { visibility: visible; opacity: 1; transform: translateY(-8px); }
+
+  /* 7. HEADER STYLES */
+  .cm-cln-row--header { background: #fff; font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 0.08em; }
+  .cm-cln-row--header .cm-cln-cell { padding: 30px 30px; color: #718096; }
+  .cm-cln-row--header .cm-cln-cell--highlight { background: #313b81 !important; color: #fff !important; border: none; }
+
+  /* 8. UPDATED MOBILE RESPONSIVENESS */
+  @media screen and (max-width: 1024px) {
+    #cm-cln-{{ section.id }} .cm-cln-title { font-size: 32px !important; }
+    #cm-cln-{{ section.id }} .cm-cln-container { padding: 20px 15px; }
+    .cm-cln-scroller { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 10px; }
+    
+    /* Reduced total width from 850px to 680px to pull col 2 into view */
+    .cm-cln-table { width: 680px; border-collapse: separate; }
+
+    /* Balanced col 1 and 2 to fit typical screen width (~375px-414px) */
+    .cm-cln-row { 
+      grid-template-columns: 140px 180px 180px 180px; 
+    }
+
+    .cm-cln-cell--label { 
+      position: sticky; 
+      left: 0; 
+      z-index: 10; 
+      background: #ffffff !important; 
+      padding-left: 15px !important;
+      box-shadow: 10px 0 15px -10px rgba(49, 59, 129, 0.15);
+      border-right: 1px solid rgba(47, 58, 120, 0.05);
+    }
+    .cm-cln-row--header .cm-cln-cell--label { background: #ffffff !important; z-index: 11; }
+    .cm-cln-cell { padding: 20px 10px; font-size: 13px; }
+    
+    .cm-cln-oeo-grid { max-width: 100%; text-align: left; }
+  }
+
+  /* SCROLLBAR */
+  .cm-cln-scroller::-webkit-scrollbar { height: 4px; }
+  .cm-cln-scroller::-webkit-scrollbar-track { background: rgba(49, 59, 129, 0.05); }
+  .cm-cln-scroller::-webkit-scrollbar-thumb { background: rgba(49, 59, 129, 0.2); border-radius: 10px; }
+</style>
+
+{% schema %}
+{
+  "name": "Comparison Matrix Premium",
+  "settings": [
+    { "type": "header", "content": "Text Content" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "How We Compare" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "The modern alternative to traditional high school. Faster feedback, project-based learning, and 100% flexibility—all in one place." },
+    { "type": "header", "content": "Callout Ribbon (OEO Advantage)" },
+    { "type": "text", "id": "callout_label", "label": "Callout Label", "default": "OEO Advantage" },
+    { "type": "text", "id": "callout_value", "label": "Callout Value", "default": "48-Hour Feedback Guaranteed" },
+    { "type": "header", "content": "Column Headers" },
+    { "type": "text", "id": "col_1_label", "label": "Column 1 (Features)", "default": "Feature" },
+    { "type": "text", "id": "col_2_label", "label": "Column 2 (Main School)", "default": "Ontario Education Online" },
+    { "type": "text", "id": "col_3_label", "label": "Column 3 (Competitor)", "default": "Traditional School" },
+    { "type": "text", "id": "col_4_label", "label": "Column 4 (Competitor)", "default": "Other Online Schools" }
+  ],
+  "blocks": [
+    {
+      "type": "row",
+      "name": "Comparison Row",
+      "settings": [
+        { "type": "text", "id": "feature_title", "label": "Feature Name", "default": "Pacing" },
+        { "type": "textarea", "id": "tooltip_text", "label": "Tooltip Text (Leave blank to hide)" },
+        { "type": "text", "id": "oeo_value", "label": "OEO Value", "default": "100% Self-Paced" },
+        { "type": "text", "id": "trad_value", "label": "Traditional Value", "default": "Fixed Schedule" },
+        { "type": "text", "id": "other_value", "label": "Other Value", "default": "Varies" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Comparison Matrix" }]
+}
+{% endschema %}

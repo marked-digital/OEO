@@ -1,0 +1,2149 @@
+<section class="pdp-hero" aria-labelledby="course-title">
+  <div class="pdp-hero__inner">
+
+    {%- comment %}
+      Resolve product / teacher context
+    {%- endcomment -%}
+    {%- assign current_product = product -%}
+    {%- assign current_variant = current_product.selected_or_first_available_variant -%}
+
+    {%- assign teacher = nil -%}
+    {%- if current_product and current_product.metafields.custom.teacher and current_product.metafields.custom.teacher.value -%}
+      {%- assign teacher = current_product.metafields.custom.teacher.value -%}
+    {%- endif -%}
+
+    {%- assign grade_level = current_product.metafields.custom.grade_level | default: '' -%}
+    {%- assign course_subject = current_product.metafields.custom.subject | default: '' -%}
+    {%- assign course_code = current_product.metafields.custom.course_code | default: '' -%}
+    {%- assign course_prereq = current_product.metafields.custom.prerequisite -%}
+
+    <!-- Left column: content -->
+    <div class="pdp-hero__content">
+
+      {%- if grade_level != '' or course_subject != '' or course_code != '' -%}
+      {%- comment %}
+        Each separator is grouped with the item that follows it, so when the
+        pill wraps on a narrow viewport a "|" can never be orphaned at the
+        start of a line. Groups are inline-flex, so the row reads identically.
+      {%- endcomment -%}
+      <div class="pdp-hero__pill" aria-label="Course details">
+        {%- if grade_level != '' -%}
+          <span class="pdp-hero__pill-group">
+            <span class="pdp-hero__pill-item">Grade {{ grade_level }}</span>
+          </span>
+        {%- endif -%}
+        {%- if course_subject != '' -%}
+          <span class="pdp-hero__pill-group">
+            {%- if grade_level != '' -%}
+              <span class="pdp-hero__pill-sep" aria-hidden="true">|</span>
+            {%- endif -%}
+            <span class="pdp-hero__pill-item">{{ course_subject }}</span>
+          </span>
+        {%- endif -%}
+        {%- if course_code != '' -%}
+          <span class="pdp-hero__pill-group">
+            {%- if grade_level != '' or course_subject != '' -%}
+              <span class="pdp-hero__pill-sep" aria-hidden="true">|</span>
+            {%- endif -%}
+            <span class="pdp-hero__pill-item">{{ course_code }}</span>
+          </span>
+        {%- endif -%}
+      </div>
+      {%- endif -%}
+
+      <h1 class="pdp-hero__title" id="course-title">
+        {{ current_product.title }}
+      </h1>
+
+      {%- comment %} Prerequisite (eligibility) — mirrors the row in PDP Course Details {%- endcomment -%}
+      {%- if course_prereq != blank -%}
+        <p class="pdp-hero__prereq">
+          <span class="pdp-hero__prereq-icon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path d="M10.5 2.5H12a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M5.5 2.5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v.5h-5v-.5z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M5.5 8l1.5 1.5L10 6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </span>
+          <span class="pdp-hero__prereq-label">Prerequisite:</span>
+          <span class="pdp-hero__prereq-value">{{ course_prereq.value }}</span>
+          {%- if section.settings.prereq_help_text != blank and section.settings.prereq_help_url != blank -%}
+            <a href="{{ section.settings.prereq_help_url }}" class="pdp-hero__prereq-link">
+              {{ section.settings.prereq_help_text }}
+            </a>
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+
+      {%- comment %} Three small editable callouts under title {%- endcomment -%}
+      {%- if section.settings.callout_1 != blank or section.settings.callout_2 != blank or section.settings.callout_3 != blank -%}
+        <p class="pdp-hero__callouts">
+          {%- assign printed = 0 -%}
+          {%- if section.settings.callout_1 != blank -%}
+            <span>{{ section.settings.callout_1 }}</span>
+            {%- assign printed = printed | plus: 1 -%}
+          {%- endif -%}
+          {%- if section.settings.callout_2 != blank -%}
+            {%- if printed > 0 -%}<span class="pdp-hero__callouts-sep" aria-hidden="true">•</span>{%- endif -%}
+            <span>{{ section.settings.callout_2 }}</span>
+            {%- assign printed = printed | plus: 1 -%}
+          {%- endif -%}
+          {%- if section.settings.callout_3 != blank -%}
+            {%- if printed > 0 -%}<span class="pdp-hero__callouts-sep" aria-hidden="true">•</span>{%- endif -%}
+            <span>{{ section.settings.callout_3 }}</span>
+          {%- endif -%}
+        </p>
+      {%- endif -%}
+
+      {%- comment %} Rating {%- endcomment -%}
+      {%- if section.settings.rating_value != blank or section.settings.rating_count != blank -%}
+        <div class="pdp-hero__rating" aria-label="{{ section.settings.rating_value }} out of 5 stars{% if section.settings.rating_count != blank %}, {{ section.settings.rating_count }} students{% endif %}">
+          <span class="pdp-hero__rating-stars" aria-hidden="true">★★★★★</span>
+          {%- if section.settings.rating_value != blank -%}
+            <span class="pdp-hero__rating-value">{{ section.settings.rating_value }}</span>
+          {%- endif -%}
+          {%- if section.settings.rating_count != blank -%}
+            <span class="pdp-hero__rating-count">· {{ product.metafields.custom.enrolment_seed.value | default: 0 | plus: shop.metafields.custom.enrolment_orders.value }} {{ section.settings.rating_count }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- comment %} Product description {%- endcomment -%}
+      {%- if current_product.description != blank -%}
+        <div class="pdp-hero__description rte">
+          {{ current_product.description }}
+        </div>
+      {%- endif -%}
+
+      {%- comment %} Bottom row: teacher card on the left, product image card on the right {%- endcomment -%}
+      <div class="pdp-hero__bottom-row">
+
+        <div class="pdp-hero__bottom-main">
+
+          {%- comment %} Teacher badge {%- endcomment -%}
+          {%- if teacher -%}
+            <div class="pdp-hero__teacher" role="group" aria-label="Your teacher for this course">
+              <div class="pdp-hero__teacher-media">
+                {%- if teacher.teacher_image and teacher.teacher_image.value != blank -%}
+                  {{
+                    teacher.teacher_image
+                    | image_url: width: 120
+                    | image_tag:
+                      class: 'pdp-hero__teacher-img',
+                      loading: 'lazy',
+                      widths: '80, 120, 160',
+                      alt: teacher.teacher_name.value | default: 'Course teacher'
+                  }}
+                {%- else -%}
+                  <div class="pdp-hero__teacher-ph" aria-hidden="true">
+                    <span class="pdp-hero__teacher-ph-label">Teacher<br>Photo</span>
+                  </div>
+                {%- endif -%}
+              </div>
+              <div class="pdp-hero__teacher-main">
+                {%- if teacher.teacher_name and teacher.teacher_name.value != blank -%}
+                  <div class="pdp-hero__teacher-name">{{ teacher.teacher_name.value }}</div>
+                {%- endif -%}
+                {%- if teacher.teacher_position and teacher.teacher_position.value != blank -%}
+                  <div class="pdp-hero__teacher-role">{{ teacher.teacher_position.value }}</div>
+                {%- endif -%}
+              </div>
+              <span class="pdp-hero__teacher-tag">OCT Certified</span>
+            </div>
+          {%- endif -%}
+
+          {%- if section.settings.watch_label != blank -%}
+            <a href="{{ section.settings.watch_link | default: '#how-it-works' }}" class="pdp-hero__watch" {% if section.settings.watch_link_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+              <span class="pdp-hero__watch-icon" aria-hidden="true">
+                <svg viewBox="0 0 10 12"><path d="M1 1.5l8 4.5-8 4.5V1.5z"></path></svg>
+              </span>
+              {{ section.settings.watch_label }}
+            </a>
+          {%- endif -%}
+
+        </div>
+
+        {%- comment %} Product image card (next to teacher credentials) {%- endcomment -%}
+        {%- if current_product.featured_image != blank -%}
+          <div class="pdp-hero__product-card" aria-hidden="true">
+            <div class="pdp-hero__product-card-frame">
+              {{
+                current_product.featured_image
+                | image_url: width: 600
+                | image_tag:
+                  class: 'pdp-hero__product-card-img',
+                  loading: 'lazy',
+                  widths: '240, 360, 480, 600',
+                  sizes: '(max-width: 959px) 40vw, 220px',
+                  alt: current_product.featured_image.alt | default: current_product.title
+              }}
+            </div>
+          </div>
+        {%- endif -%}
+
+      </div>
+
+    </div>
+
+    <!-- Right column: enrolment card / add-to-cart -->
+    <div class="pdp-hero__enrol-wrap">
+      <div class="pdp-hero__enrol-card" role="region" aria-label="Enrolment and pricing">
+
+        {%- form 'product', current_product, id: 'pdp-hero-product-form', class: 'pdp-hero__form' -%}
+
+          <!-- Price row -->
+          <div class="pdp-hero__price-row">
+            <span class="pdp-hero__price-main" data-product-price>
+              {{ current_variant.price | money }}
+            </span>
+            <span class="pdp-hero__price-curr">{{ cart.currency.iso_code }}</span>
+
+            {%- if current_variant.compare_at_price > current_variant.price -%}
+              <span class="pdp-hero__price-compare" data-product-compare>
+                {{ current_variant.compare_at_price | money }}
+              </span>
+              <span class="pdp-hero__price-pill" data-product-sale-pill>{{ section.settings.sale_badge_label | default: 'Bundle savings' }}</span>
+            {%- else -%}
+              <span class="pdp-hero__price-compare" data-product-compare style="display:none;"></span>
+              <span class="pdp-hero__price-pill" data-product-sale-pill style="display:none;">{{ section.settings.sale_badge_label | default: 'Bundle savings' }}</span>
+            {%- endif -%}
+          </div>
+
+          <!-- Price copy -->
+          {%- if section.settings.price_subcopy != blank -%}
+            <p class="pdp-hero__price-sub">
+              {{ section.settings.price_subcopy }}
+            </p>
+          {%- endif -%}
+
+          <!-- Thin divider (like prototype) -->
+          <div class="pdp-hero__card-divider pdp-hero__card-divider--light" role="separator"></div>
+
+          <!-- Option selectors (one control per product option) -->
+          {%- if current_product.has_only_default_variant == false -%}
+            {%- comment %}
+              Multi-option courses (e.g. Co-op) always use toggles.
+              Single-option courses follow the theme setting below.
+            {%- endcomment -%}
+            {%- assign use_dropdown = false -%}
+            {%- if current_product.options_with_values.size == 1 and section.settings.single_option_picker_style == 'dropdown' -%}
+              {%- assign use_dropdown = true -%}
+            {%- endif -%}
+
+            <div class="pdp-hero__options" data-pdp-options>
+              {%- for option in current_product.options_with_values -%}
+                <div class="pdp-hero__option">
+                  <span class="pdp-hero__variant-label">{{ option.name }}</span>
+                  {%- if use_dropdown -%}
+                    <select
+                      class="pdp-hero__variant-select"
+                      data-option-select
+                      aria-label="{{ option.name | escape }}"
+                    >
+                      {%- for value in option.values -%}
+                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected{% endif %}>{{ value }}</option>
+                      {%- endfor -%}
+                    </select>
+                  {%- else -%}
+                    <div class="pdp-hero__option-pills" role="radiogroup" aria-label="{{ option.name | escape }}">
+                      {%- for value in option.values -%}
+                        <button
+                          type="button"
+                          class="pdp-hero__pill-btn{% if option.selected_value == value %} is-selected{% endif %}"
+                          role="radio"
+                          aria-checked="{% if option.selected_value == value %}true{% else %}false{% endif %}"
+                          data-option-value="{{ value | escape }}"
+                        >{{ value }}</button>
+                      {%- endfor -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endfor -%}
+            </div>
+
+            <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id-input>
+
+            <script type="application/json" data-pdp-variant-map>
+              {
+                {%- for variant in current_product.variants -%}
+                  "{{ variant.options | join: '~~' }}": {
+                    "id": {{ variant.id }},
+                    "available": {{ variant.available }},
+                    "priceFmt": {{ variant.price | money | json }},
+                    "compareFmt": {% if variant.compare_at_price > variant.price %}{{ variant.compare_at_price | money | json }}{% else %}""{% endif %}
+                  }{%- unless forloop.last -%},{%- endunless -%}
+                {%- endfor -%}
+              }
+            </script>
+          {%- else -%}
+            <input type="hidden" name="id" value="{{ current_variant.id }}" data-variant-id-input>
+          {%- endif -%}
+
+          <!-- Payment plan -->
+          {%- if section.settings.payment_plan_text != blank -%}
+            <div class="pdp-hero__payment-plan">
+              <svg width="14" height="12" viewBox="0 0 14 12" fill="none" aria-hidden="true">
+                <rect x="1" y="1.5" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.3"></rect>
+                <path d="M1 5h12" stroke="currentColor" stroke-width="1.3"></path>
+              </svg>
+              {{ section.settings.payment_plan_text }}
+            </div>
+          {%- endif -%}
+
+          <!-- Urgency -->
+          {%- if section.settings.urgency_text != blank -%}
+            <div class="pdp-hero__urgency" role="status" aria-live="polite">
+              {{ section.settings.urgency_text }}
+            </div>
+          {%- endif -%}
+
+          <!-- Guidance secondary button (sits above the primary CTA so the low-commitment ask is read first) -->
+          {%- if section.settings.guidance_text != blank and section.settings.guidance_url != blank -%}
+            <a
+              href="{{ section.settings.guidance_url }}"
+              class="pdp-hero__guidance-btn"
+              {% if section.settings.guidance_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+            >
+              {{ section.settings.guidance_text }}
+            </a>
+          {%- endif -%}
+
+          <!-- Primary CTA -->
+          {%- if current_variant.available -%}
+            <button
+              type="submit"
+              name="add"
+              class="pdp-hero__enrol-btn"
+              data-enrol-btn
+            >
+              <span data-enrol-btn-label>
+                {{ section.settings.enrol_label | default: 'Enrol Now' }}
+              </span>
+              <span class="pdp-hero__enrol-btn-price" data-enrol-btn-price>
+                · {{ current_variant.price | money }} {{ cart.currency.iso_code }}
+              </span>
+            </button>
+          {%- else -%}
+            <button
+              type="button"
+              class="pdp-hero__enrol-btn pdp-hero__enrol-btn--disabled"
+              disabled
+              data-enrol-btn
+            >
+              <span data-enrol-btn-label>Sold Out</span>
+              <span class="pdp-hero__enrol-btn-price" data-enrol-btn-price style="display:none;"></span>
+            </button>
+          {%- endif -%}
+
+          <!-- Enrol note: credits check, set here so it goes live on push (the 12-month term line lives in the program bullets) -->
+          <div class="pdp-hero__enrol-disclaimer">
+            <p>
+              Make sure you've selected the right number of credits before you enrol.
+              {% if section.settings.guidance_url != blank -%}
+                <a href="{{ section.settings.guidance_url }}"{% if section.settings.guidance_new_tab %} target="_blank" rel="noopener noreferrer"{% endif %}>Book a free guidance session</a>
+              {%- else -%}
+                Book a free guidance session
+              {%- endif %} if you're unsure. We'd be happy to speak with you.
+            </p>
+          </div>
+
+          <!-- Divider before program bullets -->
+          <div class="pdp-hero__card-divider" role="separator"></div>
+
+          <!-- Program bullets (FTE) -->
+          {%- assign bullet_count = 0 -%}
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'bullet' -%}{%- assign bullet_count = bullet_count | plus: 1 -%}{%- endif -%}
+          {%- endfor -%}
+          {%- if bullet_count > 0 -%}
+            <ul class="pdp-hero__bullets">
+              {%- for block in section.blocks -%}
+                {%- if block.type == 'bullet' and block.settings.text != blank -%}
+                  {%- assign bullet_icon = block.settings.icon | default: 'check' -%}
+                  <li class="pdp-hero__bullet" {{ block.shopify_attributes }}>
+                    <span class="pdp-hero__bullet-check pdp-hero__bullet-check--{{ bullet_icon }}" aria-hidden="true">
+                      {%- case bullet_icon -%}
+                        {%- when 'plus' or 'plus-grey' -%}
+                          <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2.4v7.2M2.4 6h7.2"/></svg>
+                        {%- when 'star' -%}
+                          <svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor"><path d="M6 1.3l1.45 2.94 3.25.47-2.35 2.29.55 3.23L6 8.71 3.1 10.23l.55-3.23L1.3 4.71l3.25-.47L6 1.3z"/></svg>
+                        {%- else -%}
+                          <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2L9.5 3.6"/></svg>
+                      {%- endcase -%}
+                    </span>
+                    <span>{{ block.settings.text }}</span>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          {%- endif -%}
+
+          <!-- Trust badges -->
+          <div class="pdp-hero__trust-trio" role="list" aria-label="School credentials">
+            <div class="pdp-hero__trust-chip" role="listitem">
+              <span class="pdp-hero__trust-chip-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <path d="M1.5 19h17M3.5 19V9M16.5 19V9M1.5 9.5L10 2l8.5 7.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M7.5 19v-5h5v5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span class="pdp-hero__trust-chip-label">Ministry Inspected</span>
+            </div>
+
+            <div class="pdp-hero__trust-chip" role="listitem">
+              <span class="pdp-hero__trust-chip-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="7" r="3.5" stroke="currentColor" stroke-width="1.4"></circle>
+                  <path d="M3 18.5c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+                  <path d="M13 3.5l2.5 1.5-2.5 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </span>
+              <span class="pdp-hero__trust-chip-label">OCT-Certified Teacher</span>
+            </div>
+
+            <div class="pdp-hero__trust-chip" role="listitem">
+              <span class="pdp-hero__trust-chip-icon" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <path d="M10 12.5L1.5 8 10 3.5l8.5 4.5-8.5 4.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M5 10.5V15c0 1.7 2.2 3 5 3s5-1.3 5-3v-4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M18.5 8v4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"></path>
+                </svg>
+              </span>
+              <span class="pdp-hero__trust-chip-label">Official OSSD Credit</span>
+            </div>
+          </div>
+
+        {%- endform -%}
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{%- comment %}
+  Sticky quick enrol bar (mobile: always visible, desktop: appears on scroll)
+
+  Full-time carries a bigger commitment than a single course, so this bar leads
+  with the guidance ask and keeps enrolment beside it. Which of the two reads as
+  primary is a setting; guidance is the default. The regular product page keeps
+  its own single-CTA bar in pdp-product.liquid, untouched by anything here — the
+  --fte modifier scopes every rule below to this section.
+{%- endcomment -%}
+{%- assign mob_guidance_url = section.settings.mob_bar_guidance_url | default: section.settings.guidance_url -%}
+{%- assign mob_guidance_label = section.settings.mob_bar_guidance_label | default: 'Talk to Guidance' -%}
+{%- assign mob_primary = section.settings.mob_bar_primary | default: 'guidance' -%}
+
+<div
+  class="pdp-mob-bar pdp-mob-bar--fte pdp-mob-bar--{{ mob_primary }}-first{% if mob_guidance_url == blank %} pdp-mob-bar--single{% endif %}"
+  aria-label="Quick enrolment"
+  role="complementary"
+  data-quick-enrol
+>
+  <div class="pdp-mob-bar__inner">
+    <div class="pdp-mob-bar__info">
+      <div class="pdp-mob-bar__price" data-quick-enrol-price>
+  {{ section.settings.mob_bar_label | default: 'Get Started' }} · {{ current_variant.price | money }} {{ cart.currency.iso_code }}
+</div>
+      <div class="pdp-mob-bar__sub">
+        {{ course_code | default: current_product.title }} · {{ section.settings.quick_enrol_subtext | default: 'Instant Access' }}
+      </div>
+    </div>
+
+    <div class="pdp-mob-bar__actions">
+      {%- if mob_guidance_url != blank -%}
+        <a
+          class="pdp-mob-bar__btn pdp-mob-bar__btn--guidance"
+          href="{{ mob_guidance_url }}"
+          {% if section.settings.guidance_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+          aria-label="{{ mob_guidance_label | escape }} about {{ current_product.title | escape }}"
+        >
+          {{ mob_guidance_label }}
+        </a>
+      {%- endif -%}
+
+      <button
+        type="button"
+        class="pdp-mob-bar__btn pdp-mob-bar__btn--enrol"
+        data-quick-enrol-btn
+        aria-label="Enrol now in {{ current_product.title | escape }}"
+      >
+        {{ section.settings.enrol_label | default: 'Enrol Now' }} →
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var form = document.getElementById('pdp-hero-product-form');
+  if (!form) return;
+
+  var idInput    = form.querySelector('[data-variant-id-input]');
+  var optionWrap = form.querySelector('[data-pdp-options]');
+  var priceEl    = form.querySelector('[data-product-price]');
+  var compareEl  = form.querySelector('[data-product-compare]');
+  var salePillEl = form.querySelector('[data-product-sale-pill]');
+  var btn        = form.querySelector('[data-enrol-btn]');
+  var btnLabel   = form.querySelector('[data-enrol-btn-label]');
+  var btnPriceEl = form.querySelector('[data-enrol-btn-price]');
+  var currency   = '{{ cart.currency.iso_code }}';
+  var enrolLabel = '{{ section.settings.enrol_label | default: "Enrol Now" }}';
+
+  // Variant lookup map, keyed by option values joined with ~~
+  var variantMap = {};
+  var mapEl = form.querySelector('[data-pdp-variant-map]');
+  if (mapEl) { try { variantMap = JSON.parse(mapEl.textContent); } catch (e) {} }
+
+  // Sticky bar elements
+  var quickBar   = document.querySelector('[data-quick-enrol]');
+  var quickBtn   = quickBar ? quickBar.querySelector('[data-quick-enrol-btn]') : null;
+  var quickPrice = quickBar ? quickBar.querySelector('[data-quick-enrol-price]') : null;
+  var heroSection = document.querySelector('.pdp-hero');
+
+  function syncQuickBarPrice() {
+    if (!quickBar || !quickPrice || !priceEl) return;
+    var label = '{{ section.settings.mob_bar_label | default: "Get Started" }}';
+    quickPrice.textContent = label + ' · ' + priceEl.textContent.trim() + ' ' + currency;
+    // A longer price can add a line to the bar, so re-measure the clearance
+    syncQuickBarSpace();
+  }
+
+  // The mobile bar wraps to two rows and its height varies with the course line,
+  // so reserve exactly what it occupies rather than a fixed guess.
+  function syncQuickBarSpace() {
+    if (!quickBar) return;
+    if (window.innerWidth < 960) {
+      document.body.style.paddingBottom = (quickBar.offsetHeight + 8) + 'px';
+    } else {
+      document.body.style.paddingBottom = '';
+    }
+  }
+
+  function updateDesktopQuickBar() {
+    if (!quickBar || !heroSection) return;
+    if (window.innerWidth < 960) {
+      quickBar.classList.add('is-visible');
+      return;
+    }
+    var heroBottom = heroSection.getBoundingClientRect().bottom;
+    if (heroBottom < window.innerHeight * 0.4) {
+      quickBar.classList.add('is-visible');
+    } else {
+      quickBar.classList.remove('is-visible');
+    }
+  }
+
+  // Build the lookup key from the selected control in each option group, in option order
+  function currentKey() {
+    if (!optionWrap) return null;
+    var groups = optionWrap.querySelectorAll('.pdp-hero__option');
+    var parts = [];
+    for (var i = 0; i < groups.length; i++) {
+      var pill = groups[i].querySelector('.pdp-hero__pill-btn.is-selected');
+      if (pill) { parts.push(pill.getAttribute('data-option-value')); continue; }
+      var dd = groups[i].querySelector('[data-option-select]');
+      if (dd) { parts.push(dd.value); continue; }
+      return null;
+    }
+    return parts.join('~~');
+  }
+
+  function applyVariant(v) {
+    if (!v) return;
+    if (idInput) idInput.value = v.id;
+    if (priceEl && v.priceFmt) priceEl.textContent = v.priceFmt;
+
+    if (compareEl) {
+      if (v.compareFmt) {
+        compareEl.textContent = v.compareFmt;
+        compareEl.style.display = '';
+      } else {
+        compareEl.textContent = '';
+        compareEl.style.display = 'none';
+      }
+    }
+    if (salePillEl) salePillEl.style.display = v.compareFmt ? '' : 'none';
+
+    if (btn && btnLabel && btnPriceEl) {
+      if (v.available) {
+        btn.disabled = false;
+        btn.type = 'submit';
+        btn.name = 'add';
+        btn.classList.remove('pdp-hero__enrol-btn--disabled');
+        btnLabel.textContent = enrolLabel;
+        btnPriceEl.textContent = ' · ' + v.priceFmt + ' ' + currency;
+        btnPriceEl.style.display = '';
+      } else {
+        btn.disabled = true;
+        btn.type = 'button';
+        btn.removeAttribute('name');
+        btn.classList.add('pdp-hero__enrol-btn--disabled');
+        btnLabel.textContent = 'Sold Out';
+        btnPriceEl.textContent = '';
+        btnPriceEl.style.display = 'none';
+      }
+    }
+
+    syncQuickBarPrice();
+  }
+
+  if (optionWrap) {
+    optionWrap.addEventListener('click', function (e) {
+      var pill = e.target.closest('.pdp-hero__pill-btn');
+      if (!pill) return;
+      var group = pill.closest('.pdp-hero__option');
+      group.querySelectorAll('.pdp-hero__pill-btn').forEach(function (p) {
+        p.classList.remove('is-selected');
+        p.setAttribute('aria-checked', 'false');
+      });
+      pill.classList.add('is-selected');
+      pill.setAttribute('aria-checked', 'true');
+
+      var key = currentKey();
+      if (key && variantMap[key]) applyVariant(variantMap[key]);
+    });
+
+    optionWrap.addEventListener('change', function (e) {
+      if (!e.target.closest('[data-option-select]')) return;
+      var key = currentKey();
+      if (key && variantMap[key]) applyVariant(variantMap[key]);
+    });
+  }
+
+  if (quickBtn && btn) {
+    quickBtn.addEventListener('click', function () {
+      btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () {
+        if (!btn.disabled) {
+          btn.click();
+        }
+      }, 400);
+    });
+  }
+
+  syncQuickBarPrice();
+  updateDesktopQuickBar();
+  syncQuickBarSpace();
+
+  window.addEventListener('scroll', updateDesktopQuickBar, { passive: true });
+  window.addEventListener('resize', function () {
+    updateDesktopQuickBar();
+    syncQuickBarSpace();
+  });
+  window.addEventListener('load', syncQuickBarSpace);
+});
+</script>
+
+<style>
+.pdp-hero {
+  padding: 48px 0 40px;
+  background: #ffffff;
+
+  /* Accent green, shared with the proof dot in the PDP Guidance section.
+     --fte-green tints icon strokes; --fte-green-fill backs the shapes that
+     carry white on top, one step deeper so the white stays legible. */
+  --fte-green: #22c55e;
+  --fte-green-fill: #16a34a;
+}
+
+.pdp-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  /* Content column : buy box. Lower the first value to widen the buy box. */
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.pdp-hero__content {
+  min-width: 0;
+}
+
+/* Pill — light mint/sage green to match screenshot */
+.pdp-hero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #e9f3e6;
+  border: 1px solid #d6e8d2;
+  color: #3f7a3a;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  line-height: 1;
+}
+
+/* Separator + its item travel together as one unwrappable unit */
+.pdp-hero__pill-group {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.pdp-hero__pill-item {
+  white-space: nowrap;
+}
+
+.pdp-hero__pill-sep {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 12px;
+  color: #8ab884;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+/* Title — wider so it can stretch across the column */
+.pdp-hero__title {
+  margin: 0 0 14px;
+  font-size: clamp(2.25rem, 3.2vw, 2.85rem);
+  line-height: 1.08;
+  font-weight: 800;
+  max-width: 22ch;
+  letter-spacing: -0.025em;
+  color: #24367a;
+}
+
+/* Prerequisite line (under pill / title) */
+.pdp-hero__prereq {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 6px;
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6f789f;
+}
+
+.pdp-hero__prereq-icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #24367a;
+}
+
+.pdp-hero__prereq-icon svg {
+  display: block;
+}
+
+.pdp-hero__prereq-label {
+  font-weight: 700;
+  color: #24367a;
+}
+
+.pdp-hero__prereq-value {
+  color: #4f5684;
+}
+
+.pdp-hero__prereq-link {
+  display: inline-block;
+  margin-left: 8px;
+  color: #8a91b4;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pdp-hero__prereq-link:hover {
+  color: #24367a;
+}
+
+.pdp-hero__callouts {
+  margin: 0 0 10px;
+  font-size: 15px;
+  line-height: 1.45;
+  color: #8a94bf;
+  max-width: 42rem;
+}
+
+.pdp-hero__callouts span {
+  white-space: nowrap;
+}
+
+.pdp-hero__callouts-sep {
+  margin: 0 6px;
+}
+
+.pdp-hero__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #4f5684;
+}
+
+.pdp-hero__rating-stars {
+  color: #f6b300;
+  letter-spacing: 1px;
+}
+
+.pdp-hero__rating-value {
+  font-weight: 700;
+  color: #374099;
+}
+
+.pdp-hero__rating-count {
+  color: #8a94bf;
+}
+
+/* Description — full width of left column for a more generous read */
+.pdp-hero__description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #6f789f;
+  margin-bottom: 28px;
+  max-width: 42rem;
+}
+
+/* Rich text inside the description: headings, paragraphs, lists, links */
+.pdp-hero__description h2,
+.pdp-hero__description h3,
+.pdp-hero__description h4 {
+  margin: 20px 0 8px;
+  font-weight: 700;
+  color: #24367a;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.pdp-hero__description h2 { font-size: 19px; }
+.pdp-hero__description h3 { font-size: 17px; }
+.pdp-hero__description h4 { font-size: 15px; }
+
+.pdp-hero__description h2:first-child,
+.pdp-hero__description h3:first-child,
+.pdp-hero__description h4:first-child {
+  margin-top: 0;
+}
+
+.pdp-hero__description p {
+  margin: 0 0 12px;
+}
+
+.pdp-hero__description p:last-child {
+  margin-bottom: 0;
+}
+
+.pdp-hero__description ul,
+.pdp-hero__description ol {
+  margin: 0 0 12px;
+  padding-left: 22px;
+}
+
+.pdp-hero__description ul {
+  list-style: disc outside;
+}
+
+.pdp-hero__description ol {
+  list-style: decimal outside;
+}
+
+.pdp-hero__description li::marker {
+  color: #24367a;
+}
+
+.pdp-hero__description li {
+  margin-bottom: 6px;
+}
+
+.pdp-hero__description strong {
+  color: #24367a;
+  font-weight: 700;
+}
+
+.pdp-hero__description a {
+  color: #24367a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Bottom row: teacher card on the left, product image card on the right */
+.pdp-hero__bottom-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: center;
+}
+
+.pdp-hero__bottom-main {
+  min-width: 0;
+}
+
+.pdp-hero__teacher {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px 18px;
+  border: 1px;
+  border-color: grey;
+  border-radius: 14px;
+  background: #f5f5f9;
+  margin-bottom: 14px;
+}
+
+.pdp-hero__teacher-media {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #e3e5f4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp-hero__teacher-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdp-hero__teacher-ph {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: 1px dashed rgba(115, 125, 170, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7b83af;
+  text-align: center;
+}
+
+.pdp-hero__teacher-ph-label {
+  line-height: 1.3;
+}
+
+.pdp-hero__teacher-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #24367a;
+}
+
+.pdp-hero__teacher-role {
+  font-size: 13px;
+  color: #8a94bf;
+}
+
+.pdp-hero__teacher-tag {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #e4f3e0;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #3f7a3a;
+  white-space: nowrap;
+}
+
+/* Watch link — solid dark navy circular play */
+.pdp-hero__watch {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #1c2a52;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.pdp-hero__watch:hover {
+  color: #0f1a3a;
+}
+
+.pdp-hero__watch-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  background:#24367a;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp-hero__watch-icon svg {
+  width: 10px;
+  height: 12px;
+  fill: #ffffff;
+  margin-left: 2px;
+}
+
+/* Product image card next to teacher credentials */
+.pdp-hero__product-card {
+  flex: 0 0 auto;
+  width: 180px;
+  border-radius: 14px;
+
+  box-shadow:
+    0 4px 14px rgba(16, 33, 88, 0.06),
+    0 12px 30px rgba(16, 33, 88, 0.08);
+}
+
+.pdp-hero__product-card-frame {
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdp-hero__product-card-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transform: scale(1.1);          
+  transform-origin: center center; 
+}
+
+/* Enrol card */
+.pdp-hero__enrol-wrap {
+  min-width: 0;
+}
+
+.pdp-hero__enrol-card {
+  background: #ffffff;
+  border-radius: 26px;
+  box-shadow:
+    0 8px 24px rgba(16, 33, 88, 0.08),
+    0 18px 46px rgba(16, 33, 88, 0.14);
+  padding: 22px 24px 22px;
+}
+
+.pdp-hero__price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.pdp-hero__price-main {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #24367a;
+}
+
+.pdp-hero__price-curr {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: #9aa1c7;
+}
+
+.pdp-hero__price-compare {
+  font-size: 13px;
+  color: #a0a7c5;
+  text-decoration: line-through;
+}
+
+.pdp-hero__price-pill {
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--fte-green-fill);
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin-left: 2px;
+  white-space: nowrap;
+}
+
+.pdp-hero__price-sub {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #8a94bf;
+}
+
+/* Program bullets (FTE) */
+.pdp-hero__bullets {
+  list-style: none;
+  margin: 0 0 14px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.pdp-hero__bullet {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #24367a;
+}
+
+.pdp-hero__bullet-check {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--fte-green-fill);
+  color: #ffffff;
+  margin-top: 2px;
+}
+
+/* Alternate bullet icons: gold for optional add-ons, navy for highlights */
+.pdp-hero__bullet-check--plus {
+  background: #F0C417;
+  color: #24367a;
+}
+
+.pdp-hero__bullet-check--plus-grey {
+  background: #DBDCDD;
+  color: #4f5684;
+}
+
+.pdp-hero__bullet-check--star {
+  background: #24367a;
+  color: #ffffff;
+}
+
+/* Dividers */
+.pdp-hero__card-divider {
+  height: 1px;
+  background: rgba(210, 214, 229, 0.65);
+  margin: 0 0 14px;
+}
+
+.pdp-hero__card-divider--light {
+  background: rgba(210, 214, 229, 0.4);
+  margin-bottom: 14px;
+}
+
+/* Payment / urgency */
+.pdp-hero__payment-plan {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: #737ca6;
+  margin-bottom: 10px;
+}
+
+.pdp-hero__payment-plan svg {
+  color: var(--fte-green);
+}
+
+.pdp-hero__urgency {
+  position: relative;
+  padding-left: 15px;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 600;
+  color: #00A341;
+  margin-bottom: 14px;
+}
+
+.pdp-hero__urgency::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00A341;
+  transform: translateY(-50%);
+}
+
+/* Variant / location selector */
+.pdp-hero__variant {
+  margin-top: 6px;
+}
+
+.pdp-hero__variant-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #9aa1c7;
+}
+
+.pdp-hero__variant-select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(152, 160, 191, 0.5);
+  padding: 11px 12px;
+  font-size: 14px;
+  color: #4a5387;
+  background: #f7f7fb;
+}
+
+.pdp-hero__enrol-wrap,
+.pdp-hero__enrol-card,
+.pdp-hero__form,
+.pdp-hero__trust-trio {
+  min-width: 0;
+}
+
+.pdp-hero__variant-select {
+  box-sizing: border-box;
+}
+
+/* Per-option pill selectors (credits + student location) */
+.pdp-hero__options {
+  margin: 0 0 18px;
+  display: grid;
+  gap: 16px;
+}
+
+.pdp-hero__option-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.pdp-hero__pill-btn {
+  flex: 0 0 auto;
+  min-width: 52px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(152, 160, 191, 0.35);
+  background: #f4f5f9;
+  color: #969db9;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, color 120ms ease;
+}
+
+.pdp-hero__pill-btn:hover {
+  border-color: rgba(36, 54, 122, 0.5);
+  color: #4a5387;
+}
+
+.pdp-hero__pill-btn.is-selected {
+  border-color: #24367a;
+  background: #24367a;
+  color: #ffffff;
+}
+
+/* CTA button */
+.pdp-hero__enrol-btn {
+  width: 100%;
+  margin: 0 0 10px;
+  border: none;
+  border-radius: 999px;
+  background: #24367a;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(16, 33, 88, 0.25);
+}
+
+.pdp-hero__enrol-btn:hover {
+  background: #1c2b64;
+}
+
+.pdp-hero__enrol-btn--disabled {
+  background: #d0d5ea;
+  color: #ffffff;
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.pdp-hero__enrol-btn-price {
+  font-weight: 600;
+}
+
+/* One-line benefits */
+.pdp-hero__enrol-disclaimer {
+  margin: 12px 0 18px;
+  font-size: 12px;
+  line-height: 1.55;
+  text-align: center;
+  color: #737ca6; /* one step darker than before: this now carries an instruction, not just fine print */
+}
+
+.pdp-hero__enrol-disclaimer p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.pdp-hero__enrol-disclaimer a {
+  color: #24367a;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pdp-hero__enrol-disclaimer a:hover {
+  color: #1c2b64;
+}
+
+/* Trust trio (last item in the card, so no bottom margin) */
+.pdp-hero__trust-trio {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px 0 0;
+}
+
+.pdp-hero__trust-chip {
+  min-width: 0;
+  border-radius: 14px;
+  background: #f3f3f8;
+  color: #34408f;
+  padding: 14px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 88px;
+}
+
+.pdp-hero__trust-chip-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  color: #24367a;
+}
+
+.pdp-hero__trust-chip-icon svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.pdp-hero__trust-chip-label {
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Guidance secondary button — gold pill directly above the Enrol CTA */
+.pdp-hero__guidance-btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-wrap: pretty; /* when it wraps, the arrow never sits alone on line two */
+  gap: 8px;
+  margin: 0 0 14px; /* gap to the Enrol button below */
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: #F0C417;
+  color: #24367a;
+  font-size: 0.97rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(191, 154, 12, 0.28);
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.pdp-hero__guidance-btn:hover {
+  background: #c49b00;
+  color: #24367a;
+  transform: translateY(-1px);
+}
+
+.pdp-hero__guidance-btn:active {
+  transform: translateY(0);
+}
+
+/* Quick enrol bar */
+.pdp-mob-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  padding: 0;
+  transform: translateY(100%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    visibility 220ms ease;
+}
+
+.pdp-mob-bar.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.pdp-mob-bar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #1e2460;
+  color: #ffffff;
+  padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+  box-shadow: 0 -10px 30px rgba(16, 33, 88, 0.24);
+}
+
+.pdp-mob-bar__info {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.pdp-mob-bar__price {
+  font-size: 16px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdp-mob-bar__sub {
+  margin-top: 5px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pdp-mob-bar__btn {
+  flex: 0 0 auto;
+  border: none;
+  border-radius: 999px;
+  background: #e2c23b;
+  color: #24367a;
+  min-height: 54px;
+  padding: 0 24px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.pdp-mob-bar__btn:hover {
+  background: #d9b82f;
+}
+
+/* Two-action bar: guidance and enrol side by side */
+.pdp-mob-bar__actions {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  min-width: 0;
+}
+
+.pdp-mob-bar--fte .pdp-mob-bar__btn {
+  min-height: 50px;
+  padding: 0 20px;
+  font-size: 14px;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* The primary of the pair is solid gold; the other is an outline on the navy bar */
+.pdp-mob-bar__btn--ghost,
+.pdp-mob-bar--guidance-first .pdp-mob-bar__btn--enrol,
+.pdp-mob-bar--enrol-first .pdp-mob-bar__btn--guidance {
+  background: transparent;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  color: #ffffff;
+  box-shadow: none;
+}
+
+.pdp-mob-bar--guidance-first .pdp-mob-bar__btn--enrol:hover,
+.pdp-mob-bar--enrol-first .pdp-mob-bar__btn--guidance:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #ffffff;
+}
+
+.pdp-mob-bar--guidance-first .pdp-mob-bar__btn--guidance,
+.pdp-mob-bar--enrol-first .pdp-mob-bar__btn--enrol {
+  background: #e2c23b;
+  border: none;
+  color: #24367a;
+}
+
+.pdp-mob-bar--guidance-first .pdp-mob-bar__btn--guidance:hover,
+.pdp-mob-bar--enrol-first .pdp-mob-bar__btn--enrol:hover {
+  background: #d9b82f;
+}
+
+/* Responsive */
+@media (max-width: 959px) {
+  .pdp-hero {
+    padding: 28px 0 28px;
+  }
+
+  .pdp-hero__inner {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .pdp-hero__content,
+  .pdp-hero__enrol-wrap {
+    min-width: 0;
+  }
+
+  /* Course-details pill: scale down and allow it to wrap inside the viewport */
+  .pdp-hero__pill {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: fit-content;
+    max-width: 100%;
+    padding: 8px 14px;
+    gap: 2px 0;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+    margin-bottom: 14px;
+  }
+
+  .pdp-hero__pill-sep {
+    margin: 0 8px;
+  }
+
+  .pdp-hero__title {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+    line-height: 1.02;
+    margin-bottom: 12px;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+
+   .pdp-hero__callouts {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 8px;
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.45;
+    max-width: 100%;
+  }
+
+  .pdp-hero__callouts span {
+    white-space: normal;
+  }
+
+  .pdp-hero__callouts-sep {
+    margin: 0;
+    flex: 0 0 auto;
+  }
+
+  .pdp-hero__description {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+    max-width: 100%;
+  }
+
+  /* Bottom row: keep side-by-side on mobile but tighten */
+  .pdp-hero__bottom-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .pdp-hero__product-card {
+    width: 200px;
+    padding: 0px;
+    border-radius: 14px;
+  }
+
+  .pdp-hero__product-card-frame {
+    border-radius: 6px;
+  }
+
+  .pdp-hero__teacher {
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .pdp-hero__teacher-media {
+    width: 44px;
+    height: 44px;
+  }
+
+  .pdp-hero__teacher-tag {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-top: 2px;
+  }
+
+  .pdp-hero__enrol-card {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: 0;
+    padding: 18px 16px 18px;
+    border-radius: 22px;
+    overflow: hidden;
+  }
+
+  .pdp-hero__price-row {
+    gap: 4px 6px;
+  }
+
+  .pdp-hero__price-main {
+    font-size: 28px;
+  }
+
+  .pdp-hero__price-curr {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .pdp-hero__price-sub,
+  .pdp-hero__payment-plan,
+  .pdp-hero__urgency,
+  .pdp-hero__guidance-btn,
+  .pdp-hero__enrol-disclaimer {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .pdp-hero__payment-plan,
+  .pdp-hero__urgency {
+    flex-wrap: wrap;
+  }
+
+  .pdp-hero__enrol-btn {
+    width: 100%;
+    min-height: 56px;
+    padding: 14px 18px;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .pdp-hero__enrol-disclaimer {
+    margin: 10px 0 16px;
+  }
+
+  .pdp-hero__trust-trio {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 14px 0 0;
+  }
+
+  .pdp-hero__trust-chip {
+    min-width: 0;
+    min-height: 92px;
+    padding: 12px 10px;
+  }
+
+  .pdp-hero__trust-chip:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .pdp-hero__trust-chip-label {
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .pdp-hero__guidance-btn {
+    margin: 0 0 12px;
+  }
+
+  .pdp-hero__variant {
+    margin-top: 4px;
+  }
+
+  .pdp-hero__variant-label {
+    margin-bottom: 6px;
+  }
+
+  .pdp-hero__variant-select {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .pdp-mob-bar {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Two rows on mobile: the course line reads in full, the two CTAs share the
+     row beneath it. Nothing here clips, so price and course code stay visible
+     however long the variant name is. */
+  .pdp-mob-bar--fte .pdp-mob-bar__inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 9px;
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+  }
+
+  /* Stacked rather than wrapped, so the price line and the course line keep the
+     same order and hierarchy on every screen width */
+  .pdp-mob-bar--fte .pdp-mob-bar__info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pdp-mob-bar--fte .pdp-mob-bar__price,
+  .pdp-mob-bar--fte .pdp-mob-bar__sub {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  .pdp-mob-bar--fte .pdp-mob-bar__price {
+    font-size: clamp(13px, 3.7vw, 15px);
+    line-height: 1.25;
+  }
+
+  .pdp-mob-bar--fte .pdp-mob-bar__sub {
+    margin-top: 0;
+    font-size: clamp(11px, 3vw, 12.5px);
+    line-height: 1.3;
+  }
+
+  .pdp-mob-bar--fte .pdp-mob-bar__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .pdp-mob-bar--fte.pdp-mob-bar--single .pdp-mob-bar__actions {
+    grid-template-columns: 1fr;
+  }
+
+  .pdp-mob-bar--fte .pdp-mob-bar__btn {
+    width: 100%;
+    min-height: 46px;
+    padding: 8px 10px;
+    font-size: clamp(12px, 3.2vw, 14px);
+    white-space: normal;
+  }
+
+  /* Fallback clearance; the script replaces it with the bar's measured height */
+  body {
+    padding-bottom: 132px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pdp-hero__product-card {
+    width: 96px;
+  }
+
+  /* Smallest phones: tighten further, and let a long single token break */
+  .pdp-hero__pill {
+    padding: 7px 12px;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
+
+  /* A single overlong token breaks inside its group rather than overflowing.
+     flex-wrap: nowrap on the group still keeps the "|" fused to its item. */
+  .pdp-hero__pill-group {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .pdp-hero__pill-item {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    min-width: 0;
+  }
+
+  .pdp-hero__pill-sep {
+    margin: 0 6px;
+    flex: 0 0 auto;
+  }
+}
+
+@media (min-width: 960px) {
+  .pdp-mob-bar {
+    left: 50%;
+    right: auto;
+    bottom: 24px;
+    width: min(760px, calc(100vw - 48px));
+    transform: translateX(-50%) translateY(110%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .pdp-mob-bar.is-visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .pdp-mob-bar__inner {
+    width: 100%;
+    border-radius: 18px;
+    padding: 14px 16px;
+  }
+}
+
+</style>
+
+<template id="quick-buy-content">
+  {%- capture product_form_id -%}quick-buy-form-{{ product.id }}-{{ section.id }}{%- endcapture -%}
+
+  <div class="quick-buy-drawer__variant text-start h-stack gap-6" slot="header">
+    {%- assign image = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+
+    {%- if image != blank -%}
+      <variant-media widths="80,160" form="{{ product_form_id }}">
+        {{- image | image_url: width: image.width | image_tag: loading: 'lazy', sizes: '80px', widths: '80,160', class: 'quick-buy-drawer__media rounded-xs' -}}
+      </variant-media>
+    {%- endif -%}
+
+    <div class="v-stack gap-0.5">
+      <a href="{{ product.url }}" class="bold justify-self-start">{{ product.title }}</a>
+      {%- render 'price-list', product: product, variant: product.selected_or_first_available_variant, form_id: product_form_id -%}
+    </div>
+  </div>
+
+  <div class="quick-buy-drawer__info">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when '@app' -%}
+          {%- render block -%}
+
+        {%- when 'variant_picker' -%}
+          {%- render 'variant-picker', product: product, form_id: product_form_id, update_url: false, hide_sold_out_variants: block.settings.hide_sold_out_variants, hide_size_chart: true, force_dropdown_as_block: true, block: block -%}
+
+        {%- when 'buy_buttons' -%}
+          {%- render 'buy-buttons', product: product, form_id: product_form_id, show_payment_button: block.settings.show_payment_button, button_size: 'lg' -%}
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</template>
+
+{% schema %}
+{
+  "name": "FTE - Hero & Enrol",
+  "settings": [
+    {
+      "type": "text",
+      "id": "callout_1",
+      "label": "Callout 1",
+      "default": "Complete in as little as 4–6 weeks"
+    },
+    {
+      "type": "text",
+      "id": "callout_2",
+      "label": "Callout 2",
+      "default": "Start anytime"
+    },
+    {
+      "type": "text",
+      "id": "callout_3",
+      "label": "Callout 3",
+      "default": "100% online"
+    },
+    {
+      "type": "text",
+      "id": "rating_value",
+      "label": "Rating value",
+      "default": "4.9"
+    },
+    {
+      "type": "text",
+      "id": "rating_count",
+      "label": "Rating count label",
+      "default": "47 students"
+    },
+    {
+      "type": "text",
+      "id": "prereq_help_text",
+      "label": "Prerequisite help link text",
+      "default": "(Not sure if you qualify? Ask us →)"
+    },
+    {
+      "type": "url",
+      "id": "prereq_help_url",
+      "label": "Prerequisite help link URL"
+    },
+    {
+      "type": "text",
+      "id": "price_subcopy",
+      "label": "Price subcopy",
+      "default": "Includes teacher marking, 24-hour feedback turnaround, and your official OSSD transcript. No hidden fees."
+    },
+    {
+      "type": "text",
+      "id": "sale_badge_label",
+      "label": "Sale badge label",
+      "default": "Bundle savings"
+    },
+    {
+      "type": "text",
+      "id": "payment_plan_text",
+      "label": "Payment plan text",
+      "default": "Or as low as $150/month with Sezzle"
+    },
+    {
+      "type": "text",
+      "id": "urgency_text",
+      "label": "Urgency text",
+      "default": "Currently enrolling · Access begins within 24 hours"
+    },
+    {
+      "type": "text",
+      "id": "enrol_label",
+      "label": "Enrol CTA label",
+      "default": "Enrol Now"
+    },
+    {
+      "type": "text",
+      "id": "variant_label",
+      "label": "Variant label",
+      "default": "Student location"
+    },
+    {
+      "type": "select",
+      "id": "single_option_picker_style",
+      "label": "Single-option picker style",
+      "info": "Applies only to courses with one option (e.g. Student Location). Multi-option courses like Co-op always use toggles.",
+      "options": [
+        { "value": "pills", "label": "Toggle (pills)" },
+        { "value": "dropdown", "label": "Dropdown" }
+      ],
+      "default": "pills"
+    },
+    {
+      "type": "text",
+      "id": "watch_label",
+      "label": "Watch link label",
+      "default": "Watch how it works — 2 min"
+    },
+    {
+      "type": "url",
+      "id": "watch_link",
+      "label": "Watch link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "watch_link_new_tab",
+      "label": "Open watch link in new tab",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "guidance_text",
+      "label": "Guidance link text",
+      "default": "Not sure? Book a free 15-min guidance call →"
+    },
+    {
+      "type": "url",
+      "id": "guidance_url",
+      "label": "Guidance link URL"
+    },
+    {
+      "type": "checkbox",
+      "id": "guidance_new_tab",
+      "label": "Open guidance link in new tab",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "mob_bar_label",
+      "label": "Mobile bar label (before price)",
+      "default": "Get Started"
+    },
+    {
+      "type": "text",
+      "id": "quick_enrol_subtext",
+      "label": "Quick enrol subtext",
+      "default": "Instant Access"
+    },
+    {
+      "type": "select",
+      "id": "mob_bar_primary",
+      "label": "Sticky bar primary action",
+      "info": "Which of the two sticky-bar buttons is filled gold. Full-time leads with guidance.",
+      "options": [
+        { "value": "guidance", "label": "Talk to guidance" },
+        { "value": "enrol", "label": "Enrol" }
+      ],
+      "default": "guidance"
+    },
+    {
+      "type": "text",
+      "id": "mob_bar_guidance_label",
+      "label": "Sticky bar guidance label",
+      "info": "Keep it short; it shares the row with the enrol button.",
+      "default": "Talk to Guidance"
+    },
+    {
+      "type": "url",
+      "id": "mob_bar_guidance_url",
+      "label": "Sticky bar guidance URL",
+      "info": "Leave blank to reuse the guidance link above. With no link anywhere, the bar shows enrol only."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "variant_picker",
+      "name": "Variant picker",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "selector_style",
+          "label": "Picker style",
+          "options": [
+            { "value": "dropdown", "label": "Dropdown" },
+            { "value": "block", "label": "Pills" }
+          ],
+          "default": "block"
+        },
+        {
+          "type": "select",
+          "id": "swatch_selector_style",
+          "label": "Swatch style",
+          "options": [
+            { "value": "swatch", "label": "Swatch" },
+            { "value": "block_swatch", "label": "Swatch with label" },
+            { "value": "block", "label": "Pills" }
+          ],
+          "default": "block"
+        },
+        {
+          "type": "text",
+          "id": "variant_image_options",
+          "label": "Variant image options",
+          "info": "Comma-separated option names that should use image thumbnails."
+        },
+        {
+          "type": "checkbox",
+          "id": "hide_sold_out_variants",
+          "label": "Hide sold out variants",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "stack_blocks",
+          "label": "Wrap option values onto multiple lines",
+          "default": true
+        },
+        {
+          "type": "page",
+          "id": "size_chart_page",
+          "label": "Size chart page"
+        }
+      ]
+    },
+    {
+      "type": "buy_buttons",
+      "name": "Buy buttons",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_payment_button",
+          "label": "Show dynamic checkout button",
+          "default": false
+        }
+      ]
+    },
+    {
+      "type": "bullet",
+      "name": "Program bullet",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Bullet",
+          "default": "Named guidance counsellor and OSSD pathway plan"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "check", "label": "Check (included)" },
+            { "value": "plus", "label": "Plus, gold (optional add-on)" },
+            { "value": "plus-grey", "label": "Plus, grey (optional add-on)" },
+            { "value": "star", "label": "Star (highlight)" }
+          ],
+          "default": "check"
+        }
+      ]
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "FTE - Hero & Enrol",
+      "blocks": [
+        { "type": "variant_picker" },
+        { "type": "buy_buttons" },
+        { "type": "bullet", "settings": { "text": "12-month term begins the day your first courses open, not at checkout" } },
+        { "type": "bullet", "settings": { "text": "Named guidance counsellor and OSSD pathway plan" } },
+        { "type": "bullet", "settings": { "text": "Placement, prerequisite, and records services included" } },
+        { "type": "bullet", "settings": { "text": "2 to 4 courses open at a time; finish one and the next opens" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

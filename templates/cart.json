@@ -1,0 +1,59 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-cart",
+      "blocks": {
+        "totals": {
+          "type": "totals",
+          "settings": {
+            "show_order_weight": false,
+            "show_shipping_text": true
+          }
+        },
+        "cart_note": {
+          "type": "cart_note",
+          "settings": {}
+        },
+        "checkout_button": {
+          "type": "checkout_button",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "totals",
+        "cart_note",
+        "checkout_button"
+      ],
+      "settings": {
+        "show_shipping_estimator": true,
+        "show_payment_icons": true,
+        "cart_promo_enabled": true,
+        "cart_promo_threshold": 2,
+        "cart_promo_discount": 75,
+        "cart_promo_stack": false,
+        "cart_promo_message": "Add [count] more [item] and save [savings]!",
+        "cart_promo_item_singular": "course",
+        "cart_promo_item_plural": "courses",
+        "cart_promo_code": "DOUBLEUP",
+        "cart_promo_show_cta": true,
+        "cart_promo_cta_label": "View Courses",
+        "cart_promo_cta_url": "",
+        "cart_promo_cta_color": "#313b82",
+        "cart_promo_bg": "#f0c418",
+        "cart_promo_text": "#313b82"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

@@ -1,0 +1,753 @@
+{%- comment -%}
+  Virtual Classroom · Hero with walkthrough video
+  Styled to the enhanced PDP design language (gold pill buttons, PDP indigo
+  palette, PDP video radius/shadow). The video poster overlaps into the next
+  section (vc-walkthrough) via a negative bottom margin; vc-walkthrough
+  compensates with matching top padding.
+
+  Video source: Shopify-hosted videos (Content > Files), selected via the
+  native "video" settings. A separate mobile-optimized file can be provided;
+  the player picks it on screens under 768px and falls back to the desktop
+  file otherwise. Clicking the poster swaps in a native player.
+{%- endcomment -%}
+
+<section class="vc-hero" aria-labelledby="vc-hero-heading-{{ section.id }}">
+  <div class="vc-hero__inner">
+
+    <p class="vc-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+
+    <h1 class="vc-hero__heading" id="vc-hero-heading-{{ section.id }}">
+      {{ section.settings.heading | escape }}
+    </h1>
+
+    <p class="vc-hero__subhead">{{ section.settings.subhead | escape }}</p>
+
+    <div class="vc-hero__ctas">
+      {%- if section.settings.btn1_label != blank -%}
+        <a href="{{ section.settings.btn1_url }}" class="vc-hero__btn vc-hero__btn--gold">{{ section.settings.btn1_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn2_label != blank -%}
+        <a href="{{ section.settings.btn2_url }}" class="vc-hero__btn vc-hero__btn--secondary">{{ section.settings.btn2_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- assign chip_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'chip' -%}{%- assign chip_count = chip_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if chip_count > 0 -%}
+      <div class="vc-hero__chips" role="list" aria-label="Trust badges">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'chip' -%}
+            <span class="vc-hero__chip" role="listitem" {{ block.shopify_attributes }}>
+              <span class="vc-hero__chip-dot" aria-hidden="true"></span>{{ block.settings.label | escape }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.ministry_text != blank -%}
+      <div class="vc-hero__ministry">
+        {{ section.settings.ministry_text | escape }} ·
+        <a href="{{ section.settings.ministry_url }}" target="_blank" rel="noopener">{{ section.settings.ministry_link_label | escape }}</a>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} Video poster. Click swaps the poster for a native Shopify-hosted player. {%- endcomment -%}
+    <div class="vc-hero__video" id="vc-hero-video-{{ section.id }}">
+      <button
+        type="button"
+        class="vc-hero__poster"
+        data-vc-video-trigger
+        aria-label="{{ section.settings.video_aria_label | escape }}"
+        style="--vc-scrim-desktop: {{ section.settings.overlay_desktop | default: 0 | divided_by: 100.0 }}; --vc-scrim-mobile: {{ section.settings.overlay_mobile | default: 40 | divided_by: 100.0 }};"
+      >
+        <picture>
+          {%- if section.settings.poster_image_mobile != blank -%}
+            <source media="(max-width: 767px)" srcset="{{ section.settings.poster_image_mobile | image_url: width: 1200 }}">
+          {%- endif -%}
+          {%- if section.settings.poster_image != blank -%}
+            <img
+              class="vc-hero__poster-img"
+              src="{{ section.settings.poster_image | image_url: width: 1920 }}"
+              alt="{{ section.settings.poster_alt | escape }}"
+              width="{{ section.settings.poster_image.width }}"
+              height="{{ section.settings.poster_image.height }}"
+            >
+          {%- else -%}
+            <img
+              class="vc-hero__poster-img"
+              src="{{ section.settings.poster_asset | asset_url }}"
+              alt="{{ section.settings.poster_alt | escape }}"
+              width="1303"
+              height="550"
+            >
+          {%- endif -%}
+        </picture>
+        <span class="vc-hero__poster-scrim" aria-hidden="true"></span>
+        <span class="vc-hero__poster-overlay" aria-hidden="true"></span>
+        <span class="vc-hero__play-row">
+          <span class="vc-hero__play-circle" aria-hidden="true">
+            <span class="vc-hero__play-triangle"></span>
+          </span>
+          <span class="vc-hero__play-text">
+            <span class="vc-hero__play-label">{{ section.settings.watch_label | escape }}</span>
+            <span class="vc-hero__play-sub">{{ section.settings.watch_sublabel | escape }}</span>
+          </span>
+        </span>
+      </button>
+      {%- capture vc_fs_button -%}<button type="button" class="vc-hero__fs" data-vc-fs aria-label="Play video in fullscreen"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m8 0h3a2 2 0 0 0 2-2v-3"/></svg><span>Fullscreen</span></button>{%- endcapture -%}
+      {%- if section.settings.video != blank -%}
+        <template data-vc-video-embed="desktop">
+          <div class="vc-hero__embed">
+            {{ vc_fs_button }}
+            {{ section.settings.video | video_tag: controls: true, playsinline: true, preload: 'metadata', image_size: '1920x' }}
+          </div>
+        </template>
+      {%- endif -%}
+      {%- if section.settings.video_mobile != blank -%}
+        <template data-vc-video-embed="mobile">
+          <div class="vc-hero__embed">
+            {{ vc_fs_button }}
+            {{ section.settings.video_mobile | video_tag: controls: true, playsinline: true, preload: 'metadata', image_size: '1200x' }}
+          </div>
+        </template>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{%- comment -%}
+  VideoObject structured data. contentUrl + duration are pulled from the
+  Shopify-hosted video object, so nothing needs to be entered by hand.
+{%- endcomment -%}
+{%- if section.settings.video != blank -%}
+  {%- assign vc_mp4_url = '' -%}
+  {%- for source in section.settings.video.sources -%}
+    {%- if source.format == 'mp4' and vc_mp4_url == '' -%}
+      {%- assign vc_mp4_url = source.url -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- if vc_mp4_url == '' and section.settings.video.sources.size > 0 -%}
+    {%- assign vc_mp4_url = section.settings.video.sources.first.url -%}
+  {%- endif -%}
+
+  {%- assign vc_dur = section.settings.video.duration | default: 0 -%}
+  {%- assign vc_min = vc_dur | divided_by: 60 -%}
+  {%- assign vc_sec = vc_dur | modulo: 60 -%}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": {{ section.settings.video_name | json }},
+    "description": {{ section.settings.video_description | json }},
+    "thumbnailUrl": {% if section.settings.poster_image != blank %}{{ section.settings.poster_image | image_url: width: 1920 | prepend: 'https:' | json }}{% elsif section.settings.video.preview_image != blank %}{{ section.settings.video.preview_image | image_url: width: 1920 | prepend: 'https:' | json }}{% else %}{{ section.settings.poster_asset | asset_url | prepend: 'https:' | json }}{% endif %},
+    "uploadDate": {{ section.settings.video_upload_date | json }},
+    "duration": "PT{{ vc_min }}M{{ vc_sec }}S"{% if vc_mp4_url != '' %},
+    "contentUrl": {{ vc_mp4_url | json }}{% endif %}
+  }
+  </script>
+{%- endif -%}
+
+<style>
+.vc-hero {
+  background: linear-gradient(160deg, var(--color-dark, #1e2460) 0%, #2a3884 90%);
+  color: #ffffff;
+  /* Short bottom padding: the poster overlaps into vc-walkthrough, and the
+     poster-to-steps gap equals this padding plus the walkthrough's extra top padding. */
+  padding: clamp(56px, 7vw, 92px) 32px clamp(24px, 3vw, 40px);
+}
+
+.vc-hero__inner {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* PDP eyebrow recipe (11px, .14em) · gold on dark */
+.vc-hero__eyebrow {
+  margin: 0 0 14px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #f0c417;
+}
+
+/* PDP H1 recipe (pdp-hero__title) */
+.vc-hero__heading {
+  margin: 0 0 16px;
+  font-size: clamp(2.25rem, 3.2vw, 2.85rem);
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+}
+
+/* PDP body recipe (pdp-no-exam__body) */
+.vc-hero__subhead {
+  margin: 0 auto 28px;
+  max-width: 60ch;
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.vc-hero__ctas {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+/* PDP button grammar (pdp-guidance__btn) */
+.vc-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.97rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.vc-hero__btn--gold {
+  background: #F0C417;
+  color: #1e2a5e;
+}
+
+.vc-hero__btn--gold:hover {
+  background: #c49b00;
+  color: #1e2a5e;
+  transform: translateY(-1px);
+}
+
+.vc-hero__btn--gold:active {
+  transform: translateY(0);
+}
+
+/* Secondary: white pill with PDP indigo text + enrol-button shadow */
+.vc-hero__btn--secondary {
+  background: #ffffff;
+  color: #24367a;
+  box-shadow: 0 14px 32px rgba(16, 33, 88, 0.25);
+}
+
+.vc-hero__btn--secondary:hover {
+  background: #f0f1f7;
+  color: #24367a;
+  transform: translateY(-1px);
+}
+
+/* Trust chips: white pills with indigo text (pdp-trust grammar) */
+.vc-hero__chips {
+  display: flex;
+  gap: 8px 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+/* Plain dot-and-text: a pill here reads as another button next to the CTAs */
+.vc-hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #EDEDF5;
+}
+
+.vc-hero__chip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #F0C417;
+  flex: none;
+}
+
+.vc-hero__ministry {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 40px;
+}
+
+.vc-hero__ministry a {
+  color: #f0c417;
+}
+
+.vc-hero__ministry a:hover {
+  color: #ffffff;
+}
+
+/* Poster overlaps into the walkthrough section below */
+.vc-hero__video {
+  position: relative;
+  z-index: 2;
+  max-width: 960px;
+  margin: 0 auto calc(-1 * clamp(64px, 9vw, 150px));
+}
+
+/* PDP video treatment: 22px radius + pdp-how-it-works shadow */
+.vc-hero__poster {
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 22px 46px rgba(17, 33, 89, 0.28);
+  cursor: pointer;
+  background: var(--color-dark, #1e2460);
+}
+
+.vc-hero__poster-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.vc-hero__poster picture {
+  display: block;
+}
+
+/* Editor-controlled darkening scrim (separate from the bottom text gradient).
+   Opacity comes from the "Poster overlay darkness" settings via CSS variables
+   set inline on the poster button. */
+.vc-hero__poster-scrim {
+  position: absolute;
+  inset: 0;
+  background: #1e2460;
+  opacity: var(--vc-scrim-desktop, 0);
+  pointer-events: none;
+}
+
+@media (max-width: 767px) {
+  .vc-hero__poster-scrim {
+    opacity: var(--vc-scrim-mobile, 0.4);
+  }
+}
+
+.vc-hero__poster-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30, 36, 96, 0.82) 0%, rgba(30, 36, 96, 0.12) 45%, rgba(30, 36, 96, 0) 70%);
+}
+
+.vc-hero__play-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: clamp(16px, 2.5vw, 26px);
+}
+
+.vc-hero__play-circle {
+  width: clamp(52px, 6vw, 66px);
+  height: clamp(52px, 6vw, 66px);
+  border-radius: 50%;
+  background: #F0C417;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: transform 180ms ease;
+}
+
+.vc-hero__poster:hover .vc-hero__play-circle {
+  transform: scale(1.05);
+}
+
+.vc-hero__play-triangle {
+  width: 0;
+  height: 0;
+  border-left: 20px solid #1e2460;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  margin-left: 5px;
+}
+
+.vc-hero__play-text {
+  text-align: left;
+}
+
+.vc-hero__play-label {
+  display: block;
+  font-size: clamp(16px, 1.8vw, 19px);
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.vc-hero__play-sub {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 3px;
+}
+
+/* Native Shopify video player swapped in on poster click */
+.vc-hero__embed {
+  position: relative;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 22px 46px rgba(17, 33, 89, 0.28);
+  background: var(--color-dark, #1e2460);
+  overflow: hidden;
+  line-height: 0;
+}
+
+.vc-hero__embed video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Explicit fullscreen button: mobile only (desktop uses the native control).
+   Sits top-right so it never collides with the native control bar at the bottom. */
+.vc-hero__fs {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 3;
+  display: none;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 13px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(30, 36, 96, 0.72);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.vc-hero__fs:active {
+  background: rgba(30, 36, 96, 0.92);
+}
+
+.vc-hero__fs svg {
+  display: block;
+}
+
+@media (max-width: 767px) {
+  .vc-hero__fs {
+    display: inline-flex;
+  }
+}
+
+/* Mobile: when a mobile video is provided, present the hero as a full-bleed 1:1
+   square so it reads large on a narrow screen instead of a thin horizontal strip.
+   object-fit: cover fills the square; a 16:9 source has its sides cropped, so export
+   the mobile file at 1:1 (or keep key content centered) for best results.
+   With no mobile file, the poster keeps 16:9 and the desktop video its own ratio. */
+@media (max-width: 767px) {
+  .vc-hero__video {
+    margin-left: -32px;
+    margin-right: -32px;
+    max-width: none;
+  }
+
+  .vc-hero__poster,
+  .vc-hero__embed {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .vc-hero__poster-img {
+    aspect-ratio: {% if section.settings.video_mobile != blank %}1 / 1{% else %}16 / 9{% endif %};
+    height: auto;
+    object-fit: cover;
+  }
+
+  {%- if section.settings.video_mobile != blank %}
+  .vc-hero__embed video {
+    aspect-ratio: 1 / 1;
+    height: auto;
+    object-fit: cover;
+  }
+  {%- endif %}
+}
+
+@media (max-width: 580px) {
+  .vc-hero {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  /* PDP mobile H1 (pdp-hero__title mobile) */
+  .vc-hero__heading {
+    font-size: clamp(2rem, 8vw, 2.7rem);
+    line-height: 1.02;
+    margin-bottom: 12px;
+  }
+  .vc-hero__video {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+}
+</style>
+
+<script>
+  (function () {
+    var wrap = document.getElementById('vc-hero-video-{{ section.id }}');
+    if (!wrap) return;
+    var trigger = wrap.querySelector('[data-vc-video-trigger]');
+    var tplDesktop = wrap.querySelector('[data-vc-video-embed="desktop"]');
+    var tplMobile = wrap.querySelector('[data-vc-video-embed="mobile"]');
+    if (!trigger || (!tplDesktop && !tplMobile)) return;
+
+    function goFullscreen(container, video) {
+      // Desktop + Android: standard/prefixed element fullscreen keeps our styling.
+      var req = container.requestFullscreen || container.webkitRequestFullscreen;
+      if (req) {
+        req.call(container);
+        return;
+      }
+      // iPhone: element fullscreen is unsupported; the video element has its own method.
+      if (video && video.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      }
+    }
+
+    trigger.addEventListener('click', function () {
+      // Choose the mobile file under 768px when one is provided; otherwise desktop.
+      var useMobile = tplMobile && window.matchMedia('(max-width: 767px)').matches;
+      var tpl = useMobile ? tplMobile : (tplDesktop || tplMobile);
+      var frag = tpl.content.cloneNode(true);
+      var video = frag.querySelector('video');
+      var embed = frag.querySelector('.vc-hero__embed');
+      var fsBtn = frag.querySelector('[data-vc-fs]');
+      trigger.replaceWith(frag);
+
+      if (video) {
+        // The click is a user gesture, so playback is allowed to start.
+        var p = video.play();
+        if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+      }
+
+      if (fsBtn && video && embed) {
+        fsBtn.addEventListener('click', function () {
+          goFullscreen(embed, video);
+        });
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VC Hero",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Inside the Virtual Classroom"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "See exactly what your course looks like."
+    },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Subhead",
+      "info": "Keep the phrase 'online high school' for SEO.",
+      "default": "Ontario Education Online is a Ministry-inspected online high school. Everything runs through Google Classroom, the same platform used in Ontario day schools. One login, every course, any device."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Primary button label",
+      "default": "Browse Courses"
+    },
+    {
+      "type": "url",
+      "id": "btn1_url",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Secondary button label",
+      "default": "Book a Guidance Session"
+    },
+    {
+      "type": "url",
+      "id": "btn2_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "header",
+      "content": "Ministry line"
+    },
+    {
+      "type": "text",
+      "id": "ministry_text",
+      "label": "Ministry text",
+      "default": "BSID #882902"
+    },
+    {
+      "type": "text",
+      "id": "ministry_link_label",
+      "label": "Ministry link label",
+      "default": "Verify on the Ministry site"
+    },
+    {
+      "type": "url",
+      "id": "ministry_url",
+      "label": "Ministry link URL"
+    },
+    {
+      "type": "header",
+      "content": "Walkthrough video"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "Walkthrough video (desktop)",
+      "info": "Select a video hosted on your store (upload it first under Content > Files). Clicking the poster swaps it for this player."
+    },
+    {
+      "type": "video",
+      "id": "video_mobile",
+      "label": "Walkthrough video (mobile)",
+      "info": "Optional. A lighter or reframed version used on screens under 768px. Falls back to the desktop video if empty."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster image (desktop)",
+      "info": "Step 1 dashboard screenshot at natural ratio. Falls back to the theme asset below if empty."
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image_mobile",
+      "label": "Poster image (mobile)",
+      "info": "Optional. Replaces the poster on screens under 768px, shown at 16:9. Leave empty to reuse the desktop image."
+    },
+    {
+      "type": "range",
+      "id": "overlay_desktop",
+      "label": "Poster overlay darkness (desktop)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "overlay_mobile",
+      "label": "Poster overlay darkness (mobile)",
+      "min": 0,
+      "max": 90,
+      "step": 5,
+      "unit": "%",
+      "default": 40
+    },
+    {
+      "type": "text",
+      "id": "poster_asset",
+      "label": "Poster fallback asset filename",
+      "default": "vc-step-1-dashboard.png"
+    },
+    {
+      "type": "text",
+      "id": "poster_alt",
+      "label": "Poster alt text",
+      "default": "Poster frame: the Google Classroom dashboard with six Grade 12 course cards"
+    },
+    {
+      "type": "text",
+      "id": "watch_label",
+      "label": "Play label",
+      "default": "Watch the walkthrough · 75 seconds"
+    },
+    {
+      "type": "text",
+      "id": "watch_sublabel",
+      "label": "Play sublabel",
+      "default": "The full student experience, dashboard to feedback"
+    },
+    {
+      "type": "text",
+      "id": "video_aria_label",
+      "label": "Play button accessible label",
+      "default": "Play the walkthrough video, 75 seconds"
+    },
+    {
+      "type": "header",
+      "content": "Video structured data (SEO)",
+      "info": "The video's duration and file URL are read automatically from the hosted video above."
+    },
+    {
+      "type": "text",
+      "id": "video_name",
+      "label": "Video name",
+      "default": "Inside the Virtual Classroom"
+    },
+    {
+      "type": "textarea",
+      "id": "video_description",
+      "label": "Video description",
+      "default": "A 75 second walkthrough of the real OEO student experience, from the Google Classroom dashboard to teacher feedback."
+    },
+    {
+      "type": "text",
+      "id": "video_upload_date",
+      "label": "Video upload date (YYYY-MM-DD)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Trust chip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Ministry Inspected"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "VC Hero",
+      "blocks": [
+        { "type": "chip", "settings": { "label": "Ministry Inspected" } },
+        { "type": "chip", "settings": { "label": "OCT-Certified Teacher" } },
+        { "type": "chip", "settings": { "label": "Official OSSD Credit" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,412 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_FNrzVi": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n#shopify-section-sections--21906930663708__4c6d5e03-906f-49b6-b5d1-0661ee3dad02 {\ndisplay: none !important;\n}\n#shopify-section-sections--21906930663708__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb {display: none !important}\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_NHU94r": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rGGqen": {
+          "type": "heading",
+          "settings": {
+            "text": "How Ontario Education Online Works",
+            "heading_tag": "h0",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_3MNxKf": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>At <strong>Ontario Education Online</strong>, students earn <strong>official Ontario Secondary School Diploma (OSSD) credits</strong> online through a structured Google Classroom platform, supported by <strong>Ontario Certified Teachers (OCT)</strong>. Courses follow the Ontario curriculum and allow flexible pacing with ongoing teacher feedback.<br/><br/><br/></p>"
+          }
+        },
+        "liquid_QwrVQP": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div class=\"how-list\">\n  <div class=\"how-item\"><span class=\"how-icon\">✓</span><span>Register online</span></div>\n  <div class=\"how-item\"><span class=\"how-icon\">✓</span><span>Get placed into your Google Classroom</span></div>\n  <div class=\"how-item\"><span class=\"how-icon\">✓</span><span>Learn at your own pace with teacher feedback</span></div>\n  <div class=\"how-item\"><span class=\"how-icon\">✓</span><span>Finish the course</span></div>\n  <div class=\"how-item\"><span class=\"how-icon\">✓</span><span>Report card + transcript sent to your home school</span></div>\n</div>\n\n<style>\n  .how-list{\n    max-width: 520px;\n    margin: 28px auto 0;\n    display: grid;\n    gap: 14px;\n    text-align: left;\n  }\n\n  .how-item{\n    display: flex;\n    align-items: flex-start;\n    gap: 12px;\n    padding: 12px 14px;\n    border-radius: 12px;\n    background: rgba(255,255,255,0.08);\n    border: 1px solid rgba(255,255,255,0.12);\n    color: #fff;\n    font-size: 18px;\n    line-height: 1.45;\n  }\n\n  .how-icon{\n    color: #A6CE39;\n    font-weight: 700;\n    margin-top: 2px;\n    flex: 0 0 auto;\n  }\n</style>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rGGqen",
+        "richtext_3MNxKf",
+        "liquid_QwrVQP"
+      ],
+      "custom_css": [
+        ".rich-text__blocks {gap: 4px !important;}",
+        ".how-list {margin-top: 0 !important;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "images_with_text_scrolling_DnHdTj": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "item_itFkKd": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Enrolment.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Register for an OEO course",
+            "content": "<p>Choose your course, complete checkout in seconds, and you’ll immediately be prompted to fill out a quick intake form so we can get you set up.</p>"
+          }
+        },
+        "item_KqcqgF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/GoogleClassroom.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Get Instant Google Classroom Access",
+            "content": "<p>Once you complete the intake form, we’ll automatically create your OEO email address. You’ll use it to log in to Google Classroom and access your course.</p>"
+          }
+        },
+        "item_q7RNJP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/feedback.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "OCT- Certified Teacher Support",
+            "content": "<p>Every student is supported by an Ontario Certified Teacher (OCT) who provides marking, feedback and help along the way.</p>"
+          }
+        },
+        "item_aHyLUQ": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/ReceiveLink.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Complete the Course at Your Own Pace",
+            "content": "<p>Work anytime, anywhere- with flexible pacing designed for busy students. Students can work at their own pace — finishing in as little as <strong>4 weeks</strong>, or taking up to <strong>12 months (1 year)</strong> to complete the course.</p>"
+          }
+        },
+        "item_48kJ64": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/graduation.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "We Send the Paperwork to Your Home School",
+            "content": "<p>Once the course is complete, <strong>we send the final report card and transcript directly to your home school</strong>.<br/>✅ <strong>Nothing extra required from you.</strong><br/></p><p></p>"
+          }
+        },
+        "item_hhAzYK": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Enrolment.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Enrollment Process",
+            "content": "<p>Getting started with Ontario Education Online is simple! Begin by exploring our range of courses and deciding which ones align with your academic goals. Once you've made your selection, add the courses to your cart and checkout.</p><p>You will receive a link to complete the intake form where you will upload your applicable transcripts to ensure you meet all the prerequisite requirements and create your Google Classroom account.</p>"
+          }
+        },
+        "item_NqXcbn": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/GoogleClassroom.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Google Classroom Integration",
+            "content": "<p>At the heart of Ontario Education Online's learning experience is Google Classroom. This powerful platform serves as our virtual classroom, offering a user-friendly interface for students, teachers, and parents alike. Through Google Classroom, you gain access to course materials, assignments, and collaborative spaces that enhance your learning journey.</p>"
+          }
+        },
+        "item_EGR3cg": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/ReceiveLink.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Course Access and Materials",
+            "content": "<p>Upon enrollment, students receive secure access to their dedicated Google Classroom for each course. Here, you'll find a centralized hub for all course materials, including lectures, readings, videos, and interactive content. Our courses are designed to be engaging and easily navigable, ensuring that learning remains an enjoyable experience.</p>"
+          }
+        },
+        "item_kD9H4X": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Interactive3.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Interactive Learning Experience",
+            "content": "<p>Engage with your teachers and classmates in real-time through Google Classroom. Participate in discussions, submit assignments, and receive timely feedback to enhance your understanding of the material. Our interactive learning environment fosters a sense of community, even in the virtual space.</p>"
+          }
+        },
+        "item_3KFe79": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Flexible.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Flexible Scheduling",
+            "content": "<p>We understand the importance of flexibility in education. With Ontario Education Online, you have the freedom to set your own pace. Access course materials and complete assignments at a time that suits your individual schedule, allowing you to balance your academic commitments with other aspects of your life.</p>"
+          }
+        },
+        "item_RdmipC": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/teachers.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Teacher Support",
+            "content": "<p>Our qualified Ontario teachers are dedicated to your success. Through Google Classroom, you can easily communicate with your teachers, seeking guidance and clarification whenever needed. Take advantage of virtual office hours and personalized support to ensure you have the assistance required to excel in your studies.</p>"
+          }
+        },
+        "item_GagHap": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/feedback.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Assessment and Feedback",
+            "content": "<p>Experience a transparent and fair assessment process at Ontario Education Online. Submit assignments through Google Classroom, where teachers provide constructive feedback to help you grow academically. Stay informed about your progress and take control of your learning journey.</p>"
+          }
+        },
+        "item_E4KqeP": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/progress.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Progress Tracking",
+            "content": "<p>Monitor your academic progress effortlessly with the built-in tracking features of Google Classroom. Keep tabs on completed assignments, grades, and overall course advancement to stay on top of your academic goals.</p>"
+          }
+        },
+        "item_AMAD4n": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/graduation.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Graduation and Beyond",
+            "content": "<p>Upon successful completion of your courses, Ontario Education Online ensures a smooth transition to the next phase of your educational journey. Receive your well-earned diploma and explore various post-secondary options, equipped with the knowledge and skills needed for success.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_itFkKd",
+        "item_KqcqgF",
+        "item_q7RNJP",
+        "item_aHyLUQ",
+        "item_48kJ64",
+        "item_hhAzYK",
+        "item_NqXcbn",
+        "item_EGR3cg",
+        "item_kD9H4X",
+        "item_3KFe79",
+        "item_RdmipC",
+        "item_GagHap",
+        "item_E4KqeP",
+        "item_AMAD4n"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "multi_column_V766cA": {
+      "type": "multi-column",
+      "blocks": {
+        "item_n36RNt": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/download-2.png",
+            "column_size": "3",
+            "title": "Download a sample course",
+            "heading_tag": "h4",
+            "content": "<p>Download a sample course to get an idea of the format of our courses</p>",
+            "link_url": "shopify://pages/download-sample-course",
+            "link_text": "Download now",
+            "link_style": "button"
+          }
+        },
+        "item_PJBckX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/guidance-session-2.png",
+            "column_size": "3",
+            "title": "Book a guidance session",
+            "heading_tag": "h4",
+            "content": "<p>Get started with a 30 minute guidance session with one of our teachers</p>",
+            "link_url": "shopify://pages/book-guidance-session",
+            "link_text": "Book session",
+            "link_style": "button"
+          }
+        },
+        "item_bJ79yB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/browse-courses-2.png",
+            "column_size": "3",
+            "title": "Enrol in courses",
+            "heading_tag": "h4",
+            "content": "<p>Browse our range of fully certified Ontario courses and begin learning today</p>",
+            "link_url": "shopify://collections",
+            "link_text": "Browse courses",
+            "link_style": "button"
+          }
+        }
+      },
+      "block_order": [
+        "item_n36RNt",
+        "item_PJBckX",
+        "item_bJ79yB"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "small",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Next steps:",
+        "content": "",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "video_zgHh4G": {
+      "type": "video",
+      "blocks": {
+        "play_xpTWUF": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_xpTWUF"
+      ],
+      "custom_css": [],
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "external_video_url": "https://www.youtube.com/watch?v=Pq_Ybp00tfc",
+        "poster": "shopify://shop_images/Screenshot_2024-02-06_at_7.04.17_AM.png",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "rich_text_7KmWfU": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FG3ziT": {
+          "type": "heading",
+          "settings": {
+            "text": "Ready to embark on your educational adventure with OEO?",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_L3F88P": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Enrol today and experience the future of online high school education! If you have any questions or need assistance, our support team is here to guide you every step of the way. Welcome to a new era of learning excellence!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FG3ziT",
+        "richtext_L3F88P"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f2f1f6",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "custom_liquid_NKiRKn": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n.multi-column img {\nmax-width: 40% !important;\ntext-align: center !important;\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "custom_liquid_bXQLw4": {
+      "type": "custom-liquid",
+      "name": "Custom Liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org\",\n  \"@graph\": [\n    {\n      \"@type\": \"WebSite\",\n      \"@id\": \"https://ontarioeducationonline.ca/#website\",\n      \"url\": \"https://ontarioeducationonline.ca/\",\n      \"name\": \"Ontario Education Online\",\n      \"publisher\": {\n        \"@id\": \"https://ontarioeducationonline.ca/#organization\"\n      }\n    },\n    {\n      \"@type\": \"Organization\",\n      \"@id\": \"https://ontarioeducationonline.ca/#organization\",\n      \"name\": \"Ontario Education Online\",\n      \"url\": \"https://ontarioeducationonline.ca/\",\n      \"logo\": {\n        \"@type\": \"ImageObject\",\n        \"url\": \"PASTE-YOUR-LOGO-URL-HERE\"\n      },\n      \"sameAs\": [\n        \"PASTE-YOUR-INSTAGRAM-URL\",\n        \"PASTE-YOUR-FACEBOOK-URL\",\n        \"PASTE-YOUR-LINKEDIN-URL\"\n      ]\n    },\n    {\n      \"@type\": [\"School\", \"EducationalOrganization\"],\n      \"@id\": \"https://ontarioeducationonline.ca/#school\",\n      \"name\": \"Ontario Education Online\",\n      \"alternateName\": \"OEO\",\n      \"url\": \"https://ontarioeducationonline.ca/\",\n      \"description\": \"Ontario Education Online (OEO) is an Ontario Ministry-inspected private online high school offering Ontario Secondary School Diploma (OSSD) credit courses for Grades 9–12 with support from Ontario Certified Teachers (OCT).\",\n      \"identifier\": [\n        {\n          \"@type\": \"PropertyValue\",\n          \"name\": \"BSID\",\n          \"value\": \"882902\"\n        }\n      ],\n      \"telephone\": \"PASTE-PHONE-HERE\",\n      \"email\": \"PASTE-EMAIL-HERE\",\n      \"address\": {\n        \"@type\": \"PostalAddress\",\n        \"addressLocality\": \"Ontario\",\n        \"addressRegion\": \"ON\",\n        \"addressCountry\": \"CA\"\n      },\n      \"areaServed\": [\n        {\n          \"@type\": \"AdministrativeArea\",\n          \"name\": \"Ontario\"\n        },\n        {\n          \"@type\": \"Country\",\n          \"name\": \"Canada\"\n        }\n      ],\n      \"educationalCredentialAwarded\": \"Ontario Secondary School Diploma (OSSD) credits\",\n      \"sameAs\": [\n        \"PASTE-YOUR-INSTAGRAM-URL\",\n        \"PASTE-YOUR-FACEBOOK-URL\",\n        \"PASTE-YOUR-LINKEDIN-URL\"\n      ]\n    },\n    {\n      \"@type\": \"WebPage\",\n      \"@id\": \"https://ontarioeducationonline.ca/pages/how-it-works#webpage\",\n      \"url\": \"https://ontarioeducationonline.ca/pages/how-it-works\",\n      \"name\": \"How It Works | Ontario Education Online\",\n      \"description\": \"Learn how students earn official Ontario high school credits online through Ontario Education Online using a structured platform (Google Classroom) with support from Ontario Certified Teachers, including course access, pacing, and transcript/reporting support.\",\n      \"isPartOf\": {\n        \"@id\": \"https://ontarioeducationonline.ca/#website\"\n      },\n      \"about\": {\n        \"@id\": \"https://ontarioeducationonline.ca/#school\"\n      },\n      \"publisher\": {\n        \"@id\": \"https://ontarioeducationonline.ca/#organization\"\n      },\n      \"inLanguage\": \"en-CA\"\n    },\n    {\n      \"@type\": \"BreadcrumbList\",\n      \"@id\": \"https://ontarioeducationonline.ca/pages/how-it-works#breadcrumb\",\n      \"itemListElement\": [\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 1,\n          \"name\": \"Home\",\n          \"item\": \"https://ontarioeducationonline.ca/\"\n        },\n        {\n          \"@type\": \"ListItem\",\n          \"position\": 2,\n          \"name\": \"How It Works\",\n          \"item\": \"https://ontarioeducationonline.ca/pages/how-it-works\"\n        }\n      ]\n    }\n  ]\n}\n</script>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_FNrzVi",
+    "rich_text_NHU94r",
+    "images_with_text_scrolling_DnHdTj",
+    "multi_column_V766cA",
+    "video_zgHh4G",
+    "rich_text_7KmWfU",
+    "main",
+    "custom_liquid_NKiRKn",
+    "custom_liquid_bXQLw4"
+  ]
+}

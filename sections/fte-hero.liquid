@@ -1,0 +1,321 @@
+{%- comment -%}
+  Full-Time Enrolment · Landing hero (Wireframe A · S1)
+  Styled to the enhanced PDP / VC design language: lavender band, PDP indigo
+  headings, grey eyebrow, gold + indigo pill buttons, trust chips.
+  Dual CTA at equal visual weight: "Choose Your Grade" anchors to the grade
+  router further down the page; "Book a Guidance Session" is co-primary.
+{%- endcomment -%}
+
+<section class="fte-hero" aria-labelledby="fte-hero-heading-{{ section.id }}">
+  <div class="fte-hero__inner">
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="fte-hero__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+
+    <h1 class="fte-hero__heading" id="fte-hero-heading-{{ section.id }}">
+      {{ section.settings.heading | escape }}
+    </h1>
+
+    {%- if section.settings.body != blank -%}
+      <p class="fte-hero__body">{{ section.settings.body | escape }}</p>
+    {%- endif -%}
+
+    {%- assign chip_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'chip' -%}{%- assign chip_count = chip_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if chip_count > 0 -%}
+      <div class="fte-hero__chips" role="list" aria-label="School credentials">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'chip' -%}
+            <span class="fte-hero__chip" role="listitem" {{ block.shopify_attributes }}>
+              <span class="fte-hero__chip-check" aria-hidden="true">
+                <svg viewBox="0 0 12 12" width="10" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.2l2.2 2.2L9.5 3.6"/></svg>
+              </span>
+              {{ block.settings.label | escape }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    <div class="fte-hero__ctas">
+      {%- if section.settings.btn1_label != blank -%}
+        <a href="{{ section.settings.btn1_url | default: '#choose-grade' }}" class="fte-hero__btn fte-hero__btn--gold">{{ section.settings.btn1_label | escape }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn2_label != blank -%}
+        <a href="{{ section.settings.btn2_url }}" class="fte-hero__btn fte-hero__btn--secondary"{% if section.settings.btn2_new_tab %} target="_blank" rel="noopener"{% endif %}>{{ section.settings.btn2_label | escape }}</a>
+      {%- endif -%}
+    </div>
+
+    {%- if section.settings.ministry_text != blank -%}
+      <p class="fte-hero__ministry">
+        {{ section.settings.ministry_text | escape }}
+        {%- if section.settings.ministry_link_label != blank and section.settings.ministry_url != blank %} · <a href="{{ section.settings.ministry_url }}" target="_blank" rel="noopener">{{ section.settings.ministry_link_label | escape }}</a>{% endif -%}
+      </p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+.fte-hero {
+  background: var(--light, #f0f1f5);
+  padding: clamp(56px, 8vw, 96px) 0 clamp(48px, 7vw, 80px);
+}
+
+.fte-hero__inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fte-hero__eyebrow {
+  margin: 0 0 16px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.fte-hero__heading {
+  margin: 0 0 18px;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  line-height: 1.06;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #24367a;
+  text-wrap: balance;
+}
+
+.fte-hero__body {
+  margin: 0 auto 26px;
+  max-width: 60ch;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #6f789f;
+  text-wrap: pretty;
+}
+
+/* Trust chips: white pills with indigo text + gold check */
+.fte-hero__chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.fte-hero__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(36, 54, 122, 0.1);
+  font-size: 13px;
+  font-weight: 600;
+  color: #24367a;
+}
+
+.fte-hero__chip-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: #F0C417;
+  color: #1e2a5e;
+  flex: none;
+}
+
+.fte-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+/* PDP button grammar */
+.fte-hero__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.97rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 15px 30px;
+  border-radius: 999px;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.fte-hero__btn--gold {
+  background: #F0C417;
+  color: #1e2a5e;
+}
+
+.fte-hero__btn--gold:hover {
+  background: #c49b00;
+  color: #1e2a5e;
+  transform: translateY(-1px);
+}
+
+.fte-hero__btn--secondary {
+  background: #24367a;
+  color: #ffffff;
+  box-shadow: 0 14px 32px rgba(16, 33, 88, 0.25);
+}
+
+.fte-hero__btn--secondary:hover {
+  background: #1c2b64;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.fte-hero__ministry {
+  margin: 0;
+  font-size: 13px;
+  color: #8a91b4;
+}
+
+.fte-hero__ministry a {
+  color: #24367a;
+  font-weight: 600;
+}
+
+.fte-hero__ministry a:hover {
+  color: #1c2b64;
+}
+
+@media (max-width: 580px) {
+  .fte-hero__inner {
+    padding: 0 20px;
+  }
+  .fte-hero__heading {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    line-height: 1.04;
+  }
+  .fte-hero__btn {
+    width: 100%;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FTE Hero",
+  "tag": "section",
+  "class": "fte-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Full-Time Enrolment"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your whole school year, one school."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Complete a full year of OSSD credits online with OCT-certified teachers and a guidance counsellor who owns your pathway, from first credit to final transcript."
+    },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "btn1_label",
+      "label": "Primary button label",
+      "default": "Choose Your Grade"
+    },
+    {
+      "type": "text",
+      "id": "btn1_url",
+      "label": "Primary button link",
+      "info": "Defaults to #choose-grade (the grade router lower on this page).",
+      "default": "#choose-grade"
+    },
+    {
+      "type": "text",
+      "id": "btn2_label",
+      "label": "Secondary button label",
+      "default": "Book a Guidance Session"
+    },
+    {
+      "type": "url",
+      "id": "btn2_url",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "checkbox",
+      "id": "btn2_new_tab",
+      "label": "Open secondary link in a new tab",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Ministry line"
+    },
+    {
+      "type": "text",
+      "id": "ministry_text",
+      "label": "Ministry text",
+      "default": "Ministry-inspected private school · BSID #882902"
+    },
+    {
+      "type": "text",
+      "id": "ministry_link_label",
+      "label": "Ministry link label",
+      "default": "Verify on the Ministry site"
+    },
+    {
+      "type": "url",
+      "id": "ministry_url",
+      "label": "Ministry link URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "chip",
+      "name": "Trust chip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Ministry Inspected"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "FTE Hero",
+      "blocks": [
+        { "type": "chip", "settings": { "label": "Ministry Inspected" } },
+        { "type": "chip", "settings": { "label": "OCT-Certified Teachers" } },
+        { "type": "chip", "settings": { "label": "Official OSSD Credits" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

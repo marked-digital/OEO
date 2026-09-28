@@ -1,0 +1,354 @@
+<section class="pdp-testimonials">
+  <div class="pdp-t-inner">
+
+    <p class="pdp-t-eyebrow">{{ section.settings.eyebrow | default: 'Student Stories' }}</p>
+    <h2 class="pdp-t-heading">{{ section.settings.heading | default: 'What our students say' }}</h2>
+
+    {%- assign testimonials = shop.metaobjects.testimonial.values -%}
+
+    <div class="pdp-tslider-wrap">
+      <button class="pdp-tprev" aria-label="Previous testimonial">‹</button>
+
+      <div class="pdp-tslider" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
+        {%- for t in testimonials -%}
+          <div class="pdp-tslide{% if forloop.first %} active{% endif %}">
+            <div class="pdp-tcard">
+
+              <div class="pdp-tcard-top">
+                <div class="pdp-tquote-mark">"</div>
+                <div class="pdp-tstars">
+                  {%- for i in (1..t['rating']) -%}★{%- endfor -%}
+                </div>
+              </div>
+
+              <blockquote class="pdp-tquote">{{ t['quote'] | escape }}</blockquote>
+
+              {%- if t['reviewer_detail'] != blank -%}
+                <div class="pdp-toutcome">{{ t['reviewer_detail'] | escape }}</div>
+              {%- endif -%}
+
+              <div class="pdp-tauthor">
+                {%- if t['photo'] != blank -%}
+                  <img
+                    src="{{ t['photo'] | image_url: width: 200 }}"
+                    alt="{{ t['reviewer_name'] | escape }}"
+                    width="48" height="48"
+                    class="pdp-tavatar"
+                    loading="lazy" decoding="async"
+                  >
+                {%- else -%}
+                  <div class="pdp-tavatar-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="22" height="22" aria-hidden="true">
+                      <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                    </svg>
+                  </div>
+                {%- endif -%}
+                <div class="pdp-tauthor-info">
+                  <span class="pdp-tname">{{ t['reviewer_name'] | escape }}</span>
+                  {%- if t['badge_label'] != blank -%}
+                    <span class="pdp-tbadge">✔ {{ t['badge_label'] | escape }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+
+      <button class="pdp-tnext" aria-label="Next testimonial">›</button>
+    </div>
+
+    <div class="pdp-tdots"></div>
+
+  </div>
+</section>
+
+<style>
+.pdp-testimonials {
+  padding: 64px 0;
+  background: #f2f1f6;
+}
+
+.pdp-t-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.pdp-t-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9199bb;
+  margin: 0 0 10px;
+}
+
+.pdp-t-heading {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #1a2560;
+  line-height: 1.1;
+  margin: 0 0 40px;
+  letter-spacing: -0.02em;
+}
+
+.pdp-tslider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pdp-tslider { flex: 1; min-width: 0; }
+.pdp-tslide { display: none; }
+.pdp-tslide.active { display: block; }
+
+.pdp-tcard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 44px;
+  border: 1px solid rgba(30, 42, 94, 0.1);
+  box-shadow: 0 2px 16px rgba(30, 42, 94, 0.06);
+}
+
+.pdp-tcard-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.pdp-tquote-mark {
+  font-size: 48px;
+  line-height: 1;
+  color: rgba(30, 42, 94, 0.15);
+  font-weight: 700;
+  margin-top: -6px;
+}
+
+.pdp-tstars {
+  color: #f0c417;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+.pdp-tquote {
+  font-size: 17px;
+  line-height: 1.65;
+  color: #2d3561;
+  font-style: italic;
+  margin: 0 0 24px;
+}
+
+.pdp-toutcome {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 13px;
+  background: rgba(30, 42, 94, 0.06);
+  color: #2f3a78;
+  margin-bottom: 28px;
+}
+
+.pdp-tauthor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pdp-tavatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.pdp-tavatar-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(30, 42, 94, 0.07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8a91b4;
+  flex-shrink: 0;
+}
+
+.pdp-tauthor-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pdp-tname {
+  font-weight: 700;
+  font-size: 15px;
+  color: #1e2a5e;
+}
+
+.pdp-tbadge {
+  font-size: 13px;
+  color: #8a91b4;
+}
+
+.pdp-tprev,
+.pdp-tnext {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 42, 94, 0.15);
+  background: #ffffff;
+  font-size: 24px;
+  cursor: pointer;
+  color: #1e2a5e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s ease;
+  line-height: 1;
+  padding-bottom: 2px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.pdp-tprev:hover,
+.pdp-tnext:hover {
+  background: #1e2a5e;
+  color: #ffffff;
+  border-color: #1e2a5e;
+}
+
+.pdp-tdots {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pdp-tdot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(30, 42, 94, 0.2);
+  cursor: pointer;
+  transition: all .3s ease;
+  border: none;
+  padding: 0;
+}
+
+.pdp-tdot.active {
+  background: #1e2a5e;
+  transform: scale(1.3);
+}
+
+@media (max-width: 640px) {
+  .pdp-tcard { padding: 28px 24px; }
+  .pdp-tquote { font-size: 15px; }
+  .pdp-tprev, .pdp-tnext { display: none; }
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".pdp-tslider").forEach(function(slider) {
+    const wrap = slider.closest(".pdp-tslider-wrap");
+    const section = slider.closest(".pdp-testimonials");
+    const slides = slider.querySelectorAll(".pdp-tslide");
+    const dotsContainer = section.querySelector(".pdp-tdots");
+    const nextBtn = wrap.querySelector(".pdp-tnext");
+    const prevBtn = wrap.querySelector(".pdp-tprev");
+
+    let current = 0;
+    let autoplay = slider.dataset.autoplay === "true";
+    let speed = parseInt(slider.dataset.speed) || 5000;
+    let interval;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement("button");
+      dot.classList.add("pdp-tdot");
+      dot.setAttribute("aria-label", "Go to testimonial " + (i + 1));
+      if (i === 0) dot.classList.add("active");
+      dot.addEventListener("click", () => { current = i; showSlide(current); resetAutoplay(); });
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll(".pdp-tdot");
+
+    function updateDots() {
+      dots.forEach(d => d.classList.remove("active"));
+      dots[current].classList.add("active");
+    }
+
+    function showSlide(index) {
+      slides.forEach(s => { s.classList.remove("active"); s.style.display = "none"; });
+      slides[index].classList.add("active");
+      slides[index].style.display = "block";
+      updateDots();
+    }
+
+    function nextSlide() { current = (current + 1) % slides.length; showSlide(current); }
+    function prevSlide() { current = (current - 1 + slides.length) % slides.length; showSlide(current); }
+
+    nextBtn.addEventListener("click", () => { nextSlide(); resetAutoplay(); });
+    prevBtn.addEventListener("click", () => { prevSlide(); resetAutoplay(); });
+
+    function startAutoplay() { if (autoplay) interval = setInterval(nextSlide, speed); }
+    function stopAutoplay() { clearInterval(interval); }
+    function resetAutoplay() { stopAutoplay(); startAutoplay(); }
+
+    slider.addEventListener("mouseenter", stopAutoplay);
+    slider.addEventListener("mouseleave", startAutoplay);
+    startAutoplay();
+
+    let startX = 0;
+    slider.addEventListener("touchstart", e => { startX = e.touches[0].clientX; });
+    slider.addEventListener("touchend", e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) { nextSlide(); resetAutoplay(); }
+      if (endX - startX > 50) { prevSlide(); resetAutoplay(); }
+    });
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "PDP Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Label",
+      "default": "Student Stories"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What our students say"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable Auto Rotate",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "autoplay_speed",
+      "label": "Auto Rotate Speed (ms)",
+      "default": 5000
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Testimonials"
+    }
+  ]
+}
+{% endschema %}

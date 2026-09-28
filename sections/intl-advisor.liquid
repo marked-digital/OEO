@@ -1,0 +1,27 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-sec--tight lp-adv">
+  <div class="lp-inner">
+    <div class="lp-adv__panel">
+      <div>
+        <h2>{{ section.settings.heading }}</h2>
+        {% if section.settings.body != blank %}<p>{{ section.settings.body }}</p>{% endif %}
+      </div>
+      <a class="lp-btn lp-btn--whatsapp lp-adv__btn" href="{{ section.settings.wa_url | default: 'https://wa.me/16472152326' }}">
+        {{ section.settings.btn_label }} {% render 'intl-icon', icon: 'arrow', size: 18 %}
+      </a>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Advisor / WhatsApp",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Have questions? Talk to a real person." },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Message us on WhatsApp and a real advisor will help you choose the right courses for your goals." },
+    { "type": "text", "id": "btn_label", "label": "Button label", "default": "Chat on WhatsApp" },
+    { "type": "url", "id": "wa_url", "label": "WhatsApp link", "info": "Defaults to wa.me/16472152326 if empty." }
+  ],
+  "presets": [{ "name": "Intl • Advisor / WhatsApp" }]
+}
+{% endschema %}

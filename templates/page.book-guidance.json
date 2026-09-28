@@ -1,0 +1,142 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_96EBPb": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n#shopify-section-sections--21906930663708__4c6d5e03-906f-49b6-b5d1-0661ee3dad02 {\ndisplay: none !important;\n}\n#shopify-section-sections--21906930663708__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb {display: none !important}\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "guidance_expectation_card_4eX4gm": {
+      "type": "guidance-expectation-card",
+      "blocks": {
+        "item_CmNwGD": {
+          "type": "item",
+          "settings": {
+            "text": "Free consultation with no obligation"
+          }
+        },
+        "item_NHrCVF": {
+          "type": "item",
+          "settings": {
+            "text": "15–20 minute personalized guidance session"
+          }
+        },
+        "item_YbTzwL": {
+          "type": "item",
+          "settings": {
+            "text": "Parents or guardians are welcome"
+          }
+        },
+        "item_bGEKdH": {
+          "type": "item",
+          "settings": {
+            "text": "Speak directly with an Ontario-certified guidance counselor"
+          }
+        },
+        "item_Lzt9wC": {
+          "type": "item",
+          "settings": {
+            "text": "Phone or video — whichever you prefer"
+          }
+        }
+      },
+      "block_order": [
+        "item_CmNwGD",
+        "item_NHrCVF",
+        "item_YbTzwL",
+        "item_bGEKdH",
+        "item_Lzt9wC"
+      ],
+      "name": "Guidance expectation card",
+      "settings": {
+        "title": "What Happens During Your Guidance Session",
+        "note": "Booking takes less than a minute. Our counselors are here to help you make the right decision.",
+        "badge_image": "shopify://shop_images/BBSID2_white_sharp.png"
+      }
+    },
+    "custom_liquid_dVkV7Q": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<div class=\"guidance-form-wrapper\">\n  <iframe\n    id=\"oeo-airtable-form\"\n    class=\"airtable-embed\"\n    src=\"https://airtable.com/embed/appsHpNvygtRCE8KI/pagmSx1Z2N4VmBINB/form?hide_GCLID=true&hide_TTCLID=true&hide_FBCLID=true&hide_Source=true&hide_Medium=true&hide_Campaign=true&hide_Keyword=true\"\n    frameborder=\"0\"\n    width=\"100%\"\n    height=\"1100\"\n  ></iframe>\n</div>\n\n<script>\n(function () {\n  var BASE = \"https://airtable.com/embed/appsHpNvygtRCE8KI/pagmSx1Z2N4VmBINB/form\";\n  var MAP = {\n    \"GCLID\":    \"oeo_gclid\",\n    \"TTCLID\":   \"oeo_ttclid\",\n    \"FBCLID\":   \"oeo_fbclid\",\n    \"Source\":   \"oeo_utm_source\",\n    \"Medium\":   \"oeo_utm_medium\",\n    \"Campaign\": \"oeo_utm_campaign\",\n    \"Keyword\":  \"oeo_utm_term\"\n  };\n  var LIVE = { \"GCLID\": \"gclid\", \"TTCLID\": \"ttclid\", \"FBCLID\": \"fbclid\" };\n  function readCookie(n) {\n    var m = document.cookie.match(\"(^|;)\\\\s*\" + n + \"\\\\s*=\\\\s*([^;]+)\");\n    return m ? decodeURIComponent(m.pop()) : \"\";\n  }\n  var live = new URLSearchParams(window.location.search);\n  var qs = [];\n  Object.keys(MAP).forEach(function (field) {\n    var v = readCookie(MAP[field]);\n    if (!v && LIVE[field]) v = live.get(LIVE[field]) || \"\";\n    if (v) qs.push(\"prefill_\" + encodeURIComponent(field) + \"=\" + encodeURIComponent(v));\n    qs.push(\"hide_\" + encodeURIComponent(field) + \"=true\");\n  });\n  var f = document.getElementById(\"oeo-airtable-form\");\n  if (f) f.src = BASE + \"?\" + qs.join(\"&\");\n})();\n</script>",
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "contact_8wXYL8": {
+      "type": "contact",
+      "blocks": {
+        "text_tzMgyd": {
+          "type": "text",
+          "settings": {
+            "title": "Preferred Date",
+            "use_long_text": false,
+            "required": false
+          }
+        },
+        "text_c8gLye": {
+          "type": "text",
+          "settings": {
+            "title": "Preferred Time",
+            "use_long_text": false,
+            "required": false
+          }
+        }
+      },
+      "block_order": [
+        "text_tzMgyd",
+        "text_c8gLye"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "subheading": "Not sure where to start?",
+        "title": "Book Guidance Session",
+        "content": "<p>Not sure where to start? Begin the journey by booking your FREE online guidance session with one of our seasoned educational advisors. During your session, engage in a meaningful conversation about course options, extracurricular activities, and personalized pathways to success. Your journey to academic excellence begins with the click of a button. Book your online guidance session today and discover a world of possibilities with Ontario Education Online!</p>",
+        "text_position": "center",
+        "contact_form_size": "small",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "contact_background": "",
+        "contact_text_color": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_96EBPb",
+    "guidance_expectation_card_4eX4gm",
+    "custom_liquid_dVkV7Q",
+    "main",
+    "contact_8wXYL8"
+  ]
+}

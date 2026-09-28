@@ -1,0 +1,31 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-hero">
+  <div class="lp-inner">
+    {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+    <h1 class="lp-hero__head">{{ section.settings.headline_lead }} <span class="lp-hero__accent">{{ section.settings.headline_accent }}</span></h1>
+    {% if section.settings.subhead != blank %}<p class="lp-hero__sub">{{ section.settings.subhead }}</p>{% endif %}
+    <div class="lp-hero__ctas">
+      <a class="button button--lg" href="{{ section.settings.btn1_url | default: '#' }}" style="--button-background: 240 196 23 / var(--button-background-opacity, 1); --button-outline-color: 240 196 23; --button-text-color: 42 56 132;">{{ section.settings.btn1_label }}</a>
+      <a class="button button--lg button--outline lp-hero__ghost" href="{{ section.settings.btn2_url | default: '#' }}" style="--button-outline-color: 255 255 255; --button-text-color: 255 255 255;">{{ section.settings.btn2_label }}</a>
+    </div>
+    {% if section.settings.trust != blank %}<div class="lp-hero__trust"><span class="lp-ico-check">{% render 'intl-icon', icon: 'check', size: 16 %}</span>{{ section.settings.trust }}</div>{% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "For international students" },
+    { "type": "text", "id": "headline_lead", "label": "Headline (lead)", "default": "Earn a Canadian high school credential" },
+    { "type": "text", "id": "headline_accent", "label": "Headline (gold-underlined phrase)", "default": "from anywhere in the world." },
+    { "type": "textarea", "id": "subhead", "label": "Subhead", "default": "Study Ontario's OSSD online with real Ontario Certified Teachers. Build a recognized pathway to universities in Canada and beyond. No relocation, no visa, and exams you write from home." },
+    { "type": "text", "id": "btn1_label", "label": "Primary button label", "default": "Browse Courses" },
+    { "type": "url", "id": "btn1_url", "label": "Primary button link" },
+    { "type": "text", "id": "btn2_label", "label": "Secondary button label", "default": "Book a free advising call" },
+    { "type": "url", "id": "btn2_url", "label": "Secondary button link" },
+    { "type": "text", "id": "trust", "label": "Trust line", "default": "Ministry-Inspected Ontario private school. BSID #882902." }
+  ],
+  "presets": [{ "name": "Intl • Hero" }]
+}
+{% endschema %}

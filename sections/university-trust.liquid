@@ -1,0 +1,87 @@
+<section class="university-trust">
+  <div class="page-width">
+    
+    <div class="trust-header">
+      <h2>Our Graduates Go On to Canada’s Top Universities</h2>
+      <p>
+        Ontario Education Online (OEO) is a fully accredited Ontario Online school.
+        Our OSSD credits are recognized by universities across Canada and internationally.
+      </p>
+    </div>
+
+    <div class="trust-badges">
+      <div>✔ Ministry-Inspected BSID: 882902</div>
+      <div>✔ OSSD Credits Issued</div>
+      <div>✔ OCT-Certified Teachers</div>
+      <div>✔ Recognized by Leading Universities</div>
+    </div>
+
+    <div class="university-logos">
+      {% for block in section.blocks %}
+        <div class="logo-item">
+          {% if block.settings.logo != blank %}
+  {{
+    block.settings.logo
+    | image_url: width: 400
+    | image_tag:
+      alt: block.settings.alt_text,
+      loading: 'lazy',
+      widths: '200, 300, 400',
+      sizes: '(min-width: 750px) 200px, 100vw'
+  }}
+{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+          {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link }}" class="button button--xl">
+          {{ section.settings.button_label }}
+        </a>
+      {% endif %}
+
+    <p class="trust-disclaimer">
+      Logos displayed for recognition purposes. Admission decisions are made independently by each institution.
+    </p>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "University Trust Section",
+  "settings": [    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "University Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "University Logo"
+        },
+        {
+          "type": "text",
+          "id": "alt_text",
+          "label": "Alt Text"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "University Trust Section"
+    }
+  ]
+}
+{% endschema %}

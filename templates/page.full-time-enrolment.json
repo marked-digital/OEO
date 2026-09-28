@@ -1,0 +1,440 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "fte-hero",
+      "blocks": {
+        "chip_1": {
+          "type": "chip",
+          "settings": {
+            "label": "Ministry Inspected"
+          }
+        },
+        "chip_2": {
+          "type": "chip",
+          "settings": {
+            "label": "OCT-Certified Teachers"
+          }
+        },
+        "chip_3": {
+          "type": "chip",
+          "settings": {
+            "label": "Official OSSD Credits"
+          }
+        },
+        "chip_wERGbK": {
+          "type": "chip",
+          "settings": {
+            "label": "Thousands of Credits Issued"
+          }
+        }
+      },
+      "block_order": [
+        "chip_1",
+        "chip_2",
+        "chip_3",
+        "chip_wERGbK"
+      ],
+      "settings": {
+        "eyebrow": "Full-Time Enrolment",
+        "heading": "Full-time high school, fully online.",
+        "body": "Earn an Ontario Secondary School Diploma (OSSD) completely online—with OCT-certified teachers, your own guidance counsellor, and a clear pathway from enrolment to graduation.",
+        "btn1_label": "Choose Your Grade",
+        "btn1_url": "#choose-grade",
+        "btn2_label": "Book a Guidance Session",
+        "btn2_url": "shopify://pages/book-guidance-session",
+        "btn2_new_tab": false,
+        "ministry_text": "Ministry-inspected private school · BSID #882902",
+        "ministry_link_label": "Verify on the Ministry site",
+        "ministry_url": "https://www.myontarioschool.ca/find-us-on-ministrys-website/"
+      }
+    },
+    "who": {
+      "type": "fte-who-its-for",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "icon": "cap",
+            "title": "Every grade, plus adult learners",
+            "body": "Grades 9 to 12, and adults finishing their OSSD."
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "icon": "check",
+            "title": "We'll determine your placement",
+            "body": "Placement is confirmed at your free guidance session."
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "icon": "globe",
+            "title": "Canadian and international students",
+            "body": "Study fully online from anywhere in the world."
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "icon": "calendar",
+            "title": "Start any day of the year",
+            "body": "No September intake, no cohort to wait for."
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4"
+      ],
+      "settings": {
+        "eyebrow": "Who it's for",
+        "heading": "Who is full-time OEO for?"
+      }
+    },
+    "how": {
+      "type": "fte-how-it-works",
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Enrol",
+            "body": "Choose your grade and enrol online, any day of the year."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Complete the enrolment form",
+            "body": "A few minutes, right after checkout."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Free guidance session",
+            "body": "Prerequisites confirmed, transfer credits evaluated, pathway plan built."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "title": "Your first 2-4 courses unlock",
+            "body": "2 to 4 courses open in Google Classroom and your 12-month term begins."
+          }
+        },
+        "step_5": {
+          "type": "step",
+          "settings": {
+            "title": "Finish one, the next opens",
+            "body": "Automatically, in the order your counsellor set."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4",
+        "step_5"
+      ],
+      "settings": {
+        "eyebrow": "How full-time works",
+        "heading": "Enrol once. Your counsellor runs the year.",
+        "pacing_stat": "2 to 4",
+        "pacing_stat_label": "courses open at a time",
+        "pacing_heading": "The pacing is deliberate.",
+        "pacing_body": "Working across eight courses at once spreads students thin and stalls progress. Your counsellor opens 2 to 4 courses at a time and sets the order. Each finished course automatically opens the next, so momentum carries the whole year."
+      }
+    },
+    "included": {
+      "type": "fte-included",
+      "blocks": {
+        "item_1": {
+          "type": "item",
+          "settings": {
+            "name": "PLAR competency & placement assessment",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_2": {
+          "type": "item",
+          "settings": {
+            "name": "Prerequisite assessment",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_3": {
+          "type": "item",
+          "settings": {
+            "name": "OEN & OSR administration",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": ""
+          }
+        },
+        "item_4": {
+          "type": "item",
+          "settings": {
+            "name": "International student registration",
+            "value_text": "$150 value",
+            "only_badge": false,
+            "note": "International students only"
+          }
+        },
+        "item_5": {
+          "type": "item",
+          "settings": {
+            "name": "Personal guidance session & OSSD pathway plan",
+            "value_text": "$99 Value",
+            "only_badge": false,
+            "note": ""
+          }
+        }
+      },
+      "block_order": [
+        "item_1",
+        "item_2",
+        "item_3",
+        "item_4",
+        "item_5"
+      ],
+      "settings": {
+        "display_style": "full",
+        "eyebrow": "Everything included",
+        "heading": "Services other students pay for. You don't.",
+        "body": "These services are normally purchased separately. As a full-time student, they’re all included at no additional cost.",
+        "exclusive_text": "<p><strong>Credit transfer support and enrolment services are included with full-time enrolment.</strong></p>",
+        "total_label": "Total value",
+        "total_value": "$699+ Value ⭐",
+        "total_note": "",
+        "compact_heading": "Every full-time service, included at no charge",
+        "compact_intro": "Billed separately for à-la-carte students. Included with every full-time enrolment.",
+        "details_label": "Full details",
+        "details_url": ""
+      }
+    },
+    "router": {
+      "type": "fte-grade-router",
+      "blocks": {
+        "grade_9": {
+          "type": "grade",
+          "settings": {
+            "product": "grade-9-full-time-ossd-tuition-12-month-enrolment",
+            "grade_label": "Grade 9",
+            "big_number": "9",
+            "hook_line": "Start your OSSD with confidence",
+            "credits_label": "6 to 8 credits",
+            "extra_pill": "Flexible credit packs",
+            "note": "Build the foundation for high school success.",
+            "price_note": "12-month term",
+            "price_display": "Grade 9 $2,800",
+            "cta_label": "View Grade 9",
+            "featured": false,
+            "featured_label": ""
+          }
+        },
+        "grade_10": {
+          "type": "grade",
+          "settings": {
+            "product": "grade-10-full-time-ossd-tuition-12-month-enrolment",
+            "grade_label": "Grade 10",
+            "big_number": "10",
+            "hook_line": "Stay on track toward graduation",
+            "credits_label": "6 to 8 credits",
+            "extra_pill": "Flexible credit packs",
+            "note": "Strengthen your core credits and keep every pathway open.",
+            "price_note": "12-month term",
+            "price_display": "Grade 10 $2,800",
+            "cta_label": "View Grade 10",
+            "featured": false,
+            "featured_label": ""
+          }
+        },
+        "grade_11": {
+          "type": "grade",
+          "settings": {
+            "product": "grade-11-full-time-ossd-tuition-12-month-enrolment",
+            "grade_label": "Grade 11",
+            "big_number": "11",
+            "hook_line": "Explore your post-secondary options",
+            "credits_label": "6 to 8 credits",
+            "extra_pill": "Flexible credit packs",
+            "note": "Keep every pathway open with the right Grade 11 courses.",
+            "price_note": "12-month term",
+            "price_display": "Grade 11 $3,600",
+            "cta_label": "View Grade 11",
+            "featured": false,
+            "featured_label": ""
+          }
+        },
+        "grade_12": {
+          "type": "grade",
+          "settings": {
+            "product": "grade-12-full-time-ossd-tuition-12-month-enrolment",
+            "grade_label": "Grade 12",
+            "big_number": "12",
+            "hook_line": "Graduate with confidence",
+            "credits_label": "6 to 8 credits",
+            "extra_pill": "Flexible credit packs",
+            "note": "Choose a 6, 7, or 8 credit pack. Marks reported to OUAC and OCAS.",
+            "price_note": "12-month term",
+            "price_display": "Grade 12 $3,600",
+            "cta_label": "View Grade 12",
+            "featured": true,
+            "featured_label": ""
+          }
+        }
+      },
+      "block_order": [
+        "grade_9",
+        "grade_10",
+        "grade_11",
+        "grade_12"
+      ],
+      "settings": {
+        "eyebrow": "Choose your grade",
+        "heading": "Four grades. One program.",
+        "intro": "Every enrolment includes your counsellor, your pathway plan, and every service above.",
+        "collection": "full-time-enrolment",
+        "from_label": "From",
+        "cta_style": "gold_featured",
+        "footnote": ""
+      }
+    },
+    "placement": {
+      "type": "fte-placement-helper",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure where you fit? That's normal.",
+        "body": "Transfer students and adult learners often land between grades. Your credit transfer evaluation determines where you start. Book a free guidance session and we map your remaining credits before you pay anything.",
+        "button_label": "Book a Free Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_new_tab": false,
+        "proof_text": "Parents and guardians are welcome."
+      }
+    },
+    "vc_teaser": {
+      "type": "vc-pdp-teaser",
+      "settings": {
+        "eyebrow": "Inside the Virtual Classroom",
+        "heading": "See exactly what you're getting.",
+        "body": "A guided walkthrough of a real OEO course: the dashboard, lessons, interactive video, and teacher feedback. No stock photos, no mockups.",
+        "button_label": "Take the Tour",
+        "button_url": "shopify://pages/virtual-classroom",
+        "meta_line": "",
+        "image_asset": "vc-step-1-dashboard.png",
+        "badge_label": "Watch the walkthrough",
+        "card_style": "light",
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
+    },
+    "faqs": {
+      "type": "pdp-faqs",
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does placement and credit transfer work?",
+            "answer": "<p>Book a free guidance session before or after you enrol. Your counsellor reviews your transcript, evaluates transfer credits, and confirms your placement. Credit transfer and PLAR are available to full-time students only.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can international students enrol full-time?",
+            "answer": "<p>Yes. International students study fully online from anywhere in the world, and international student registration is handled for you at no charge.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens right after payment?",
+            "answer": "<p>You complete the enrolment form, then attend your free guidance session. Your counsellor confirms prerequisites, evaluates transfer credits, and builds your pathway plan. Your first 2 to 4 courses then open in Google Classroom.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When does the 12-month term start?",
+            "answer": "<p>Your 12-month term begins the day your courses open, not at checkout. Courses open after your enrolment form and guidance consult.</p>"
+          }
+        },
+        "faq_item_fwEnaG": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I change my mind about the courses I selected?",
+            "answer": "<p>If you have not started a course, you can switch it. Message your guidance counsellor and they will replace it with another course at your grade level. If you have already begun coursework, speak with your counsellor first, since Ontario reporting rules apply to courses in progress.<br/><br/></p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I don't use all my credits?",
+            "answer": "<p>Unused credits remain available until the end of your 12-month term. Your counsellor sets a course order that uses your full enrolment.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_item_fwEnaG",
+        "faq_5"
+      ],
+      "settings": {
+        "section_label": "Common questions",
+        "section_heading": "Program questions, answered",
+        "fallback_course_code": "full-time enrolment"
+      }
+    },
+    "guidance": {
+      "type": "pdp-guidance-cta",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure if full-time is right for your situation?",
+        "body_text": "Book a free 15-minute guidance session with one of our advisors. We review your transcript, answer your questions, and build your plan. No obligation, no pressure.",
+        "button_label": "Book a Free Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_aria_label": "Book a free 15-minute guidance session with an OEO advisor",
+        "proof_text": "Parents and guardians are welcome."
+      }
+    },
+    "scroll_reveal": {
+      "type": "fte-scroll-reveal",
+      "settings": {
+        "duration": 650
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "who",
+    "how",
+    "included",
+    "router",
+    "placement",
+    "vc_teaser",
+    "faqs",
+    "guidance",
+    "scroll_reveal"
+  ]
+}

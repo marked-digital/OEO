@@ -1,0 +1,428 @@
+<section class="pdp-how-it-works" id="how-it-works" aria-labelledby="pdp-how-it-works-heading">
+  <div class="pdp-how-it-works__inner">
+
+    {%- comment %}
+      Grab teacher metaobject (Type: teachers) referenced on the product
+      product.metafields.custom.teacher must be a metaobject reference (teachers)
+    {%- endcomment -%}
+    {%- assign teacher = nil -%}
+    {%- if product and product.metafields.custom.teacher and product.metafields.custom.teacher.value -%}
+      {%- assign teacher = product.metafields.custom.teacher.value -%}
+    {%- endif -%}
+
+    <p class="pdp-how-it-works__eyebrow">
+      {{ section.settings.eyebrow | default: 'How it works' }}
+    </p>
+    <h2 class="pdp-how-it-works__heading" id="pdp-how-it-works-heading">
+      {{ section.settings.heading | default: 'From payment to your first mark — in 2 minutes' }}
+    </h2>
+
+    {%- comment %}
+      VIDEO AREA
+      - If `video_embed` is set, output raw embed HTML
+      - Otherwise show styled placeholder
+    {%- endcomment -%}
+    <div class="pdp-how-it-works__video">
+      {%- if section.settings.video_embed != blank -%}
+        <div class="pdp-how-it-works__video-embed">
+          {{ section.settings.video_embed }}
+        </div>
+      {%- else -%}
+        <div class="pdp-how-it-works__video-ph" role="img" aria-label="Video placeholder: embed your explainer video here">
+          <span class="pdp-how-it-works__video-ph-badge">Replace with YouTube embed</span>
+          <div class="pdp-how-it-works__video-ph-play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M10 8l6 4-6 4V8z"></path>
+            </svg>
+          </div>
+          <div class="pdp-how-it-works__video-ph-caption">
+            {{ section.settings.video_caption | default: 'See exactly what OEO looks like — from the day you pay to the day your credit is issued' }}
+          </div>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      {%- assign step_count = 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'step' -%}
+          {%- assign step_count = step_count | plus: 1 -%}
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div
+        class="pdp-how-it-works__steps"
+        role="list"
+        aria-label="Steps from purchase to credit"
+        data-step-count="{{ step_count }}"
+      >
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'step' -%}
+            <div class="pdp-how-it-works__step" role="listitem" {{ block.shopify_attributes }}>
+              <div class="pdp-how-it-works__step-num" aria-hidden="true">
+                {{ forloop.index }}
+              </div>
+              <div class="pdp-how-it-works__step-text">
+                {%- if block.settings.title != blank -%}
+                  <div class="pdp-how-it-works__step-title">{{ block.settings.title }}</div>
+                {%- endif -%}
+                {%- if block.settings.subtext != blank -%}
+  {%- assign step_subtext = block.settings.subtext -%}
+  {%- if teacher and teacher.teacher_name and teacher.teacher_name.value != blank -%}
+    {%- assign step_subtext = step_subtext | replace: '[teacher_name]', teacher.teacher_name.value -%}
+  {%- endif -%}
+  <div class="pdp-how-it-works__step-sub">{{ step_subtext }}</div>
+{%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+.pdp-how-it-works {
+  background: #ffffff;
+  padding: 72px 0 80px;
+}
+
+.pdp-how-it-works__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Headings – match other sections */
+.pdp-how-it-works__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.pdp-how-it-works__heading {
+  margin: 0 0 28px;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #24367a;
+}
+
+/* Video */
+.pdp-how-it-works__video {
+  margin-bottom: 32px;
+}
+
+.pdp-how-it-works__video-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 22px;
+  box-shadow: 0 22px 46px rgba(17, 33, 89, 0.28);
+}
+
+.pdp-how-it-works__video-embed iframe,
+.pdp-how-it-works__video-embed video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 22px;
+}
+
+/* Placeholder */
+.pdp-how-it-works__video-ph {
+  background: #262f76;
+  border-radius: 22px;
+  padding: 26px 32px 30px;
+  position: relative;
+  color: #ffffff;
+  box-shadow: 0 22px 46px rgba(17, 33, 89, 0.28);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 260px;
+}
+
+.pdp-how-it-works__video-ph-badge {
+  position: absolute;
+  right: 32px;
+  top: 18px;
+  padding: 6px 18px;
+  border-radius: 999px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pdp-how-it-works__video-ph-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.pdp-how-it-works__video-ph-play svg {
+  width: 70px;
+  height: 70px;
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.85);
+  stroke-width: 2;
+}
+
+.pdp-how-it-works__video-ph-play circle {
+  fill: rgba(255, 255, 255, 0.12);
+}
+
+.pdp-how-it-works__video-ph-play path {
+  fill: rgba(255, 255, 255, 0.9);
+  stroke: none;
+}
+
+.pdp-how-it-works__video-ph-caption {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* Steps */
+.pdp-how-it-works__steps {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px 24px;
+  margin-top: 30px;
+  padding-top: 14px;
+}
+
+.pdp-how-it-works__steps::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  height: 1px;
+  background:
+    linear-gradient(
+      to right,
+      rgba(151, 163, 206, 0) 0%,
+      rgba(151, 163, 206, 0.32) 10%,
+      rgba(151, 163, 206, 0.32) 90%,
+      rgba(151, 163, 206, 0) 100%
+    );
+  z-index: 0;
+}
+
+/* 1 step */
+.pdp-how-it-works__steps[data-step-count="1"]::before {
+  display: none;
+}
+
+/* 2 steps */
+.pdp-how-it-works__steps[data-step-count="2"]::before {
+  left: 20%;
+  right: 20%;
+}
+
+/* 3 steps */
+.pdp-how-it-works__steps[data-step-count="3"]::before {
+  left: 12%;
+  right: 12%;
+}
+
+/* 4+ steps */
+.pdp-how-it-works__steps[data-step-count="4"]::before,
+.pdp-how-it-works__steps[data-step-count="5"]::before,
+.pdp-how-it-works__steps[data-step-count="6"]::before,
+.pdp-how-it-works__steps[data-step-count="7"]::before,
+.pdp-how-it-works__steps[data-step-count="8"]::before {
+  left: 12px;
+  right: 12px;
+}
+
+.pdp-how-it-works__step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pdp-how-it-works__step-num {
+  position: relative;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 54, 122, 0.24);
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #24367a;
+  margin-bottom: 10px;
+  box-shadow: 0 8px 18px rgba(17, 33, 89, 0.15);
+}
+
+.pdp-how-it-works__step-text {
+  max-width: 220px;
+}
+
+.pdp-how-it-works__step-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #24367a;
+  margin-bottom: 6px;
+}
+
+.pdp-how-it-works__step-sub {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #8a94bf;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .pdp-how-it-works {
+    padding: 40px 0 40px; 
+  }
+
+  .pdp-how-it-works__inner {
+    padding: 0 32px;
+  }
+
+  .pdp-how-it-works__heading {
+    margin-bottom: 22px;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .pdp-how-it-works__video-ph {
+    padding-inline: 20px;
+    min-height: 210px;
+  }
+
+  .pdp-how-it-works__video-ph-badge {
+    right: 20px;
+    top: 16px;
+  }
+
+  .pdp-how-it-works__steps {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 26px;
+    padding-top: 0;
+  }
+
+  .pdp-how-it-works__steps::before {
+    display: none;
+  }
+
+  .pdp-how-it-works__step {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+.pdp-how-it-works__step-num {
+    width: 30px;                         /* slightly smaller but still circular */
+    height: 30px;
+    border-radius: 999px;                /* keep circle */
+    border-width: 1.5px;                 /* a bit stronger border */
+    flex: 0 0 auto;                      /* prevent squashing in flex row */
+  }
+
+  .pdp-how-it-works__step {
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .pdp-how-it-works__step-num {
+    margin-bottom: 0;
+    margin-right: 14px;
+    box-shadow: none;
+  }
+
+  .pdp-how-it-works__step-text {
+    max-width: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PDP How It Works",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "How it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From payment to your first mark — in 1 minute"
+    },
+    {
+      "type": "html",
+      "id": "video_embed",
+      "label": "Video Embed Code",
+      "info": "Paste your YouTube (or other) embed code here. Leave blank to show the placeholder."
+    },
+    {
+      "type": "text",
+      "id": "video_caption",
+      "label": "Video Caption",
+      "default": "See exactly what OEO looks like — from the day you pay to the day your credit is issued"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Pay and get access"
+        },
+        {
+          "type": "textarea",
+          "id": "subtext",
+          "label": "Step Description",
+          "default": "Course unlocks within 24 hours. No paperwork, no waiting on a school office."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "PDP How It Works",
+      "blocks": [
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" },
+        { "type": "step" }
+      ]
+    }
+  ]
+}
+{% endschema %}

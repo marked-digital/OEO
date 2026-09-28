@@ -1,0 +1,36 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-final">
+  <div class="lp-inner">
+    <span class="lp-final__tick" aria-hidden="true"></span>
+    {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow lp-eyebrow--center">{{ section.settings.eyebrow }}</div>{% endif %}
+    <h2 class="lp-final__h">{{ section.settings.heading }}</h2>
+    {% if section.settings.subhead != blank %}<p class="lp-final__p">{{ section.settings.subhead }}</p>{% endif %}
+    <div class="lp-final__ctas">
+      <a class="button button--lg" href="{{ section.settings.btn1_url | default: '#' }}" style="--button-background: 240 196 23 / var(--button-background-opacity, 1); --button-outline-color: 240 196 23; --button-text-color: 42 56 132;">{{ section.settings.btn1_label }}</a>
+      <a class="button button--lg button--outline lp-final__ghost" href="{{ section.settings.btn2_url | default: '#' }}" style="--button-outline-color: 255 255 255; --button-text-color: 255 255 255;">{{ section.settings.btn2_label }}</a>
+    </div>
+    {% if section.settings.trust != blank %}
+      <ul class="lp-final__trust">
+        {% assign points = section.settings.trust | split: ',' %}
+        {% for p in points %}<li><span class="lp-final__trust-ico">{% render 'intl-icon', icon: 'check', size: 14 %}</span>{{ p | strip }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Final CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Ready when you are" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Start earning your Canadian credential today." },
+    { "type": "text", "id": "subhead", "label": "Subhead", "default": "Real teachers. Official OSSD credits. From anywhere in the world." },
+    { "type": "text", "id": "trust", "label": "Reassurance points (comma separated)", "default": "No visa required, Start any day of the year, Official OSSD transcript" },
+    { "type": "text", "id": "btn1_label", "label": "Primary button label", "default": "Browse Courses" },
+    { "type": "url", "id": "btn1_url", "label": "Primary button link" },
+    { "type": "text", "id": "btn2_label", "label": "Secondary button label", "default": "Book a free advising call" },
+    { "type": "url", "id": "btn2_url", "label": "Secondary button link" }
+  ],
+  "presets": [{ "name": "Intl • Final CTA" }]
+}
+{% endschema %}

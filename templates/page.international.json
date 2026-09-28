@@ -1,0 +1,497 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "intl-hero",
+      "settings": {
+        "eyebrow": "For international students",
+        "headline_lead": "Earn Ontario high school credits from",
+        "headline_accent": "from anywhere in the world.",
+        "subhead": "Pursue your Ontario Secondary School Diploma (OSSD) online with Ontario Certified Teachers. Whether your goal is university, college, or expanding your future opportunities, our flexible, Ministry-inspected program lets you study from anywhere in the world.",
+        "btn1_label": "Browse Courses",
+        "btn1_url": "shopify://collections",
+        "btn2_label": "Book a Guidance Session",
+        "btn2_url": "shopify://pages/book-guidance-session",
+        "trust": "Ministry-Inspected Ontario private school. BSID #882902."
+      }
+    },
+    "credentials": {
+      "type": "intl-credentials",
+      "blocks": {
+        "c1": {
+          "type": "credential",
+          "settings": {
+            "icon": "check",
+            "lead": "Ministry-Inspected",
+            "sub": "Government-authorized to grant Ontario Secondary School Diploma (OSSD) credits."
+          }
+        },
+        "c2": {
+          "type": "credential",
+          "settings": {
+            "icon": "chat",
+            "lead": "Taught by OCT teachers",
+            "sub": "Every course is designed and supported by real Ontario Certified Teachers."
+          }
+        },
+        "c3": {
+          "type": "credential",
+          "settings": {
+            "icon": "award",
+            "lead": "Official Transcripts",
+            "sub": "Official Ontario report cards and transcripts recognized by schools and institutions worldwide."
+          }
+        },
+        "c4": {
+          "type": "credential",
+          "settings": {
+            "icon": "cap",
+            "lead": "Recognized by universities",
+            "sub": "Use your Ontario credits to pursue post-secondary opportunities around the world."
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
+      "settings": {
+        "anchor_eyebrow": "Accredited",
+        "anchor_label": "Ontario private school"
+      }
+    },
+    "why": {
+      "type": "intl-why-ossd",
+      "settings": {
+        "eyebrow": "Why the OSSD",
+        "heading": "A Canadian diploma that opens doors worldwide.",
+        "body": "<p><strong>The Ontario Secondary School Diploma (OSSD) is one of the world’s most widely recognized high school credentials and a direct pathway to Canadian universities. Through OEO, you earn official Ontario credits—the same credits issued by schools across Ontario—and receive official transcripts for university and college applications worldwide.</strong></p>"
+      }
+    },
+    "differentiators": {
+      "type": "intl-differentiators",
+      "blocks": {
+        "d1": {
+          "type": "card",
+          "settings": {
+            "icon": "chat",
+            "title": "Real teacher support",
+            "body": "Every course is developed and taught by an Ontario Certified Teacher. Ask questions and receive personalized support—not automated responses. Most messages are answered within one business day."
+          }
+        },
+        "d2": {
+          "type": "card",
+          "settings": {
+            "icon": "check",
+            "title": "Powered by Google Workspace",
+            "body": "Access your courses through Google Classroom and use tools like Google Docs, Google Drive, and Gemini Notebook to organize your learning, ask questions, and study more efficiently."
+          }
+        },
+        "d3": {
+          "type": "card",
+          "settings": {
+            "icon": "globe",
+            "title": "Study in your own timezone",
+            "body": "100% online and self-paced. Start any day of the year and learn from your phone, tablet, or computer—wherever you are."
+          }
+        },
+        "d4": {
+          "type": "card",
+          "settings": {
+            "icon": "pace",
+            "title": "Finish at your pace",
+            "body": "Move quickly and finish a course in as little as 4 weeks, or take up to 12 months. You decide."
+          }
+        }
+      },
+      "block_order": [
+        "d1",
+        "d2",
+        "d3",
+        "d4"
+      ],
+      "settings": {
+        "eyebrow": "WHY INTERNATIONAL STUDENTS CHOOSE OEO",
+        "heading": "Designed for International Students"
+      }
+    },
+    "how": {
+      "type": "intl-how-it-works",
+      "blocks": {
+        "s1": {
+          "type": "step",
+          "settings": {
+            "title": "Meet with our guidance team",
+            "body": "Not sure where to start? We’ll review your previous education, determine your prerequisites, and build the best pathway to your OSSD."
+          }
+        },
+        "s2": {
+          "type": "step",
+          "settings": {
+            "title": "Enrol in your course",
+            "body": "Register online and start any day of the year—no semesters or waiting lists."
+          }
+        },
+        "s3": {
+          "type": "step",
+          "settings": {
+            "title": "Learn with teacher support.",
+            "body": "Study at your own pace through interactive lessons with guidance from Ontario Certified Teachers."
+          }
+        },
+        "s4": {
+          "type": "step",
+          "settings": {
+            "title": "Receive your official transcript",
+            "body": "Upon completion, we’ll issue your official Ontario report card and transcript for your school or university applications."
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Your path to earning Ontario credits."
+      }
+    },
+    "two-ways": {
+      "type": "intl-two-ways",
+      "settings": {
+        "eyebrow": "Two ways to study with us",
+        "heading": "Complete your OSSD—or earn the Ontario credits you need.",
+        "a_title": "Complete your OSSD",
+        "a_body": "Earn your Ontario Secondary School Diploma online and graduate with one of the world’s most recognized high school credentials. Our guidance team will help build your personalized pathway.",
+        "b_title": "Take individual Ontario credits",
+        "b_body": "Already studying in another country? Strengthen your university application or add subjects your current school doesn’t offer. We issue official Ontario report cards and transcripts upon completion.",
+        "cta_sub": "Not sure whether you need the full OSSD or just individual credits? Our guidance team will review your previous education and help you choose the right pathway.",
+        "cta_label": "📅 Book a Free Guidance Session",
+        "cta_url": "shopify://pages/book-guidance-session"
+      }
+    },
+    "university_portfolio_t3CFXF": {
+      "type": "university-portfolio",
+      "blocks": {
+        "logo_QUetRL": {
+          "type": "logo",
+          "settings": {
+            "alt_text": ""
+          }
+        },
+        "logo_VHamUD": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/UofT.png",
+            "alt_text": "University of Toronto"
+          }
+        },
+        "logo_AAGBzN": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/McGill_d1127158-0441-49fb-be14-5515c30324e0.png",
+            "alt_text": "McGull University"
+          }
+        },
+        "logo_8U7Ark": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/UBC.png",
+            "alt_text": "University of British Columbia"
+          }
+        },
+        "logo_GFT7hC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/MAC.png",
+            "alt_text": "McMaster University"
+          }
+        },
+        "logo_9PYeEF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Waterloo.png",
+            "alt_text": "University of Waterloo"
+          }
+        },
+        "logo_QgbRKz": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/ottawa.png",
+            "alt_text": "University of Ottawa"
+          }
+        },
+        "logo_nc9KqF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/wastern.png",
+            "alt_text": "Western University"
+          }
+        },
+        "logo_NLAH88": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Queens.png",
+            "alt_text": "Queen's University"
+          }
+        },
+        "logo_gw884R": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Dal.png",
+            "alt_text": "Dalhousie University"
+          }
+        },
+        "logo_im6cpi": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Guelph.png",
+            "alt_text": "University of Guelph"
+          }
+        },
+        "logo_yFycKF": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/YorkU.png",
+            "alt_text": "York University"
+          }
+        },
+        "logo_E69ygC": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/Carlton.png",
+            "alt_text": "Carleton University"
+          }
+        },
+        "logo_MPUTtx": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/tmu.png",
+            "alt_text": "Toronto Metropolitan University"
+          }
+        },
+        "logo_TwymYK": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/laurieri.png",
+            "alt_text": "Wilfrid Laurier University"
+          }
+        },
+        "logo_TzGmt3": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/alberta.png",
+            "alt_text": "University of Alberta"
+          }
+        }
+      },
+      "block_order": [
+        "logo_QUetRL",
+        "logo_VHamUD",
+        "logo_AAGBzN",
+        "logo_8U7Ark",
+        "logo_GFT7hC",
+        "logo_9PYeEF",
+        "logo_QgbRKz",
+        "logo_nc9KqF",
+        "logo_NLAH88",
+        "logo_gw884R",
+        "logo_im6cpi",
+        "logo_yFycKF",
+        "logo_E69ygC",
+        "logo_MPUTtx",
+        "logo_TwymYK",
+        "logo_TzGmt3"
+      ],
+      "name": "University Portfolio",
+      "settings": {
+        "heading": "Recognized by Canada’s Leading Universities",
+        "subtext": "Ontario Education Online is a fully accredited Ontario private school. Our OSSD credits are recognized by universities across Canada and internationally.",
+        "button_label": "",
+        "button_link": "",
+        "disclaimer": ""
+      }
+    },
+    "testimonial_carousel_Ny6Mea": {
+      "type": "testimonial-carousel",
+      "name": "Premium Testimonial Carousel",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": 5000,
+        "background_color": "#f8f9fc"
+      }
+    },
+    "pricing": {
+      "type": "intl-pricing",
+      "blocks": {
+        "row_TnwUYB": {
+          "type": "row",
+          "settings": {
+            "product": "grade-12-university-biology"
+          }
+        },
+        "row_eBX8gt": {
+          "type": "row",
+          "settings": {
+            "product": "mathematics-for-college-technology-grade-12-college"
+          }
+        },
+        "row_bPad6b": {
+          "type": "row",
+          "settings": {
+            "product": "grade-11-university-physics-sph3u"
+          }
+        }
+      },
+      "block_order": [
+        "row_TnwUYB",
+        "row_eBX8gt",
+        "row_bPad6b"
+      ],
+      "settings": {
+        "eyebrow": "Official Ontario Secondary School Courses",
+        "heading": "Earn official Ontario credits online. ⭐",
+        "body": "<p>Need a prerequisite for university? Looking to complete your OSSD? Browse official Ontario courses and study online with Ontario Certified Teachers—from anywhere in the world.</p>",
+        "methods_label": "Accepted payment methods",
+        "methods": "VISA, Mastercard, AMEX, Apple Pay, Google Pay, Shop Pay",
+        "intl_keyword": "International",
+        "row_cta_label": "Learn more",
+        "col_course": "Course",
+        "col_price": "Price (CAD)",
+        "show_discount": true,
+        "discount": "Enrol in 2+ courses and save $150 at checkout.",
+        "explore_label": "Explore All Courses",
+        "explore_url": "shopify://collections"
+      }
+    },
+    "faq": {
+      "type": "intl-faq",
+      "blocks": {
+        "f1": {
+          "type": "qa",
+          "settings": {
+            "q": "Will Canadian universities accept OSSD credits earned online?",
+            "a": "Yes. OEO is a Ministry-Inspected Ontario private school (BSID #882902). The credits you earn are official OSSD credits, recognized by universities across Canada."
+          }
+        },
+        "f2": {
+          "type": "qa",
+          "settings": {
+            "q": "Do I need a visa or to travel to Canada?",
+            "a": "No. Courses are 100% online. You study from your home country."
+          }
+        },
+        "qa_xf83Tp": {
+          "type": "qa",
+          "settings": {
+            "q": "What if I’m not sure I have the prerequisite for a course?",
+            "a": "Don’t worry. Book a free guidance session and we’ll review your academic background, determine whether you meet the prerequisite, and recommend the right course or pathway."
+          }
+        },
+        "qa_V97Hrd": {
+          "type": "qa",
+          "settings": {
+            "q": "Can I complete an entire OSSD or just one course?",
+            "a": "Both. Some students earn a full Ontario Secondary School Diploma with OEO, while others take individual Ontario credits to satisfy university prerequisites or strengthen their applications."
+          }
+        },
+        "qa_NE8LzT": {
+          "type": "qa",
+          "settings": {
+            "q": "Will my previous education count toward my OSSD?",
+            "a": "In many cases, yes. Our guidance team will review your previous transcripts and educational history to determine the best pathway for you. You may not need to start from the beginning."
+          }
+        },
+        "f3": {
+          "type": "qa",
+          "settings": {
+            "q": "Can I study in my own timezone?",
+            "a": "Yes. Courses are self-paced and asynchronous. Teacher support runs Monday to Friday (Eastern Time), with replies within one business day."
+          }
+        },
+        "f4": {
+          "type": "qa",
+          "settings": {
+            "q": "How do I get my transcript for university applications?",
+            "a": "We issue an official OSSD transcript and send it where you need it."
+          }
+        },
+        "f5": {
+          "type": "qa",
+          "settings": {
+            "q": "Can I transfer credits I have already earned?",
+            "a": "Credit recognition for prior study is assessed individually. Contact an advisor and we will confirm what applies to your situation before you enrol."
+          }
+        },
+        "f6": {
+          "type": "qa",
+          "settings": {
+            "q": "What currency are courses in, and how do I pay?",
+            "a": "Courses are priced in Canadian dollars (CAD). We accept major international cards and digital wallets."
+          }
+        },
+        "f7": {
+          "type": "qa",
+          "settings": {
+            "q": "How fast can I finish a course?",
+            "a": "As little as 4 weeks, or up to 12 months. You choose the pace."
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "qa_xf83Tp",
+        "qa_V97Hrd",
+        "qa_NE8LzT",
+        "f3",
+        "f4",
+        "f5",
+        "f6",
+        "f7"
+      ],
+      "settings": {
+        "eyebrow": "International FAQ",
+        "heading": "Questions from overseas families."
+      }
+    },
+    "final-cta": {
+      "type": "intl-final-cta",
+      "settings": {
+        "eyebrow": "Ready when you are",
+        "heading": "",
+        "subhead": "Real teachers. Official OSSD credits. From anywhere in the world.",
+        "trust": "No visa required, Start any day of the year, Official OSSD transcript",
+        "btn1_label": "Browse Courses",
+        "btn1_url": "shopify://collections",
+        "btn2_label": "Book a Free Guidance Session",
+        "btn2_url": "shopify://pages/book-guidance-session"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "credentials",
+    "why",
+    "differentiators",
+    "how",
+    "two-ways",
+    "university_portfolio_t3CFXF",
+    "testimonial_carousel_Ny6Mea",
+    "pricing",
+    "faq",
+    "final-cta"
+  ]
+}

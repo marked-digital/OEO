@@ -1,0 +1,52 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-tst">
+  <div class="lp-inner">
+    <h2 class="lp-tst__h">{{ section.settings.heading }}</h2>
+    <div class="lp-tst__grid">
+      {% for block in section.blocks %}
+        <div class="lp-card lp-tst__card" {{ block.shopify_attributes }}>
+          <span class="lp-tst__quote-mark" aria-hidden="true">&ldquo;</span>
+          <p class="lp-tst__quote">{{ block.settings.quote }}</p>
+          <div class="lp-tst__foot">
+            <div>
+              <div class="lp-tst__name">{{ block.settings.name }}, {{ block.settings.role }}</div>
+              <div class="lp-tst__dest">{{ block.settings.dest }}</div>
+            </div>
+            <span class="lp-tst__pill">{% render 'intl-icon', icon: 'check', size: 12 %}{{ block.settings.tag }}</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Testimonials",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "What our students say." },
+    { "type": "paragraph", "content": "Use only real, verified testimonials. Do not add star ratings or review counts." }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "name", "label": "Name", "default": "Cali" },
+        { "type": "text", "id": "role", "label": "Role", "default": "Grade 12" },
+        { "type": "text", "id": "dest", "label": "Destination / outcome", "default": "University of Windsor" },
+        { "type": "text", "id": "tag", "label": "Verification tag", "default": "Verified Student" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Intl • Testimonials",
+    "blocks": [
+      { "type": "testimonial", "settings": { "quote": "OEO gave me not only the flexibility to do a course that was not an option at my school, but allowed me to do it at my own pace. I was able to get as much as I wanted done in one sitting, and even between long breaks I was able to come back with no confusion as to where I left off.", "name": "Cali", "role": "Grade 12", "dest": "University of Windsor", "tag": "Verified Student" } },
+      { "type": "testimonial", "settings": { "quote": "I learned more at OEO than I did at my day school. The teachers are extremely intelligent and supportive. The lessons are interactive and engaging, and the assessments are thorough and fair. The best part was that I was able to complete the work from anywhere and at my own pace.", "name": "Dakota G-S.", "role": "Grade 12", "dest": "Western University", "tag": "Verified Student" } },
+      { "type": "testimonial", "settings": { "quote": "As a competitive athlete, I travel a lot. OEO allowed me to complete my Grade 11 English course without missing a beat. The flexibility to study when and where I wanted was a game changer.", "name": "Emily R.", "role": "Grade 11", "dest": "Completed ENG3U", "tag": "Verified Student" } }
+    ]
+  }]
+}
+{% endschema %}

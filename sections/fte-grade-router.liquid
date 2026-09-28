@@ -1,0 +1,720 @@
+{%- comment -%}
+  Full-Time Enrolment · Choose your grade router (Wireframe A · S5)
+  Four curated grade cards, one per block, so order and copy stay controlled
+  (not an auto collection feed). Each card is bound to that grade's full-time
+  product and reads its live data:
+
+    price      product.price (min variant), "From" when the product has a
+               credit-pack or region selector, compare-at and availability
+               handled from the same source
+    labels     grade label, hook line, and CTA label fall back to the product
+               when the block leaves them blank
+
+  Product binding is either explicit (the block's product picker) or automatic:
+  set the full-time collection at section level and each card claims the
+  product whose grade matches the card's number, read from the product's
+  custom.grade_level metafield or its title ("Grade 11 Full-Time Enrolment").
+
+  Manual price text (bracketed placeholder) is only used when no product is
+  bound, so the claims-audit placeholders stay available until the four
+  products are live.
+{%- endcomment -%}
+
+{%- assign source_collection = section.settings.collection -%}
+
+{%- comment -%} Gold on the highlighted card, navy on the rest, unless overridden. {%- endcomment -%}
+{%- assign cta_style = section.settings.cta_style | default: 'gold_featured' -%}
+
+<section id="choose-grade" class="fte-router" aria-labelledby="fte-router-heading-{{ section.id }}">
+  <div class="fte-router__inner">
+
+    <div class="fte-router__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="fte-router__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      <h2 class="fte-router__heading" id="fte-router-heading-{{ section.id }}">{{ section.settings.heading | escape }}</h2>
+      {%- if section.settings.intro != blank -%}
+        <p class="fte-router__intro">{{ section.settings.intro | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="fte-router__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'grade' -%}
+
+          {%- comment -%} Grade number: the card's own number first, then the label. {%- endcomment -%}
+          {%- assign grade_num = block.settings.big_number | strip -%}
+          {%- if grade_num == blank and block.settings.grade_label contains 'Grade ' -%}
+            {%- assign grade_num = block.settings.grade_label | split: 'Grade ' | last | split: ' ' | first | strip -%}
+          {%- endif -%}
+
+          {%- comment -%} Bind the product: explicit picker, else match the collection by grade. {%- endcomment -%}
+          {%- assign card_product = block.settings.product -%}
+          {%- if card_product == blank and source_collection != blank and grade_num != blank -%}
+            {%- for candidate in source_collection.products -%}
+              {%- assign candidate_grade = candidate.metafields.custom.grade_level.value | append: '' | strip -%}
+              {%- if candidate_grade == blank and candidate.title contains 'Grade ' -%}
+                {%- assign candidate_grade = candidate.title | split: 'Grade ' | last | split: ' ' | first | strip -%}
+              {%- endif -%}
+              {%- if candidate_grade == grade_num -%}
+                {%- assign card_product = candidate -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+          {%- endif -%}
+
+          {%- assign card_url = card_product.url | default: '#' -%}
+
+          {%- comment -%} Copy: the block wins, the product fills the gaps. {%- endcomment -%}
+          {%- assign grade_label = block.settings.grade_label -%}
+          {%- if grade_label == blank and grade_num != blank -%}
+            {%- assign grade_label = 'Grade ' | append: grade_num -%}
+          {%- endif -%}
+
+          {%- assign hook_line = block.settings.hook_line -%}
+          {%- if hook_line == blank -%}
+            {%- assign hook_line = card_product.title -%}
+          {%- endif -%}
+
+          {%- assign cta_label = block.settings.cta_label -%}
+          {%- if cta_label == blank -%}
+            {%- if grade_num != blank -%}
+              {%- assign cta_label = 'View Grade ' | append: grade_num -%}
+            {%- else -%}
+              {%- assign cta_label = 'View grade' -%}
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if cta_style == 'gold_all' -%}
+            {%- assign cta_variant = 'gold' -%}
+          {%- elsif cta_style == 'navy_all' -%}
+            {%- assign cta_variant = 'navy' -%}
+          {%- elsif block.settings.featured -%}
+            {%- assign cta_variant = 'gold' -%}
+          {%- else -%}
+            {%- assign cta_variant = 'navy' -%}
+          {%- endif -%}
+
+          <div class="fte-router__card{% if block.settings.featured %} is-featured{% endif %}" {{ block.shopify_attributes }}>
+            {%- if grade_num != blank -%}
+              <span class="fte-router__watermark" aria-hidden="true">{{ grade_num | escape }}</span>
+            {%- endif -%}
+
+            <div class="fte-router__card-body">
+              <div class="fte-router__card-top">
+                {%- if grade_label != blank -%}
+                  <span class="fte-router__card-grade">{{ grade_label | escape }}</span>
+                {%- endif -%}
+                {%- if block.settings.featured and block.settings.featured_label != blank -%}
+                  <span class="fte-router__flag">{{ block.settings.featured_label | escape }}</span>
+                {%- endif -%}
+              </div>
+
+              {%- if hook_line != blank -%}
+                <p class="fte-router__card-hook">{{ hook_line | escape }}</p>
+              {%- endif -%}
+
+              {%- if block.settings.credits_label != blank or block.settings.extra_pill != blank -%}
+                <div class="fte-router__card-pills">
+                  {%- if block.settings.credits_label != blank -%}
+                    <span class="fte-router__pill">{{ block.settings.credits_label | escape }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.extra_pill != blank -%}
+                    <span class="fte-router__pill fte-router__pill--gold">{{ block.settings.extra_pill | escape }}</span>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if block.settings.note != blank -%}
+                <p class="fte-router__card-note">{{ block.settings.note | escape }}</p>
+              {%- endif -%}
+            </div>
+
+            <div class="fte-router__card-foot">
+              <div class="fte-router__price">
+                {%- if card_product != blank -%}
+                  <div class="fte-router__price-row">
+                    {%- if card_product.price_varies -%}
+                      <span class="fte-router__price-from">{{ section.settings.from_label | default: 'From' | escape }}</span>
+                    {%- endif -%}
+                    <span class="fte-router__price-value">{{ card_product.price | money }}</span>
+                    <span class="fte-router__price-curr">{{ cart.currency.iso_code }}</span>
+                    {%- if card_product.compare_at_price > card_product.price -%}
+                      <span class="fte-router__price-was">{{ card_product.compare_at_price | money }}</span>
+                    {%- endif -%}
+                  </div>
+                  {%- if card_product.available == false -%}
+                    <p class="fte-router__price-note fte-router__price-note--flag">Enrolment closed</p>
+                  {%- elsif block.settings.price_note != blank -%}
+                    <p class="fte-router__price-note">{{ block.settings.price_note | escape }}</p>
+                  {%- endif -%}
+                {%- else -%}
+                  <div class="fte-router__price-row">
+                    <span class="fte-router__token">{{ block.settings.price_display | default: '[ $____ ]' | escape }}</span>
+                  </div>
+                  {%- if block.settings.price_note != blank -%}
+                    <p class="fte-router__price-note">{{ block.settings.price_note | escape }}</p>
+                  {%- endif -%}
+                {%- endif -%}
+              </div>
+
+              <a
+                class="fte-router__cta fte-router__cta--{{ cta_variant }}"
+                href="{{ card_url }}"
+                {% if card_product == blank %}aria-disabled="true"{% endif %}
+              >
+                <span>{{ cta_label | escape }}</span>
+                <span class="fte-router__cta-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    {%- if section.settings.footnote != blank -%}
+      <p class="fte-router__footnote">{{ section.settings.footnote | escape }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<style>
+.fte-router {
+  background: var(--color-dark, #1e2460);
+  padding: clamp(48px, 7vw, 80px) 0;
+}
+
+.fte-router__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.fte-router__head {
+  max-width: 640px;
+  margin: 0 auto 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fte-router__eyebrow {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #F0C417;
+}
+
+.fte-router__heading {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.fte-router__intro {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Four across on desktop, so the set never breaks into a 3 + 1 row */
+.fte-router__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 20px;
+}
+
+.fte-router__card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  padding: 24px 22px 22px;
+  box-shadow:
+    0 1px 2px rgba(9, 17, 52, 0.10),
+    0 12px 28px rgba(9, 17, 52, 0.18);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.fte-router__card:hover,
+.fte-router__card:focus-within {
+  transform: translateY(-4px);
+  box-shadow:
+    0 2px 4px rgba(9, 17, 52, 0.12),
+    0 22px 44px rgba(9, 17, 52, 0.30);
+}
+
+.fte-router__card.is-featured {
+  border-color: #F0C417;
+  box-shadow:
+    0 0 0 5px rgba(240, 196, 23, 0.14),
+    0 16px 36px rgba(9, 17, 52, 0.26);
+}
+
+.fte-router__card.is-featured:hover,
+.fte-router__card.is-featured:focus-within {
+  box-shadow:
+    0 0 0 5px rgba(240, 196, 23, 0.18),
+    0 24px 48px rgba(9, 17, 52, 0.32);
+}
+
+/* Grade number as a quiet watermark rather than a competing headline */
+.fte-router__watermark {
+  position: absolute;
+  z-index: -1;
+  top: -18px;
+  right: -6px;
+  font-size: 108px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: #eef0f8;
+  pointer-events: none;
+  user-select: none;
+}
+
+.fte-router__card.is-featured .fte-router__watermark {
+  color: #fdf4d5;
+}
+
+.fte-router__card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.fte-router__card-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fte-router__card-grade {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: #eef0f8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2B3886;
+  white-space: nowrap;
+}
+
+.fte-router__flag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #F0C417;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #24367a;
+  white-space: nowrap;
+}
+
+.fte-router__card-hook {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #24367a;
+  text-wrap: balance;
+}
+
+.fte-router__card-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Outline chips: they read as attributes, not as buttons */
+.fte-router__pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border: 1px solid #e2e5f0;
+  border-radius: 8px;
+  background: #fbfbfd;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #4f5684;
+}
+
+.fte-router__pill--gold {
+  border-color: #f2e2a8;
+  background: #fdf8e6;
+  color: #8a7106;
+}
+
+.fte-router__card-note {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #7c84a8;
+}
+
+.fte-router__card-foot {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 16px;
+  border-top: 1px solid #edeff5;
+}
+
+.fte-router__price-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.fte-router__price-from {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9aa1c7;
+}
+
+.fte-router__price-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #24367a;
+}
+
+.fte-router__price-curr {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9aa1c7;
+}
+
+.fte-router__price-was {
+  font-size: 13px;
+  color: #a0a7c5;
+  text-decoration: line-through;
+}
+
+.fte-router__price-note {
+  margin: 5px 0 0;
+  font-size: 11.5px;
+  line-height: 1.4;
+  color: #9198bb;
+}
+
+.fte-router__price-note--flag {
+  font-weight: 700;
+  color: #b4453a;
+}
+
+/* Placeholder token, shown only while a card has no product bound */
+.fte-router__token {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1.5px dashed #c9a511;
+  background: #fdf8e6;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8a7106;
+}
+
+.fte-router__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 18px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background 160ms ease, color 160ms ease;
+}
+
+/* The CTA carries the whole card's click target */
+.fte-router__cta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.fte-router__cta--navy {
+  background: #24367a;
+  color: #ffffff;
+}
+
+.fte-router__cta--navy:hover {
+  background: #1c2b64;
+  color: #ffffff;
+}
+
+.fte-router__cta--gold {
+  background: #F0C417;
+  color: #24367a;
+}
+
+.fte-router__cta--gold:hover {
+  background: #d9ae08;
+  color: #24367a;
+}
+
+.fte-router__cta[aria-disabled='true'] {
+  background: #d8dbe9;
+  color: #8a91b4;
+  pointer-events: none;
+}
+
+.fte-router__cta-arrow {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.fte-router__card:hover .fte-router__cta-arrow {
+  transform: translateX(3px);
+}
+
+.fte-router__footnote {
+  margin: 24px 0 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 1100px) {
+  .fte-router__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .fte-router__inner {
+    padding: 0 16px;
+  }
+
+  .fte-router__grid {
+    gap: 14px;
+  }
+
+  .fte-router__card {
+    padding: 20px 18px 18px;
+  }
+
+  .fte-router__watermark {
+    font-size: 88px;
+  }
+}
+
+@media (max-width: 560px) {
+  .fte-router__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fte-router__card,
+  .fte-router__cta,
+  .fte-router__cta-arrow {
+    transition: none;
+  }
+
+  .fte-router__card:hover,
+  .fte-router__card:focus-within {
+    transform: none;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "FTE Grade Router",
+  "tag": "section",
+  "class": "fte-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Choose your grade"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Four grades. One program."
+    },
+    {
+      "type": "textarea",
+      "id": "intro",
+      "label": "Intro",
+      "default": "Every enrolment includes your counsellor, your pathway plan, and every service above."
+    },
+    {
+      "type": "header",
+      "content": "Products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Full-time collection",
+      "info": "Optional. Cards with no product picked claim the product in this collection whose grade matches the card number, read from the product's grade_level metafield or its title."
+    },
+    {
+      "type": "text",
+      "id": "from_label",
+      "label": "\"From\" label",
+      "info": "Shown before the price when a product has more than one price, e.g. the Grade 12 credit packs.",
+      "default": "From"
+    },
+    {
+      "type": "select",
+      "id": "cta_style",
+      "label": "Button colour",
+      "options": [
+        { "value": "gold_featured", "label": "Gold on highlighted card, navy on the rest" },
+        { "value": "gold_all", "label": "Gold on every card" },
+        { "value": "navy_all", "label": "Navy on every card" }
+      ],
+      "default": "gold_featured"
+    },
+    {
+      "type": "header",
+      "content": "Footnote"
+    },
+    {
+      "type": "text",
+      "id": "footnote",
+      "label": "Footnote",
+      "default": "Per-grade prices pending confirmation from OEO, including whether Grade 12 credit packs price differently."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "grade",
+      "name": "Grade card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product",
+          "info": "The card links here and shows this product's live price. Leave empty to match it from the collection above."
+        },
+        {
+          "type": "text",
+          "id": "grade_label",
+          "label": "Grade label",
+          "info": "Defaults to 'Grade' plus the number below.",
+          "default": "Grade 9"
+        },
+        {
+          "type": "text",
+          "id": "big_number",
+          "label": "Grade number",
+          "info": "Shown as the watermark, and used to match the product in the collection.",
+          "default": "9"
+        },
+        {
+          "type": "text",
+          "id": "hook_line",
+          "label": "Hook line",
+          "info": "Defaults to the product title.",
+          "default": "Start the OSSD right."
+        },
+        {
+          "type": "text",
+          "id": "credits_label",
+          "label": "Credits chip",
+          "default": "8 credits included"
+        },
+        {
+          "type": "text",
+          "id": "extra_pill",
+          "label": "Extra chip (optional)"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Note (optional)"
+        },
+        {
+          "type": "text",
+          "id": "price_note",
+          "label": "Price note",
+          "info": "Small line under the price, e.g. '12-month term'."
+        },
+        {
+          "type": "text",
+          "id": "price_display",
+          "label": "Price placeholder",
+          "info": "Only shown while no product is bound to this card.",
+          "default": "[ $____ ]"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "info": "Defaults to 'View Grade' plus the number.",
+          "default": "View Grade 9"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Highlight card (gold border)",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "featured_label",
+          "label": "Highlight label",
+          "info": "Small gold flag on the highlighted card. Leave empty for no flag."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "FTE Grade Router",
+      "blocks": [
+        { "type": "grade", "settings": { "grade_label": "Grade 9", "big_number": "9", "hook_line": "Start the OSSD right.", "credits_label": "8 credits included", "price_display": "[ G9 $____ ]", "cta_label": "View Grade 9" } },
+        { "type": "grade", "settings": { "grade_label": "Grade 10", "big_number": "10", "hook_line": "Build the foundation years.", "credits_label": "8 credits included", "price_display": "[ G10 $____ ]", "cta_label": "View Grade 10" } },
+        { "type": "grade", "settings": { "grade_label": "Grade 11", "big_number": "11", "hook_line": "Set up your university applications.", "credits_label": "8 credits included", "price_display": "[ G11 $____ ]", "cta_label": "View Grade 11" } },
+        { "type": "grade", "settings": { "grade_label": "Grade 12", "big_number": "12", "hook_line": "Finish your diploma.", "credits_label": "6 to 8 credits", "extra_pill": "Flexible credit packs", "note": "Choose a 6, 7, or 8 credit pack. Marks reported to OUAC and OCAS.", "price_display": "[ G12 $____ ]", "cta_label": "View Grade 12", "featured": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

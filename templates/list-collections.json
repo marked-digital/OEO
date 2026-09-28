@@ -1,0 +1,263 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_VHAAdL": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_eEHpEq": {
+          "type": "subheading",
+          "disabled": true,
+          "settings": {
+            "text": "Get started with OEO"
+          }
+        },
+        "heading_xKDdx6": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "All Courses",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_feKKU3": {
+          "type": "richtext",
+          "disabled": true,
+          "settings": {
+            "content": "<p>Ontario Education Online offers a vast array of Ontario Secondary School Diploma courses spanning Grades 9 to 12, ensuring there's a course to suit everyone.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_eEHpEq",
+        "heading_xKDdx6",
+        "richtext_feKKU3"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "collection_list_TVe3xJ": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_Mtx3jj": {
+          "type": "collection",
+          "settings": {
+            "collection": "grade-9",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_ATHnny": {
+          "type": "collection",
+          "settings": {
+            "collection": "grade-10",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_3n6CW7": {
+          "type": "collection",
+          "settings": {
+            "collection": "grade-11",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_RiePmb": {
+          "type": "collection",
+          "settings": {
+            "collection": "grade-12",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_Mtx3jj",
+        "collection_ATHnny",
+        "collection_3n6CW7",
+        "collection_RiePmb"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_collections": false,
+        "collections_per_row": 4,
+        "show_progress_bar": true,
+        "subheading": "",
+        "title": "Search by Grade",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "collection_list_rMECt4": {
+      "type": "collection-list",
+      "blocks": {
+        "collection_h3AAKi": {
+          "type": "collection",
+          "settings": {
+            "collection": "english",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_gn6bin": {
+          "type": "collection",
+          "settings": {
+            "collection": "mathematics",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h3",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_48BN7C": {
+          "type": "collection",
+          "settings": {
+            "collection": "science",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_x6mPe7": {
+          "type": "collection",
+          "settings": {
+            "collection": "law",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "collection_ArACxz": {
+          "type": "collection",
+          "settings": {
+            "collection": "social-science",
+            "subheading": "",
+            "title": "",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "collection_h3AAKi",
+        "collection_gn6bin",
+        "collection_48BN7C",
+        "collection_x6mPe7",
+        "collection_ArACxz"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_collections": false,
+        "collections_per_row": 3,
+        "show_progress_bar": true,
+        "subheading": "",
+        "title": "Search by Subject",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "main": {
+      "type": "main-list-collections",
+      "disabled": true,
+      "custom_css": [
+        "h1 {display: none !important;}"
+      ],
+      "settings": {
+        "collections": [
+          "grade-9",
+          "grade-10",
+          "grade-11",
+          "grade-12"
+        ],
+        "collections_per_row_mobile": "2",
+        "collections_per_row": 4,
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    }
+  },
+  "order": [
+    "rich_text_VHAAdL",
+    "collection_list_TVe3xJ",
+    "collection_list_rMECt4",
+    "main"
+  ]
+}

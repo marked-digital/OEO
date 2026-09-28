@@ -1,0 +1,120 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "newsletter_WhVJTt": {
+      "type": "newsletter",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "show_icon": false,
+        "title": "Unlock Your Learning Potential: Dive into a Free Sample Course!",
+        "content": "<p>Enter your email below and get a link to download our FREE sample course to give you a better idea of how our courses are structured.</p>",
+        "button_text": "Download",
+        "subtext": "",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "button_background": "#f0c417",
+        "button_text_color": ""
+      }
+    },
+    "rich_text_n6WWkq": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rUQ7fD": {
+          "type": "heading",
+          "settings": {
+            "text": "Unlock Your Learning Potential: Dive into a Free Sample Course!",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_VzgmWh": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Enter your email below and get a link to download our FREE sample course to give you a better idea of how our courses are structured.</p>"
+          }
+        },
+        "liquid_R7cJyj": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div class=\"klaviyo-form-RSRm7m\" style=\"min-width: 450px;\"></div>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rUQ7fD",
+        "richtext_VzgmWh",
+        "liquid_R7cJyj"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "medium",
+        "text_position": "center",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "rich_text_iz4JHh": {
+      "type": "rich-text",
+      "blocks": {
+        "image_33w3xc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sample.png",
+            "width_mode": "custom",
+            "max_width": 400,
+            "mobile_max_width": 400
+          }
+        }
+      },
+      "block_order": [
+        "image_33w3xc"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f2f1f6",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "custom_liquid_e9VAft": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n#shopify-section-sections--21906930663708__4c6d5e03-906f-49b6-b5d1-0661ee3dad02 {\ndisplay: none !important;\n}\n#shopify-section-sections--21906930663708__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb {display: none !important}\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "newsletter_WhVJTt",
+    "rich_text_n6WWkq",
+    "rich_text_iz4JHh",
+    "custom_liquid_e9VAft"
+  ]
+}

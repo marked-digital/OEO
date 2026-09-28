@@ -1,0 +1,271 @@
+{%- assign course_tag = product.metafields.custom.course_code.value -%}
+{%- if course_tag == blank -%}
+  {%- assign course_tag = section.settings.fallback_course_code -%}
+{%- endif -%}
+
+<style>
+  .pdp-faqs {
+    padding: 64px 0 80px;
+    background: #f0f1f5;
+  }
+
+.pdp-faqs__inner {
+  max-width: 1200px; /* was 960px */
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+  .pdp-faqs__label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 10px;
+  }
+
+  .pdp-faqs__title {
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: #1e2a5e;
+    margin: 0 0 40px;
+    line-height: 1.2;
+  }
+
+  .pdp-faqs__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pdp-faqs__item {
+    border-top: 1px solid #d1d5db;
+  }
+
+  .pdp-faqs__item:last-child {
+    border-bottom: 1px solid #d1d5db;
+  }
+
+  .pdp-faqs__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    padding: 22px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.97rem;
+    font-weight: 600;
+    color: #1e2a5e;
+    line-height: 1.4;
+    transition: color 180ms ease;
+  }
+
+  .pdp-faqs__question:hover {
+    color: #2d3ea8;
+  }
+
+  .pdp-faqs__icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e5e7f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 180ms ease;
+  }
+
+  .pdp-faqs__icon svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+    transition: transform 300ms ease;
+  }
+
+  .pdp-faqs__question[aria-expanded="true"] .pdp-faqs__icon {
+    background: #d0d4ec;
+  }
+
+  .pdp-faqs__question[aria-expanded="true"] .pdp-faqs__icon svg {
+    transform: rotate(180deg);
+  }
+
+  .pdp-faqs__body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 280ms ease;
+  }
+
+  .pdp-faqs__body[aria-hidden="false"] {
+    grid-template-rows: 1fr;
+  }
+
+  .pdp-faqs__body-inner {
+    overflow: hidden;
+  }
+
+  .pdp-faqs__answer {
+    padding: 0 48px 22px 0;
+    font-size: 0.9rem;
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 72ch;
+  }
+
+  .pdp-faqs__answer a {
+    color: #1e2a5e;
+    text-decoration: underline;
+  }
+
+  .pdp-faqs__answer a:hover {
+    color: #2d3ea8;
+  }
+
+  .pdp-faqs__placeholder {
+    padding: 32px;
+    border: 2px dashed #d1d5db;
+    border-radius: 14px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 580px) {
+    .pdp-faqs { padding: 40px 0 56px; }
+    .pdp-faqs__inner { padding: 0 16px; }
+    .pdp-faqs__answer { padding-right: 0; }
+  }
+</style>
+
+<section
+  class="pdp-faqs"
+  aria-labelledby="pdp-faqs-heading-{{ section.id }}"
+>
+  <div class="pdp-faqs__inner">
+
+    <span class="pdp-faqs__label">{{ section.settings.section_label | escape }}</span>
+    <h2 class="pdp-faqs__title" id="pdp-faqs-heading-{{ section.id }}">
+      {{ section.settings.section_heading | escape }}
+    </h2>
+
+    <div
+      class="pdp-faqs__list"
+      role="list"
+      aria-label="Frequently asked questions about {{ course_tag | escape }}"
+    >
+
+      {%- if section.blocks.size > 0 -%}
+
+        {%- for block in section.blocks -%}
+          {%- assign q_text = block.settings.question | replace: '{{course_code}}', course_tag -%}
+          {%- assign a_text = block.settings.answer   | replace: '{{course_code}}', course_tag -%}
+          {%- if q_text != blank and a_text != blank -%}
+            <div class="pdp-faqs__item" role="listitem" {{ block.shopify_attributes }}>
+              <button
+                class="pdp-faqs__question"
+                aria-expanded="false"
+                aria-controls="pdp-faq-a-{{ block.id }}"
+                id="pdp-faq-q-{{ block.id }}"
+              >
+                {{- q_text | escape -}}
+                <div class="pdp-faqs__icon" aria-hidden="true">
+                  <svg viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="#2A3884" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+              </button>
+              <div
+                class="pdp-faqs__body"
+                id="pdp-faq-a-{{ block.id }}"
+                aria-hidden="true"
+                role="region"
+                aria-labelledby="pdp-faq-q-{{ block.id }}"
+              >
+                <div class="pdp-faqs__body-inner">
+                  <div class="pdp-faqs__answer">{{ a_text }}</div>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      {%- elsif request.design_mode -%}
+        <div class="pdp-faqs__placeholder">
+          No FAQs added yet. Click <strong>Add block → FAQ item</strong> in the theme editor to get started.
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var section = document.getElementById('pdp-faqs-heading-{{ section.id }}').closest('.pdp-faqs');
+    section.querySelectorAll('.pdp-faqs__question').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        var body = document.getElementById(this.getAttribute('aria-controls'));
+        this.setAttribute('aria-expanded', String(!expanded));
+        body.setAttribute('aria-hidden', String(expanded));
+      });
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "PDP - FAQs",
+  "tag": "section",
+  "limit": 1,
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "info": "Use {{course_code}} to dynamically insert the course code (e.g. SCH4U)"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "info": "Use {{course_code}} to dynamically insert the course code"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Eyebrow label",
+      "default": "Common Questions"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Frequently asked questions"
+    },
+    {
+      "type": "text",
+      "id": "fallback_course_code",
+      "label": "Fallback course code (used if custom.course_code metafield is empty)",
+      "default": "this course"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP - FAQs"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,6 @@
+{%- comment -%}
+  Loads the OEO international LP stylesheet (assets/intl.css), scoped under .oeo-lp.
+  Rendered at the top of every intl-* section. Browsers dedupe the repeated link.
+  Font: the OEO theme already serves DM Sans, so this no longer hardcodes Google Fonts.
+{%- endcomment -%}
+{{ 'intl.css' | asset_url | stylesheet_tag }}

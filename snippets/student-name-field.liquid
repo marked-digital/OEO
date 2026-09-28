@@ -1,0 +1,181 @@
+{%- comment -%}
+  snippets/student-name-field.liquid (OEO)
+
+  Collapsed disclosure that reveals an optional "Student name" line item
+  property. The value travels with the line item through cart, cart drawer,
+  checkout, order confirmation email, Shopify admin, and Flow.
+
+  Uses native <details>/<summary>: keyboard accessible, no JS.
+  A value typed and then collapsed still submits.
+
+  PLACEMENT — sections/pdp-product.liquid
+  Paste directly ABOVE the "<!-- Primary CTA -->" comment, inside the form:
+
+    {%- render 'student-name-field' -%}
+{%- endcomment -%}
+
+<details class="pdp-hero__student">
+  <summary class="pdp-hero__student-summary">
+    <span class="pdp-hero__student-summary-text">
+      Purchasing for a student? <span class="pdp-hero__student-optional">(Optional)</span>
+    </span>
+    <span class="pdp-hero__student-chevron" aria-hidden="true">
+      <svg viewBox="0 0 12 8" fill="none">
+        <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </span>
+  </summary>
+
+  <div class="pdp-hero__student-body">
+    <p class="pdp-hero__student-hint">
+      You can add their name here to help us identify the enrolment. Don't worry if you leave this blank, we'll collect the student's information on the intake form after checkout.
+    </p>
+    <label class="pdp-hero__student-label" for="pdp-student-name">Student name</label>
+    <input
+      type="text"
+      class="pdp-hero__student-input"
+      id="pdp-student-name"
+      name="properties[Student name]"
+      placeholder="e.g. Ava Thompson"
+      maxlength="100"
+      autocomplete="off"
+    >
+  </div>
+</details>
+
+<style>
+  .pdp-hero__student {
+    margin: 0 0 14px;
+    border: 1px solid rgba(152, 160, 191, 0.4);
+    border-radius: 12px;
+    background: #f7f7fb;
+    overflow: hidden;
+  }
+
+  .pdp-hero__student-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    list-style: none;
+    color: #24367a;
+    user-select: none;
+  }
+
+  .pdp-hero__student-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pdp-hero__student-summary:hover {
+    background: #f1f2f8;
+  }
+
+  .pdp-hero__student-summary:focus-visible {
+    outline: 2px solid #24367a;
+    outline-offset: -2px;
+  }
+
+  .pdp-hero__student-summary-text {
+    min-width: 0;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .pdp-hero__student-optional {
+    font-weight: 500;
+    color: #9aa1c7;
+  }
+
+  .pdp-hero__student-chevron {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #8a91b4;
+    transition: transform 160ms ease;
+  }
+
+  .pdp-hero__student-chevron svg {
+    width: 12px;
+    height: 8px;
+    display: block;
+  }
+
+  .pdp-hero__student[open] .pdp-hero__student-chevron {
+    transform: rotate(180deg);
+  }
+
+  .pdp-hero__student-body {
+    padding: 0 14px 14px;
+  }
+
+  .pdp-hero__student-hint {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: #8a94bf;
+  }
+
+  .pdp-hero__student-label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: #9aa1c7;
+  }
+
+  .pdp-hero__student-input {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid rgba(152, 160, 191, 0.5);
+    padding: 11px 12px;
+    font-size: 14px;
+    color: #4a5387;
+    background: #ffffff;
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  .pdp-hero__student-input::placeholder {
+    color: #a8aecb;
+  }
+
+  .pdp-hero__student-input:focus {
+    outline: none;
+    border-color: #24367a;
+    box-shadow: 0 0 0 3px rgba(36, 54, 122, 0.12);
+  }
+
+  @media (max-width: 959px) {
+    .pdp-hero__student-summary {
+      gap: 8px;
+      padding: 11px 12px;
+    }
+
+    .pdp-hero__student-summary-text {
+      font-size: 12.5px;
+    }
+
+    .pdp-hero__student-body {
+      padding: 0 12px 12px;
+    }
+
+    .pdp-hero__student-input {
+      padding: 12px 14px;
+    }
+  }
+
+  @media (max-width: 374px) {
+    .pdp-hero__student-summary-text {
+      font-size: 11.5px;
+    }
+  }
+</style>

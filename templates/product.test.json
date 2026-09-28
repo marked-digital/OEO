@@ -1,0 +1,375 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "pdp_product_rQxGhJ": {
+      "type": "pdp-product",
+      "name": "PDP - Product",
+      "settings": {
+        "callout_1": "Complete in as little as 4–6 weeks",
+        "callout_2": "Start anytime",
+        "callout_3": "100% online",
+        "rating_value": "4.9",
+        "rating_count": "47 students",
+        "price_subcopy": "Includes teacher marking, 24-hour feedback turnaround, and your official OSSD transcript. No hidden fees.",
+        "payment_plan_text": "Or as low as $150/month with Sezzle",
+        "urgency_text": "Currently enrolling • Access begins within 24 hours",
+        "enrol_label": "Enrol Now",
+        "enrol_disclaimer": "One-time payment • No subscription • No recurring charges",
+        "variant_label": "Student location",
+        "watch_label": "Watch how it works — 1 min",
+        "watch_link": "#how-it-works",
+        "watch_link_new_tab": false,
+        "guidance_text": "Not sure? Book a free 15-min guidance call →",
+        "guidance_url": "shopify://pages/book-guidance-session-thank-you",
+        "guidance_new_tab": false,
+        "quick_enrol_subtext": "Access within 24 hours"
+      }
+    },
+    "pdp_trust_NhtB6h": {
+      "type": "pdp-trust",
+      "blocks": {
+        "value_ciyC6t": {
+          "type": "value",
+          "settings": {
+            "icon": "school",
+            "title": "Ministry-Inspected School",
+            "description": "BSID #882902",
+            "link_label": "Verify on Ministry site",
+            "link_url": "https://www.myontarioschool.ca/find-us-on-ministrys-website/",
+            "open_new_tab": true
+          }
+        },
+        "value_j4CYHR": {
+          "type": "value",
+          "settings": {
+            "icon": "teacher",
+            "title": "Ontario-Certified Teacher",
+            "description": "All courses taught by OCT-regulated educators",
+            "link_label": "Verify on Ministry site",
+            "link_url": "",
+            "open_new_tab": true
+          }
+        },
+        "value_qVf8mV": {
+          "type": "value",
+          "settings": {
+            "icon": "cap",
+            "title": "Credits Accepted Everywhere",
+            "description": "Official Ontario Accredited Highschool Credits",
+            "link_label": "Verify on Ministry site",
+            "link_url": "",
+            "open_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "value_ciyC6t",
+        "value_j4CYHR",
+        "value_qVf8mV"
+      ],
+      "name": "PDP - Values",
+      "settings": {}
+    },
+    "pdp_universities_bBfGqN": {
+      "type": "pdp-universities",
+      "blocks": {
+        "university_MEeGmN": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/UofT.png",
+            "name": "University of Toronto",
+            "alt": "University of Toronto"
+          }
+        },
+        "university_8x9i4V": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/MAC.png",
+            "name": "McMaster University",
+            "alt": "McMaster University"
+          }
+        },
+        "university_hyYqDH": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/wastern.png",
+            "name": "Western University",
+            "alt": "Western University"
+          }
+        },
+        "university_NM7BNE": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Queens.png",
+            "name": "Queen's University",
+            "alt": "Queen's University"
+          }
+        },
+        "university_qXMhdY": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/YorkU.png",
+            "name": "York University",
+            "alt": "York University"
+          }
+        },
+        "university_KpfKMh": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/ottawa.png",
+            "name": "University of Ottawa",
+            "alt": "University of Ottawa"
+          }
+        },
+        "university_jirhYt": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Waterloo.png",
+            "name": "University of Waterloo",
+            "alt": "University of Waterloo"
+          }
+        },
+        "university_KjyniC": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/laurieri.png",
+            "name": "Laurier University",
+            "alt": "Laurier University"
+          }
+        }
+      },
+      "block_order": [
+        "university_MEeGmN",
+        "university_8x9i4V",
+        "university_hyYqDH",
+        "university_NM7BNE",
+        "university_qXMhdY",
+        "university_KpfKMh",
+        "university_jirhYt",
+        "university_KjyniC"
+      ],
+      "name": "PDP Universities",
+      "settings": {
+        "eyebrow": "Credits accepted at every Ontario university, including:"
+      }
+    },
+    "pdp_how_it_works_w8bCrL": {
+      "type": "pdp-how-it-works",
+      "blocks": {
+        "step_XneWHC": {
+          "type": "step",
+          "settings": {
+            "title": "Pay and get access",
+            "subtext": "Course unlocks within 24 hours. No paperwork, no waiting on a school office."
+          }
+        },
+        "step_FYg4NC": {
+          "type": "step",
+          "settings": {
+            "title": "Work at your own pace",
+            "subtext": "Complete lessons and assignments whenever suits you. No schedule, no login times."
+          }
+        },
+        "step_kPcNjT": {
+          "type": "step",
+          "settings": {
+            "title": "Get quick feedback",
+            "subtext": "Submit an assignment, get detailed written feedback within 24 hours on weekdays."
+          }
+        },
+        "step_WVBT6x": {
+          "type": "step",
+          "settings": {
+            "title": "Receive your transcript",
+            "subtext": "Official OSSD credit sent directly to you or your university once the course is complete."
+          }
+        }
+      },
+      "block_order": [
+        "step_XneWHC",
+        "step_FYg4NC",
+        "step_kPcNjT",
+        "step_WVBT6x"
+      ],
+      "name": "PDP How It Works",
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "From payment to your first mark — in 1 minute",
+        "video_embed": "<iframe width=\"815\" height=\"458\" src=\"https://www.youtube.com/embed/ZQWgC0kKnXg\" title=\"OEO- What happens after you enrol\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen=\"\"></iframe>",
+        "video_caption": "See exactly what OEO looks like — from the day you pay to the day your credit is issued"
+      }
+    },
+    "pdp_course_curriculum_tg4EQh": {
+      "type": "pdp-course-curriculum",
+      "name": "PDP Course Curriculum",
+      "settings": {
+        "eyebrow": "Course Curriculum",
+        "heading_prefix": "What you'll cover in"
+      }
+    },
+    "pdp_course_details_NUrdjb": {
+      "type": "pdp-course-details",
+      "name": "PDP Course Details",
+      "settings": {
+        "eyebrow": "Course Information",
+        "heading": "Course details at a glance",
+        "delivery_method": "100% Online, Self-Paced. No scheduled classes or login requirements",
+        "assessment": "Assignments, teacher evaluations, and a final exam written online.",
+        "feedback_turnaround": "Within 24 hours on weekdays",
+        "typical_completion": "4–8 weeks (work at your own pace, no minimum)",
+        "start_date": "Enrol any day. Course access begins within 24 hours of payment",
+        "official_transcript": "Issued directly to you or your university by OEO",
+        "prereq_help_text": "(Not sure if you qualify? Ask us →)",
+        "prereq_help_url": "shopify://pages/book-guidance-session",
+        "outline_button_label": "Download Course Outline (PDF)"
+      }
+    },
+    "pdp_no_exam_AH49iV": {
+      "type": "pdp-no-exam",
+      "name": "PDP 100% Online",
+      "settings": {
+        "quote_line1": "\"No scheduled classes. No attendance marks.",
+        "quote_line2": "No compromises.\"",
+        "body_text": "OEO courses are fully asynchronous, with no scheduled classes and no attendance marks. Your grade comes from coursework assessed by your Ontario-certified teacher and a final exam you write online, from anywhere in the world. You work at your pace, and your grade reflects your actual understanding of the material.",
+        "photo": "shopify://shop_images/548187342_1626137672001146_4286759087311537051_n.jpg",
+        "photo_alt": "Student working from home"
+      }
+    },
+    "pdp_testimonials_hYnmD4": {
+      "type": "pdp-testimonials",
+      "name": "PDP Testimonials",
+      "settings": {
+        "eyebrow": "Student Stories",
+        "heading": "What our students say",
+        "autoplay": true,
+        "autoplay_speed": 5000
+      }
+    },
+    "pdp_guidance_cta_UNfAbX": {
+      "type": "pdp-guidance-cta",
+      "name": "PDP - Guidance CTA",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure if this course is right for your situation?",
+        "body_text": "Book a free 15-minute guidance session with one of our advisors. We'll review your transcript, answer your questions about prerequisites, and make sure you're set up for success. No obligation, no pressure.",
+        "button_label": "Book Free Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_aria_label": "Book a free 15-minute guidance session with an OEO advisor",
+        "proof_text": "Parents & guardians are welcome!"
+      }
+    },
+    "pdp_faqs_MicmxB": {
+      "type": "pdp-faqs",
+      "blocks": {
+        "faq_item_yNgRPL": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are {{ product.metafields.custom.course_code.value }} credits recognized by Ontario universities?",
+            "answer": "<p>Yes. All Ontario universities accept OEO credits as official OSSD credits. OEO is a Ministry-inspected private school (BSID #882902) and your credit appears on an official Ontario transcript. Admissions offices at the University of Toronto, McMaster, Western, Queen's, York, Ottawa, and all other Ontario universities treat these credits identically to those earned at any public or private day school.</p>"
+          }
+        },
+        "faq_item_hk7fNA": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What's the difference between the Canada and International price?",
+            "answer": "<p>Students currently residing in Canada pay $599 CAD. Students outside Canada pay a different rate to account for currency differences and administrative costs related to international transcript handling. Both groups receive the same course content, the same Ontario-certified teacher, and the same official OSSD credit. Contact us if you have questions about the international pricing before enrolling.</p>"
+          }
+        },
+        "faq_item_gnnpm4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Do I need to be online at specific times?",
+            "answer": "<p>No. {{ product.metafields.custom.course_code.value }} at OEO is fully asynchronous and self-paced. You access course materials, complete assignments, and submit your work whenever works for you, day or night, weekday or weekend. There are no scheduled live classes, no mandatory login times, and no fixed pacing requirements. You control your schedule entirely.</p>"
+          }
+        },
+        "faq_item_9GhqY7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How does teacher feedback work?",
+            "answer": "<p>{{ product.metafields.custom.teacher.value.teacher_name.value }}, your Ontario-certified Teacher, personally reviews each assignment you submit and returns detailed written feedback within 24 hours on weekdays. You'll receive comments on what you did well, where marks were deducted, and specific guidance on what to focus on next. This one-on-one feedback loop is one of the biggest advantages of learning at OEO compared to a traditional classroom where a teacher is managing 30 students at once.</p>"
+          }
+        },
+        "faq_item_Ai9UKw": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is the refund policy?",
+            "answer": "<p>If you haven't yet accessed any course content, you can request a full refund within 7 days of purchase. Once course units have been opened and accessed, refunds are reviewed on a case-by-case basis. We always try to find a fair solution. If something comes up, reach out to us at <a href=\"mailto:info@ontarioeducationonline.ca\" target=\"_blank\">info@ontarioeducationonline.ca </a>and we'll work with you.<br/><br/><br/><br/></p>"
+          }
+        },
+        "faq_item_yX96G8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How quickly can I complete the course?",
+            "answer": "<p>Most students complete {{ product.metafields.custom.course_code.value }} in 4 to 8 weeks. Students who study 3 to 4 hours per day typically finish in 4 to 5 weeks. If you have a university application deadline approaching, book a guidance session and we'll help you plan a realistic study schedule that fits your timeline. There's no minimum time requirement. You work at whatever pace suits you.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_yNgRPL",
+        "faq_item_hk7fNA",
+        "faq_item_gnnpm4",
+        "faq_item_9GhqY7",
+        "faq_item_Ai9UKw",
+        "faq_item_yX96G8"
+      ],
+      "name": "PDP - FAQs",
+      "settings": {
+        "section_label": "Common Questions",
+        "section_heading": "Frequently asked questions",
+        "fallback_course_code": "this course"
+      }
+    },
+    "pdp_related_products_hTBqWf": {
+      "type": "pdp-related-products",
+      "name": "PDP - Related Products",
+      "settings": {
+        "section_label": "Keep Learning",
+        "section_heading": "Other courses you might need",
+        "max_products": 9
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pdp_product_rQxGhJ",
+    "pdp_trust_NhtB6h",
+    "pdp_universities_bBfGqN",
+    "pdp_how_it_works_w8bCrL",
+    "pdp_course_curriculum_tg4EQh",
+    "pdp_course_details_NUrdjb",
+    "pdp_no_exam_AH49iV",
+    "pdp_testimonials_hYnmD4",
+    "pdp_guidance_cta_UNfAbX",
+    "pdp_faqs_MicmxB",
+    "pdp_related_products_hTBqWf"
+  ]
+}

@@ -1,0 +1,58 @@
+{% render 'intl-css' %}
+<section class="oeo-lp lp-sec lp-diff">
+  <div class="lp-inner">
+    <div class="lp-diff__head">
+      {% if section.settings.eyebrow != blank %}<div class="lp-eyebrow">{{ section.settings.eyebrow }}</div>{% endif %}
+      <h2 class="lp-diff__h">{{ section.settings.heading }}</h2>
+    </div>
+    <div class="lp-diff__grid">
+      {% for block in section.blocks %}
+        <div class="lp-card lp-diff__card" {{ block.shopify_attributes }}>
+          <span class="lp-diff__icon">{% render 'intl-icon', icon: block.settings.icon, size: 28 %}</span>
+          <div>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.body }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Intl • Differentiators",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our approach is different" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built for students studying from another country." }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Card",
+      "settings": [
+        { "type": "select", "id": "icon", "label": "Icon", "default": "chat",
+          "options": [
+            { "value": "chat", "label": "Chat" },
+            { "value": "noexam", "label": "Document" },
+            { "value": "globe", "label": "Globe" },
+            { "value": "pace", "label": "Clock" },
+            { "value": "cap", "label": "Grad cap" },
+            { "value": "check", "label": "Check" }
+          ] },
+        { "type": "text", "id": "title", "label": "Title", "default": "Real teacher support" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Every course is developed and taught by an Ontario Certified Teacher." }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Intl • Differentiators",
+    "blocks": [
+      { "type": "card", "settings": { "icon": "chat",   "title": "Real teacher support",       "body": "Every course is developed and taught by an Ontario Certified Teacher. Ask questions and get real answers, not an automated portal. Teachers reply within one business day and return graded work in 48 to 72 hours." } },
+      { "type": "card", "settings": { "icon": "noexam", "title": "Exams written from home",             "body": "Show what you have learned through assignments all term, then write one final exam online from wherever you are. No travel, no test centres. One less pressure when you are balancing another school system." } },
+      { "type": "card", "settings": { "icon": "globe",  "title": "Study in your own timezone", "body": "100% online and self-paced. Start any day of the year and study from a phone, tablet, or computer, wherever you are." } },
+      { "type": "card", "settings": { "icon": "pace",   "title": "Finish at your pace",        "body": "Move quickly and finish a course in as little as 4 weeks, or take up to 12 months. You decide." } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,0 +1,1125 @@
+{%- comment -%}
+------------------------------------------------------------------------------------------------------------------------
+HERO BANNER CAROUSEL
+
+Mirrors the "Image with text overlay" section (image, mobile image, subheading, heading, paragraph, liquid, button,
+content positioning, text color, overlay) but supports multiple banners that auto-rotate.
+
+Drives the theme's existing <x-slideshow> / <slideshow-carousel> engine (assets/sections.js.liquid), so it inherits the
+fade transitions, reveal-on-scroll animation and dot/arrow controls. The `autoplay` attribute is expressed in SECONDS.
+
+Two block types:
+  - "Banner"                 -> the original flexible banner. Untouched; existing slides keep rendering identically.
+  - "Photo banner (Style B)" -> OEO FTE photographic hero (indigo grade + directional scrim, eyebrow, two-line
+                                headline, desktop/mobile body variants, dual CTAs, trust line). Copy ships as
+                                schema defaults per the design hand-off.
+------------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- comment -%}---------------- CSS ----------------{%- endcomment -%}
+<style>
+  {%- liquid
+    assign first_block = section.blocks.first
+    if first_block.type == 'style_b'
+      if section.settings.controls_type == 'filled_arrows'
+        assign section_controls_background = '240 196 24'
+        assign section_controls_color = '22 29 73'
+      else
+        assign section_controls_background = ''
+        assign section_controls_color = '255 255 255'
+      endif
+    else
+      if section.settings.controls_type == 'filled_arrows'
+        assign section_controls_background = first_block.settings.button_background.rgb
+        assign section_controls_color = first_block.settings.button_text_color.rgb
+      else
+        assign section_controls_background = ''
+        assign section_controls_color = first_block.settings.text_color.rgb
+      endif
+    endif
+  -%}
+
+  #shopify-section-{{ section.id }} {
+    --slideshow-background: {{ section.settings.background_gradient | default: section.settings.background }};
+    --slideshow-controls-background: {{ section_controls_background }};
+    --slideshow-controls-color: {{ section_controls_color }};
+
+    {%- if section.settings.allow_transparent_header -%}
+      margin-block-start: calc(-1 * var(--header-height) * var(--section-is-first));
+    {%- endif -%}
+  }
+
+  {%- for block in section.blocks -%}
+    {%- liquid
+      if block.type == 'style_b'
+        if section.settings.controls_type == 'filled_arrows'
+          assign block_controls_background = '240 196 24'
+          assign block_controls_color = '22 29 73'
+        else
+          assign block_controls_background = ''
+          assign block_controls_color = '255 255 255'
+        endif
+      else
+        if section.settings.controls_type == 'filled_arrows'
+          assign block_controls_background = block.settings.button_background.rgb
+          assign block_controls_color = block.settings.button_text_color.rgb
+        else
+          assign block_controls_background = ''
+          assign block_controls_color = block.settings.text_color.rgb
+        endif
+      endif
+    -%}
+
+    #block-{{ block.id }} {
+      {%- if block.type == 'style_b' -%}
+        --slideshow-slide-background: #161D49;
+        --hb-sb-grade: {{ block.settings.grade_strength | default: 38 }}%;
+        --hb-sb-content-width: {{ block.settings.content_width | default: 52 }}%;
+        --hb-sb-mobile-align: {{ block.settings.mobile_position | default: 'center' }};
+      {%- else -%}
+        --slideshow-slide-background: {{ block.settings.background_gradient | default: block.settings.background | default: section.settings.background_gradient | default: section.settings.background }};
+        --banner-logo-width: {{ block.settings.logo_width }}px;
+        --banner-logo-mobile-width: {{ block.settings.logo_mobile_width }}px;
+      {%- endif -%}
+      --slideshow-slide-controls-background: {{ block_controls_background }};
+      --slideshow-slide-controls-color: {{ block_controls_color }};
+    }
+  {%- endfor -%}
+
+  #shopify-section-{{ section.id }} .hero-banner__actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 32px;
+    margin-block-start: 24px;
+  }
+
+  #shopify-section-{{ section.id }} .hero-banner__logo {
+    width: var(--banner-logo-width, 160px);
+    height: auto;
+    display: block;
+  }
+
+  /* ---------------- Photo banner (Style B) ---------------- */
+  #shopify-section-{{ section.id }} .hb-sb {
+    position: relative;
+    isolation: isolate;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__grade,
+  #shopify-section-{{ section.id }} .hb-sb__scrim,
+  #shopify-section-{{ section.id }} .hb-sb__content {
+    grid-area: auto;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__grade,
+  #shopify-section-{{ section.id }} .hb-sb__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__grade {
+    background: rgb(22 29 73 / var(--hb-sb-grade, 38%));
+    mix-blend-mode: multiply;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__scrim {
+    background: linear-gradient(90deg, rgba(22, 29, 73, .97) 0%, rgba(22, 29, 73, .88) 34%, rgba(22, 29, 73, .4) 58%, rgba(22, 29, 73, 0) 82%);
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__inner {
+    box-sizing: border-box;
+    width: var(--hb-sb-content-width, 52%);
+    padding: 48px 3% 48px 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    text-align: left;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__eyebrow {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #F0C418;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__heading {
+    margin: 0;
+    font-family: var(--heading-font-family, var(--font-heading-family, inherit));
+    font-size: clamp(30px, 3.4vw, 52px);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -.015em;
+    color: #FFFFFF;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__heading span { white-space: nowrap; }
+
+  #shopify-section-{{ section.id }} .hb-sb__body {
+    margin: 0;
+    max-width: 560px;
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: rgba(242, 241, 246, .85);
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__body--mobile { display: none; }
+
+  #shopify-section-{{ section.id }} .hb-sb__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 6px;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 12px 28px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__btn--primary { background: #F0C418; color: #161D49; }
+  #shopify-section-{{ section.id }} .hb-sb__btn--primary:hover {
+    background: #D9AC0C;
+    color: #161D49;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgb(22 29 73 / 28%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #shopify-section-{{ section.id }} .hb-sb__btn { transition: none; }
+    #shopify-section-{{ section.id }} .hb-sb__btn--primary:hover { transform: none; box-shadow: none; }
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__btn--secondary {
+    background: transparent;
+    color: #FFFFFF;
+    border: 1.5px solid rgba(255, 255, 255, .55);
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__btn--secondary:hover { background: rgba(255, 255, 255, .12); color: #FFFFFF; }
+
+  #shopify-section-{{ section.id }} .hb-sb__trust {
+    margin: 0;
+    font-size: 13px;
+    color: rgba(242, 241, 246, .65);
+  }
+
+  #shopify-section-{{ section.id }} .hb-sb__trust--mobile { display: none; }
+
+  @media screen and (min-width: 700px) and (max-width: 989px) {
+    #shopify-section-{{ section.id }} .hb-sb__inner { width: max(var(--hb-sb-content-width, 52%), 68%); }
+  }
+
+  @media screen and (max-width: 699.98px) {
+    #shopify-section-{{ section.id }} .hb-sb__content { align-items: var(--hb-sb-mobile-align, center); }
+
+    #shopify-section-{{ section.id }} .hb-sb__inner {
+      width: 100%;
+      padding: 24px 20px 48px;
+      gap: 14px;
+      align-items: center;
+      text-align: center;
+    }
+
+    #shopify-section-{{ section.id }} .hb-sb__actions { justify-content: center; }
+
+    #shopify-section-{{ section.id }} .hb-sb__scrim {
+      background: linear-gradient(0deg, rgba(22, 29, 73, .97) 0%, rgba(22, 29, 73, .88) 36%, rgba(22, 29, 73, .4) 60%, rgba(22, 29, 73, 0) 84%);
+    }
+
+    #shopify-section-{{ section.id }} .hb-sb__heading { font-size: 38px; line-height: 1.12; }
+    #shopify-section-{{ section.id }} .hb-sb__heading span { white-space: normal; }
+    #shopify-section-{{ section.id }} .hb-sb__heading br { display: none; }
+
+    #shopify-section-{{ section.id }} .hb-sb__body--desktop { display: none; }
+    #shopify-section-{{ section.id }} .hb-sb__body--mobile { display: block; font-size: 16px; }
+
+    #shopify-section-{{ section.id }} .hb-sb__btn--secondary { display: none; }
+
+    #shopify-section-{{ section.id }} .hb-sb__trust--desktop { display: none; }
+    #shopify-section-{{ section.id }} .hb-sb__trust--mobile { display: block; font-size: 12px; }
+  }
+  /* ---------------- End Photo banner (Style B) ---------------- */
+
+  @media screen and (max-width: 768px) {
+    {%- if section.settings.mobile_min_height > 0 -%}
+      #shopify-section-{{ section.id }} .content-over-media {
+        --content-over-media-height: {{ section.settings.mobile_min_height }}px;
+      }
+    {%- endif -%}
+
+    #shopify-section-{{ section.id }} .hero-banner__actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+    }
+
+    #shopify-section-{{ section.id }} .hero-banner__logo {
+      width: var(--banner-logo-mobile-width, 90px);
+    }
+  }
+</style>
+
+{%- comment -%}---------------- LIQUID ----------------{%- endcomment -%}
+{%- assign slideshow_id = 'hero-banner-carousel-' | append: section.id -%}
+
+<x-slideshow class="slideshow {% unless section.settings.full_width %}slideshow--boxed{% endunless %} {% if section.blocks.size > 1 %}slideshow--multiple-slides{% endif %}" {% if section.settings.allow_transparent_header %}allow-transparent-header{% endif %}>
+  {%- unless section.settings.full_width -%}
+    <span class="slideshow__slide-background"></span>
+  {%- endunless -%}
+
+  <slideshow-carousel id="{{ slideshow_id }}" class="slideshow__carousel" reveal-on-scroll="true" selector=".slideshow__slide" transition="{{ section.settings.transition_type }}" {% if section.settings.autoplay and section.blocks.size > 1 %}autoplay="{{ section.settings.cycle_speed }}"{% endif %} role="region" aria-roledescription="{{ 'sections.slideshow.carousel' | t | default: 'carousel' }}">
+    {%- unless section.blocks.size == 1 or section.settings.controls_type contains 'arrows' -%}
+      <custom-cursor class="slideshow__cursor circle-button circle-button--lg circle-button--fill" aria-hidden="true">
+        {%- render 'icon' with 'chevron-right' -%}
+
+        <svg class="slideshow__cursor-ring" viewBox="-28 -28 56 56" width="56" height="56" fill="none" stroke="currentColor" stroke-width="2">
+          <circle r="27" stroke-dasharray="158.33626974092556" stroke-dashoffset="158.33626974092556px"></circle>
+        </svg>
+      </custom-cursor>
+    {%- endunless -%}
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'style_b' -%}
+        {%- comment -%}---------------- PHOTO BANNER (STYLE B) ----------------{%- endcomment -%}
+        {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+        {%- capture loading_strategy -%}{% if forloop.first %}eager{% else %}lazy{% endif %}{%- endcapture -%}
+        {%- capture fetch_priority -%}{% if forloop.first %}high{% else %}low{% endif %}{%- endcapture -%}
+        {%- assign sb_alt = block.settings.image_alt | default: block.settings.image.alt -%}
+
+        <div id="block-{{ block.id }}" class="slideshow__slide {% if forloop.first %}is-selected{% endif %}" data-slide-type="image" role="group" {{ block.shopify_attributes }}>
+          <div class="content-over-media content-over-media--{{ section.settings.image_size }} hb-sb {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-overlay: 0 0 0 / 0">
+            {%- if block.settings.image != blank -%}
+              {%- if block.settings.mobile_image == blank -%}
+                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, alt: sb_alt, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
+              {%- else -%}
+                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, alt: sb_alt, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'hidden sm:block' -}}
+                {{- block.settings.mobile_image | image_url: width: block.settings.mobile_image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, alt: sb_alt, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600', class: 'sm:hidden' -}}
+              {%- endif -%}
+            {%- else -%}
+              {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder' | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
+            {%- endif -%}
+
+            <div class="hb-sb__grade" aria-hidden="true"></div>
+            <div class="hb-sb__scrim" aria-hidden="true"></div>
+
+            <div class="hb-sb__content">
+              <div class="hb-sb__inner">
+                {%- if block.settings.eyebrow != blank -%}
+                  <p class="hb-sb__eyebrow" data-sequence="subheading">{{ block.settings.eyebrow | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.heading_line_1 != blank or block.settings.heading_line_2 != blank -%}
+                  <p class="hb-sb__heading" data-sequence="heading">
+                    {%- if block.settings.heading_line_1 != blank -%}<span>{{ block.settings.heading_line_1 | escape }}</span>{%- endif -%}
+                    {%- if block.settings.heading_line_1 != blank and block.settings.heading_line_2 != blank %} <br>{%- endif -%}
+                    {%- if block.settings.heading_line_2 != blank -%}<span>{{ block.settings.heading_line_2 | escape }}</span>{%- endif -%}
+                  </p>
+                {%- endif -%}
+
+                {%- if block.settings.body_desktop != blank -%}
+                  <p class="hb-sb__body hb-sb__body--desktop">{{ block.settings.body_desktop | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.body_mobile != blank -%}
+                  <p class="hb-sb__body hb-sb__body--mobile">{{ block.settings.body_mobile | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.primary_label != blank or block.settings.secondary_label != blank -%}
+                  <div class="hb-sb__actions">
+                    {%- if block.settings.primary_label != blank -%}
+                      <a class="hb-sb__btn hb-sb__btn--primary" href="{{ block.settings.primary_link | default: '#' }}">{{ block.settings.primary_label | escape }}</a>
+                    {%- endif -%}
+
+                    {%- if block.settings.secondary_label != blank -%}
+                      <a class="hb-sb__btn hb-sb__btn--secondary" href="{{ block.settings.secondary_link | default: '#' }}">{{ block.settings.secondary_label | escape }}</a>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+
+                {%- if block.settings.trust_desktop != blank -%}
+                  <p class="hb-sb__trust hb-sb__trust--desktop">{{ block.settings.trust_desktop | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.trust_mobile != blank -%}
+                  <p class="hb-sb__trust hb-sb__trust--mobile">{{ block.settings.trust_mobile | escape }}</p>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- else -%}
+        {%- capture slide -%}
+          <div class="content-over-media content-over-media--{{ section.settings.image_size }} {% unless section.settings.full_width %}rounded{% endunless %}" style="--content-over-media-content-max-width: {{ block.settings.content_max_width }}px; --content-over-media-overlay: {{ block.settings.overlay_color.rgb }} / {{ block.settings.overlay_opacity | divided_by: 100.0 }}">
+            {%- comment -%}---------------- MEDIA ----------------{%- endcomment -%}
+            {%- capture sizes -%}{% if section.settings.full_width %}100vw{% else %}min({{ settings.page_width }}px, 100vw){% endif %}{%- endcapture -%}
+            {%- capture loading_strategy -%}{% if forloop.first %}eager{% else %}lazy{% endif %}{%- endcapture -%}
+            {%- capture fetch_priority -%}{% if forloop.first %}high{% else %}low{% endif %}{%- endcapture -%}
+
+            {%- if block.settings.image != blank -%}
+              {%- if block.settings.mobile_image == blank -%}
+                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200' -}}
+              {%- else -%}
+                {{- block.settings.image | image_url: width: block.settings.image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600,1800,2000,2200,2400,2600,2800,3000,3200', class: 'hidden sm:block' -}}
+                {{- block.settings.mobile_image | image_url: width: block.settings.mobile_image.width | image_tag: loading: loading_strategy, fetchpriority: fetch_priority, sizes: sizes, widths: '200,300,400,500,600,700,800,900,1000,1200,1400,1600', class: 'sm:hidden' -}}
+              {%- endif -%}
+            {%- else -%}
+              {{- 'lifestyle-1' | placeholder_svg_tag: 'placeholder' | replace: '<svg', '<svg preserveAspectRatio="xMinYMin slice"' -}}
+            {%- endif -%}
+
+            {%- comment -%}---------------- CONTENT ----------------{%- endcomment -%}
+            {%- capture content_class -%}{{ block.settings.mobile_text_position }} {{ block.settings.desktop_text_position }}{%- endcapture -%}
+
+            <div {% render 'surface', class: content_class, text_color: block.settings.text_color %}>
+              <div class="prose">
+                {%- if block.settings.subheading != blank -%}
+                  <p class="bold" data-sequence="subheading" style="color: #f0c417;">{{ block.settings.subheading | escape }}</p>
+                {%- endif -%}
+
+                {%- if block.settings.title != blank -%}
+                  <p class="{{ block.settings.heading_tag }}" data-sequence="heading">
+                    {%- render 'styled-text', content: block.settings.title, apparition_effect: true -%}
+                  </p>
+                {%- endif -%}
+
+                {%- if block.settings.content != blank -%}
+                  <div>{{ block.settings.content }}</div>
+                {%- endif -%}
+
+                {%- if block.settings.liquid != blank -%}
+                  <div>{{ block.settings.liquid }}</div>
+                {%- endif -%}
+
+                {%- if block.settings.button_text != blank or block.settings.logo != blank -%}
+                  <div class="hero-banner__actions">
+                    {%- if block.settings.button_text != blank -%}
+                      {%- render 'button', content: block.settings.button_text, href: block.settings.button_link, size: block.settings.button_size, style: block.settings.button_style, background: block.settings.button_background, text_color: block.settings.button_text_color, block: block -%}
+                    {%- endif -%}
+
+                    {%- if block.settings.logo != blank -%}
+                      {{- block.settings.logo | image_url: width: block.settings.logo.width | image_tag: class: 'hero-banner__logo', alt: block.settings.logo_alt, loading: 'lazy', sizes: '(max-width: 768px) 120px, 200px', widths: '80,90,120,160,200,240,320,400,480,640' -}}
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </div>
+            </div>
+          </div>
+        {%- endcapture -%}
+
+        {%- if block.settings.button_link != blank and block.settings.button_text == blank -%}
+          <a id="block-{{ block.id }}" href="{{ block.settings.button_link }}" class="slideshow__slide {% if forloop.first %}is-selected{% endif %}" data-slide-type="image" role="group" {{ block.shopify_attributes }}>
+            {{- slide -}}
+          </a>
+        {%- else -%}
+          <div id="block-{{ block.id }}" class="slideshow__slide {% if forloop.first %}is-selected{% endif %}" data-slide-type="image" role="group" {{ block.shopify_attributes }}>
+            {{- slide -}}
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- if section.blocks.size > 1 and section.settings.controls_type != 'none' -%}
+      <div class="slideshow__controls">
+        {%- case section.settings.controls_type -%}
+          {%- when 'filled_arrows' or 'outline_arrows' -%}
+            <div class="prev-next-buttons">
+              <button is="prev-button" aria-controls="{{ slideshow_id }}" class="circle-button circle-button--lg {% if section.settings.controls_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group">
+                <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
+                <span class="animated-arrow animated-arrow--reverse"></span>
+              </button>
+
+              <button is="next-button" aria-controls="{{ slideshow_id }}" class="circle-button circle-button--lg {% if section.settings.controls_type == 'filled_arrows' %}circle-button--fill{% else %}circle-button--bordered{% endif %} group">
+                <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
+                <span class="animated-arrow"></span>
+              </button>
+            </div>
+
+          {%- when 'numbers' -%}
+            <page-dots class="numbered-dots" aria-controls="{{ slideshow_id }}">
+              {%- for i in (1..section.blocks.size) -%}
+                <button type="button" class="numbered-dots__item" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                  <svg width="100%" height="100%" {% if section.settings.autoplay %}style="--percent: 0"{% endif %}>
+                    <circle cx="50%" cy="50%" r="15"></circle>
+                    <circle cx="50%" cy="50%" r="15"></circle>
+                  </svg>
+
+                  <span>{{- forloop.index -}}</span>
+                </button>
+              {%- endfor -%}
+            </page-dots>
+
+          {%- when 'dots' -%}
+            <page-dots class="stretching-dots" aria-controls="{{ slideshow_id }}">
+              {%- for i in (1..section.blocks.size) -%}
+                <button type="button" class="tap-area" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+                  <span class="sr-only">{{ 'general.accessibility.go_to_item' | t: index: forloop.index }}</span>
+                </button>
+              {%- endfor -%}
+            </page-dots>
+        {%- endcase -%}
+      </div>
+    {%- endif -%}
+  </slideshow-carousel>
+</x-slideshow>
+
+{% schema %}
+{
+  "name": "Hero banner carousel",
+  "class": "shopify-section--hero-banner-carousel",
+  "tag": "section",
+  "disabled_on": {
+    "templates": ["password"],
+    "groups": ["header", "custom.overlay"]
+  },
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "allow_transparent_header",
+      "label": "Allow transparent header",
+      "info": "This setting only applies when this section is the first one.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "image_size",
+      "label": "Image size",
+      "options": [
+        {
+          "value": "auto",
+          "label": "Original image ratio"
+        },
+        {
+          "value": "sm",
+          "label": "Small"
+        },
+        {
+          "value": "md",
+          "label": "Medium"
+        },
+        {
+          "value": "lg",
+          "label": "Large"
+        },
+        {
+          "value": "fill",
+          "label": "Fill screen"
+        }
+      ],
+      "info": "Choose \"Original image ratio\" to avoid image cropping. For matching banners, give every slide the same dimensions.",
+      "default": "auto"
+    },
+    {
+      "type": "range",
+      "id": "mobile_min_height",
+      "label": "Mobile media height",
+      "min": 0,
+      "max": 900,
+      "step": 20,
+      "unit": "px",
+      "info": "Forces a taller banner on mobile so content doesn't overlap the image. Set to 0 to use the image's natural ratio.",
+      "default": 600
+    },
+    {
+      "type": "header",
+      "content": "Autoplay & transition"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto rotate between banners",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "cycle_speed",
+      "min": 3,
+      "max": 20,
+      "step": 1,
+      "unit": "sec",
+      "label": "Change banners every",
+      "default": 9
+    },
+    {
+      "type": "select",
+      "id": "transition_type",
+      "label": "Transition type",
+      "options": [
+        {
+          "value": "fade",
+          "label": "Fade"
+        },
+        {
+          "value": "fade_with_text",
+          "label": "Fade with text transition"
+        }
+      ],
+      "default": "fade_with_text"
+    },
+    {
+      "type": "select",
+      "id": "controls_type",
+      "label": "Controls",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "filled_arrows",
+          "label": "Filled arrows"
+        },
+        {
+          "value": "outline_arrows",
+          "label": "Outline arrows"
+        },
+        {
+          "value": "numbers",
+          "label": "Numbers"
+        },
+        {
+          "value": "dots",
+          "label": "Dots"
+        }
+      ],
+      "default": "dots"
+    },
+    {
+      "type": "header",
+      "content": "Background",
+      "info": "When \"Full width\" is enabled, the background is shown while the image is loading. You can override it per banner."
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background",
+      "default": "#F2F2F2"
+    },
+    {
+      "type": "color_background",
+      "id": "background_gradient",
+      "label": "Background gradient"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "3200 x 1600px .jpg recommended"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "1300 x 1500px .jpg recommended. Defaults to desktop image."
+        },
+        {
+          "type": "header",
+          "content": "Content"
+        },
+        {
+          "type": "range",
+          "id": "content_max_width",
+          "label": "Content maximum width",
+          "min": 400,
+          "max": 1200,
+          "step": 20,
+          "unit": "px",
+          "default": 780
+        },
+        {
+          "type": "select",
+          "id": "mobile_text_position",
+          "label": "Mobile content position",
+          "options": [
+            {
+              "value": "place-self-start text-start",
+              "label": "Top left"
+            },
+            {
+              "value": "place-self-start-center text-center",
+              "label": "Top center"
+            },
+            {
+              "value": "place-self-start-end text-end",
+              "label": "Top right"
+            },
+            {
+              "value": "place-self-center-start text-start",
+              "label": "Middle left"
+            },
+            {
+              "value": "place-self-center text-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "place-self-center-end text-end",
+              "label": "Middle right"
+            },
+            {
+              "value": "place-self-end-start text-start",
+              "label": "Bottom left"
+            },
+            {
+              "value": "place-self-end-center text-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "place-self-end text-end",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "place-self-center text-center"
+        },
+        {
+          "type": "select",
+          "id": "desktop_text_position",
+          "label": "Desktop content position",
+          "options": [
+            {
+              "value": "sm:place-self-start sm:text-start",
+              "label": "Top left"
+            },
+            {
+              "value": "sm:place-self-start-center sm:text-center",
+              "label": "Top center"
+            },
+            {
+              "value": "sm:place-self-start-end sm:text-end",
+              "label": "Top right"
+            },
+            {
+              "value": "sm:place-self-center-start sm:text-start",
+              "label": "Middle left"
+            },
+            {
+              "value": "sm:place-self-center sm:text-center",
+              "label": "Middle center"
+            },
+            {
+              "value": "sm:place-self-center-end sm:text-end",
+              "label": "Middle right"
+            },
+            {
+              "value": "sm:place-self-end-start sm:text-start",
+              "label": "Bottom left"
+            },
+            {
+              "value": "sm:place-self-end-center sm:text-center",
+              "label": "Bottom center"
+            },
+            {
+              "value": "sm:place-self-end sm:text-end",
+              "label": "Bottom right"
+            }
+          ],
+          "default": "sm:place-self-center sm:text-center"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Banner heading"
+        },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading size",
+          "options": [
+            {
+              "value": "h0",
+              "label": "H0"
+            },
+            {
+              "value": "h1",
+              "label": "H1"
+            },
+            {
+              "value": "h2",
+              "label": "H2"
+            },
+            {
+              "value": "h3",
+              "label": "H3"
+            },
+            {
+              "value": "h4",
+              "label": "H4"
+            },
+            {
+              "value": "h5",
+              "label": "H5"
+            },
+            {
+              "value": "h6",
+              "label": "H6"
+            }
+          ],
+          "default": "h1"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Paragraph"
+        },
+        {
+          "type": "liquid",
+          "id": "liquid",
+          "label": "Liquid",
+          "info": "Optional custom Liquid/HTML output."
+        },
+        {
+          "type": "header",
+          "content": "Button"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button link",
+          "info": "Leave the button text empty to make the whole banner clickable."
+        },
+        {
+          "type": "select",
+          "id": "button_style",
+          "label": "Button style",
+          "options": [
+            {
+              "value": "outline",
+              "label": "Outline"
+            },
+            {
+              "value": "fill",
+              "label": "Fill"
+            }
+          ],
+          "default": "fill"
+        },
+        {
+          "type": "select",
+          "id": "button_size",
+          "label": "Button size",
+          "options": [
+            {
+              "value": "sm",
+              "label": "Small"
+            },
+            {
+              "value": "base",
+              "label": "Medium"
+            },
+            {
+              "value": "lg",
+              "label": "Large"
+            },
+            {
+              "value": "xl",
+              "label": "X-Large"
+            }
+          ],
+          "default": "lg"
+        },
+        {
+          "type": "header",
+          "content": "Logo"
+        },
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo image",
+          "info": "Optional badge/logo shown below the content. Transparent .png or .svg recommended."
+        },
+        {
+          "type": "text",
+          "id": "logo_alt",
+          "label": "Logo alt text",
+          "info": "Describe the logo for accessibility and SEO."
+        },
+        {
+          "type": "range",
+          "id": "logo_width",
+          "label": "Logo width (desktop)",
+          "min": 40,
+          "max": 400,
+          "step": 10,
+          "unit": "px",
+          "default": 160
+        },
+        {
+          "type": "range",
+          "id": "logo_mobile_width",
+          "label": "Logo width (mobile)",
+          "min": 40,
+          "max": 300,
+          "step": 10,
+          "unit": "px",
+          "default": 90
+        },
+        {
+          "type": "header",
+          "content": "Banner colors"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_background",
+          "label": "Button background",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "button_text_color",
+          "label": "Button text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "overlay_color",
+          "label": "Overlay",
+          "default": "#000000"
+        },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay opacity",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "header",
+          "content": "Background",
+          "info": "Disable \"Full width\" at the section level to show the background."
+        },
+        {
+          "type": "color",
+          "id": "background",
+          "label": "Background"
+        },
+        {
+          "type": "color_background",
+          "id": "background_gradient",
+          "label": "Background gradient"
+        }
+      ]
+    },
+    {
+      "type": "style_b",
+      "name": "Photo banner (Style B)",
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "OEO photographic hero: indigo grade + directional scrim over a photo, gold eyebrow, two-line headline, dual CTAs, trust line. Copy ships as defaults."
+        },
+        {
+          "type": "header",
+          "content": "Background"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Desktop photo",
+          "info": "3200 x 1600px recommended. Keep the left third dark and low-detail."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile photo",
+          "info": "948 x 1683px portrait recommended. Defaults to desktop image."
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image alt text",
+          "default": "Student completing OSSD coursework online at home"
+        },
+        {
+          "type": "range",
+          "id": "grade_strength",
+          "label": "Indigo grade strength",
+          "min": 0,
+          "max": 60,
+          "step": 2,
+          "unit": "%",
+          "default": 38
+        },
+        {
+          "type": "range",
+          "id": "content_width",
+          "label": "Text column width (desktop)",
+          "min": 40,
+          "max": 70,
+          "step": 1,
+          "unit": "%",
+          "default": 52
+        },
+        {
+          "type": "select",
+          "id": "mobile_position",
+          "label": "Mobile text position",
+          "options": [
+            { "value": "flex-start", "label": "Top" },
+            { "value": "center", "label": "Middle" },
+            { "value": "flex-end", "label": "Bottom" }
+          ],
+          "default": "center"
+        },
+        {
+          "type": "header",
+          "content": "Copy"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow",
+          "default": "Full-Time Enrolment"
+        },
+        {
+          "type": "text",
+          "id": "heading_line_1",
+          "label": "Headline line 1",
+          "default": "September Isn't Your"
+        },
+        {
+          "type": "text",
+          "id": "heading_line_2",
+          "label": "Headline line 2",
+          "default": "Only Start Date."
+        },
+        {
+          "type": "textarea",
+          "id": "body_desktop",
+          "label": "Body (desktop)",
+          "default": "Earn your Ontario Secondary School Diploma fully online, at your own pace. Open to Grades 9 to 12 and adult learners."
+        },
+        {
+          "type": "textarea",
+          "id": "body_mobile",
+          "label": "Body (mobile)",
+          "default": "Earn your OSSD fully online, at your own pace. Grades 9 to 12 and adult learners."
+        },
+        {
+          "type": "header",
+          "content": "Calls to action"
+        },
+        {
+          "type": "text",
+          "id": "primary_label",
+          "label": "Primary CTA label",
+          "default": "See How Full-Time Works"
+        },
+        {
+          "type": "url",
+          "id": "primary_link",
+          "label": "Primary CTA link"
+        },
+        {
+          "type": "text",
+          "id": "secondary_label",
+          "label": "Secondary CTA label (desktop only)",
+          "default": "Book a Guidance Session"
+        },
+        {
+          "type": "url",
+          "id": "secondary_link",
+          "label": "Secondary CTA link"
+        },
+        {
+          "type": "header",
+          "content": "Trust line"
+        },
+        {
+          "type": "text",
+          "id": "trust_desktop",
+          "label": "Trust line (desktop)",
+          "default": "Ministry-inspected private school · BSID #882902"
+        },
+        {
+          "type": "text",
+          "id": "trust_mobile",
+          "label": "Trust line (mobile)",
+          "default": "Ministry-inspected · BSID #882902"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero banner carousel",
+      "blocks": [
+        {
+          "type": "banner",
+          "settings": {
+            "subheading": "Subheading",
+            "title": "First banner",
+            "heading_tag": "h1"
+          }
+        },
+        {
+          "type": "banner",
+          "settings": {
+            "subheading": "Subheading",
+            "title": "Second banner",
+            "heading_tag": "h1"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

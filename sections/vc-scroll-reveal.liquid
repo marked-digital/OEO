@@ -1,0 +1,164 @@
+{%- comment -%}
+  Virtual Classroom · Scroll reveal (utility section, renders nothing visible)
+  Adds enter animations to the Virtual Classroom page sections as they scroll
+  into view. Standard step rows slide in from the sides (image from its own
+  side, text from the other); everything else rises from the bottom.
+  Hidden state is applied by JavaScript only, so content stays visible
+  without JS, and prefers-reduced-motion disables the effect entirely.
+  Targets the pdp-* sections on this page too, without modifying their files.
+{%- endcomment -%}
+
+<style>
+.vc-rv {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity {{ section.settings.duration | default: 650 }}ms ease,
+    transform {{ section.settings.duration | default: 650 }}ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--vc-rv-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.vc-rv--left {
+  transform: translateX(-44px);
+}
+
+.vc-rv--right {
+  transform: translateX(44px);
+}
+
+/* Below the step-grid breakpoint everything is full-width, so side
+   entrances would overflow the viewport; rise from the bottom instead. */
+@media (max-width: 959px) {
+  .vc-rv--left,
+  .vc-rv--right {
+    transform: translateY(32px);
+  }
+}
+
+.vc-rv.vc-rv-in {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vc-rv {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Unrevealed side-slides extend 44px past the container; without this a
+   transient horizontal scrollbar can appear on narrower desktops. clip
+   (unlike hidden) does not create a scroll container, so the sticky
+   progress rail keeps working. */
+@supports (overflow-x: clip) {
+  .vc-walkthrough {
+    overflow-x: clip;
+  }
+}
+</style>
+
+<script>
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var run = function () {
+      var targets = [];
+      var add = function (el, cls, delay) {
+        if (!el || el.classList.contains('vc-rv')) return;
+        el.classList.add('vc-rv');
+        if (cls) el.classList.add(cls);
+        if (delay) el.style.setProperty('--vc-rv-delay', delay + 'ms');
+        targets.push(el);
+      };
+      var addAll = function (selector, cls, stagger) {
+        document.querySelectorAll(selector).forEach(function (el, i) {
+          add(el, cls, stagger ? i * stagger : 0);
+        });
+      };
+
+      // Hero: rise in on load
+      addAll('.vc-hero__inner > *:not(.vc-hero__video)', null, 60);
+      addAll('.vc-hero__video');
+
+      // Walkthrough: header rises; step image slides in from its own side,
+      // text from the opposite side. Flagship and centered step rise.
+      addAll('.vc-walkthrough__header');
+      document.querySelectorAll('.vc-step').forEach(function (step) {
+        var flipped = step.classList.contains('vc-step--flip');
+        add(step.querySelector('.vc-step__media'), flipped ? 'vc-rv--right' : 'vc-rv--left');
+        add(step.querySelector('.vc-step__text'), flipped ? 'vc-rv--left' : 'vc-rv--right');
+      });
+      addAll('.vc-flagship');
+      addAll('.vc-centered__text');
+      addAll('.vc-centered__media');
+
+      // PDP sections reused on this page. The no-exam columns rise instead of
+      // sliding: a side-slide leaves the photo visibly off-centre while the
+      // transition plays, which reads as a layout bug.
+      addAll('.pdp-no-exam__left');
+      addAll('.pdp-no-exam__right');
+      addAll('.pdp-faqs__label');
+      addAll('.pdp-faqs__title');
+      addAll('.pdp-faqs__item', null, 70);
+      addAll('.pdp-guidance__inner');
+
+      // Parents cards and testimonial: staggered rise
+      addAll('.vc-parents__eyebrow');
+      addAll('.vc-parents__heading');
+      addAll('.vc-parents__intro');
+      addAll('.vc-parents__card', null, 90);
+      addAll('.vc-testimonial__eyebrow');
+      addAll('.vc-testimonial__heading');
+      addAll('.vc-testimonial__card');
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('vc-rv-in');
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+      targets.forEach(function (el) { io.observe(el); });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "VC Scroll Reveal",
+  "tag": "div",
+  "class": "vc-scroll-reveal",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Animation duration (ms)",
+      "min": 300,
+      "max": 1200,
+      "step": 50,
+      "default": 650
+    },
+    {
+      "type": "paragraph",
+      "content": "Utility section: adds scroll-in animations to the Virtual Classroom page sections. Renders nothing visible. Remove it to turn all animations off."
+    }
+  ],
+  "presets": [
+    {
+      "name": "VC Scroll Reveal"
+    }
+  ]
+}
+{% endschema %}

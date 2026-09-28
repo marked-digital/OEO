@@ -1,0 +1,473 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "bf08a747-515d-4928-8fb8-0a993dbab02d": {
+          "type": "text",
+          "settings": {
+            "text": "<p>{{ product.metafields.custom.grade_level.value }} / <strong>{{ product.metafields.custom.course_code.value }}</strong></p>"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "badges": {
+          "type": "badges",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "offer_iRJaWA": {
+          "type": "offer",
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "picto-like",
+            "icon_width": 24,
+            "title": "Prerequisite:  {{ product.metafields.custom.prerequisite.value }}",
+            "content": "<p><em>Must be completed to enrol</em></p>",
+            "background": "#f2f1f6",
+            "text_color": "#2a3884"
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "rgba(0,0,0,0)",
+            "payment_button_text_color": ""
+          }
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "6e1888b8-4f22-49b0-afe7-4d2c431f37c8": {
+          "type": "offer",
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "none",
+            "custom_icon": "{{ product.metafields.custom.teacher.value.teacher_image.value }}",
+            "icon_width": 48,
+            "title": "",
+            "content": "<p><strong>{{ product.metafields.custom.teacher.value.teacher_name.value }}</strong><br/>{{ product.metafields.custom.teacher.value.teacher_position.value }}</p>",
+            "background": "#f2f1f6",
+            "text_color": "#2a3884"
+          }
+        },
+        "separator_8AEtTU": {
+          "type": "separator",
+          "settings": {}
+        },
+        "offer_DJgXcj": {
+          "type": "offer",
+          "repeater": "{{ product.metafields.custom.course_features.value }}",
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "picto-happy",
+            "icon_width": 24,
+            "title": "",
+            "content": "<p><strong>{{ block.repeater.feature.value }}</strong></p>",
+            "background": "#fcf4d2",
+            "text_color": "#f0c417"
+          }
+        }
+      },
+      "block_order": [
+        "bf08a747-515d-4928-8fb8-0a993dbab02d",
+        "title",
+        "rating",
+        "badges",
+        "price",
+        "offer_iRJaWA",
+        "variant_picker",
+        "buy_buttons",
+        "separator",
+        "6e1888b8-4f22-49b0-afe7-4d2c431f37c8",
+        "separator_8AEtTU",
+        "offer_DJgXcj"
+      ],
+      "settings": {
+        "full_width": true,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "589cf6b4-74a6-4c65-b24d-9fc8bbea3c8c": {
+      "type": "media-with-text",
+      "blocks": {
+        "44d29e53-8fd7-4d47-bb3d-22e001e6ba7b": {
+          "type": "video",
+          "settings": {
+            "external_video_url": "https://www.youtube.com/watch?v=Pq_Ybp00tfc",
+            "poster_image": "shopify://shop_images/OEO-Poster-Video-nobutton.png",
+            "autoplay": false,
+            "media_width": 50,
+            "media_position": "end",
+            "text_position": "place-self-center-start text-start",
+            "icon": "none",
+            "icon_width": 48,
+            "subheading": "{{ product.metafields.custom.grade_level.value }} / {{ product.metafields.custom.course_code.value }}",
+            "title": "{{ product.metafields.custom.teaser.value }}",
+            "content": "<p>{{ product.metafields.custom.teaser_description | metafield_tag }}</p>",
+            "link_text": "",
+            "link_url": "",
+            "background": "#f2f1f6",
+            "background_gradient": "",
+            "text_color": "#2a3884",
+            "text_gradient": "",
+            "button_background": "",
+            "button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "44d29e53-8fd7-4d47-bb3d-22e001e6ba7b"
+      ],
+      "settings": {
+        "full_width": false,
+        "spacing": "none"
+      }
+    },
+    "a8d45b5a-b08c-4fa2-93aa-03e9dae3820c": {
+      "type": "multi-column",
+      "blocks": {
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-1": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_1_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_1_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-2": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_2_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_2_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-3": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_3_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_3_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "de5201f3-78aa-4a8b-be82-ae5a43a882a8": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_4_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_4_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "546bcba9-fc94-4924-81e0-a62d2bd7d576": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_5_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_5_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "cf188a2d-443c-43cd-b443-ad8b2ceda324": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_6_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_6_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_aLUfYh": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_7_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_7_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_BX6VCB": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_8_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_8_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_FR8icz": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_9_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_9_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_zYid3C": {
+          "type": "item",
+          "settings": {
+            "column_size": "2",
+            "title": "{{ product.metafields.custom.unit_10_name.value }}",
+            "heading_tag": "h4",
+            "content": "<p>{{ product.metafields.custom.unit_10_description | metafield_tag }}</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-1",
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-2",
+        "template--21716148125980__a8d45b5a-b08c-4fa2-93aa-03e9dae3820c-item-3",
+        "de5201f3-78aa-4a8b-be82-ae5a43a882a8",
+        "546bcba9-fc94-4924-81e0-a62d2bd7d576",
+        "cf188a2d-443c-43cd-b443-ad8b2ceda324",
+        "item_aLUfYh",
+        "item_BX6VCB",
+        "item_FR8icz",
+        "item_zYid3C"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "What you'll learn in this course",
+        "content": "",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "63a6df3d-2cef-4c38-93bd-a28d15a52243": {
+      "type": "accordion-content",
+      "blocks": {
+        "template--21716148125980__63a6df3d-2cef-4c38-93bd-a28d15a52243-item-1": {
+          "type": "item",
+          "settings": {
+            "title": "Course Details",
+            "content": "{{ product.metafields.custom.course_description | metafield_tag }}<p></p>"
+          }
+        },
+        "template--21716148125980__63a6df3d-2cef-4c38-93bd-a28d15a52243-item-2": {
+          "type": "item",
+          "repeater": "{{ product.metafields.custom.course_accordion_list.value }}",
+          "settings": {
+            "title": "{{ block.repeater.course_accordion_title.value }}",
+            "content": "{{ block.repeater.course_accordion_description | metafield_tag }}"
+          }
+        }
+      },
+      "block_order": [
+        "template--21716148125980__63a6df3d-2cef-4c38-93bd-a28d15a52243-item-1",
+        "template--21716148125980__63a6df3d-2cef-4c38-93bd-a28d15a52243-item-2"
+      ],
+      "custom_css": [
+        ".accordion__toggle {font-size: x-large;}",
+        "media screen and (min-width: 1150px).section-stack__main {width: 70% !important;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "About {{ product.title }}",
+        "content": "",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
+    },
+    "ee372664-ea5e-46f0-94d5-3e9fc308cab6": {
+      "type": "multi-column",
+      "blocks": {
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-1": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/019-teacher.png",
+            "column_size": "3",
+            "title": "Ontario Teachers",
+            "heading_tag": "h4",
+            "content": "<p>All of our courses have been designed by Ontario Certified teachers. All of our classes are taught by Ontario certified teachers. All of the credits will be handed out by Ontario certified teachers.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-2": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/no-exams.png",
+            "column_size": "3",
+            "title": "Attendance Won't Affect Your Grade",
+            "heading_tag": "h4",
+            "content": "<p>Starting this school year, attendance counts toward final grades in Ontario's in-person classrooms. Not at OEO. Our courses are fully asynchronous, so you log in when it works for you, and your grade is based on the work you submit. Write your final exam online, from anywhere in the world.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-3": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/calendar.png",
+            "column_size": "3",
+            "title": "Finish in as early as 4 weeks",
+            "heading_tag": "h4",
+            "content": "<p>Do you need a credit right away? Whatever your situation is, OEO is likely the right place for you to earn a credit. You can also take up to 12 months to complete a credit.</p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-1",
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-2",
+        "template--21716148125980__ee372664-ea5e-46f0-94d5-3e9fc308cab6-item-3"
+      ],
+      "custom_css": [
+        "img {max-width: 70px !important; border-radius: 0 !important;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "stack_on_mobile": false,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Why our courses are different?",
+        "content": "",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "63c30beb-81c7-4449-9e83-06e1a68de8a5": {
+      "type": "related-products",
+      "settings": {
+        "recommendations_count": 6,
+        "products": [],
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": true,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Related courses",
+        "content": "",
+        "background": "#ffffff",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    }
+  },
+  "order": [
+    "main",
+    "589cf6b4-74a6-4c65-b24d-9fc8bbea3c8c",
+    "a8d45b5a-b08c-4fa2-93aa-03e9dae3820c",
+    "63a6df3d-2cef-4c38-93bd-a28d15a52243",
+    "ee372664-ea5e-46f0-94d5-3e9fc308cab6",
+    "63c30beb-81c7-4449-9e83-06e1a68de8a5"
+  ]
+}

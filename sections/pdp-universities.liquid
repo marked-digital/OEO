@@ -1,0 +1,426 @@
+<section class="pdp-universities" id="pdp-universities" aria-labelledby="pdp-universities-heading">
+  <div class="pdp-universities__inner">
+
+    <p class="pdp-universities__eyebrow" id="pdp-universities-heading">
+      {{ section.settings.eyebrow | default: 'Credits accepted at every Ontario university, including' }}
+    </p>
+
+    {%- assign logo_count = 0 -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'university' -%}
+        {%- assign logo_count = logo_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    <div class="pdp-universities__carousel-wrap{% if logo_count > 8 %} has-arrows{% endif %}">
+
+      <!-- Left arrow (desktop + mobile; visibility controlled by JS) -->
+      <button
+        class="pdp-universities__arrow pdp-universities__arrow--prev"
+        type="button"
+        aria-label="Scroll universities left"
+        data-universities-prev
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <div
+        class="pdp-universities__viewport{% if logo_count > 8 %} is-carousel{% endif %}"
+        data-logo-count="{{ logo_count }}"
+        data-universities-viewport
+      >
+        <div class="pdp-universities__track" role="list" aria-label="Accepted universities">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'university' -%}
+              <div class="pdp-universities__item" role="listitem" {{ block.shopify_attributes }}>
+                <div class="pdp-universities__logo-card">
+                  {%- if block.settings.logo != blank -%}
+                    {{
+                      block.settings.logo
+                      | image_url: width: 320
+                      | image_tag:
+                        class: 'pdp-universities__logo-img',
+                        loading: 'lazy',
+                        widths: '120, 160, 240, 320',
+                        alt: block.settings.alt | default: block.settings.name
+                    }}
+                  {%- else -%}
+                    <span class="pdp-universities__logo-fallback">
+                      {{ block.settings.name | default: 'University logo' }}
+                    </span>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <!-- Right arrow (desktop + mobile; visibility controlled by JS) -->
+      <button
+        class="pdp-universities__arrow pdp-universities__arrow--next"
+        type="button"
+        aria-label="Scroll universities right"
+        data-universities-next
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.pdp-universities {
+  background: #ffffff;
+  border-top: 1px solid rgba(36, 55, 122, 0.16);
+  border-bottom: 1px solid rgba(36, 55, 122, 0.16);
+  padding: 24px 0 28px;
+}
+
+.pdp-universities__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.pdp-universities__eyebrow {
+  margin: 0 0 18px;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+/* Wrapper to position arrows */
+.pdp-universities__carousel-wrap {
+  position: relative;
+}
+
+/* Default desktop layout: up to 8 logos */
+.pdp-universities__viewport {
+  overflow: visible;
+}
+
+.pdp-universities__track {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 12px;
+  align-items: center;
+}
+
+.pdp-universities__item {
+  min-width: 0;
+}
+
+.pdp-universities__logo-card {
+  height: 60px;
+  border: 1px solid rgba(152, 160, 191, 0.35);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 5px;
+}
+
+.pdp-universities__logo-img {
+  max-width: 100%;
+  max-height: 50px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.pdp-universities__logo-fallback {
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #9aa1bc;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* If more than 8 logos, use horizontal carousel on desktop too */
+.pdp-universities__viewport.is-carousel {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.pdp-universities__viewport.is-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.pdp-universities__viewport.is-carousel .pdp-universities__track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  min-width: 100%;
+}
+
+.pdp-universities__viewport.is-carousel .pdp-universities__item {
+  flex: 0 0 132px;
+}
+
+/* Arrows (desktop + mobile; JS toggles hidden/disabled states) */
+.pdp-universities__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(36, 55, 122, 0.16);
+  background: #ffffff;
+  color: #24367a;
+  box-shadow: 0 10px 24px rgba(17, 33, 89, 0.12);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.pdp-universities__arrow:hover {
+  background: #24367a;
+  color: #ffffff;
+  border-color: #24367a;
+}
+
+.pdp-universities__arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pdp-universities__arrow--prev {
+  left: -22px;
+}
+
+.pdp-universities__arrow--next {
+  right: -22px;
+}
+
+.pdp-universities__arrow.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.pdp-universities__arrow.is-disabled {
+  opacity: 0.35;
+}
+
+/* Add breathing room when arrows exist (desktop) */
+.pdp-universities__carousel-wrap.has-arrows .pdp-universities__viewport {
+  margin: 0 18px;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .pdp-universities {
+    padding: 20px 0 24px;
+  }
+
+  .pdp-universities__inner {
+    padding: 0 20px;
+  }
+
+  .pdp-universities__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    line-height: 1.4;
+    letter-spacing: 0.13em;
+  }
+
+  .pdp-universities__viewport {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .pdp-universities__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pdp-universities__track {
+    display: flex;
+    gap: 10px;
+    width: max-content;
+    min-width: 100%;
+  }
+
+  .pdp-universities__item {
+    flex: 0 0 118px;
+  }
+
+  .pdp-universities__logo-card {
+    height: 56px;          /* was 44px */
+    padding: 10px 12px;    /* a touch more breathing room */
+  }
+
+  .pdp-universities__logo-img {
+    max-height: 50px;      /* was 40px */
+  }
+
+  .pdp-universities__arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .pdp-universities__arrow--prev {
+    left: -6px;
+  }
+
+  .pdp-universities__arrow--next {
+    right: -6px;
+  }
+
+  .pdp-universities__carousel-wrap.has-arrows .pdp-universities__viewport,
+  .pdp-universities__carousel-wrap .pdp-universities__viewport {
+    margin: 0;
+  }
+}
+
+/* Desktop fine-tuning for very wide screens if needed */
+@media (min-width: 1280px) {
+  .pdp-universities__arrow--prev {
+    left: -28px;
+  }
+  .pdp-universities__arrow--next {
+    right: -28px;
+  }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  document.querySelectorAll('.pdp-universities').forEach(function (section) {
+    var viewport = section.querySelector('[data-universities-viewport]');
+    var prevBtn = section.querySelector('[data-universities-prev]');
+    var nextBtn = section.querySelector('[data-universities-next]');
+
+    if (!viewport || !prevBtn || !nextBtn) return;
+
+    function getScrollAmount() {
+      return Math.round(viewport.clientWidth * 0.8);
+    }
+
+    function updateArrows() {
+      var hasOverflow = viewport.scrollWidth > viewport.clientWidth + 4;
+      var atStart = viewport.scrollLeft <= 4;
+      var atEnd = viewport.scrollLeft + viewport.clientWidth >= viewport.scrollWidth - 4;
+
+      if (!hasOverflow) {
+        prevBtn.classList.add('is-hidden');
+        nextBtn.classList.add('is-hidden');
+        return;
+      }
+
+      prevBtn.classList.remove('is-hidden');
+      nextBtn.classList.remove('is-hidden');
+
+      if (atStart) {
+        prevBtn.classList.add('is-disabled');
+      } else {
+        prevBtn.classList.remove('is-disabled');
+      }
+
+      if (atEnd) {
+        nextBtn.classList.add('is-disabled');
+      } else {
+        nextBtn.classList.remove('is-disabled');
+      }
+    }
+
+    prevBtn.addEventListener('click', function () {
+      viewport.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', function () {
+      viewport.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    viewport.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+
+    updateArrows();
+  });
+});
+</script>
+
+{% schema %}
+{
+  "name": "PDP Universities",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Label",
+      "default": "Credits accepted at every Ontario university, including"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "university",
+      "name": "University",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "logo",
+          "label": "Logo"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "University name",
+          "default": "University"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "Logo alt text",
+          "info": "Optional. If blank, the university name will be used."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 20,
+  "presets": [
+    {
+      "name": "PDP Universities",
+      "blocks": [
+        { "type": "university", "settings": { "name": "U of T" } },
+        { "type": "university", "settings": { "name": "McMaster" } },
+        { "type": "university", "settings": { "name": "Western" } },
+        { "type": "university", "settings": { "name": "Queen's" } },
+        { "type": "university", "settings": { "name": "York" } },
+        { "type": "university", "settings": { "name": "uOttawa" } },
+        { "type": "university", "settings": { "name": "Waterloo" } },
+        { "type": "university", "settings": { "name": "TMU" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

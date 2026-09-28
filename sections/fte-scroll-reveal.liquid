@@ -1,0 +1,188 @@
+{%- comment -%}
+  Full-Time Enrolment · Scroll reveal (utility section, renders nothing visible)
+  Adds enter animations to the Full-Time Enrolment page sections as they scroll
+  into view. Two-column rows slide in from their own sides; everything else
+  rises from the bottom, staggered across grids.
+  Hidden state is applied by JavaScript only, so content stays visible
+  without JS, and prefers-reduced-motion disables the effect entirely.
+  Targets the fte-*, vc-teaser and pdp-* sections on this page without
+  modifying their files.
+
+  Offsets use the `translate` property rather than `transform`, so the card
+  hover lifts (which do use transform) keep working through the reveal.
+{%- endcomment -%}
+
+{%- assign rv_dur = section.settings.duration | default: 650 -%}
+
+<style>
+.fte-rv {
+  --fte-rv-dur: {{ rv_dur }}ms;
+  opacity: 0;
+  translate: 0 32px;
+  transition:
+    opacity var(--fte-rv-dur) ease,
+    translate var(--fte-rv-dur) cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--fte-rv-delay, 0ms);
+  will-change: opacity, translate;
+}
+
+.fte-rv--left {
+  translate: -44px 0;
+}
+
+.fte-rv--right {
+  translate: 44px 0;
+}
+
+/* Below the two-column breakpoints everything is full-width, so side
+   entrances would overflow the viewport; rise from the bottom instead. */
+@media (max-width: 900px) {
+  .fte-rv--left,
+  .fte-rv--right {
+    translate: 0 32px;
+  }
+}
+
+.fte-rv.fte-rv-in {
+  opacity: 1;
+  translate: none;
+}
+
+/* The grade cards carry their own hover transition. Re-declare it alongside
+   the reveal so the lift keeps its easing, and hold the stagger delay to the
+   reveal properties only, or a late card's hover would lag by its delay. */
+.fte-router__card.fte-rv {
+  transition:
+    opacity var(--fte-rv-dur) ease,
+    translate var(--fte-rv-dur) cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+  transition-delay: var(--fte-rv-delay, 0ms), var(--fte-rv-delay, 0ms), 0ms, 0ms, 0ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fte-rv {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+}
+
+/* Unrevealed side-slides extend 44px past their container; without this a
+   transient horizontal scrollbar can appear on narrower desktops. clip
+   (unlike hidden) does not create a scroll container. */
+@supports (overflow-x: clip) {
+  .fte-inc,
+  .vc-teaser {
+    overflow-x: clip;
+  }
+}
+</style>
+
+<script>
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var run = function () {
+      var targets = [];
+      var add = function (el, cls, delay) {
+        if (!el || el.classList.contains('fte-rv')) return;
+        el.classList.add('fte-rv');
+        if (cls) el.classList.add(cls);
+        if (delay) el.style.setProperty('--fte-rv-delay', delay + 'ms');
+        targets.push(el);
+      };
+      var addAll = function (selector, cls, stagger) {
+        document.querySelectorAll(selector).forEach(function (el, i) {
+          add(el, cls, stagger ? i * stagger : 0);
+        });
+      };
+
+      // Hero: rise in on load, one line after another
+      addAll('.fte-hero__inner > *', null, 60);
+
+      // Who it's for: header rises, then the cards stagger across the grid
+      addAll('.fte-who__head');
+      addAll('.fte-who__card', null, 90);
+
+      // How it works: header, the five steps in sequence, then the pacing panel
+      addAll('.fte-how__head');
+      addAll('.fte-how__step', null, 80);
+      addAll('.fte-how__pacing');
+
+      // Everything included: the copy column and the value card are a genuine
+      // two-column row, so they meet in the middle from their own sides.
+      addAll('.fte-inc__intro', 'fte-rv--left');
+      addAll('.fte-inc__card', 'fte-rv--right');
+      // Compact variant of the same section, when that layout is selected
+      addAll('.fte-inc-compact__text', 'fte-rv--left');
+      addAll('.fte-inc-compact__pills', 'fte-rv--right');
+
+      // Grade router: header, four grade cards staggered, then the footnote
+      addAll('.fte-router__head');
+      addAll('.fte-router__card', null, 90);
+      addAll('.fte-router__footnote');
+
+      // Placement helper: the card rises as one unit. Sliding the advisor
+      // photo separately leaves it visibly off-centre mid-transition.
+      addAll('.fte-placement__card');
+
+      // Virtual Classroom teaser: copy from the left, screenshot from the right
+      addAll('.vc-teaser__content', 'fte-rv--left');
+      addAll('.vc-teaser__media', 'fte-rv--right');
+
+      // PDP sections reused on this page
+      addAll('.pdp-faqs__label');
+      addAll('.pdp-faqs__title');
+      addAll('.pdp-faqs__item', null, 70);
+      addAll('.pdp-guidance__inner');
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('fte-rv-in');
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+
+      targets.forEach(function (el) { io.observe(el); });
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run);
+    } else {
+      run();
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "FTE Scroll Reveal",
+  "tag": "div",
+  "class": "fte-scroll-reveal",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "range",
+      "id": "duration",
+      "label": "Animation duration (ms)",
+      "min": 300,
+      "max": 1200,
+      "step": 50,
+      "default": 650
+    },
+    {
+      "type": "paragraph",
+      "content": "Utility section: adds scroll-in animations to the Full-Time Enrolment page sections. Renders nothing visible. Remove it to turn all animations off."
+    }
+  ],
+  "presets": [
+    {
+      "name": "FTE Scroll Reveal"
+    }
+  ]
+}
+{% endschema %}

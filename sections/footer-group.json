@@ -1,0 +1,224 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "4c6d5e03-906f-49b6-b5d1-0661ee3dad02": {
+      "type": "rich-text",
+      "blocks": {
+        "sections--21716148388124__4c6d5e03-906f-49b6-b5d1-0661ee3dad02-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Not sure which course is right for you?",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "sections--21716148388124__4c6d5e03-906f-49b6-b5d1-0661ee3dad02-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Book a free 30-minute call with a certified teacher and get personalized advice on what courses make the most sense for you.</p>"
+          }
+        },
+        "d9f6ec46-3abc-4696-b055-ecae74aba1b3": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Book your free session",
+            "url": "shopify://pages/book-guidance-session",
+            "background": "",
+            "text_color": ""
+          }
+        },
+        "3ebe03fd-2f97-4716-8232-9dcadbb145d1": {
+          "type": "divider",
+          "settings": {}
+        },
+        "b499e4c7-d4a1-4fe6-82e6-a1fbbb9dc9e0": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/good-faces-DSj40n6beGk-unsplash.jpg",
+            "width_mode": "custom",
+            "max_width": 740,
+            "mobile_max_width": 400
+          }
+        }
+      },
+      "block_order": [
+        "sections--21716148388124__4c6d5e03-906f-49b6-b5d1-0661ee3dad02-heading-1",
+        "sections--21716148388124__4c6d5e03-906f-49b6-b5d1-0661ee3dad02-richtext-1",
+        "d9f6ec46-3abc-4696-b055-ecae74aba1b3",
+        "3ebe03fd-2f97-4716-8232-9dcadbb145d1",
+        "b499e4c7-d4a1-4fe6-82e6-a1fbbb9dc9e0"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb": {
+      "type": "rich-text",
+      "blocks": {
+        "faaeba41-77f6-4161-99cb-a58feb45c9a5": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Sample.png",
+            "width_mode": "custom",
+            "max_width": 270,
+            "mobile_max_width": 240
+          }
+        },
+        "edfb26f0-2671-49d2-9ad3-fbcf74786b68": {
+          "type": "divider",
+          "settings": {}
+        },
+        "c733a563-30e4-4a91-bcfb-f199023e31b4": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<br>\n<br>"
+          }
+        },
+        "sections--21716148388124__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Download a sample course to see what our courses are like",
+            "heading_tag": "h2",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "165cac16-b629-42cb-8bab-77a3286a31c2": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Download now",
+            "url": "shopify://pages/download-sample-course",
+            "background": "#f0c417",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "faaeba41-77f6-4161-99cb-a58feb45c9a5",
+        "edfb26f0-2671-49d2-9ad3-fbcf74786b68",
+        "c733a563-30e4-4a91-bcfb-f199023e31b4",
+        "sections--21716148388124__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb-heading-1",
+        "165cac16-b629-42cb-8bab-77a3286a31c2"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".prose {display: block !important;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f2f1f6",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "009c4746-46d7-4fab-b3ff-4b122aacaf10": {
+      "type": "newsletter",
+      "settings": {
+        "full_width": true,
+        "show_icon": false,
+        "title": "Get smarter about online school in 30 seconds",
+        "content": "",
+        "button_text": "Subscribe",
+        "subtext": "",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff",
+        "button_background": "#ffffff",
+        "button_text_color": "#2a3884"
+      }
+    },
+    "footer": {
+      "type": "footer",
+      "blocks": {
+        "icon_twUWFB": {
+          "type": "icon",
+          "settings": {
+            "image": "shopify://shop_images/BBSID2_white_sharp.png",
+            "image_width": 200,
+            "link": ""
+          }
+        },
+        "links_9iAatj": {
+          "type": "links",
+          "settings": {
+            "menu": "footer",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links_n8dJWk": {
+          "type": "links",
+          "settings": {
+            "menu": "footer-2",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "links_U7mrRj": {
+          "type": "links",
+          "settings": {
+            "menu": "footer-1",
+            "show_menu_title": true,
+            "menu_title": ""
+          }
+        },
+        "c30f64fa-9bd9-49af-8f44-34bcd5b33578": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "",
+            "content": "<p><strong>Ontario Inspected High School <br/></strong>BSID #882902</p>",
+            "enable_follow_on_shop": false
+          }
+        }
+      },
+      "block_order": [
+        "icon_twUWFB",
+        "links_9iAatj",
+        "links_n8dJWk",
+        "links_U7mrRj",
+        "c30f64fa-9bd9-49af-8f44-34bcd5b33578"
+      ],
+      "custom_css": [
+        "div {line-height: 1.1;}"
+      ],
+      "settings": {
+        "show_social_media": true,
+        "show_payment_icons": true,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": true,
+        "show_locale_selector": true
+      }
+    }
+  },
+  "order": [
+    "4c6d5e03-906f-49b6-b5d1-0661ee3dad02",
+    "1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb",
+    "009c4746-46d7-4fab-b3ff-4b122aacaf10",
+    "footer"
+  ]
+}

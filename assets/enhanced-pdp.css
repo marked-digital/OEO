@@ -1,0 +1,1847 @@
+
+    /* ============================================================
+       CSS CUSTOM PROPERTIES — OEO BRAND SYSTEM
+       Extracted from live site CSS variables
+    ============================================================ */
+    :root {
+      /* Brand palette (exact from live site --accent, etc.) */
+      --blue:        #2A3884;   /* rgb(42 56 132)  — primary */
+      --gold:        #F0C417;   /* rgb(240 196 23) — secondary/CTA */
+      --navy:        #212C67;   /* rgb(33 44 103)  — footer/dark */
+      --light:       #F2F1F6;   /* rgb(242 241 246) — header bg */
+      --green:       #00A341;   /* rgb(0 163 65)   — success/urgency */
+      --star:        #FFB74A;   /* rgb(255 183 74) — star rating */
+
+      /* Text */
+      --text:        #2A3884;
+      --text-soft:   rgba(42, 56, 132, 0.58);
+      --text-faint:  rgba(42, 56, 132, 0.32);
+
+      /* Surfaces */
+      --surface:     #FFFFFF;
+      --surface-tint: #F8F8FC;
+
+      /* Shadows (from live site --shadow-* variables) */
+      --sh-xs: 0 1px 4px rgba(42, 56, 132, 0.07);
+      --sh-sm: 0 2px 8px rgba(42, 56, 132, 0.09);
+      --sh:    0 4px 16px rgba(42, 56, 132, 0.11);
+      --sh-md: 0 8px 32px rgba(42, 56, 132, 0.13);
+      --sh-lg: 0 16px 48px rgba(42, 56, 132, 0.15);
+
+      /* Radii (from live site --rounded-* variables) */
+      --r-xs:   0.25rem;
+      --r-sm:   0.375rem;
+      --r:      0.75rem;
+      --r-lg:   1.5rem;
+      --r-pill: 9999px;
+
+      /* Typography */
+      --font: 'DM Sans', sans-serif;
+
+      /* Layout */
+      --max-w:  1200px;
+      --gutter: clamp(1rem, 4vw, 2rem);
+
+      /* Nav stack heights */
+      --ann-h:  40px;
+      --nav-h:  68px;
+      --sticky-offset: calc(var(--ann-h) + var(--nav-h) + 1.25rem);
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      font-weight: 400;
+      color: var(--text);
+      background: var(--surface);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul, ol { list-style: none; }
+    button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+    p { line-height: 1.7; }
+
+    /* Accessible focus */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible {
+      outline: 2.5px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+
+    /* ============================================================
+       LAYOUT HELPERS
+    ============================================================ */
+    .container {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    .section-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-soft);
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--blue);
+      margin-bottom: clamp(1.75rem, 3.5vw, 2.75rem);
+    }
+
+    /* ============================================================
+       ANNOUNCEMENT BAR
+       SHOPIFY: theme.liquid — announcement-bar section
+    ============================================================ */
+    .ann-bar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--navy);
+      height: var(--ann-h);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ann-track {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+      will-change: transform;
+    }
+    .ann-bar span {
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      letter-spacing: 0.005em;
+    }
+    .ann-bar strong { color: var(--gold); }
+    .ann-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       NAVIGATION
+       SHOPIFY: theme.liquid — header section
+    ============================================================ */
+    .header {
+      position: sticky;
+      top: var(--ann-h);
+      z-index: 20;
+      background: var(--light);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.08);
+      height: var(--nav-h);
+    }
+    .header-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      height: 100%;
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .logo {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 44px;
+      width: auto;
+    }
+    /* Fallback if image fails */
+    .logo-fallback {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-fallback-owl {
+      width: 38px;
+      height: 38px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .logo-fallback-text { line-height: 1.2; }
+    .logo-fallback-text b {
+      display: block;
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .logo-fallback-text span {
+      display: block;
+      font-size: 0.625rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex: 1;
+    }
+    .nav-link {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--r-sm);
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover {
+      background: rgba(42, 56, 132, 0.07);
+      color: var(--blue);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .nav-book-btn {
+      display: inline-flex;
+      align-items: center;
+      font-family: var(--font);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      padding: 0.5625rem 1.125rem;
+      background: var(--blue);
+      color: #fff;
+      border-radius: var(--r-pill);
+      transition: background 0.15s, box-shadow 0.15s;
+      box-shadow: 0 2px 8px rgba(42, 56, 132, 0.25);
+    }
+    .nav-book-btn:hover {
+      background: #1f2b6b;
+      box-shadow: 0 4px 14px rgba(42, 56, 132, 0.35);
+    }
+    .nav-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+      transition: background 0.15s;
+    }
+    .nav-icon:hover { background: rgba(42, 56, 132, 0.08); }
+    .nav-icon svg { width: 17px; height: 17px; }
+
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+    }
+    .nav-toggle-line {
+      width: 20px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* ============================================================
+       BREADCRUMB
+       SHOPIFY: product-template.liquid — breadcrumb
+    ============================================================ */
+    .breadcrumb-wrap {
+      background: var(--surface);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.06);
+      padding-block: 0.6875rem;
+    }
+    .breadcrumb ol {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      list-style: none;
+    }
+    .breadcrumb a {
+      font-size: 0.8125rem;
+      color: var(--text-soft);
+      transition: color 0.15s;
+    }
+    .breadcrumb a:hover { color: var(--blue); }
+    .breadcrumb-sep {
+      font-size: 0.75rem;
+      color: var(--text-faint);
+    }
+    .breadcrumb-current {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--blue);
+    }
+
+    /* ============================================================
+       HERO — TWO COLUMN
+       SHOPIFY: product-template.liquid — product-hero
+    ============================================================ */
+    .hero {
+      background: var(--surface);
+      padding-block: clamp(2.5rem, 5vw, 3.75rem) clamp(3rem, 6vw, 5rem);
+    }
+    .hero-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr 404px;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    /* Left column */
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      border: 1.5px solid rgba(42, 56, 132, 0.18);
+      padding: 0.375rem 0.875rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .hero-badge-sep {
+      width: 1px;
+      height: 10px;
+      background: rgba(42, 56, 132, 0.2);
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3.5vw, 2.875rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      color: var(--blue);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.07s both;
+    }
+
+    .hero-subhead {
+      font-size: 0.9375rem;
+      color: var(--text-soft);
+      font-weight: 400;
+      margin-bottom: 1.125rem;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.14s both;
+    }
+    .hero-subhead-sep { margin-inline: 0.4rem; opacity: 0.5; }
+
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.625rem;
+      font-size: 0.875rem;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.21s both;
+    }
+    .stars { color: var(--star); letter-spacing: 0.04em; font-size: 0.9375rem; }
+    .rating-num { font-weight: 700; color: var(--blue); }
+    .rating-count { color: var(--text-soft); }
+
+    .hero-intro {
+      font-size: 0.9375rem;
+      line-height: 1.78;
+      color: rgba(42, 56, 132, 0.72);
+      max-width: 540px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.28s both;
+    }
+
+    .hero-teacher {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      padding: 0.9375rem 1.125rem;
+      background: var(--light);
+      border-radius: var(--r);
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+    }
+    .teacher-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .teacher-info { flex: 1; min-width: 0; }
+    .teacher-name { font-size: 0.875rem; font-weight: 600; color: var(--blue); }
+    .teacher-role { font-size: 0.8125rem; color: var(--text-soft); }
+    .teacher-oct {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--green);
+      background: rgba(0, 163, 65, 0.1);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--r-pill);
+      flex-shrink: 0;
+    }
+
+    /* Right column — Enrolment Card */
+    .enrol-wrap {
+      position: sticky;
+      top: var(--sticky-offset);
+      animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+    .enrol-card {
+      background: var(--surface);
+      border: 1.5px solid rgba(42, 56, 132, 0.12);
+      border-radius: var(--r-lg);
+      padding: 1.75rem;
+      box-shadow: var(--sh-lg);
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+      margin-bottom: 0.375rem;
+    }
+    .price-main {
+      font-size: 2.125rem;
+      font-weight: 700;
+      letter-spacing: -0.035em;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .price-curr {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .price-value {
+      font-size: 0.8125rem;
+      color: rgba(42, 56, 132, 0.62);
+      line-height: 1.55;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid rgba(42, 56, 132, 0.08);
+      margin-bottom: 0.875rem;
+    }
+
+    .payment-plan {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8125rem;
+      color: var(--text-soft);
+      margin-bottom: 0.75rem;
+    }
+    .payment-plan strong { color: var(--blue); font-weight: 600; }
+    .payment-plan svg { flex-shrink: 0; opacity: 0.6; }
+
+    .urgency {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 1.125rem;
+    }
+    .urgency-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      animation: urgpulse 2.2s ease-in-out infinite;
+    }
+    @keyframes urgpulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.55; transform: scale(0.82); }
+    }
+
+    .enrol-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 52px;
+      padding: 1rem;
+      background: var(--blue);
+      color: #fff;
+      font-family: var(--font);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border: none;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(42, 56, 132, 0.35);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+      text-decoration: none;
+      margin-bottom: 0.625rem;
+    }
+    .enrol-btn:hover {
+      background: #1f2b6b;
+      box-shadow: 0 6px 28px rgba(42, 56, 132, 0.45);
+      transform: translateY(-1px);
+      color: #fff;
+    }
+    .enrol-btn:active { transform: translateY(0); }
+
+    .enrol-disclaimer {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-bottom: 1.125rem;
+      letter-spacing: 0.005em;
+    }
+
+    .trust-trio {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.4375rem;
+      margin-bottom: 0.75rem;
+    }
+    .trust-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.3rem;
+      padding: 0.625rem 0.3rem;
+      background: var(--light);
+      border-radius: var(--r);
+      font-size: 0.625rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: 0.02em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+    .trust-chip-icon { font-size: 1.0625rem; line-height: 1; }
+
+    .guidance-soft {
+      display: block;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-soft);
+      padding: 0.5rem;
+      border-radius: var(--r);
+      transition: color 0.15s, background 0.15s;
+      margin-bottom: 1rem;
+    }
+    .guidance-soft:hover {
+      color: var(--blue);
+      background: var(--light);
+    }
+    .guidance-soft u { text-underline-offset: 2px; }
+
+    .card-divider {
+      height: 1px;
+      background: rgba(42, 56, 132, 0.08);
+      margin-bottom: 1rem;
+    }
+
+    .location-wrap { display: flex; flex-direction: column; gap: 0.375rem; }
+    .location-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+    }
+    .location-select {
+      font-family: var(--font);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--blue);
+      background: var(--light);
+      border: 1.5px solid rgba(42, 56, 132, 0.12);
+      border-radius: var(--r-sm);
+      padding: 0.625rem 2.25rem 0.625rem 0.875rem;
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='7' fill='none'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%232A3884' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.875rem center;
+      width: 100%;
+      transition: border-color 0.15s;
+    }
+    .location-select:focus { border-color: var(--blue); }
+
+    /* ============================================================
+       TRUST BAR
+       SHOPIFY: product-template.liquid — trust-bar section
+    ============================================================ */
+    .trust-bar {
+      background: var(--light);
+      border-top: 1px solid rgba(42, 56, 132, 0.08);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.08);
+      padding-block: 2rem;
+    }
+    .trust-bar-grid {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.9375rem;
+    }
+    .trust-icon-wrap {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1.5px solid rgba(42, 56, 132, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+      flex-shrink: 0;
+      box-shadow: var(--sh-xs);
+    }
+    .trust-title {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 0.125rem;
+    }
+    .trust-desc { font-size: 0.8125rem; color: var(--text-soft); line-height: 1.45; }
+    .trust-verify {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--blue);
+      opacity: 0.65;
+      transition: opacity 0.15s;
+    }
+    .trust-verify:hover { opacity: 1; }
+
+    /* ============================================================
+       SECTION WRAPPER
+    ============================================================ */
+    .section {
+      padding-block: clamp(3.5rem, 7vw, 5.5rem);
+    }
+    .section-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ============================================================
+       WHAT YOU'LL LEARN
+       SHOPIFY: product-template.liquid — course-outcomes section
+    ============================================================ */
+    .learn-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 2.5rem;
+    }
+    .learn-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding-block: 0.875rem;
+      border-bottom: 1px solid rgba(42, 56, 132, 0.06);
+    }
+    .learn-check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(42, 56, 132, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.125rem;
+    }
+    .learn-check svg { width: 10px; height: 10px; }
+    .learn-text {
+      font-size: 0.9375rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .learn-text strong { color: var(--blue); font-weight: 700; }
+
+    /* ============================================================
+       COURSE DETAILS TABLE
+       SHOPIFY: product-template.liquid — course-meta section
+    ============================================================ */
+    .details-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: var(--surface);
+      border: 1.5px solid rgba(42, 56, 132, 0.09);
+      border-radius: var(--r);
+      overflow: hidden;
+      box-shadow: var(--sh-xs);
+    }
+    .details-table tr { border-bottom: 1px solid rgba(42, 56, 132, 0.07); }
+    .details-table tr:last-child { border-bottom: none; }
+    .details-table tr:nth-child(even) td { background: rgba(242, 241, 246, 0.5); }
+    .details-table td {
+      padding: 0.875rem 1.25rem;
+      font-size: 0.875rem;
+      vertical-align: top;
+    }
+    .details-table td:first-child {
+      font-weight: 600;
+      color: var(--text-soft);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      width: 210px;
+      white-space: nowrap;
+    }
+    .details-table td:last-child {
+      color: var(--blue);
+      font-weight: 500;
+    }
+    .prereq-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+      font-size: 0.8125rem;
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      opacity: 0.65;
+      transition: opacity 0.15s;
+      margin-left: 0.4rem;
+    }
+    .prereq-link:hover { opacity: 1; }
+
+    .outline-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--blue);
+      padding: 0.625rem 1.125rem;
+      border: 1.5px solid rgba(42, 56, 132, 0.18);
+      border-radius: var(--r-pill);
+      margin-top: 1.375rem;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .outline-btn:hover {
+      border-color: var(--blue);
+      background: rgba(42, 56, 132, 0.03);
+    }
+    .outline-btn svg { opacity: 0.7; }
+
+    /* ============================================================
+       NO EXAMS CALLOUT
+       SHOPIFY: product-template.liquid — differentiator-callout section
+    ============================================================ */
+    .no-exam {
+      background: var(--navy);
+      padding-block: clamp(3.5rem, 7vw, 5rem);
+    }
+    .no-exam-inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .no-exam-emblem {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+    .no-exam-ring {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 2px solid rgba(240, 196, 23, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.875rem;
+    }
+    .no-exam-label {
+      font-size: 0.5625rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .no-exam-quote {
+      font-size: clamp(1.375rem, 2.5vw, 1.9375rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 1.125rem;
+    }
+    .no-exam-quote em {
+      font-style: normal;
+      color: var(--gold);
+    }
+    .no-exam-body {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.68);
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    /* ============================================================
+       TESTIMONIALS
+       SHOPIFY: product-template.liquid — testimonials section
+    ============================================================ */
+    .testimonials { background: var(--light); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .tcard {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 2rem;
+      box-shadow: var(--sh);
+      position: relative;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .tcard:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--sh-md);
+    }
+    .tcard-stars {
+      position: absolute;
+      top: 1.75rem;
+      right: 1.75rem;
+      color: var(--star);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+    .tcard-quote {
+      font-size: 3.5rem;
+      line-height: 0.75;
+      font-weight: 700;
+      color: rgba(42, 56, 132, 0.08);
+      font-family: Georgia, 'Times New Roman', serif;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .tcard-text {
+      font-size: 0.9375rem;
+      color: rgba(42, 56, 132, 0.78);
+      line-height: 1.72;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+    .tcard-author {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+    }
+    .author-av {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .author-name { font-size: 0.875rem; font-weight: 700; color: var(--blue); }
+    .author-ctx  { font-size: 0.75rem; color: var(--text-soft); margin-top: 0.0625rem; }
+
+    /* ============================================================
+       GUIDANCE CTA BLOCK
+       SHOPIFY: product-template.liquid — guidance-cta section
+    ============================================================ */
+    .guidance-block { background: var(--surface); }
+    .guidance-center {
+      max-width: 680px;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      text-align: center;
+    }
+    .guidance-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: rgba(42, 56, 132, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+      margin: 0 auto 1.25rem;
+    }
+    .guidance-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--blue);
+      margin-bottom: 0.875rem;
+    }
+    .guidance-body {
+      font-size: 0.9375rem;
+      color: rgba(42, 56, 132, 0.68);
+      line-height: 1.78;
+      margin-bottom: 1.875rem;
+    }
+    .guidance-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9375rem 2rem;
+      background: var(--gold);
+      color: var(--blue);
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border-radius: var(--r-pill);
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(240, 196, 23, 0.42);
+      transition: background 0.18s, box-shadow 0.18s, transform 0.18s;
+      text-decoration: none;
+      margin-bottom: 1.125rem;
+    }
+    .guidance-btn:hover {
+      background: #e6ba08;
+      box-shadow: 0 6px 24px rgba(240, 196, 23, 0.55);
+      transform: translateY(-1px);
+      color: var(--blue);
+    }
+    .guidance-proof {
+      font-size: 0.8125rem;
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+    .proof-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       FAQ ACCORDION
+       SHOPIFY: product-template.liquid — faq section
+    ============================================================ */
+    .faq-section { background: var(--light); }
+    .faq-list {
+      max-width: 720px;
+    }
+    .faq-item { border-bottom: 1px solid rgba(42, 56, 132, 0.1); }
+    .faq-item:first-child { border-top: 1px solid rgba(42, 56, 132, 0.1); }
+
+    .faq-q {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block: 1.1875rem;
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: var(--blue);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: color 0.15s;
+    }
+    .faq-q:hover { color: rgba(42, 56, 132, 0.72); }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(42, 56, 132, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .faq-icon svg {
+      width: 11px;
+      height: 11px;
+      transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-item.open .faq-icon { background: rgba(42, 56, 132, 0.13); }
+    .faq-item.open .faq-icon svg { transform: rotate(45deg); }
+
+    /* Grid trick for smooth height animation — no height animation */
+    .faq-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.33s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .faq-item.open .faq-body { grid-template-rows: 1fr; }
+    .faq-body-inner { overflow: hidden; }
+    .faq-answer {
+      font-size: 0.875rem;
+      color: rgba(42, 56, 132, 0.68);
+      line-height: 1.78;
+      padding-bottom: 1.25rem;
+      max-width: 620px;
+    }
+    .faq-answer a {
+      color: var(--blue);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ============================================================
+       RELATED COURSES
+       SHOPIFY: product-template.liquid — related-products section
+    ============================================================ */
+    .related { background: var(--surface); }
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .course-card {
+      background: var(--surface);
+      border: 1.5px solid rgba(42, 56, 132, 0.09);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.22s;
+      box-shadow: var(--sh-xs);
+    }
+    .course-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--sh-md);
+      border-color: rgba(42, 56, 132, 0.18);
+    }
+    .course-card-top {
+      background: var(--light);
+      padding: 1.375rem 1.5rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .course-subj-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r);
+      background: var(--blue);
+      color: #fff;
+      font-size: 1.125rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .course-code { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-soft); }
+    .course-grade-label { font-size: 0.6875rem; color: var(--text-soft); opacity: 0.7; }
+    .course-card-body { padding: 1rem 1.5rem 1.5rem; }
+    .course-name {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.015em;
+      line-height: 1.35;
+      margin-bottom: 0.5rem;
+    }
+    .course-desc { font-size: 0.8125rem; color: var(--text-soft); line-height: 1.55; }
+    .course-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+    }
+    .course-price { font-size: 1.0625rem; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; }
+    .course-view {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--blue);
+      padding: 0.5rem 1rem;
+      border: 1.5px solid rgba(42, 56, 132, 0.18);
+      border-radius: var(--r-pill);
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .course-view:hover {
+      border-color: var(--blue);
+      background: rgba(42, 56, 132, 0.04);
+    }
+
+    /* ============================================================
+       FOOTER
+       SHOPIFY: theme.liquid — footer section
+    ============================================================ */
+    .footer {
+      background: var(--navy);
+      padding-block: 3.75rem 1.75rem;
+    }
+    .footer-top {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: grid;
+      grid-template-columns: 1fr auto auto auto;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand {}
+    .footer-logo {
+      margin-bottom: 1.25rem;
+    }
+    .footer-logo img { height: 50px; width: auto; }
+    .footer-tagline {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.58);
+      line-height: 1.65;
+      max-width: 210px;
+      margin-bottom: 1.25rem;
+    }
+    .footer-contact { display: flex; flex-direction: column; gap: 0.375rem; }
+    .footer-contact a {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.72);
+      transition: color 0.15s;
+    }
+    .footer-contact a:hover { color: #fff; }
+    .footer-contact-note {
+      font-size: 0.6875rem;
+      color: rgba(255, 255, 255, 0.38);
+      margin-top: 0.125rem;
+    }
+
+    .footer-col h4 {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .footer-links a {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.68);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: #fff; }
+
+    .footer-hr {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      border: none;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      margin-bottom: 1.5rem;
+    }
+    .footer-bottom {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .footer-copy { font-size: 0.75rem; color: rgba(255, 255, 255, 0.38); }
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+    }
+    .footer-social a {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.68);
+      transition: background 0.15s, color 0.15s;
+    }
+    .footer-social a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #fff;
+    }
+    .footer-social svg { width: 15px; height: 15px; }
+    .footer-pay {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .footer-pay-chip {
+      font-size: 0.625rem;
+      font-weight: 600;
+      padding: 0.225rem 0.45rem;
+      background: rgba(255, 255, 255, 0.09);
+      border-radius: 3px;
+      color: rgba(255, 255, 255, 0.55);
+      letter-spacing: 0.02em;
+    }
+
+    /* ============================================================
+       MOBILE STICKY BAR
+       SHOPIFY: product-template.liquid — mobile-sticky-bar section
+    ============================================================ */
+    .mob-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--navy);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.875rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 -8px 32px rgba(33, 44, 103, 0.5);
+    }
+    .mob-bar.visible { transform: translateY(0); }
+    .mob-bar-info { flex: 1; min-width: 0; }
+    .mob-bar-price {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .mob-bar-sub {
+      font-size: 0.6875rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .mob-bar-btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8125rem 1.5rem;
+      background: var(--gold);
+      color: var(--blue);
+      font-family: var(--font);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      border-radius: var(--r-pill);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .mob-bar-btn:hover { background: #e6ba08; color: var(--blue); }
+
+    /* ============================================================
+       ANIMATIONS
+    ============================================================ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .hero-inner { grid-template-columns: 1fr 360px; gap: 2.5rem; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --ann-h: 36px; --nav-h: 60px; }
+
+      /* Nav */
+      .nav-links  { display: none; }
+      .nav-icon   { display: none; }
+      .nav-toggle { display: flex; }
+
+      /* Hero */
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .enrol-wrap { position: static; }
+
+      /* Trust bar */
+      .trust-bar-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+
+      /* Learn */
+      .learn-grid { grid-template-columns: 1fr; }
+
+      /* No exam */
+      .no-exam-inner {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        text-align: center;
+      }
+      .no-exam-body { margin-inline: auto; }
+
+      /* Testimonials */
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      /* Related */
+      .course-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+      /* Footer */
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .footer-pay { display: none; }
+      .footer { padding-bottom: 5.5rem; }
+
+      /* Mobile sticky bar */
+      .mob-bar { display: flex; }
+    }
+
+    @media (max-width: 480px) {
+      .trust-trio { grid-template-columns: repeat(3, 1fr); }
+      .hero-teacher { flex-wrap: wrap; }
+      .teacher-oct { margin-left: 0; }
+    }
+
+    @media (max-width: 380px) {
+      .trust-trio { grid-template-columns: 1fr; }
+      .trust-chip { flex-direction: row; text-align: left; justify-content: flex-start; }
+    }
+
+    /* ============================================================
+       IMAGE PLACEHOLDERS — CONVERSION OPPORTUNITIES
+       Remove these and replace with real images before launch.
+    ============================================================ */
+    .img-ph {
+      background: rgba(42, 56, 132, 0.04);
+      border: 1.5px dashed rgba(42, 56, 132, 0.22);
+      border-radius: var(--r);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 0.375rem;
+      color: var(--text-soft);
+    }
+    .img-ph-icon { font-size: 1.125rem; line-height: 1; }
+    .img-ph-label {
+      font-size: 0.625rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--blue);
+      line-height: 1.3;
+    }
+    .img-ph-desc {
+      font-size: 0.75rem;
+      color: rgba(42, 56, 132, 0.6);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+    .img-ph-tag {
+      font-size: 0.5625rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      background: rgba(42, 56, 132, 0.07);
+      padding: 0.1875rem 0.5rem;
+      border-radius: var(--r-pill);
+      margin-top: 0.125rem;
+    }
+
+    /* Circular (avatar) variant */
+    .img-ph--circle {
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      padding: 0.25rem;
+      flex-shrink: 0;
+      gap: 0.1rem;
+    }
+    .img-ph--circle .img-ph-icon { font-size: 0.875rem; }
+    .img-ph--circle .img-ph-label { font-size: 0.4375rem; }
+
+    /* Testimonial avatar variant */
+    .img-ph--avatar {
+      border-radius: 50%;
+      width: 38px;
+      height: 38px;
+      padding: 0.25rem;
+      flex-shrink: 0;
+      gap: 0;
+    }
+    .img-ph--avatar .img-ph-icon { font-size: 0.75rem; }
+    .img-ph--avatar .img-ph-label { font-size: 0.4rem; }
+
+    /* Wide screenshot variant */
+    .img-ph--wide {
+      width: 100%;
+      min-height: 300px;
+      border-radius: var(--r-lg);
+      padding: 2.5rem 2rem;
+    }
+
+    /* Short logos strip variant */
+    .img-ph--logos {
+      width: 100%;
+      min-height: 88px;
+      border-radius: var(--r);
+      flex-direction: row;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      padding: 1.25rem 2rem;
+    }
+    .img-ph--logos .img-ph-desc { max-width: none; }
+
+    /* Section that wraps placeholder content */
+    .ph-section {
+      padding-block: clamp(2.5rem, 5vw, 3.75rem);
+      background: var(--surface-tint);
+      border-top: 1px solid rgba(42, 56, 132, 0.06);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.06);
+    }
+    .univ-logos-strip {
+      background: var(--surface);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.06);
+      padding-block: 1.5rem 1.875rem;
+    }
+    .univ-logos-label {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      text-align: center;
+      margin-bottom: 1.125rem;
+    }
+    .univ-logos-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    /* Individual logo slot — swap img-ph-logo for a real <img> or <svg> */
+    .univ-logo-slot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 1.25rem;
+      background: rgba(42, 56, 132, 0.04);
+      border: 1.5px dashed rgba(42, 56, 132, 0.18);
+      border-radius: var(--r-sm);
+      transition: background 0.15s;
+      position: relative;
+    }
+    .univ-logo-slot:hover { background: rgba(42, 56, 132, 0.07); }
+    .univ-logo-slot-name {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: rgba(42, 56, 132, 0.4);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    /* When you drop in a real logo, hide the text name */
+    .univ-logo-slot img,
+    .univ-logo-slot svg {
+      max-height: 36px;
+      width: auto;
+      opacity: 0.55;
+      filter: grayscale(1);
+    }
+
+    /* ============================================================
+       HOW IT WORKS — VIDEO SECTION
+    ============================================================ */
+    .video-section {
+      background: var(--surface);
+      padding-block: clamp(3.5rem, 7vw, 5.5rem);
+      border-top: 1px solid rgba(42, 56, 132, 0.06);
+      border-bottom: 1px solid rgba(42, 56, 132, 0.06);
+    }
+
+    /* 16:9 video embed placeholder */
+    .video-ph {
+      position: relative;
+      width: 100%;
+      max-width: 820px;
+      aspect-ratio: 16 / 9;
+      background: var(--navy);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--sh-lg);
+      cursor: pointer;
+    }
+    .video-ph-play {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.12);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .video-ph:hover .video-ph-play {
+      background: rgba(255, 255, 255, 0.22);
+      transform: scale(1.06);
+    }
+    .video-ph-play svg {
+      width: 26px;
+      height: 26px;
+      fill: #fff;
+      margin-left: 3px;
+    }
+    .video-ph-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 1.5rem;
+      background: linear-gradient(to top, rgba(33, 44, 103, 0.92) 0%, transparent 100%);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.9);
+      letter-spacing: -0.01em;
+    }
+    .video-ph-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 0.5625rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      padding: 0.25rem 0.625rem;
+      border-radius: var(--r-pill);
+    }
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+    /* Step strip below video */
+    .video-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 2.5rem;
+      max-width: 820px;
+    }
+    .video-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      gap: 0.625rem;
+      padding-inline: 0.5rem;
+    }
+    .video-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 17px;
+      left: calc(50% + 20px);
+      right: calc(-50% + 20px);
+      height: 1.5px;
+      background: rgba(42, 56, 132, 0.12);
+    }
+    .video-step-num {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--light);
+      border: 1.5px solid rgba(42, 56, 132, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .video-step-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.3;
+    }
+    .video-step-sub {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* Hero trigger link */
+    .hero-video-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .hero-video-trigger:hover { color: var(--blue); }
+    .hero-video-trigger-play {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(42, 56, 132, 0.07);
+      border: 1.5px solid rgba(42, 56, 132, 0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .hero-video-trigger:hover .hero-video-trigger-play {
+      background: rgba(42, 56, 132, 0.13);
+    }
+    .hero-video-trigger-play svg {
+      width: 9px;
+      height: 9px;
+      fill: var(--blue);
+      margin-left: 2px;
+    }
+
+    /* ============================================================
+       SUBJECT COVER SYSTEM — 8 family colours + geometric SVG patterns
+       Every course inherits its subject family colour. The course code
+       is the differentiator within the family.
+    ============================================================ */
+    :root {
+      --sci:  #0a5c42;  /* Sciences  — SCH, SBI, SPH, SNC, SVN */
+      --math: #1a3d7a;  /* Math      — MPM, MFM, MCR, MHF, MCV, MDM */
+      --eng:  #3b2990;  /* English   — ENG, EWC, NBE, NBW */
+      --hist: #6b4c11;  /* History   — CHC, CGC, CGW, CHW, CPW */
+      --biz:  #1c3060;  /* Business  — BAF, BBB, BBI, BMI, BOH */
+      --cs:   #0a4835;  /* Comp Sci  — ICS, TEJ, TGJ */
+      --arts: #891534;  /* Arts      — AVI, AMU, AMR, ADA, AWQ */
+      --coop: #5c4914;  /* Co-op     — COOP, COP, GLS, KHPxO */
+    }
+
+    /* Override course card top for the cover layout */
+    .course-card-top {
+      background: transparent;
+      padding: 0;
+      display: block;
+    }
+
+    .course-cover {
+      width: 100%;
+      height: 148px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-cover--sci  { background: var(--sci); }
+    .course-cover--math { background: var(--math); }
+    .course-cover--eng  { background: var(--eng); }
+    .course-cover--hist { background: var(--hist); }
+    .course-cover--biz  { background: var(--biz); }
+    .course-cover--cs   { background: var(--cs); }
+    .course-cover--arts { background: var(--arts); }
+    .course-cover--coop { background: var(--coop); }
+
+    .course-cover-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.42;
+    }
+
+    .course-cover-code {
+      position: absolute;
+      bottom: 0.875rem;
+      left: 1rem;
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--font);
+      line-height: 1;
+    }
+
+    /* No-exam section — redesigned to text-left / photo-right */
+    .no-exam-inner {
+      grid-template-columns: 1fr 340px;
+      align-items: center;
+    }
+    .no-exam-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .no-exam-left .no-exam-emblem {
+      align-self: flex-start;
+      flex-direction: row;
+      gap: 0.875rem;
+      margin-bottom: 1.75rem;
+    }
+    .no-exam-left .no-exam-emblem .no-exam-label {
+      font-size: 0.625rem;
+      text-align: left;
+    }
+    .no-exam-ph {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: var(--r-lg);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1.5px dashed rgba(255, 255, 255, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    .no-exam-ph .img-ph-icon { color: rgba(255,255,255,0.5); }
+    .no-exam-ph .img-ph-label { color: rgba(255,255,255,0.65); }
+    .no-exam-ph .img-ph-desc { color: rgba(255,255,255,0.4); }
+    .no-exam-ph .img-ph-tag {
+      color: rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.07);
+    }
+    @media (max-width: 900px) {
+      .no-exam-inner { grid-template-columns: 1fr; }
+      .no-exam-ph { aspect-ratio: 16 / 7; }
+    }
+
+    /* Sciences accent on the SCH4U hero badge */
+    .hero-badge--sci {
+      color: var(--sci);
+      border-color: rgba(10, 92, 66, 0.28);
+    }
+
+    @media (max-width: 768px) {
+      .video-steps {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        max-width: none;
+      }
+      .video-step {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 0.875rem;
+        padding-inline: 0;
+      }
+      .video-step::after { display: none; }
+      .video-step-num { flex-shrink: 0; }
+    }

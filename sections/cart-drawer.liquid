@@ -1,0 +1,475 @@
+{%- style -%}
+  .cart-promo {
+    --cart-promo-bg: {{ section.settings.cart_promo_bg | default: '#F0C418' }};
+    --cart-promo-text: {{ section.settings.cart_promo_text | default: '#1F2160' }};
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--rounded, 0.625rem);
+    border: 1.5px solid var(--cart-promo-text);
+    background: var(--cart-promo-bg);
+    color: var(--cart-promo-text);
+    font-size: 1rem;
+    line-height: 1.35;
+    font-weight: 600;
+    box-shadow: 0 4px 16px -5px color-mix(in srgb, var(--cart-promo-text) 50%, transparent);
+    overflow: hidden;
+    animation: cart-promo-pop 0.45s ease-out both;
+  }
+
+  /* shimmer sweep to draw the eye */
+  .cart-promo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.55) 50%, transparent 75%);
+    transform: translateX(-100%);
+    animation: cart-promo-shimmer 3.4s ease-in-out 0.7s infinite;
+    pointer-events: none;
+  }
+
+  .cart-promo__icon {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 1.85rem;
+    height: 1.85rem;
+    border-radius: 999px;
+    background: var(--cart-promo-text);
+    color: var(--cart-promo-bg);
+  }
+
+  .cart-promo__icon svg {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .cart-promo__text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .cart-promo__text strong {
+    font-weight: 800;
+  }
+
+  @keyframes cart-promo-pop {
+    0% { opacity: 0; transform: translateY(-6px) scale(0.98); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes cart-promo-shimmer {
+    0% { transform: translateX(-100%); }
+    60%, 100% { transform: translateX(100%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cart-promo,
+    .cart-promo::after {
+      animation: none;
+    }
+  }
+{%- endstyle -%}
+
+<cart-drawer {% if request.design_mode %}handle-section-events{% endif %} class="cart-drawer drawer drawer--lg" id="cart-drawer">
+  {%- if cart.item_count == 0 -%}
+    <button is="close-button" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+      {%- render 'icon' with 'close' -%}
+    </button>
+
+    <div class="empty-state align-self-center">
+      <div class="empty-state__icon-wrapper">
+        {%- render 'icon' with 'cart', width: 32, height: 32, stroke_width: 1 -%}
+        <span class="count-bubble count-bubble--lg">0</span>
+      </div>
+
+      <div class="prose">
+        <p class="h5">{{ 'cart.general.empty' | t }}</p>
+
+        {%- assign button_content = 'cart.general.continue_shopping' | t -%}
+        {%- render 'button', href: settings.cart_empty_button_link, size: 'xl', content: button_content -%}
+      </div>
+    </div>
+  {%- else -%}
+    <div class="cart-drawer__inner">
+      <div class="cart-drawer__top">
+        <div class="h-stack items-center justify-between">
+          <div class="h-stack grow gap-2 sm:gap-2.5">
+            <p class="h5">{{- 'cart.general.title' | t -}}</p>
+            <cart-count class="count-bubble count-bubble--md">{{ cart.item_count }}</cart-count>
+          </div>
+
+          <button type="button" is="close-button" class="drawer__close-icon">
+            <span class="sr-only">{{ 'general.accessibility.close' | t }}</span>
+            {%- render 'icon' with 'close' -%}
+          </button>
+        </div>
+
+        {%- if settings.cart_show_free_shipping_threshold -%}
+          {%- render 'free-shipping-bar' -%}
+        {%- endif -%}
+
+        {%- comment -%} Cart promotion notice — nudges customers toward the multi-course discount {%- endcomment -%}
+        {%- liquid
+          assign promo_enabled = section.settings.cart_promo_enabled
+          assign promo_threshold = section.settings.cart_promo_threshold | default: 2
+          assign promo_discount = section.settings.cart_promo_discount | default: 75
+          assign promo_stack = section.settings.cart_promo_stack
+
+          comment
+            Count only items whose product type is NOT in the excluded list
+            (e.g. Tuition, Assessment). Only these count toward the promo.
+          endcomment
+          assign excluded_types_raw = section.settings.cart_promo_excluded_types | default: 'Tuition,Assessment'
+          assign excluded_types = excluded_types_raw | downcase | split: ','
+
+          assign eligible_count = 0
+          for promo_line_item in cart.items
+            assign line_type = promo_line_item.product.type | downcase | strip
+            assign is_excluded = false
+            for excluded_type in excluded_types
+              assign excluded_type_clean = excluded_type | strip
+              if line_type == excluded_type_clean and excluded_type_clean != blank
+                assign is_excluded = true
+                break
+              endif
+            endfor
+            unless is_excluded
+              assign eligible_count = eligible_count | plus: promo_line_item.quantity
+            endunless
+          endfor
+
+          assign promo_visible = false
+          if promo_enabled and eligible_count > 0
+            if promo_stack
+              assign promo_visible = true
+            elsif eligible_count < promo_threshold
+              assign promo_visible = true
+            endif
+          endif
+        -%}
+        {%- if promo_visible -%}
+          {%- liquid
+            if eligible_count < promo_threshold
+              assign target_qty = promo_threshold
+            else
+              assign target_qty = eligible_count | plus: 1
+            endif
+
+            assign remaining = target_qty | minus: eligible_count
+            assign savings = target_qty | times: promo_discount
+
+            if remaining == 1
+              assign item_word = section.settings.cart_promo_item_singular | default: 'course'
+            else
+              assign item_word = section.settings.cart_promo_item_plural | default: 'courses'
+            endif
+
+            assign count_html = '<strong>' | append: remaining | append: '</strong>'
+            assign savings_html = '<strong>$' | append: savings | append: '</strong>'
+            assign promo_message = section.settings.cart_promo_message | replace: '[count]', count_html | replace: '[savings]', savings_html | replace: '[item]', item_word | replace: '[code]', section.settings.cart_promo_code
+          -%}
+          <div class="cart-promo" role="status">
+            <span class="cart-promo__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <path d="M22 9l-10 -4l-10 4l10 4l10 -4v6" />
+                <path d="M6 10.6v5.4a6 3 0 0 0 12 0v-5.4" />
+              </svg>
+            </span>
+            <span class="cart-promo__text">{{ promo_message }}</span>
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="v-stack gap-6 sm:gap-8">
+        <div class="cart-drawer__line-items">
+          {%- for line_item in cart.items -%}
+            {%- render 'line-item', line_item: line_item, show_desktop_quantity: true -%}
+          {%- endfor -%}
+        </div>
+
+        {%- if section.settings.products.count > 0 -%}
+          <div class="cart-drawer__recommendations">
+            <div class="v-stack gap-2.5 sm:gap-4">
+              {%- capture carousel_id -%}cart-drawer-recommendations{%- endcapture -%}
+
+              {%- liquid
+                assign horizontal_products_blends = true
+                assign product_card_background = section.settings.product_card_background | default: product.settings.product_card_background
+
+                if product_card_background != 'rgba(0,0,0,0)' and product_card_background != blank and product_card_background != settings.dialog_background
+                  assign horizontal_products_blends = false
+                endif
+
+                assign rendered_recommendations = 0
+
+                capture recommendations
+                  for recommended_product in section.settings.products
+                    assign item_count_in_cart = cart | line_items_for: recommended_product
+
+                    if item_count_in_cart.size == 0
+                      render 'horizontal-product', product: recommended_product, show_add_to_cart: true, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color
+                      assign rendered_recommendations = rendered_recommendations | plus: 1
+                    endif
+                  endfor
+                endcapture
+              -%}
+
+              {%- if rendered_recommendations > 0 -%}
+                <div class="h-stack justify-between gap-4">
+                  {%- if section.settings.recommendations_title != blank -%}
+                    <p>{{ section.settings.recommendations_title | escape }}</p>
+                  {%- endif -%}
+
+                  {%- if rendered_recommendations > 1 -%}
+                    <div class="h-stack gap-2 hidden sm:flex">
+                      <button is="prev-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.previous' | t | escape }}" disabled>{%- render 'icon' with 'chevron-left-small', direction_aware: true -%}</button>
+                      <button is="next-button" class="circle-chevron hover:colors" aria-controls="{{ carousel_id }}" aria-label="{{ 'general.accessibility.next' | t | escape }}">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</button>
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+
+              {%- if recommendations != blank -%}
+                <scroll-carousel selector=".horizontal-product" id="{{ carousel_id }}" class="horizontal-product-list-carousel {% unless horizontal_products_blends %}separate{% endunless %} scroll-area bleed">
+                  <div class="horizontal-product-list {% if horizontal_products_blends %}divide-x{% else %}separate{% endif %}">
+                    {{- recommendations -}}
+                  </div>
+                </scroll-carousel>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="v-stack gap-4 sm:gap-6" slot="footer">
+      <div class="v-stack gap-1">
+        {% for discount_application in cart.cart_level_discount_applications %}
+          <div class="h-stack gap-4 justify-between">
+            <div class="badge">
+              {%- render 'icon' with 'discount' -%} {{- discount_application.title -}}
+            </div>
+
+            <span class="text-subdued">-{{ discount_application.total_allocated_amount | money }}</span>
+          </div>
+        {% endfor %}
+
+        <div class="h-stack gap-4 justify-between">
+          <span class="h5">{{ 'cart.general.total' | t }}</span>
+          <span class="h5">{{- cart.total_price | money_with_currency -}}</span>
+        </div>
+
+      <!--  {%- if section.settings.show_shipping_text -%}
+          {%- if cart.taxes_included and shop.shipping_policy.body != blank -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_and_shipping_policy_html' | t: link: shop.shipping_policy.url }}</p>
+          {%- elsif cart.taxes_included -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_included_but_shipping_at_checkout' | t }}</p>
+          {%- elsif shop.shipping_policy.body != blank -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_policy_at_checkout_html' | t: link: shop.shipping_policy.url }}</p>
+          {%- else -%}
+            <p class="text-subdued text-sm">{{ 'cart.general.taxes_and_shipping_at_checkout' | t }}</p>
+          {%- endif -%}
+        {%- endif -%} -->
+
+        {%- if section.settings.show_cart_note -%}
+          <button type="button" class="justify-self-start" aria-controls="cart-drawer-note">
+            <span class="link text-sm text-subdued">
+              {%- if cart.note == blank -%}
+                {{- 'cart.general.add_order_note' | t -}}
+              {%- else -%}
+                {{- 'cart.general.edit_order_note' | t -}}
+              {%- endif -%}
+            </span>
+          </button>
+
+          <cart-note-dialog id="cart-drawer-note" class="cart-drawer__note">
+            <div class="cart-drawer__note-inner">
+              <div class="v-stack gap-4 sm:gap-6">
+                <p class="h5">{{ 'cart.general.order_note' | t }}</p>
+
+                <cart-note class="v-stack gap-4">
+                  {%- assign order_note = 'cart.general.order_note' | t -%}
+                  {%- assign order_save_label = 'cart.general.save_note' | t -%}
+
+                  {%- render 'input', name: 'note', multiline: 3, label: order_note, value: cart.note -%}
+
+                  <div class="justify-self-start">
+                    {%- render 'button', type: 'button', content: order_save_label, size: 'lg', is: 'close-button', secondary: true -%}
+                  </div>
+                </cart-note>
+              </div>
+            </div>
+          </cart-note-dialog>
+        {%- endif -%}
+      </div>
+
+      <form action="{{ routes.cart_url }}" method="POST" class="buy-buttons {% if section.settings.show_checkout_button %}buy-buttons--compact{% endif %}">
+        {%- assign checkout_label = 'cart.general.checkout' | t -%}
+
+        {%- if section.settings.show_view_cart_button or section.settings.show_checkout_button == false -%}
+          <a href="{{ routes.cart_url }}" class="button button--xl {% if section.settings.show_checkout_button %}button--secondary{% endif %}" data-no-instant>
+            {{- 'cart.general.view_cart' | t -}}
+          </a>
+        {%- endif -%}
+
+        {%- if section.settings.show_checkout_button -%}
+          {%- render 'button', type: 'submit', content: checkout_label, icon: 'picto-lock', name: 'checkout', size: 'xl' -%}
+        {%- endif -%}
+      </form>
+    </div>
+  {%- endif -%}
+</cart-drawer>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Cart drawer won't appear to your customers if you have set the cart type to Page in the global theme settings."
+    },
+    {
+      "type": "paragraph",
+      "content": "Free shipping bar can be configured in global cart settings."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "label": "Show cart note",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping_text",
+      "label": "Show shipping text",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_cart_button",
+      "label": "Show view cart button",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_checkout_button",
+      "label": "Show checkout button",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Cart promotion notice"
+    },
+    {
+      "type": "paragraph",
+      "content": "Encourages customers to add another course to unlock the multi-course discount. The notice hides automatically once the qualifying number of courses is in the cart."
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_promo_enabled",
+      "label": "Show promotion notice",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "cart_promo_threshold",
+      "label": "Courses needed to qualify",
+      "info": "Notice shows when the cart has fewer items than this number. Default: 2.",
+      "default": 2
+    },
+    {
+      "type": "number",
+      "id": "cart_promo_discount",
+      "label": "Discount per course ($)",
+      "info": "Used to calculate the total savings shown in the message.",
+      "default": 75
+    },
+    {
+      "type": "checkbox",
+      "id": "cart_promo_stack",
+      "label": "Keep nudging as the cart grows",
+      "info": "Off: the notice disappears once the cart reaches the qualifying number of courses. On: the notice keeps showing and the savings climb with each course added (e.g. 3 courses shows \"Add 1 more and save $300\").",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "cart_promo_excluded_types",
+      "label": "Excluded product types",
+      "info": "Comma-separated, not case-sensitive. Items with these product types don't count toward the promo and won't trigger the notice.",
+      "default": "Tuition,Assessment"
+    },
+    {
+      "type": "text",
+      "id": "cart_promo_message",
+      "label": "Notice message",
+      "info": "Placeholders: [count] = courses to add, [savings] = total savings, [item] = course/courses, [code] = discount code.",
+      "default": "Add [count] more [item] and save [savings]!"
+    },
+    {
+      "type": "text",
+      "id": "cart_promo_item_singular",
+      "label": "Item word (singular)",
+      "default": "course"
+    },
+    {
+      "type": "text",
+      "id": "cart_promo_item_plural",
+      "label": "Item word (plural)",
+      "default": "courses"
+    },
+    {
+      "type": "text",
+      "id": "cart_promo_code",
+      "label": "Discount code",
+      "info": "Only shown if you add [code] to the message.",
+      "default": "DOUBLEUP"
+    },
+    {
+      "type": "color",
+      "id": "cart_promo_bg",
+      "label": "Notice background",
+      "default": "#F0C418"
+    },
+    {
+      "type": "color",
+      "id": "cart_promo_text",
+      "label": "Notice text",
+      "default": "#1F2160"
+    },
+    {
+      "type": "header",
+      "content": "Product recommendations"
+    },
+    {
+      "type": "text",
+      "id": "recommendations_title",
+      "label": "Heading",
+      "default": "Trending this month"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Recommendations",
+      "info": "Suggest additional products to your customers. Recommendations already in the cart are automatically hidden.",
+      "limit": 10
+    },
+    {
+      "type": "color",
+      "id": "product_card_background",
+      "label": "Product card background"
+    },
+    {
+      "type": "color",
+      "id": "product_card_text_color",
+      "label": "Product card text"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,228 @@
+<section class="pdp-no-exam" aria-labelledby="pdp-no-exam-heading">
+  <div class="pdp-no-exam__inner">
+
+    <div class="pdp-no-exam__left">
+
+      <div class="pdp-no-exam__emblem" aria-hidden="true">
+        <div class="pdp-no-exam__ring">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="3" width="20" height="23" rx="2"/>
+            <path d="M9 13.5l3 3 7-7"/>
+            <path d="M9 20h10"/>
+          </svg>
+        </div>
+        <div class="pdp-no-exam__badge-label">100%<br>Online</div>
+      </div>
+
+      <blockquote>
+        <p class="pdp-no-exam__quote" id="pdp-no-exam-heading">
+          {{ section.settings.quote_line1 | split: '. ' | join: '.<br>' }}<br>
+          <em>{{ section.settings.quote_line2 }}</em>
+        </p>
+      </blockquote>
+
+      <p class="pdp-no-exam__body">{{ section.settings.body_text }}</p>
+
+    </div>
+
+    <div class="pdp-no-exam__right">
+      {%- if section.settings.photo != blank -%}
+        <img
+          src="{{ section.settings.photo | image_url: width: 880 }}"
+          alt="{{ section.settings.photo_alt | escape }}"
+          width="440"
+          height="580"
+          class="pdp-no-exam__photo"
+          loading="lazy"
+          decoding="async"
+        >
+      {%- else -%}
+        <div class="pdp-no-exam__photo-placeholder" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round">
+            <path d="M2.5 10c0-1.2.9-2.2 2.2-2.2h1.5l2.5-3.8h10.6l2.5 3.8h1.5c1.3 0 2.2 1 2.2 2.2v12c0 1.3-.9 2.2-2.2 2.2H4.7c-1.3 0-2.2-.9-2.2-2.2V10z"/>
+            <circle cx="14" cy="15" r="4.5"/>
+          </svg>
+          <strong>Student lifestyle photo</strong>
+          <p>A candid shot of a student working from home — warm light, relaxed setting.</p>
+          <span>560 × 740px · portrait · candid</span>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.pdp-no-exam {
+  background: var(--color-dark, #1e2460);
+  padding: 80px 0;
+}
+
+.pdp-no-exam__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Left */
+.pdp-no-exam__left {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Emblem */
+.pdp-no-exam__emblem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.pdp-no-exam__ring {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--color-gold, #f0c417);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-gold, #f0c417);
+  flex-shrink: 0;
+}
+
+.pdp-no-exam__badge-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-gold, #f0c417);
+  line-height: 1.4;
+}
+
+/* Quote */
+.pdp-no-exam__quote {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.pdp-no-exam__quote em {
+  color: var(--color-gold, #f0c417);
+  font-style: normal;
+}
+
+/* Body */
+.pdp-no-exam__body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 60ch;
+  margin: 0;
+}
+
+/* Right — photo */
+.pdp-no-exam__photo {
+  width: 440px;
+  height: auto;
+  border-radius: 20px;
+  object-fit: cover;
+  display: block;
+}
+
+.pdp-no-exam__photo-placeholder {
+  width: 440px;
+  min-height: 560px;
+  border-radius: 20px;
+  border: 1.5px dashed rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 32px 24px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.pdp-no-exam__photo-placeholder strong {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.pdp-no-exam__photo-placeholder p {
+  font-size: 13px;
+  line-height: 1.5;
+  max-width: 22ch;
+}
+
+.pdp-no-exam__photo-placeholder span {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .pdp-no-exam__inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .pdp-no-exam__photo,
+  .pdp-no-exam__photo-placeholder {
+    width: 100%;
+  }
+  .pdp-no-exam__quote {
+    font-size: 1.75rem;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PDP 100% Online",
+  "settings": [
+    {
+      "type": "text",
+      "id": "quote_line1",
+      "label": "Quote — Line 1",
+      "default": "\"No scheduled classes. No attendance marks."
+    },
+    {
+      "type": "text",
+      "id": "quote_line2",
+      "label": "Quote — Line 2 (gold italic)",
+      "default": "No compromises.\""
+    },
+    {
+      "type": "textarea",
+      "id": "body_text",
+      "label": "Body Text",
+      "default": "OEO courses are fully asynchronous, with no scheduled classes and no attendance marks. Your grade comes from coursework assessed by your Ontario-certified teacher and a final exam you write online, from anywhere in the world. You work at your pace, and your grade reflects your actual understanding of the material."
+    },
+    {
+      "type": "image_picker",
+      "id": "photo",
+      "label": "Student Lifestyle Photo"
+    },
+    {
+      "type": "text",
+      "id": "photo_alt",
+      "label": "Photo Alt Text",
+      "default": "Student working from home"
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP 100% Online"
+    }
+  ]
+}
+{% endschema %}

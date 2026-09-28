@@ -1,0 +1,360 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "custom_liquid_FNrzVi": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n#shopify-section-sections--21906930663708__4c6d5e03-906f-49b6-b5d1-0661ee3dad02 {\ndisplay: none !important;\n}\n#shopify-section-sections--21906930663708__1ce46c8e-e550-4bc9-afb1-7e42bb5e46eb {display: none !important}\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "rich_text_NHU94r": {
+      "type": "rich-text",
+      "blocks": {
+        "subheading_kNMyRF": {
+          "type": "subheading",
+          "settings": {
+            "text": "Attention Private School Owners and Administrators"
+          }
+        },
+        "heading_rGGqen": {
+          "type": "heading",
+          "settings": {
+            "text": "Partner with OEO",
+            "heading_tag": "h0",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_3MNxKf": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>At Ontario Education Online, we’re here to help private schools provide a complete, high-quality education for their students. Whether you're looking to expand your course offerings or provide Cooperative Education opportunities, partnering with OEO makes it simple and seamless.</p><h3><strong>How We Help Your School</strong></h3><p>We offer two flexible partnership options tailored to your school’s needs:</p>"
+          }
+        }
+      },
+      "block_order": [
+        "subheading_kNMyRF",
+        "heading_rGGqen",
+        "richtext_3MNxKf"
+      ],
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#2a3884",
+        "background_gradient": "",
+        "text_color": "#ffffff"
+      }
+    },
+    "video_zgHh4G": {
+      "type": "video",
+      "blocks": {
+        "play_xpTWUF": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_xpTWUF"
+      ],
+      "custom_css": [],
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "external_video_url": "https://youtu.be/XhNCNTQz-0c?si=gD_apsTioaLkdAfv",
+        "poster": "shopify://shop_images/Screenshot_2024-02-06_at_7.04.17_AM.png",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "images_with_text_scrolling_DnHdTj": {
+      "type": "images-with-text-scrolling",
+      "blocks": {
+        "item_itFkKd": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Enrolment.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Purchase Seats for our Cooperative Education Course",
+            "content": "<p>Give your students the opportunity to explore career paths through Cooperative Education!</p><p>Co-op is a valuable experience for high school students, but it can be challenging for private schools to manage due to logistical and administrative hurdles. That’s where we come in. OEO takes care of <strong>everything</strong>, including:</p><p>On-site visits</p><p>Ministry reporting (e.g., ONSIS data collection, report cards)</p><p>Personalized support for your students</p><p>Partnering with us is cost-effective and efficient. Purchase a block of <strong>10+ Co-op seats</strong> for your school and let us do the heavy lifting.</p>"
+          }
+        },
+        "item_KqcqgF": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/GoogleClassroom.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Fill Gaps in Your Curriculum",
+            "content": "<p>Not every private school can offer every course every year—that’s where OEO can help. Whether it’s due to low enrollment or a lack of specialized instructors, we provide <strong>individual courses</strong> for students who need them.</p><p>We handle:</p><p>Teaching</p><p>Grading</p><p>Ministry reporting (e.g., ONSIS compliance)</p><p>Our flexible online platform ensures your students can access the courses they need to succeed.</p>"
+          }
+        },
+        "item_q7RNJP": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/feedback.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Why Partner with OEO?",
+            "content": "<p><strong>Save Time:</strong> We handle the administration, teaching, and reporting.<br/><br/><strong>Cost-Effective:</strong> Flexible options for both small and large-scale needs.<br/><br/><strong>Ministry Compliant:</strong> All reporting, grading, and data collection meet Ontario Ministry of Education requirements.<br/><br/><strong>Student Success:</strong> High-quality instruction and a seamless learning experience.</p>"
+          }
+        },
+        "item_kD9H4X": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/Interactive3.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Let’s Work Together",
+            "content": "<p>Interested in partnering with OEO? Whether you’re considering our Co-op program or want to fill gaps in your curriculum, we’d love to help your school thrive.</p><p>📩 <strong>Contact Us:</strong> <a href=\"mailto:info@ontarioeducationonline.ca\" target=\"_blank\">info@ontarioeducationonline.ca</a></p>"
+          }
+        },
+        "item_3KFe79": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Flexible.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Flexible Scheduling",
+            "content": "<p>We understand the importance of flexibility in education. With Ontario Education Online, you have the freedom to set your own pace. Access course materials and complete assignments at a time that suits your individual schedule, allowing you to balance your academic commitments with other aspects of your life.</p>"
+          }
+        },
+        "item_RdmipC": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/teachers.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Teacher Support",
+            "content": "<p>Our qualified Ontario teachers are dedicated to your success. Through Google Classroom, you can easily communicate with your teachers, seeking guidance and clarification whenever needed. Take advantage of virtual office hours and personalized support to ensure you have the assistance required to excel in your studies.</p>"
+          }
+        },
+        "item_GagHap": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/feedback.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Assessment and Feedback",
+            "content": "<p>Experience a transparent and fair assessment process at Ontario Education Online. Submit assignments through Google Classroom, where teachers provide constructive feedback to help you grow academically. Stay informed about your progress and take control of your learning journey.</p>"
+          }
+        },
+        "item_E4KqeP": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/progress.png",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Progress Tracking",
+            "content": "<p>Monitor your academic progress effortlessly with the built-in tracking features of Google Classroom. Keep tabs on completed assignments, grades, and overall course advancement to stay on top of your academic goals.</p>"
+          }
+        },
+        "item_AMAD4n": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/graduation.jpg",
+            "icon": "none",
+            "icon_width": 48,
+            "title": "Graduation and Beyond",
+            "content": "<p>Upon successful completion of your courses, Ontario Education Online ensures a smooth transition to the next phase of your educational journey. Receive your well-earned diploma and explore various post-secondary options, equipped with the knowledge and skills needed for success.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_itFkKd",
+        "item_KqcqgF",
+        "item_q7RNJP",
+        "item_kD9H4X",
+        "item_3KFe79",
+        "item_RdmipC",
+        "item_GagHap",
+        "item_E4KqeP",
+        "item_AMAD4n"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "show_counter": true,
+        "desktop_image_effect": "reveal",
+        "image_position": "end",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "video_7QfgMH": {
+      "type": "video",
+      "blocks": {
+        "play_jjHLUX": {
+          "type": "play",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "play_jjHLUX"
+      ],
+      "settings": {
+        "full_width": false,
+        "allow_transparent_header": false,
+        "autoplay": false,
+        "video_size": "auto",
+        "external_video_url": "https://youtu.be/4TjTKEBQ6ZQ",
+        "poster": "shopify://shop_images/contact-us-lettering.jpg",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 30
+      }
+    },
+    "rich_text_7KmWfU": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_FG3ziT": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "text": "Ready to embark on your educational adventure with OEO?",
+            "heading_tag": "h1",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_L3F88P": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Enrol today and experience the future of online high school education! If you have any questions or need assistance, our support team is here to guide you every step of the way. Welcome to a new era of learning excellence!</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_FG3ziT",
+        "richtext_L3F88P"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "content_width": "small",
+        "text_position": "center",
+        "background": "#f2f1f6",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_V766cA": {
+      "type": "multi-column",
+      "blocks": {
+        "item_n36RNt": {
+          "type": "item",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/download-2.png",
+            "column_size": "3",
+            "title": "Download a sample course",
+            "heading_tag": "h4",
+            "content": "<p>Download a sample course to get an idea of the format of our courses</p>",
+            "link_url": "shopify://pages/download-sample-course",
+            "link_text": "Download now",
+            "link_style": "button"
+          }
+        },
+        "item_PJBckX": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/guidance-session-2.png",
+            "column_size": "3",
+            "title": "Book a guidance session",
+            "heading_tag": "h4",
+            "content": "<p>Get started with a 30 minute guidance session with one of our teachers</p>",
+            "link_url": "shopify://pages/book-guidance-session",
+            "link_text": "Book session",
+            "link_style": "button"
+          }
+        },
+        "item_bJ79yB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify://shop_images/browse-courses-2.png",
+            "column_size": "3",
+            "title": "Enrol in courses",
+            "heading_tag": "h4",
+            "content": "<p>Browse our range of fully certified Ontario courses and begin learning today</p>",
+            "link_url": "shopify://collections",
+            "link_text": "Browse courses",
+            "link_style": "button"
+          }
+        }
+      },
+      "block_order": [
+        "item_n36RNt",
+        "item_PJBckX",
+        "item_bJ79yB"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "small",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "Next steps:",
+        "content": "",
+        "background": "#f0c417",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "content_width": "80ch"
+      }
+    },
+    "custom_liquid_NKiRKn": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<style>\n.multi-column img {\nmax-width: 40% !important;\ntext-align: center !important;\n</style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "custom_liquid_FNrzVi",
+    "rich_text_NHU94r",
+    "video_zgHh4G",
+    "images_with_text_scrolling_DnHdTj",
+    "video_7QfgMH",
+    "rich_text_7KmWfU",
+    "multi_column_V766cA",
+    "main",
+    "custom_liquid_NKiRKn"
+  ]
+}

@@ -1,0 +1,183 @@
+<section class="pdp-course-curriculum" aria-labelledby="pdp-course-curriculum-heading">
+  <div class="pdp-course-curriculum__inner">
+
+    <p class="pdp-course-curriculum__eyebrow">
+      {{ section.settings.eyebrow | default: 'Course Curriculum' }}
+    </p>
+        <h2 class="pdp-course-curriculum__heading" id="pdp-course-curriculum-heading">
+        {{ section.settings.heading_prefix | default: "What you'll cover in " }} {{ product.metafields.custom.course_code.value | default: product.title }}
+        </h2>
+
+    {%- assign mf = product.metafields.custom -%}
+
+    <ul class="pdp-course-curriculum__list" role="list" aria-label="Course topics and outcomes">
+      {%- for i in (1..10) -%}
+        {%- assign name_key = 'unit_' | append: i | append: '_name' -%}
+        {%- assign desc_key = 'unit_' | append: i | append: '_description' -%}
+
+        {%- assign unit_name = mf[name_key] -%}
+        {%- assign unit_desc = mf[desc_key] -%}
+
+        {%- if unit_name != blank or unit_desc != blank -%}
+          <li class="pdp-course-curriculum__item">
+            <div class="pdp-course-curriculum__check" aria-hidden="true">
+              <svg viewBox="0 0 10 10" fill="none">
+                <path d="M2 5l2.5 2.5L8 3" stroke="#2A3884" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+            <div class="pdp-course-curriculum__text">
+              {%- if unit_name != blank -%}
+                <strong>{{ unit_name.value }}</strong>
+                {%- if unit_desc != blank -%}&nbsp;-&nbsp;{%- endif -%}
+              {%- endif -%}
+              {%- if unit_desc != blank -%}
+                {{ unit_desc.value }}
+              {%- endif -%}
+            </div>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+
+  </div>
+</section>
+
+<style>
+.pdp-course-curriculum {
+  background: var(--light);
+  padding: 64px 0 80px;
+}
+
+.pdp-course-curriculum__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Heading block (match other PDP sections) */
+.pdp-course-curriculum__eyebrow {
+  margin: 0 0 10px;
+  font-size: 11px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #98a0bf;
+}
+
+.pdp-course-curriculum__heading {
+  margin: 0 0 32px;
+  font-size: clamp(2rem, 3vw, 2.45rem);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  color: #24367a;
+}
+
+/* List */
+.pdp-course-curriculum__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 80px;
+  row-gap: 24px;
+}
+
+.pdp-course-curriculum__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(151, 163, 206, 0.18);
+}
+.pdp-course-curriculum__check {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  border-radius: 999px;
+  background: #f1f2f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pdp-course-curriculum__check svg {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+
+.pdp-course-curriculum__check path {
+  stroke: #2f3f86;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pdp-course-curriculum__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #31457e;
+}
+
+.pdp-course-curriculum__text strong {
+  font-weight: 700;
+  color: #24367a;
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .pdp-course-curriculum__inner {
+    padding: 0 32px;
+  }
+
+  .pdp-course-curriculum__heading {
+    margin-bottom: 24px;
+    font-size: 2rem;
+    line-height: 1.1;
+  }
+
+  .pdp-course-curriculum__list {
+    grid-template-columns: 1fr;
+    row-gap: 20px;
+  }
+
+  .pdp-course-curriculum__item {
+    padding-bottom: 18px;
+  }
+
+  .pdp-course-curriculum__text {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "PDP Course Curriculum",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Course Curriculum"
+    },
+    {
+    "type": "text",
+    "id": "heading_prefix",
+    "label": "Heading Prefix",
+    "default": "What you'll cover in "
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Course Curriculum"
+    }
+  ]
+}
+{% endschema %}

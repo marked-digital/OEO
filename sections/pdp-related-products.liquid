@@ -1,0 +1,316 @@
+{%- assign related_products = product.metafields['shopify--discovery--product_recommendation'].related_products.value -%}
+
+{%- unless related_products.size > 0 or request.design_mode -%}
+  {%- break -%}
+{%- endunless -%}
+
+<style>
+  .pdp-related {
+    padding: 64px 0 80px;
+    background: #ffffff;
+  }
+
+  .pdp-related__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .pdp-related__label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin-bottom: 10px;
+  }
+
+  .pdp-related__title {
+    font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+    font-weight: 700;
+    color: #1e2a5e;
+    margin: 0 0 40px;
+    line-height: 1.2;
+  }
+
+  .pdp-related__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 900px) {
+    .pdp-related__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 580px) {
+    .pdp-related { padding: 40px 0 56px; }
+    .pdp-related__inner { padding: 0 16px; }
+    .pdp-related__grid { grid-template-columns: 1fr; }
+  }
+
+  .pdp-related__card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+
+  .pdp-related__card:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
+    transform: translateY(-2px);
+  }
+
+.pdp-related__cover {
+  position: relative;
+  width: 100%;
+  height: 148px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;   /* top-align content */
+  justify-content: flex-start; /* keep pill on the left */
+  padding: 12px 14px;
+  --cover-bg: #2d5a3d;
+  background-color: var(--cover-bg);
+}
+
+
+.pdp-related__cover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* crop to fill without distortion */
+  object-position: center;   /* center the crop */
+  z-index: 0;
+}
+
+  .pdp-related__cover-code {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #1e2a5e;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color:rgb(255, 255, 255);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
+}
+
+  .pdp-related__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+    gap: 8px;
+  }
+
+  .pdp-related__name {
+    font-size: 0.97rem;
+    font-weight: 700;
+    color: #1e2a5e;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .pdp-related__desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.55;
+    margin: 0;
+    flex: 1;
+  }
+
+  .pdp-related__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .pdp-related__price {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e2a5e;
+    white-space: nowrap;
+  }
+
+  .pdp-related__cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 18px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: border-color 180ms ease, color 180ms ease, background 180ms ease;
+  }
+
+  .pdp-related__cta:hover {
+    border-color: #1e2a5e;
+    color: #1e2a5e;
+    background: #f0f2f8;
+  }
+
+  .pdp-related__placeholder {
+    grid-column: 1 / -1;
+    padding: 32px;
+    border: 2px dashed #d1d5db;
+    border-radius: 14px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.9rem;
+  }
+</style>
+
+<section
+  class="pdp-related"
+  aria-labelledby="pdp-related-heading-{{ section.id }}"
+>
+  <div class="pdp-related__inner">
+
+    <span class="pdp-related__label">{{ section.settings.section_label | escape }}</span>
+    <h2 class="pdp-related__title" id="pdp-related-heading-{{ section.id }}">
+      {{ section.settings.section_heading | escape }}
+    </h2>
+
+    <div class="pdp-related__grid">
+
+      {%- if related_products.size > 0 -%}
+
+        {%- for rel_product in related_products limit: section.settings.max_products -%}
+
+          {%- assign subject = rel_product.metafields.custom.subject.value | downcase | strip -%}
+          {%- case subject -%}
+            {%- when 'math' -%}         {%- assign cover_class = 'pdp-related__cover--math' -%}
+            {%- when 'english' -%}      {%- assign cover_class = 'pdp-related__cover--english' -%}
+            {%- when 'humanities' -%}   {%- assign cover_class = 'pdp-related__cover--humanities' -%}
+            {%- when 'business' -%}     {%- assign cover_class = 'pdp-related__cover--business' -%}
+            {%- when 'tech' -%}         {%- assign cover_class = 'pdp-related__cover--tech' -%}
+            {%- else -%}                {%- assign cover_class = 'pdp-related__cover--sci' -%}
+          {%- endcase -%}
+
+          {%- assign course_code = rel_product.metafields.custom.course_code.value -%}
+          {%- if course_code == blank -%}
+            {%- assign course_code = rel_product.title | split: ' ' | first -%}
+          {%- endif -%}
+
+          {%- assign rel_variant = rel_product.selected_or_first_available_variant -%}
+
+          <article class="pdp-related__card">
+
+            <div class="pdp-related__cover {{ cover_class }}" aria-hidden="false">
+  {%- if rel_product.featured_image -%}
+    <img
+      class="pdp-related__cover-img"
+      src="{{ rel_product.featured_image | image_url: width: 600 }}"
+      alt="{{ rel_product.featured_image.alt | default: rel_product.title | escape }}"
+      width="600"
+      height="148"
+      loading="lazy"
+      decoding="async"
+    >
+  {%- else -%}
+    <svg class="pdp-related__cover-svg" viewBox="0 0 400 148" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet">
+      <polygon points="140,26 180,49 180,95 140,118 100,95 100,49" stroke="white" stroke-width="1.5" fill="none"/>
+      <circle cx="140" cy="72" r="23" stroke="white" stroke-width="0.75" fill="none" opacity="0.6"/>
+      <line x1="180" y1="72" x2="206" y2="72" stroke="white" stroke-width="1.5"/>
+      <polygon points="230,44 254,58 254,86 230,100 206,86 206,58" stroke="white" stroke-width="1.2" fill="none"/>
+      <circle cx="140" cy="26" r="3.5" fill="white"/>
+      <circle cx="180" cy="49" r="3.5" fill="white"/>
+      <circle cx="180" cy="95" r="3.5" fill="white"/>
+      <circle cx="140" cy="118" r="3.5" fill="white"/>
+      <circle cx="100" cy="95" r="3.5" fill="white"/>
+      <circle cx="100" cy="49" r="3.5" fill="white"/>
+      <circle cx="230" cy="44" r="2.5" fill="white"/>
+      <circle cx="254" cy="58" r="2.5" fill="white"/>
+      <circle cx="254" cy="86" r="2.5" fill="white"/>
+      <circle cx="230" cy="100" r="2.5" fill="white"/>
+      <polygon points="358,6 383,20 383,48 358,62 333,48 333,20" stroke="white" stroke-width="1" fill="none" opacity="0.28"/>
+      <circle cx="358" cy="34" r="10" stroke="white" stroke-width="0.6" fill="none" opacity="0.22"/>
+      <polygon points="20,84 38,95 38,117 20,128 2,117 2,95" stroke="white" stroke-width="0.8" fill="none" opacity="0.2"/>
+    </svg>
+  {%- endif -%}
+  <span class="pdp-related__cover-code">{{ course_code | escape }}</span>
+</div>
+
+            <div class="pdp-related__body">
+              <h3 class="pdp-related__name">{{ rel_product.title | escape }}</h3>
+              <p class="pdp-related__desc">{{ rel_product.description | strip_html | truncate: 160 }}</p>
+              <div class="pdp-related__footer">
+                <span class="pdp-related__price">{{ rel_variant.price | money }} {{ cart.currency.iso_code }}</span>
+                <a
+                  href="{{ rel_product.url }}"
+                  class="pdp-related__cta"
+                  aria-label="View {{ rel_product.title | escape }} course page"
+                >View Course →</a>
+              </div>
+            </div>
+
+          </article>
+
+        {%- endfor -%}
+
+      {%- elsif request.design_mode -%}
+        <div class="pdp-related__placeholder">
+          No related products assigned yet.<br>
+          Go to <strong>Products → [this product] → Metafields → Related Products</strong> to add some.
+        </div>
+      {%- endif -%}
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "PDP - Related Products",
+  "tag": "section",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Eyebrow label",
+      "default": "Keep Learning"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section heading",
+      "default": "Other courses you might need"
+    },
+
+{
+  "type": "range",
+  "id": "max_products",
+  "label": "Max products to show",
+  "min": 1,
+  "max": 9,
+  "step": 1,
+  "default": 3
+}
+
+
+  ],
+  "presets": [
+    {
+      "name": "PDP - Related Products"
+    }
+  ]
+}
+{% endschema %}

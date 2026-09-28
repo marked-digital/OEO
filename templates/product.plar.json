@@ -1,0 +1,359 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "pdp-product",
+      "blocks": {
+        "buy_buttons_HjJLRY": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false
+          }
+        }
+      },
+      "block_order": [
+        "buy_buttons_HjJLRY"
+      ],
+      "settings": {
+        "callout_1": "Guidance team review",
+        "callout_2": "Personalized pathway",
+        "callout_3": "1–2 business day turnaround",
+        "rating_value": "4.9",
+        "rating_count": "Students",
+        "prereq_help_text": "(Not sure if you qualify? Ask us →)",
+        "prereq_help_url": "shopify://pages/book-guidance-session",
+        "price_subcopy": "Includes a full transcript review, credit equivalency assessment, and a written personalized graduation plan. $150 credited back when you enrol in an OEO course.",
+        "payment_plan_text": "",
+        "urgency_text": "Instant access • Begin your assessment today",
+        "enrol_label": "Enrol Now",
+        "enrol_disclaimer": "One-time payment • No subscription • No recurring charges",
+        "variant_label": "Student location",
+        "single_option_picker_style": "dropdown",
+        "watch_label": "Watch how it works — 1 min",
+        "watch_link": "#how-it-works",
+        "watch_link_new_tab": false,
+        "guidance_text": "Not sure? Book a free 15-min guidance call →",
+        "guidance_url": "shopify://pages/book-guidance-session",
+        "guidance_new_tab": false,
+        "mob_bar_label": "Get Started",
+        "quick_enrol_subtext": "Instant Access"
+      }
+    },
+    "values": {
+      "type": "pdp-trust",
+      "blocks": {
+        "value_WL7BEJ": {
+          "type": "value",
+          "settings": {
+            "icon": "school",
+            "title": "Ministry-Inspected School",
+            "description": "BSID #882902",
+            "link_label": "Verify on Ministry site",
+            "link_url": "https://www.myontarioschool.ca/find-us-on-ministrys-website/",
+            "open_new_tab": true
+          }
+        },
+        "value_F8HcUz": {
+          "type": "value",
+          "settings": {
+            "icon": "teacher",
+            "title": "Ontario-Certified Teacher",
+            "description": "All courses taught by OCT-regulated educators",
+            "link_label": "",
+            "link_url": "",
+            "open_new_tab": true
+          }
+        },
+        "value_QFGigq": {
+          "type": "value",
+          "settings": {
+            "icon": "cap",
+            "title": "Personalized Graduation Plan",
+            "description": "A clear step-by-step roadmap to your OSSD",
+            "link_label": "",
+            "link_url": "",
+            "open_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "value_WL7BEJ",
+        "value_F8HcUz",
+        "value_QFGigq"
+      ],
+      "settings": {}
+    },
+    "universities": {
+      "type": "pdp-universities",
+      "blocks": {
+        "university_VdJy4p": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/UofT.png",
+            "name": "University of Toronto",
+            "alt": "University of Toronto"
+          }
+        },
+        "university_phUkq3": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/MAC.png",
+            "name": "McMaster University",
+            "alt": "McMaster University"
+          }
+        },
+        "university_Vjwfir": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/wastern.png",
+            "name": "Western University",
+            "alt": "Western University"
+          }
+        },
+        "university_Wka7xH": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Queens.png",
+            "name": "Queen's University",
+            "alt": "Queen's University"
+          }
+        },
+        "university_Qd6Lh6": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/YorkU.png",
+            "name": "York University",
+            "alt": "York University"
+          }
+        },
+        "university_dK9P7M": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/ottawa.png",
+            "name": "University of Ottawa",
+            "alt": "University of Ottawa"
+          }
+        },
+        "university_QVcjrH": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/Waterloo.png",
+            "name": "University of Waterloo",
+            "alt": "University of Waterloo"
+          }
+        },
+        "university_PrnbPz": {
+          "type": "university",
+          "settings": {
+            "logo": "shopify://shop_images/laurieri.png",
+            "name": "Wilfrid Laurier University",
+            "alt": "Wilfrid Laurier University"
+          }
+        }
+      },
+      "block_order": [
+        "university_VdJy4p",
+        "university_phUkq3",
+        "university_Vjwfir",
+        "university_Wka7xH",
+        "university_Qd6Lh6",
+        "university_dK9P7M",
+        "university_QVcjrH",
+        "university_PrnbPz"
+      ],
+      "settings": {
+        "eyebrow": "Credits accepted at every Ontario university, including"
+      }
+    },
+    "how_it_works": {
+      "type": "pdp-how-it-works",
+      "blocks": {
+        "step_U4zPRi": {
+          "type": "step",
+          "settings": {
+            "title": "Pay and get access",
+            "subtext": "Course unlocks after filling out intake form. This takes 2-3 minutes, no waiting on a school office."
+          }
+        },
+        "step_WPjPK8": {
+          "type": "step",
+          "settings": {
+            "title": "Work at your own pace",
+            "subtext": "Complete lessons and assignments whenever suits you. No schedule, no login times."
+          }
+        },
+        "step_rzDcpQ": {
+          "type": "step",
+          "settings": {
+            "title": "Get quick feedback",
+            "subtext": "Submit an assignment and receive detailed feedback within 48–72 hours. Questions are answered within 24 hours (Mon–Fri)."
+          }
+        },
+        "step_BgT6w8": {
+          "type": "step",
+          "settings": {
+            "title": "Receive your transcript",
+            "subtext": "Official OSSD credit sent to your school. Grade 12 marks are reported directly to OUAC/OCAS."
+          }
+        }
+      },
+      "block_order": [
+        "step_U4zPRi",
+        "step_WPjPK8",
+        "step_rzDcpQ",
+        "step_BgT6w8"
+      ],
+      "settings": {
+        "eyebrow": "How it works",
+        "heading": "Start your course in minutes",
+        "video_embed": "<iframe width=\"815\" height=\"458\" src=\"https://www.youtube.com/embed/ZQWgC0kKnXg\" title=\"OEO- What happens after you enrol\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen=\"\"></iframe>",
+        "video_caption": "See exactly what OEO looks like — from the day you pay to the day your credit is issued"
+      }
+    },
+    "course_curriculum": {
+      "type": "pdp-course-curriculum",
+      "settings": {
+        "eyebrow": "Course Curriculum",
+        "heading_prefix": "What you'll cover in"
+      }
+    },
+    "course_details": {
+      "type": "pdp-course-details",
+      "settings": {
+        "eyebrow": "Course Information",
+        "heading": "Course details at a glance",
+        "delivery_method": "Online questionnaire + transcript review",
+        "assessment": "Guidance team evaluation by an Ontario Certified Teacher",
+        "feedback_turnaround": "1–2 business days after submission",
+        "typical_completion": "Submit your questionnaire in 10–15 minutes",
+        "start_date": "Immediate — begin as soon as you enrol",
+        "official_transcript": "Written personalized graduation plan",
+        "prereq_help_text": "(Not sure if you qualify? Ask us →)",
+        "prereq_help_url": "shopify://pages/book-guidance-session",
+        "outline_button_label": "Download Course Outline",
+        "curriculum_button_label": "View Course Curriculum"
+      }
+    },
+    "no_exam": {
+      "type": "pdp-no-exam",
+      "disabled": true,
+      "settings": {
+        "quote_line1": "\"No scheduled classes. No attendance marks.",
+        "quote_line2": "No compromises.\"",
+        "body_text": "OEO courses are fully asynchronous, with no scheduled classes and no attendance marks. Your grade comes from coursework assessed by your Ontario-certified teacher and a final exam you write online, from anywhere in the world. You work at your pace, and your grade reflects your actual understanding of the material.",
+        "photo": "shopify://shop_images/548187342_1626137672001146_4286759087311537051_n.jpg",
+        "photo_alt": "Student working from home"
+      }
+    },
+    "testimonials": {
+      "type": "pdp-testimonials",
+      "settings": {
+        "eyebrow": "Student Stories",
+        "heading": "What our students say",
+        "autoplay": true,
+        "autoplay_speed": 5000
+      }
+    },
+    "guidance_cta": {
+      "type": "pdp-guidance-cta",
+      "settings": {
+        "advisor_image": "shopify://shop_images/Frame_41_2.jpg",
+        "heading": "Not sure if this course is right for your situation?",
+        "body_text": "Book a free 15-minute guidance session with one of our advisors. We'll review your transcript, answer your questions about prerequisites, and make sure you're set up for success. No obligation, no pressure.",
+        "button_label": "Book Free Guidance Session",
+        "button_url": "shopify://pages/book-guidance-session",
+        "button_aria_label": "Book a free 15-minute guidance session with an OEO advisor",
+        "proof_text": "Parents & guardians are welcome!"
+      }
+    },
+    "faqs": {
+      "type": "pdp-faqs",
+      "blocks": {
+        "faq_item_FeFy3B": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is a PLAR?",
+            "answer": "<p>PLAR (Prior Learning Assessment and Recognition) is an assessment completed by our guidance team to determine what Ontario Secondary School Diploma (OSSD) credits you may already qualify for based on your previous education, work experience, training, or life experience. It helps us build the fastest pathway to your OSSD.</p>"
+          }
+        },
+        "faq_item_JhwfNq": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Who should purchase a PLAR?",
+            "answer": "<p>A PLAR is ideal if you:</p><ul><li>Completed high school outside Ontario or outside Canada.</li><li>Are a mature student returning to school.</li><li>Have work or life experience that may count toward your OSSD.</li><li>Want to know exactly which credits you still need before enrolling.</li></ul>"
+          }
+        },
+        "faq_item_bHQtVj": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How much does the PLAR cost?",
+            "answer": "<p>The PLAR assessment is $150 CAD.</p><p>If you decide to enroll in an Ontario Education Online course after your PLAR is complete, we waive the $150 fee, effectively making your PLAR free.</p>"
+          }
+        },
+        "faq_item_NDA74z": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What happens after I purchase?",
+            "answer": "<ul><li>Complete the intake form after checkout.</li><li>Upload your transcripts and supporting documentation.</li><li>Our guidance team reviews your information.</li><li>We create a personalized graduation plan outlining credits already recognized, credits still required, and a recommended course sequence.</li><li>We contact you with your results.</li></ul>"
+          }
+        },
+        "faq_item_WYA3Tf": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long does the assessment take?",
+            "answer": "<p>Most PLAR assessments are completed within 1–2 business days after we receive all required documentation.</p>"
+          }
+        },
+        "faq_item_YWUd3E": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What documents do I need?",
+            "answer": "<p>Depending on your situation, we may ask for:</p><ul><li>Previous report cards or transcripts</li><li>International educational records</li><li>College or university transcripts</li><li>Training certificates</li><li>Employment history</li><li>Resume</li><li>Other supporting documentation</li></ul><p>Don’t worry if you don’t have everything immediately—we’ll let you know exactly what is needed.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_item_FeFy3B",
+        "faq_item_JhwfNq",
+        "faq_item_bHQtVj",
+        "faq_item_NDA74z",
+        "faq_item_WYA3Tf",
+        "faq_item_YWUd3E"
+      ],
+      "settings": {
+        "section_label": "Common Questions",
+        "section_heading": "Frequently asked questions",
+        "fallback_course_code": "this course"
+      }
+    },
+    "related_products": {
+      "type": "pdp-related-products",
+      "settings": {
+        "section_label": "Keep Learning",
+        "section_heading": "Other courses you might need",
+        "max_products": 3
+      }
+    }
+  },
+  "order": [
+    "main",
+    "values",
+    "universities",
+    "how_it_works",
+    "course_curriculum",
+    "course_details",
+    "no_exam",
+    "testimonials",
+    "guidance_cta",
+    "faqs",
+    "related_products"
+  ]
+}
