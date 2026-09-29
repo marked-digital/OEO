@@ -106,50 +106,8 @@
     },
     "how": {
       "type": "fte-how-it-works",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Enrol",
-            "body": "Choose your grade and enrol online, any day of the year."
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "Complete the enrolment form",
-            "body": "A few minutes, right after checkout."
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Free guidance session",
-            "body": "Prerequisites confirmed, transfer credits evaluated, pathway plan built."
-          }
-        },
-        "step_4": {
-          "type": "step",
-          "settings": {
-            "title": "Your first 2-4 courses unlock",
-            "body": "2 to 4 courses open in Google Classroom and your 12-month term begins."
-          }
-        },
-        "step_5": {
-          "type": "step",
-          "settings": {
-            "title": "Finish one, the next opens",
-            "body": "Automatically, in the order your counsellor set."
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3",
-        "step_4",
-        "step_5"
-      ],
+         "blocks": {},
+   "block_order": [],
       "settings": {
         "eyebrow": "How full-time works",
         "heading": "Enrol once. Your counsellor runs the year.",
